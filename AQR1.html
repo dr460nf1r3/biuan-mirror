@@ -1,0 +1,359 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>AQR1 - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Inventory and Production'> Inventory and Production</a> / <a href='/sql/Inventory Posting - Rows'> Inventory Posting - Rows</a></div></div><div class=' tit' style='width:50%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> AQR1</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #008b87;'  class='titol sm titoltxt'>  <a style='color:#008b87;' href='/AQR1/'> AQR1 - Inventory Posting - Rows</a> Table</font><script>
+                    document.title = 'AQR1 - Inventory Posting - Rows - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>DocEntry</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Document Internal ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b>DocLineNum</b></em></td><td valign=top >Row Number in Document</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>ItemCode</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Item No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/OITM title='Items'>OITM</a><br><small class=s2>Items</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>ITEM_CODE</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>ItemName</b></em></td><td valign=top >Item Description</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InvntryUom</b></em></td><td valign=top >Inventory UoM</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OnHandBef</b></em></td><td valign=top >Quantity Stored in Warehouse</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Price</b></em></td><td valign=top >Price</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Quantity</b></em></td><td valign=top >Quantity - Delta</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Currency</b></em></td><td valign=top >Price Currency</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Rate</b></em></td><td valign=top >Currency Price</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IOffIncAcc</b></em></td><td valign=top >Inventory Offset Increase Acct</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DOffDecAcc</b></em></td><td valign=top >Inventory Offset Decrease Acct</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCode</b></em></td><td valign=top >Distribution Rule</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WhsCode</b></em></td><td valign=top >Warehouse Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OWHS title='Warehouses'>OWHS</a><br><small class=s2>Warehouses</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocTotal</b></em></td><td valign=top >Document Total</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocTotalFC</b></em></td><td valign=top >Document Total (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocTotalSy</b></em></td><td valign=top >Document Total (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCode2</b></em></td><td valign=top >Distribution Rule 2</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCode3</b></em></td><td valign=top >Distribution Rule 3</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCode4</b></em></td><td valign=top >Distribution Rule 4</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCode5</b></em></td><td valign=top >Distribution Rule 5</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ObjType</b></em></td><td valign=top >Object Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>10000071</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Project</b></em></td><td valign=top >Project Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/OPRJ title='Project Codes'>OPRJ</a><br><small class=s2>Project Codes</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BarCode</b></em></td><td valign=top >Bar Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InvUoM</b></em></td><td valign=top >Inventory UoM</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BinEntry</b></em></td><td valign=top >Bin Location Entry</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBIN title='Bin Location'>OBIN</a><br><small class=s2>Bin Location</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FirmCode</b></em></td><td valign=top >Manufacturer</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OMRC title='Manufacturers'>OMRC</a><br><small class=s2>Manufacturers</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SuppCatNum</b></em></td><td valign=top >Mfr Catalog No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>17</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CardCode</b></em></td><td valign=top >Preferred Vendor</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CountDate</b></em></td><td valign=top >Count Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CountTime</b></em></td><td valign=top >Count Time</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DiffPercnt</b></em></td><td valign=top >Percentage Difference</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseRef</b></em></td><td valign=top >Base Document Reference</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseType</b></em></td><td valign=top >Base Document Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr>-1) <hr>1470000065)  Inventory Counting</div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1470000065</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseEntry</b></em></td><td valign=top >Base Document Internal ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseLine</b></em></td><td valign=top >Base Row</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CountQty</b></em></td><td valign=top >Counted Quantity</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Remark</b></em></td><td valign=top >Remarks</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance - History</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CpyCount</b></em></td><td valign=top >Copied Count</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Inventory Taker One<hr>2)  Two Takers - Taker 1<hr>3)  Two Takers - Taker 2<hr>4)  Two Takers - Items with Zero Difference</div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BinNegQty</b></em></td><td valign=top >Allow Bin Negative Quantity</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VisOrder</b></em></td><td valign=top >Visual Order</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UgpEntry</b></em></td><td valign=top >UoM Group Entry</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OUGP title='UoM Group'>OUGP</a><br><small class=s2>UoM Group</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IUomEntry</b></em></td><td valign=top >Inventory UoM Entry</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/OUOM title='UoM Master Data'>OUOM</a><br><small class=s2>UoM Master Data</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UomCode</b></em></td><td valign=top >UoM Code for DI</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ItmsPerUnt</b></em></td><td valign=top >Items per Unit for DI</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UomQty</b></em></td><td valign=top >UoM Counted Qty for DI</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ActPrice</b></em></td><td valign=top >Actual Price</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PostValueL</b></em></td><td valign=top >Posted Value LC</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PostValueS</b></em></td><td valign=top >Posted Value SC</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OBIN', font: { multi: true }, label: 'OBIN', title: 'Bin Location'},{id: 'AQR1', font: { multi: true }, label: '<b>AQR1</b>', title:'AQR1'},{id: 'OCRD', font: { multi: true }, label: 'OCRD', title: 'Business Partner'},{id: 'OACT', font: { multi: true }, label: 'OACT', title: 'G/L Accounts'},{id: 'OMRC', font: { multi: true }, label: 'OMRC', title: 'Manufacturers'},{id: 'OITM', font: { multi: true }, label: 'OITM', title: 'Items'},{id: 'OUOM', font: { multi: true }, label: 'OUOM', title: 'UoM Master Data'},{id: 'OOCR', font: { multi: true }, label: 'OOCR', title: 'Distribution Rule'},{id: 'OPRJ', font: { multi: true }, label: 'OPRJ', title: 'Project Codes'},{id: 'OUGP', font: { multi: true }, label: 'OUGP', title: 'UoM Group'},{id: 'OWHS', font: { multi: true }, label: 'OWHS', title: 'Warehouses'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OBIN', to: 'AQR1', arrows:'from'}, {from: 'OCRD', to: 'AQR1', arrows:'from'}, {from: 'OACT', to: 'AQR1', arrows:'from'}, {from: 'OMRC', to: 'AQR1', arrows:'from'}, {from: 'OITM', to: 'AQR1', arrows:'from'}, {from: 'OUOM', to: 'AQR1', arrows:'from'}, {from: 'OOCR', to: 'AQR1', arrows:'from'}, {from: 'OPRJ', to: 'AQR1', arrows:'from'}, {from: 'OUGP', to: 'AQR1', arrows:'from'}, {from: 'OWHS', to: 'AQR1', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   AQR1.DocEntry AS 'Document Internal ID', 
+   AQR1.DocLineNum AS 'Row Number in Document', 
+   AQR1.ItemCode AS 'Item No.', 
+   AQR1.ItemName AS 'Item Description', 
+   AQR1.InvntryUom AS 'Inventory UoM', 
+   AQR1.OnHandBef AS 'Quantity Stored in Warehouse', 
+   AQR1.Price AS 'Price', 
+   AQR1.Quantity AS 'Quantity - Delta', 
+   AQR1.Currency AS 'Price Currency', 
+   AQR1.Rate AS 'Currency Price', 
+   AQR1.IOffIncAcc AS 'Inventory Offset Increase Acct', 
+   AQR1.DOffDecAcc AS 'Inventory Offset Decrease Acct', 
+   AQR1.OcrCode AS 'Distribution Rule', 
+   AQR1.WhsCode AS 'Warehouse Code', 
+   AQR1.DocTotal AS 'Document Total', 
+   AQR1.DocTotalFC AS 'Document Total (FC)', 
+   AQR1.DocTotalSy AS 'Document Total (SC)', 
+   AQR1.OcrCode2 AS 'Distribution Rule 2', 
+   AQR1.OcrCode3 AS 'Distribution Rule 3', 
+   AQR1.OcrCode4 AS 'Distribution Rule 4', 
+   AQR1.OcrCode5 AS 'Distribution Rule 5', 
+   AQR1.ObjType AS 'Object Type', 
+   AQR1.Project AS 'Project Code', 
+   AQR1.BarCode AS 'Bar Code', 
+   AQR1.InvUoM AS 'Inventory UoM', 
+   AQR1.BinEntry AS 'Bin Location Entry', 
+   AQR1.FirmCode AS 'Manufacturer', 
+   AQR1.SuppCatNum AS 'Mfr Catalog No.', 
+   AQR1.CardCode AS 'Preferred Vendor', 
+   AQR1.CountDate AS 'Count Date', 
+   AQR1.CountTime AS 'Count Time', 
+   AQR1.DiffPercnt AS 'Percentage Difference', 
+   AQR1.BaseRef AS 'Base Document Reference', 
+   AQR1.BaseType AS 'Base Document Type', 
+   AQR1.BaseEntry AS 'Base Document Internal ID', 
+   AQR1.BaseLine AS 'Base Row', 
+   AQR1.CountQty AS 'Counted Quantity', 
+   AQR1.Remark AS 'Remarks', 
+   AQR1.LogInstanc AS 'Log Instance - History', 
+   AQR1.CpyCount AS 'Copied Count', 
+   AQR1.BinNegQty AS 'Allow Bin Negative Quantity', 
+   AQR1.VisOrder AS 'Visual Order', 
+   AQR1.UgpEntry AS 'UoM Group Entry', 
+   AQR1.IUomEntry AS 'Inventory UoM Entry', 
+   AQR1.UomCode AS 'UoM Code for DI', 
+   AQR1.ItmsPerUnt AS 'Items per Unit for DI', 
+   AQR1.UomQty AS 'UoM Counted Qty for DI', 
+   AQR1.ActPrice AS 'Actual Price', 
+   AQR1.PostValueL AS 'Posted Value LC', 
+   AQR1.PostValueS AS 'Posted Value SC'
+FROM AQR1 AS AQR1</div><h2 class=np>Related information</h2><dir class=np><br><a href=/OBIN class=related>Bin Location</a> <em class=comment>OBIN</em> <b>SQL Table</b><br><br><a href=/OCRD class=related>Business Partner</a> <em class=comment>OCRD</em> <b>SQL Table</b><br><br><a href=/OACT class=related>G/L Accounts</a> <em class=comment>OACT</em> <b>SQL Table</b><br><br><a href=/OMRC class=related>Manufacturers</a> <em class=comment>OMRC</em> <b>SQL Table</b><br><br><a href=/OITM class=related>Items</a> <em class=comment>OITM</em> <b>SQL Table</b><br><br><a href=/OUOM class=related>UoM Master Data</a> <em class=comment>OUOM</em> <b>SQL Table</b><br><br><a href=/OOCR class=related>Distribution Rule</a> <em class=comment>OOCR</em> <b>SQL Table</b><br><br><a href=/OPRJ class=related>Project Codes</a> <em class=comment>OPRJ</em> <b>SQL Table</b><br><br><a href=/OUGP class=related>UoM Group</a> <em class=comment>OUGP</em> <b>SQL Table</b><br><br><a href=/OWHS class=related>Warehouses</a> <em class=comment>OWHS</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''><br><a class=eli style='max-width:99%;'   href='//'></a></font><hr></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

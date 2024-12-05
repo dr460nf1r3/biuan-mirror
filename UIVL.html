@@ -1,0 +1,387 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>UIVL - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Inventory and Production'> Inventory and Production</a> / <a href='/sql/Whse Journal'> Whse Journal</a></div></div><div class=' tit' style='width:50%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> UIVL</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #008b87;'  class='titol sm titoltxt'>  <a style='color:#008b87;' href='/UIVL/'> UIVL - Whse Journal</a> Table</font><script>
+                    document.title = 'UIVL - Whse Journal - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b>TransType</b></em></td><td valign=top >Transaction Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr>15)  Delivery<hr>16)  Returns<hr>13)  A/R Invoice<hr>14)  A/R Credit Memo<hr>132)  Correction Invoice<hr>(-0)  (-<hr>20)  Goods Receipt<hr>21)  Goods Return<hr>18)  A/P Invoice<hr>19)  A/P Credit Memo<hr>(-1)  (-<hr>-2)  Opening Balance<hr>58)  Inventory Update<hr>59)  Goods Receipt<hr>60)  Goods Issue<hr>67)  Inventory Transfer<hr>68)  Work Instructions<hr>(-2)  (-<hr>-1)  All Transactions<hr>162)  Inventory Revaluation<hr>69)  Landed Costs</div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td><tr><td valign=top ><em><b><u title='Primary'>CreatedBy</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Document No. Created</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>DOCENTRY</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>BASE_REF</b></em></td><td valign=top >Base Reference</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocLineNum</b></em></td><td valign=top >Row Number in Document</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>DocDate</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Posting Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>DOCDATE</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>CreateTime</b></em></td><td valign=top >Generation Time</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>ItemCode</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Item No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/UITM title='Items'>UITM</a><br><small class=s2>Items</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>ITEM</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>InQty</b></em></td><td valign=top >Receipt Quantity</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OutQty</b></em></td><td valign=top >Issue Quantity</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Price</b></em></td><td valign=top >Price</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>Currency</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Price Currency</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>CURRENCY</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>Rate</b></em></td><td valign=top >Currency Price</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TrnsfrAct</b></em></td><td valign=top >Transfer Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PriceDifAc</b></em></td><td valign=top >Price Difference Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VarianceAc</b></em></td><td valign=top >Variance Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ReturnAct</b></em></td><td valign=top >Returning Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExcRateAct</b></em></td><td valign=top >Exchange Rate Differences Acct</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ClearAct</b></em></td><td valign=top >Goods Clearing Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CostAct</b></em></td><td valign=top >COGS Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WipAct</b></em></td><td valign=top >WIP Inventory Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenStock</b></em></td><td valign=top >Open Sum Inventory Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CreateDate</b></em></td><td valign=top >Creation Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PriceDiff</b></em></td><td valign=top >Price Difference Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>TransSeq</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Transaction Sequence No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b>InvntAct</b></em></td><td valign=top >Inventory Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SubLineNum</b></em></td><td valign=top >Subrow Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AppObjLine</b></em></td><td valign=top >Applied Object Row</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Expenses</b></em></td><td valign=top >Inventory Expenses</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenExp</b></em></td><td valign=top >Open Expenses Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Allocation</b></em></td><td valign=top >Allocation Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenAlloc</b></em></td><td valign=top >Open Allocation Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpAlloc</b></em></td><td valign=top >Expenses Allocation Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OExpAlloc</b></em></td><td valign=top >Open Expenses Allocation Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenPDiff</b></em></td><td valign=top >Open Price Diff. Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExchDiff</b></em></td><td valign=top >Exchange Rate Difference Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenEDiff</b></em></td><td valign=top >Open Exchange Rate Diff. Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NegInvAdjs</b></em></td><td valign=top >Negative Inventory Adjustment Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenNegInv</b></em></td><td valign=top >Open Negative Adjustment</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NegStckAct</b></em></td><td valign=top >Neg. Inventory Adjustment Acct</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BTransVal</b></em></td><td valign=top >Base Transaction Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VarVal</b></em></td><td valign=top >Variance Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BExpVal</b></em></td><td valign=top >Base Freight Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CogsVal</b></em></td><td valign=top >COGS Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BNegAVal</b></em></td><td valign=top >Base Negative Adjustment Amt</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IOffIncAcc</b></em></td><td valign=top >Inventory Offset Increase Acct</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IOffIncVal</b></em></td><td valign=top >Inv. Offset Increase Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DOffDecAcc</b></em></td><td valign=top >Inventory Offset Decrease Acct</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DOffDecVal</b></em></td><td valign=top >Inv. Offset Decrease Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DecAcc</b></em></td><td valign=top >G/L Decrease Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DecVal</b></em></td><td valign=top >G/L Decrease Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WipVal</b></em></td><td valign=top >WIP Inventory Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WipVarAcc</b></em></td><td valign=top >WIP Variance Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WipVarVal</b></em></td><td valign=top >WIP Variance Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IncAct</b></em></td><td valign=top >G/L Increase Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IncVal</b></em></td><td valign=top >G/L Increase Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpCAcc</b></em></td><td valign=top >Expense Clearing Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CostMethod</b></em></td><td valign=top >Costing Method</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>A)  Moving Average<hr>S)  Standard<hr>F)  FIFO<hr>N)  None</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>MessageID</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Message ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/UILM title='IVI Inventory Log Message'>UILM</a><br><small class=s2>IVI Inventory Log Message</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>MESSAGEID</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>LocType</b></em></td><td valign=top >Location Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LocCode</b></em></td><td valign=top >Warehouse Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DataSource</b></em></td><td valign=top >Data Source</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  Unknown<hr>I)  Interface<hr>U)  Upgrade<hr>M)  Import<hr>O)  DI API<hr>A)  Auto Summary<hr>D)  Restore Wizard<hr>P)  Partner Implementation<hr>Y)  Year Transfer</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PostStatus</b></em></td><td valign=top >Posting Status</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  None<hr>P)  Partial<hr>C)  Complete</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SumStock</b></em></td><td valign=top >Sum Inventory Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenCogs</b></em></td><td valign=top >Open COGS Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenQty</b></em></td><td valign=top >Open Quantity</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>TreeID</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Tree ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile>TREEID</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>ParentID</b></em></td><td valign=top >Parent ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PAOffAcc</b></em></td><td valign=top >Purchase Offset Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PAOffVal</b></em></td><td valign=top >Purchase Offset Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenPAOff</b></em></td><td valign=top >Open Purchase Offset Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PAAcc</b></em></td><td valign=top >Purchase Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PAVal</b></em></td><td valign=top >Purchase Account Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenPA</b></em></td><td valign=top >Open Purchase Value</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LinkArc</b></em></td><td valign=top >Linked To Archived Doc</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VersionNum</b></em></td><td valign=top >Version Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BSubLineNo</b></em></td><td valign=top >Base Subrow Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WipDebCred</b></em></td><td valign=top >WIP Account: Debit/Credit Side</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'UIVL', font: { multi: true }, label: 'UIVL', title: ''},{id: 'UIVE', font: { multi: true }, label: '<b>UIVE</b>', title:'FIFO Based Sales Return'},{id: 'UIVQ', font: { multi: true }, label: '<b>UIVQ</b>', title:'FIFO Queue Working Table'},{id: 'OACT', font: { multi: true }, label: 'OACT', title: 'G/L Accounts'},{id: 'UITM', font: { multi: true }, label: 'UITM', title: 'Items'},{id: 'UILM', font: { multi: true }, label: 'UILM', title: 'IVI Inventory Log Message'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'UIVL', to: 'UIVE', arrows:'from'}, {from: 'UIVL', to: 'UIVQ', arrows:'from'}, {from: 'OACT', to: 'UIVL', arrows:'from'}, {from: 'UITM', to: 'UIVL', arrows:'from'}, {from: 'UILM', to: 'UIVL', arrows:'from'}, {from: 'OUSR', to: 'UIVL', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   UIVL.TransType AS 'Transaction Type', 
+   UIVL.CreatedBy AS 'Document No. Created', 
+   UIVL.BASE_REF AS 'Base Reference', 
+   UIVL.DocLineNum AS 'Row Number in Document', 
+   UIVL.DocDate AS 'Posting Date', 
+   UIVL.CreateTime AS 'Generation Time', 
+   UIVL.ItemCode AS 'Item No.', 
+   UIVL.InQty AS 'Receipt Quantity', 
+   UIVL.OutQty AS 'Issue Quantity', 
+   UIVL.Price AS 'Price', 
+   UIVL.Currency AS 'Price Currency', 
+   UIVL.Rate AS 'Currency Price', 
+   UIVL.TrnsfrAct AS 'Transfer Account', 
+   UIVL.PriceDifAc AS 'Price Difference Account', 
+   UIVL.VarianceAc AS 'Variance Account', 
+   UIVL.ReturnAct AS 'Returning Account', 
+   UIVL.ExcRateAct AS 'Exchange Rate Differences Acct', 
+   UIVL.ClearAct AS 'Goods Clearing Account', 
+   UIVL.CostAct AS 'COGS Account', 
+   UIVL.WipAct AS 'WIP Inventory Account', 
+   UIVL.OpenStock AS 'Open Sum Inventory Value', 
+   UIVL.CreateDate AS 'Creation Date', 
+   UIVL.PriceDiff AS 'Price Difference Value', 
+   UIVL.TransSeq AS 'Transaction Sequence No.', 
+   UIVL.InvntAct AS 'Inventory Account', 
+   UIVL.SubLineNum AS 'Subrow Number', 
+   UIVL.AppObjLine AS 'Applied Object Row', 
+   UIVL.Expenses AS 'Inventory Expenses', 
+   UIVL.OpenExp AS 'Open Expenses Value', 
+   UIVL.Allocation AS 'Allocation Amount', 
+   UIVL.OpenAlloc AS 'Open Allocation Value', 
+   UIVL.ExpAlloc AS 'Expenses Allocation Value', 
+   UIVL.OExpAlloc AS 'Open Expenses Allocation Value', 
+   UIVL.OpenPDiff AS 'Open Price Diff. Value', 
+   UIVL.ExchDiff AS 'Exchange Rate Difference Value', 
+   UIVL.OpenEDiff AS 'Open Exchange Rate Diff. Value', 
+   UIVL.NegInvAdjs AS 'Negative Inventory Adjustment Value', 
+   UIVL.OpenNegInv AS 'Open Negative Adjustment', 
+   UIVL.NegStckAct AS 'Neg. Inventory Adjustment Acct', 
+   UIVL.BTransVal AS 'Base Transaction Value', 
+   UIVL.VarVal AS 'Variance Value', 
+   UIVL.BExpVal AS 'Base Freight Value', 
+   UIVL.CogsVal AS 'COGS Value', 
+   UIVL.BNegAVal AS 'Base Negative Adjustment Amt', 
+   UIVL.IOffIncAcc AS 'Inventory Offset Increase Acct', 
+   UIVL.IOffIncVal AS 'Inv. Offset Increase Value', 
+   UIVL.DOffDecAcc AS 'Inventory Offset Decrease Acct', 
+   UIVL.DOffDecVal AS 'Inv. Offset Decrease Value', 
+   UIVL.DecAcc AS 'G/L Decrease Account', 
+   UIVL.DecVal AS 'G/L Decrease Value', 
+   UIVL.WipVal AS 'WIP Inventory Value', 
+   UIVL.WipVarAcc AS 'WIP Variance Account', 
+   UIVL.WipVarVal AS 'WIP Variance Value', 
+   UIVL.IncAct AS 'G/L Increase Account', 
+   UIVL.IncVal AS 'G/L Increase Value', 
+   UIVL.ExpCAcc AS 'Expense Clearing Account', 
+   UIVL.CostMethod AS 'Costing Method', 
+   UIVL.MessageID AS 'Message ID', 
+   UIVL.LocType AS 'Location Type', 
+   UIVL.LocCode AS 'Warehouse Code', 
+   UIVL.UserSign AS 'User Signature', 
+   UIVL.DataSource AS 'Data Source', 
+   UIVL.PostStatus AS 'Posting Status', 
+   UIVL.SumStock AS 'Sum Inventory Value', 
+   UIVL.OpenCogs AS 'Open COGS Value', 
+   UIVL.OpenQty AS 'Open Quantity', 
+   UIVL.TreeID AS 'Tree ID', 
+   UIVL.ParentID AS 'Parent ID', 
+   UIVL.PAOffAcc AS 'Purchase Offset Account', 
+   UIVL.PAOffVal AS 'Purchase Offset Value', 
+   UIVL.OpenPAOff AS 'Open Purchase Offset Value', 
+   UIVL.PAAcc AS 'Purchase Account', 
+   UIVL.PAVal AS 'Purchase Account Value', 
+   UIVL.OpenPA AS 'Open Purchase Value', 
+   UIVL.LinkArc AS 'Linked To Archived Doc', 
+   UIVL.VersionNum AS 'Version Number', 
+   UIVL.BSubLineNo AS 'Base Subrow Number', 
+   UIVL.WipDebCred AS 'WIP Account: Debit/Credit Side'
+FROM UIVL AS UIVL</div><h2 class=np>Related information</h2><dir class=np><br><a href=/UIVL class=related></a> <em class=comment>UIVL</em> <b>SQL Table</b><br><br><a href=/OACT class=related>G/L Accounts</a> <em class=comment>OACT</em> <b>SQL Table</b><br><br><a href=/UITM class=related>Items</a> <em class=comment>UITM</em> <b>SQL Table</b><br><br><a href=/UILM class=related>IVI Inventory Log Message</a> <em class=comment>UILM</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''><br><a class=eli style='max-width:99%;'   href='//'></a></font><hr></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

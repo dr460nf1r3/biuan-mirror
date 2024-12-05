@@ -1,0 +1,338 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>ITEM - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#feae2d; color:#fffff5;'><div class=eli2><b>SQL</b> <a href='/sql/Others'> Others</a> / <a href='/sql/Item Resource'> Item Resource</a></div></div><div class=' tit' style='width:50%; background-color:#ffff91; color:#cc7c00;'><div class=eli2><b>API</b> Attachments /  Item</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #cc7c00;'  class='titol sm titoltxt'>  <a style='color:#cc7c00;' href='/ITEM/'> ITEM - Item Resource</a> Table</font><script>
+                    document.title = 'ITEM - Item Resource - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b>Created</b></em></td><td valign=top >Creation Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td><tr><td valign=top ><em><b>Updated</b></em></td><td valign=top >Update Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>Name</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Form Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>64</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>UNIQUE_ID</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b>Num</b></em></td><td valign=top >Item Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ItemType</b></em></td><td valign=top >Item Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr>4)  Button<hr>121)  Check box<hr>114)  Edit popup<hr>16)  Edit text<hr>118)  Extended edit<hr>99)  Folder<hr>101)  FwdBck button<hr>123)  Graph<hr>124)  Icon<hr>116)  Link button<hr>127)  Grid<hr>120)  Media<hr>103)  Multi page<hr>115)  Pane button<hr>104)  Pane popup<hr>117)  Picture<hr>98)  Pipe<hr>125)  Popup<hr>119)  Preview<hr>112)  Progress<hr>122)  Radio button<hr>100)  Rectangle<hr>113)  Select popup<hr>8)  Static text<hr>102)  ActiveX<hr>0<hr>129)  Button Combo</div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Enabled</b></em></td><td valign=top >Enabled</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>_Top</b></em></td><td valign=top >Top</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>_Bottom</b></em></td><td valign=top >Bottom</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>_Left</b></em></td><td valign=top >Left</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>_Right</b></em></td><td valign=top >Right</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Font</b></em></td><td valign=top >Font Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FontSize</b></em></td><td valign=top >Font Size</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attributes</b></em></td><td valign=top >Attributes</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Style</b></em></td><td valign=top >Style</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Mode</b></em></td><td valign=top >Mode</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VarNum</b></em></td><td valign=top >Variable Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AttrVar</b></em></td><td valign=top >Attribute Variable</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NewLineVar</b></em></td><td valign=top >New Line Variable</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ProcVar</b></em></td><td valign=top >Proc Variable</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LinkVar</b></em></td><td valign=top >Link Variable</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DragVar</b></em></td><td valign=top >Drag Variable</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FileCode</b></em></td><td valign=top >Table Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FieldNum</b></em></td><td valign=top >Field Alias</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>10</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Editable</b></em></td><td valign=top >Editable</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Invisible</b></em></td><td valign=top >Invisible</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SuppressZe</b></em></td><td valign=top >Suppress Zeros</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DfltButton</b></em></td><td valign=top >Default Button</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DataRequir</b></em></td><td valign=top >Data Required</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ForceUpper</b></em></td><td valign=top >Force Upper</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RightJust</b></em></td><td valign=top >Right Justified</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Yes<hr>2)  Language dependant<hr>3)  Oppos Language</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserType</b></em></td><td valign=top >Data Binding Type</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  User Variable<hr>2)  Multiple Data Type</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ShowType</b></em></td><td valign=top >Show type</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Value only<hr>2)  Description only</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DispDecr</b></em></td><td valign=top >Display Description</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TabOrder</b></em></td><td valign=top >TAB Order</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LinkTo</b></em></td><td valign=top >Link to Item</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DragEntity</b></em></td><td valign=top >Drag Entity</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FromPane</b></em></td><td valign=top >From Pane</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ToPane</b></em></td><td valign=top >To Pane</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Class</b></em></td><td valign=top >Class</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>StrIndex</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >String Index</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile>STRING</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>HkeyIndex</b></em></td><td valign=top >Hotkey Index</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DescIndex</b></em></td><td valign=top >Description Index</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FrameRed</b></em></td><td valign=top >Frame Red</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FrameGreen</b></em></td><td valign=top >Frame Green</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FrameBlue</b></em></td><td valign=top >Frame Blue</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BodyRed</b></em></td><td valign=top >Body Red</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BodyGreen</b></em></td><td valign=top >Body Green</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BodyBlue</b></em></td><td valign=top >Body Blue</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TextRed</b></em></td><td valign=top >Text Red</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TextGreen</b></em></td><td valign=top >Text Green</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TextBlue</b></em></td><td valign=top >Text Blue</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ThumbRed</b></em></td><td valign=top >Thumb Red</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ThumbGreen</b></em></td><td valign=top >Thumb Green</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ThumbBlue</b></em></td><td valign=top >Thumb Blue</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TxtFgRed</b></em></td><td valign=top >Text Foreground Red</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TxtFgGreen</b></em></td><td valign=top >Text Foreground Green</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TxtFgBlue</b></em></td><td valign=top >Text Foreground blue</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TxtBgRed</b></em></td><td valign=top >Text Background Red</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TxtBgGreen</b></em></td><td valign=top >Text Background Green</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TxtBgBlue</b></em></td><td valign=top >Text Background Blue</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UniqueID</b></em></td><td valign=top >Unique ID</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>10</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ItemString</b></em></td><td valign=top >Item String</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ItemDesc</b></em></td><td valign=top >Item Description</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>HotkeyPos</b></em></td><td valign=top >Hotkey Position</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WrapText</b></em></td><td valign=top >Wrap Text</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UsrSgnStr</b></em></td><td valign=top >User Sign For String Change</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UsrSgnAttr</b></em></td><td valign=top >User Sign For Attribs Change</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FontName</b></em></td><td valign=top >Font Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResCode</b></em></td><td valign=top >Resource Code from RSBD</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RevCode</b></em></td><td valign=top >Revision Code</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BindObjId</b></em></td><td valign=top >Bind Object Id</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   ITEM.Created AS 'Creation Date', 
+   ITEM.Updated AS 'Update Date', 
+   ITEM.Name AS 'Form Name', 
+   ITEM.Num AS 'Item Number', 
+   ITEM.ItemType AS 'Item Type', 
+   ITEM.Enabled AS 'Enabled', 
+   ITEM._Top AS 'Top', 
+   ITEM._Bottom AS 'Bottom', 
+   ITEM._Left AS 'Left', 
+   ITEM._Right AS 'Right', 
+   ITEM.Font AS 'Font Number', 
+   ITEM.FontSize AS 'Font Size', 
+   ITEM.Attributes AS 'Attributes', 
+   ITEM.Style AS 'Style', 
+   ITEM.Mode AS 'Mode', 
+   ITEM.VarNum AS 'Variable Number', 
+   ITEM.AttrVar AS 'Attribute Variable', 
+   ITEM.NewLineVar AS 'New Line Variable', 
+   ITEM.ProcVar AS 'Proc Variable', 
+   ITEM.LinkVar AS 'Link Variable', 
+   ITEM.DragVar AS 'Drag Variable', 
+   ITEM.FileCode AS 'Table Name', 
+   ITEM.FieldNum AS 'Field Alias', 
+   ITEM.Editable AS 'Editable', 
+   ITEM.Invisible AS 'Invisible', 
+   ITEM.SuppressZe AS 'Suppress Zeros', 
+   ITEM.DfltButton AS 'Default Button', 
+   ITEM.DataRequir AS 'Data Required', 
+   ITEM.ForceUpper AS 'Force Upper', 
+   ITEM.RightJust AS 'Right Justified', 
+   ITEM.UserType AS 'Data Binding Type', 
+   ITEM.ShowType AS 'Show type', 
+   ITEM.DispDecr AS 'Display Description', 
+   ITEM.TabOrder AS 'TAB Order', 
+   ITEM.LinkTo AS 'Link to Item', 
+   ITEM.DragEntity AS 'Drag Entity', 
+   ITEM.FromPane AS 'From Pane', 
+   ITEM.ToPane AS 'To Pane', 
+   ITEM.Class AS 'Class', 
+   ITEM.StrIndex AS 'String Index', 
+   ITEM.HkeyIndex AS 'Hotkey Index', 
+   ITEM.DescIndex AS 'Description Index', 
+   ITEM.FrameRed AS 'Frame Red', 
+   ITEM.FrameGreen AS 'Frame Green', 
+   ITEM.FrameBlue AS 'Frame Blue', 
+   ITEM.BodyRed AS 'Body Red', 
+   ITEM.BodyGreen AS 'Body Green', 
+   ITEM.BodyBlue AS 'Body Blue', 
+   ITEM.TextRed AS 'Text Red', 
+   ITEM.TextGreen AS 'Text Green', 
+   ITEM.TextBlue AS 'Text Blue', 
+   ITEM.ThumbRed AS 'Thumb Red', 
+   ITEM.ThumbGreen AS 'Thumb Green', 
+   ITEM.ThumbBlue AS 'Thumb Blue', 
+   ITEM.TxtFgRed AS 'Text Foreground Red', 
+   ITEM.TxtFgGreen AS 'Text Foreground Green', 
+   ITEM.TxtFgBlue AS 'Text Foreground blue', 
+   ITEM.TxtBgRed AS 'Text Background Red', 
+   ITEM.TxtBgGreen AS 'Text Background Green', 
+   ITEM.TxtBgBlue AS 'Text Background Blue', 
+   ITEM.UniqueID AS 'Unique ID', 
+   ITEM.ItemString AS 'Item String', 
+   ITEM.ItemDesc AS 'Item Description', 
+   ITEM.HotkeyPos AS 'Hotkey Position', 
+   ITEM.WrapText AS 'Wrap Text', 
+   ITEM.UsrSgnStr AS 'User Sign For String Change', 
+   ITEM.UsrSgnAttr AS 'User Sign For Attribs Change', 
+   ITEM.FontName AS 'Font Name', 
+   ITEM.ResCode AS 'Resource Code from RSBD', 
+   ITEM.RevCode AS 'Revision Code', 
+   ITEM.BindObjId AS 'Bind Object Id'
+FROM ITEM AS ITEM</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+577.7691695690155
+1.0384385585784912' class=related href='/Attachments/Item'> Item</a> <em class=comment>Item</em> <b>Method</b>&middot; <font class=grey>Table:</font> <span><a href=/ITEM/ >ITEM</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Retrieves an existing attachment item from the <a style='color:inherit;' href=/Attachments/Attachment/>Attachment</a>s object. </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Attachments> Attachments</a> <small>Attachments</small> <b>Collection</b><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Collection<br><a style='max-width:99%;' class=eli href='/Attachments/'>Attachments</a></font><hr><font style=''>Method<br><a class=eli style='max-width:99%;'   href='/Attachments/Item/'>Item</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo BOT From Status' href=/BillOfExchangeTransaction/BoBOTFromStatus/ class=eli>BoBOTFromStatus</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo BOT To Status' href=/BillOfExchangeTransaction/BoBOTToStatus/ class=eli>BoBOTToStatus</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/BillOfExchangeTransaction/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/BillOfExchangeTransaction/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/BillOfExchangeTransaction/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/BillOfExchangeTransaction/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/BillOfExchangeTransaction/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Bill  of Exchange Transactions
+ Bill Of Exchange Transaction   Lines' href=/BillOfExchangeTransaction/BillOfExchangeTransaction_Lines/ class=eli>BillOfExchangeTransaction_Lines</a>    <small class='eli s'> BOT1</small></div><div class=sm><a style='min-width:50px;' title='External  Bank Statement Received
+ Bill Of Exchange Trans   Bank Pages' href=/BillOfExchangeTransaction/BillOfExchangeTrans_BankPages/ class=eli>BillOfExchangeTrans_BankPages</a>    <small class='eli s'> OBNK</small></div><div class=sm><a style='min-width:50px;' title='Deposit
+ Bill Of Exchange Trans   Deposits' href=/BillOfExchangeTransaction/BillOfExchangeTrans_Deposits/ class=eli>BillOfExchangeTrans_Deposits</a>    <small class='eli s'> ODPS</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Bank Pages' href=/BillOfExchangeTransaction/BankPages/ class=eli>BankPages</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BOE Transactionkey' href=/BillOfExchangeTransaction/BOETransactionkey/ class=eli>BOETransactionkey</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/BillOfExchangeTransaction/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Deposits' href=/BillOfExchangeTransaction/Deposits/ class=eli>Deposits</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Is Boe Reconciled' href=/BillOfExchangeTransaction/IsBoeReconciled/ class=eli>IsBoeReconciled</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Lines' href=/BillOfExchangeTransaction/Lines/ class=eli>Lines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Posting Date' href=/BillOfExchangeTransaction/PostingDate/ class=eli>PostingDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Status From' href=/BillOfExchangeTransaction/StatusFrom/ class=eli>StatusFrom</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Status To' href=/BillOfExchangeTransaction/StatusTo/ class=eli>StatusTo</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Date' href=/BillOfExchangeTransaction/TaxDate/ class=eli>TaxDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transaction Date' href=/BillOfExchangeTransaction/TransactionDate/ class=eli>TransactionDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transaction Number' href=/BillOfExchangeTransaction/TransactionNumber/ class=eli>TransactionNumber</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transaction Time' href=/BillOfExchangeTransaction/TransactionTime/ class=eli>TransactionTime</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/BillOfExchangeTransaction/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><br><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/Attachments/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Item' href=/Attachments/Item/ class=eli>Item</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Refresh' href=/Attachments/Refresh/ class=eli>Refresh</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Attachment' href=/Attachments/Attachment/ class=eli>Attachment</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Count' href=/Attachments/Count/ class=eli>Count</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

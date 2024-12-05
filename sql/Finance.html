@@ -1,0 +1,244 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>Sql Finance - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<h2>Finance</h2><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OACG>OACG</a></span> Account Category</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OASG>OASG</a></span> Account Segmentation</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OASC>OASC</a></span> Account Segmentation Categories</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/IWZ1>IWZ1</a></span> Accounts Revaluation History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OACR>OACR</a></span> Accrual Type</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OACM>OACM</a></span> Accumulation</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OACK>OACK</a></span> Acknowledge Number</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFAA>OFAA</a></span> Asset Attributes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/FAA1>FAA1</a></span> Asset Attributes - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OACS>OACS</a></span> Asset Classes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ACS1>ACS1</a></span> Asset Classes - Depreciation Areas</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AAC1>AAC1</a></span> Asset Classes - Depreciation Areas - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AACS>AACS</a></span> Asset Classes - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AFA2>AFA2</a></span> Asset Document - Area Journal Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AFAD>AFAD</a></span> Asset Document - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AFA1>AFA1</a></span> Asset Document - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OAGS>OAGS</a></span> Asset Groups</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBOX>OBOX</a></span> Box Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BOX2>BOX2</a></span> Box Definition - Accounts</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BOX3>BOX3</a></span> Box Definition - Choice</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BOX4>BOX4</a></span> Box Definition - Contra Accounts of Accounts</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BOX1>BOX1</a></span> Box Definition - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBOS>OBOS</a></span> Box Set Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBGT>OBGT</a></span> Budget</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BGT2>BGT2</a></span> Budget - Cost Accounting</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BGT3>BGT3</a></span> Budget - Cost Accounting Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BGT1>BGT1</a></span> Budget - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBGD>OBGD</a></span> Budget Cost Assess. Mthd</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBGS>OBGS</a></span> Budget Scenario</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OACQ>OACQ</a></span> Capitalization</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ACQ2>ACQ2</a></span> Capitalization - Area Journal Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ACQ3>ACQ3</a></span> Capitalization - Item Areas</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ACQ1>ACQ1</a></span> Capitalization - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCDC>OCDC</a></span> Cash Discount</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/CDC1>CDC1</a></span> Cash Discount - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCFL>OCFL</a></span> Cash Flow Additional Trans.</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCFW>OCFW</a></span> Cash Flow Line Item</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCFH>OCFH</a></span> Cash Flow Statement History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/CFH1>CFH1</a></span> Cash Flow Statement Report - History - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCFT>OCFT</a></span> Cash Flow Transactions - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/CCAL>CCAL</a></span> Chinese Chart of Account Level Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCIG>OCIG</a></span> CIG Codes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODIM>ODIM</a></span> Cost Accounting Dimension</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCCT>OCCT</a></span> Cost Center Type</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ORTT>ORTT</a></span> CPI and FC Rates</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ORTS>ORTS</a></span> CPI and FC Rates for Reports</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OACD>OACD</a></span> Credit Memo</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ACD2>ACD2</a></span> Credit Memo - Area Journal Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ACD3>ACD3</a></span> Credit Memo - Item Areas</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ACD1>ACD1</a></span> Credit Memo - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCUP>OCUP</a></span> CUP Codes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ISW3>ISW3</a></span> Declaration Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODGL>ODGL</a></span> Deduction Group List</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OSVT>OSVT</a></span> Define Summary VAT Report Type</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OADG>OADG</a></span> Depreciation Groups</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODRN>ODRN</a></span> Depreciation Run</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/DRN1>DRN1</a></span> Depreciation Run - Posting</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/DRN2>DRN2</a></span> Depreciation Run - Posting - Asset</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODPP>ODPP</a></span> Depreciation Type Pools</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/DTP1>DTP1</a></span> Depreciation Types - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ADT1>ADT1</a></span> Depreciation Types - Rows - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VTR2>VTR2</a></span> Doc. Type Filter</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/FRC1>FRC1</a></span> Extend Cat. f. Financial Rep.</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFRC>OFRC</a></span> Financial Report Categories</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFRT>OFRT</a></span> Financial Report Templates</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFYM>OFYM</a></span> Financial Year Master</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFAM>OFAM</a></span> Fixed Asset Data Migration</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/FAM1>FAM1</a></span> Fixed Asset Data Migration - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODPA>ODPA</a></span> Fixed Asset Depreciation Areas</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ADPA>ADPA</a></span> Fixed Asset Depreciation Areas - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFAC>OFAC</a></span> Fixed Asset Parameter Change</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/FAC2>FAC2</a></span> Fixed Asset Parameter Change - Period Control Change</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/FAC1>FAC1</a></span> Fixed Asset Parameter Change - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFAR>OFAR</a></span> Fixed Asset Revaluation</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/FAR1>FAR1</a></span> Fixed Asset Revaluation - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/FIX1>FIX1</a></span> Fixed Asset Transaction - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFIX>OFIX</a></span> Fixed Asset Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OADT>OADT</a></span> Fixed Assets Account Determination</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AADT>AADT</a></span> Fixed Assets Account Determination - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODTP>ODTP</a></span> Fixed Assets Depreciation Types</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ADTP>ADTP</a></span> Fixed Assets Depreciation Types - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODPV>ODPV</a></span> Fixed Assets Depreciation Value</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFPC>OFPC</a></span> Fixed Assets Fiscal Year Change</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AACT>AACT</a></span> G/L Account - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OGAR>OGAR</a></span> G/L Account Advanced Rules</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AGAR>AGAR</a></span> G/L Account Advanced Rules - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODMC>ODMC</a></span> G/L Account Determination Criteria - Inventory</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ADMC>ADMC</a></span> G/L Account Determination Criteria - Inventory - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OACT>OACT</a></span> G/L Accounts</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OGBI>OGBI</a></span> GB Interface: Common Info</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI1>GBI1</a></span> GBI Row 1 - Electronic Account Book</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI10>GBI10</a></span> GBI Row 10 - Enterprise's Cash Flow Statement</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI11>GBI11</a></span> GBI Row 11 - Devalue Provision of Enterprise Assets</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI12>GBI12</a></span> GBI Row 12 - Shareholder's Rights and Interests Changing Report</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI13>GBI13</a></span> GBI Row 13 - Enterprise's Profit Distribution Report</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI14>GBI14</a></span> GBI Row 14 - Small Enterprise's Cash Flow Statement</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI15>GBI15</a></span> GBI Row 15 - Enterprise's VAT Payable Detail Report</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI16>GBI16</a></span> GBI Row 16 - Employees</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI2>GBI2</a></span> GBI Row 2 - G/L Account Master Records</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI3>GBI3</a></span> GBI Row 3 - Departments</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI4>GBI4</a></span> GBI Row 4 - Business Partners</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI5>GBI5</a></span> GBI Row 5 - Projects</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI6>GBI6</a></span> GBI Row 6 - G/L Account Balance</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI7>GBI7</a></span> GBI Row 7 - Accounting Vouchers</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI8>GBI8</a></span> GBI Row 8 - Enterprise's Balance Sheet</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/GBI9>GBI9</a></span> GBI Row 9 - Enterprise's Profit and Loss Statement</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OHSV>OHSV</a></span> Hasavsevet Journal Entry</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OIDC>OIDC</a></span> Indicator</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/IWZ2>IWZ2</a></span> Inflation Warehouse Filter</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OIWZ>OIWZ</a></span> Inflation Wizard</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/CASE>CASE</a></span> Internal Recon. Upgrade 2007A</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/CASE1>CASE1</a></span> Internal Recon. Upgrade 2007A</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ISW2>ISW2</a></span> Intrastat Reported Items</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OISW>OISW</a></span> Intrastat Wizard</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/IWZ3>IWZ3</a></span> Items Last Revaluation Data</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OJET>OJET</a></span> JE Document Type</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OJDT>OJDT</a></span> Journal Entry</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AJDT>AJDT</a></span> Journal Entry - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AJD1>AJD1</a></span> Journal Entry - History - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/JDT1>JDT1</a></span> Journal Entry - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OTRC>OTRC</a></span> Journal Entry Codes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BTF1>BTF1</a></span> Journal Voucher - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBTF>OBTF</a></span> Journal Voucher Entry</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BTF2>BTF2</a></span> Journal Voucher Withholding Tax - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBTD>OBTD</a></span> Journal Vouchers List</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OKPF>OKPF</a></span> KPI Factor</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OMDP>OMDP</a></span> Manual Depreciation</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/MDP2>MDP2</a></span> Manual Depreciation - Area Journal Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/MDP3>MDP3</a></span> Manual Depreciation - Item Areas</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/MDP1>MDP1</a></span> Manual Depreciation - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AMDR>AMDR</a></span> Manual Distribution Rule</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OMDR>OMDR</a></span> Manual Distribution Rule</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AMDR1>AMDR1</a></span> Manual Distribution Rule - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/MDR1>MDR1</a></span> Manual Distribution Rule - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ONFM>ONFM</a></span> Nota Fiscal Model</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/CCPD>CCPD</a></span> Period-End Closing</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OACP>OACP</a></span> Periods Category</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AACP>AACP</a></span> Periods Category-Log</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OZRD>OZRD</a></span> POS Daily Summary</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ZRD1>ZRD1</a></span> POS Daily Summary - Totals</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFPR>OFPR</a></span> Posting Period</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AFPR>AFPR</a></span> Posting Period-Log</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OTRT>OTRT</a></span> Posting Templates</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/TRT1>TRT1</a></span> Posting Templates - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/APRJ>APRJ</a></span> Project Codes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPRJ>OPRJ</a></span> Project Codes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ORTM>ORTM</a></span> Rate Differences</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RTM1>RTM1</a></span> Rate Differences - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RTM2>RTM2</a></span> Rate Differences - SC Adjustment Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ORCR>ORCR</a></span> Recurring Postings</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RCR1>RCR1</a></span> Recurring Postings - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ISW1>ISW1</a></span> Reported Business Partners</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ORTI>ORTI</a></span> Retirement</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RTI2>RTI2</a></span> Retirement - Area Journal Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RTI3>RTI3</a></span> Retirement - Item Areas</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RTI1>RTI1</a></span> Retirement - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VTR3>VTR3</a></span> Series Filter</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OSHR>OSHR</a></span> Shareholder's Rights and Interests Report History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/SHR1>SHR1</a></span> Shareholder's Rights and Interests Report History - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/SCM3>SCM3</a></span> Special Ledger - Analytical Accounting Configuration Rule Additional Calculations: Material</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/SCR3>SCR3</a></span> Special Ledger - Analytical Accounting Configuration Rule Additional Calculations: Revenues & Expenses</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/SCM1>SCM1</a></span> Special Ledger - Analytical Accounting Configuration Rule Conditions: Material</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/SCR1>SCR1</a></span> Special Ledger - Analytical Accounting Configuration Rule Conditions: Revenues & Expenses</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/SCM2>SCM2</a></span> Special Ledger - Analytical Accounting Configuration Rule Goals: Material</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/SCR2>SCR2</a></span> Special Ledger - Analytical Accounting Configuration Rule Goals: Revenues & Expenses</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OSCM>OSCM</a></span> Special Ledger - Analytical Accounting Configuration Rules: Material</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OSCR>OSCR</a></span> Special Ledger - Analytical Accounting Configuration Rules: Revenues & Expenses</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/SLM1>SLM1</a></span> Special Ledger - Analytical Accounting Report Lines: Material</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/SLR1>SLR1</a></span> Special Ledger - Analytical Accounting Report Lines: Revenues & Expenses</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OSLM>OSLM</a></span> Special Ledger - Analytical Accounting Report: Material</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OSLR>OSLR</a></span> Special Ledger - Analytical Accounting Report: Revenues & Expenses</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AVT1>AVT1</a></span> Tax Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AVTG>AVTG</a></span> Tax Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AWH1>AWH1</a></span> Tax Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OVTG>OVTG</a></span> Tax Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VTG1>VTG1</a></span> Tax Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VTR1>VTR1</a></span> Tax Groups</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OVTR>OVTR</a></span> Tax Report</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OKRT>OKRT</a></span> Tax Report Type</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OJST>OJST</a></span> TDS Adjustment</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/JST1>JST1</a></span> TDS Adjustment - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OFTR>OFTR</a></span> Transfer</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/FTR2>FTR2</a></span> Transfer - Area Journal Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/FTR3>FTR3</a></span> Transfer - Item Areas</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/FTR1>FTR1</a></span> Transfer - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OUTX>OUTX</a></span> Unreported VAT Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/UTX1>UTX1</a></span> Unreported VAT Transactions - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OUWTX>OUWTX</a></span> Unreported WTax Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AWH3>AWH3</a></span> Value Range</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/WHT3>WHT3</a></span> Value Range</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AWD2>AWD2</a></span> Value Ranges</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/WTD2>WTD2</a></span> Value Ranges</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OVRW>OVRW</a></span> VAT Reposting Wizard</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VRW1>VRW1</a></span> VAT Reposting Wizard - Rows 1</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VRW2>VRW2</a></span> VAT Reposting Wizard - Rows 2</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VRW3>VRW3</a></span> VAT Reposting Wizard - Rows 3</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OTAX>OTAX</a></span> VAT Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/TAX1>TAX1</a></span> VAT Transactions - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AWHT>AWHT</a></span> Withholding Tax</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OWHT>OWHT</a></span> Withholding Tax</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AJD2>AJD2</a></span> Withholding Tax - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/JDT2>JDT2</a></span> Withholding Tax - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AWD1>AWD1</a></span> Withholding Tax Dates</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/WTD1>WTD1</a></span> Withholding Tax Dates</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODDG>ODDG</a></span> Withholding Tax Deduction Groups</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AWTD>AWTD</a></span> Withholding Tax Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OWTD>OWTD</a></span> Withholding Tax Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/WHT1>WHT1</a></span> Withholding Tax Definition</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/WHT2>WHT2</a></span> Withholding Tax Definition - Rows2</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OWTT>OWTT</a></span> Withholding Tax Type</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/AWH2>AWH2</a></span> WTax Definition - Rows2</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OWTX>OWTX</a></span> WTax Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/UWTX1>UWTX1</a></span> WTax Transactions - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/WTX1>WTX1</a></span> WTax Transactions - Rows</div></div></td>
+<td class='menudretawrap np' valign=top ></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

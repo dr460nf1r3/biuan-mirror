@@ -1,0 +1,428 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>ARSC - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#feae2d; color:#fffff5;'><div class=eli2><b>SQL</b> <a href='/sql/Others'> Others</a> / <a href='/sql/Resource Master Data - Log'> Resource Master Data - Log</a></div></div><div class=' tit' style='width:50%; background-color:#ffff91; color:#cc7c00;'><div class=eli2><b>API</b> ARSC</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #cc7c00;'  class='titol sm titoltxt'>  <a style='color:#cc7c00;' href='/ARSC/'> ARSC - Resource Master Data - Log</a> Table</font><script>
+                    document.title = 'ARSC - Resource Master Data - Log - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>ResCode</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Internal Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b>VisResCode</b></em></td><td valign=top >Resource No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Series</b></em></td><td valign=top >Series</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/NNM1 title='Documents Numbering - Series'>NNM1</a><br><small class=s2>Documents Numbering - Series</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Number</b></em></td><td valign=top >Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CodeBars</b></em></td><td valign=top >Bar Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>ResName</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Resource Description</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>ITEM_NAME</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>FrgnName</b></em></td><td valign=top >Description in Foreign Lang.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResType</b></em></td><td valign=top >Resource Type</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>M)  Machine<hr>L)  Labor<hr>O)  Other</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>M</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResGrpCod</b></em></td><td valign=top >Resource Group</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ORSB title='Resource Groups'>ORSB</a><br><small class=s2>Resource Groups</small></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UnitOfMsr</b></em></td><td valign=top >Unit of Measure</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>PrchseRes</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Purchase Resource [Yes/No]</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile>SALE</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b><u title='Primary'>SellRes</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Sales Resource [Yes/No]</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile>PURCHASE</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b><u title='Primary'>ProdRes</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Production Resource [Yes/No]</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile>PRODUCTION</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>CardCode</b></em></td><td valign=top >Preferred Vendor</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NoDiscount</b></em></td><td valign=top >No Discounts</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IssueMthd</b></em></td><td valign=top >Issue Method</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>B)  Backflush<hr>M)  Manual</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>B</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StdCost1</b></em></td><td valign=top >Resource Cost 1</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StdCost2</b></em></td><td valign=top >Resource Cost 2</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StdCost3</b></em></td><td valign=top >Resource Cost 3</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StdCost4</b></em></td><td valign=top >Resource Cost 4</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StdCost5</b></em></td><td valign=top >Resource Cost 5</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StdCost6</b></em></td><td valign=top >Resource Cost 6</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StdCost7</b></em></td><td valign=top >Resource Cost 7</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StdCost8</b></em></td><td valign=top >Resource Cost 8</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StdCost9</b></em></td><td valign=top >Resource Cost 9</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StdCost10</b></em></td><td valign=top >Resource Cost 10</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>validFor</b></em></td><td valign=top >Active</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>validFrom</b></em></td><td valign=top >Active From</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>validTo</b></em></td><td valign=top >Active To</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>frozenFor</b></em></td><td valign=top >Inactive</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>frozenFrom</b></em></td><td valign=top >Inactive From</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>frozenTo</b></em></td><td valign=top >Inactive To</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DfltWH</b></em></td><td valign=top >Default Warehouse</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QueryGroup</b></em></td><td valign=top >Properties</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PicturName</b></em></td><td valign=top >Picture</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserText</b></em></td><td valign=top >Item Remarks</td><td valign=top ><em style='color:#010089;'>Text</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup1</b></em></td><td valign=top >Property 1</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup2</b></em></td><td valign=top >Property 2</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup3</b></em></td><td valign=top >Property 3</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup4</b></em></td><td valign=top >Property 4</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup5</b></em></td><td valign=top >Property 5</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup6</b></em></td><td valign=top >Property 6</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup7</b></em></td><td valign=top >Property 7</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup8</b></em></td><td valign=top >Property 8</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup9</b></em></td><td valign=top >Property 9</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup10</b></em></td><td valign=top >Property 10</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup11</b></em></td><td valign=top >Property 11</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup12</b></em></td><td valign=top >Property 12</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup13</b></em></td><td valign=top >Property 13</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup14</b></em></td><td valign=top >Property 14</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup15</b></em></td><td valign=top >Property 15</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup16</b></em></td><td valign=top >Property 16</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup17</b></em></td><td valign=top >Property 17</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup18</b></em></td><td valign=top >Property 18</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup19</b></em></td><td valign=top >Property 19</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup20</b></em></td><td valign=top >Property 20</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup21</b></em></td><td valign=top >Property 21</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup22</b></em></td><td valign=top >Property 22</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup23</b></em></td><td valign=top >Property 23</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup24</b></em></td><td valign=top >Property 24</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup25</b></em></td><td valign=top >Property 25</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup26</b></em></td><td valign=top >Property 26</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup27</b></em></td><td valign=top >Property 27</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup28</b></em></td><td valign=top >Property 28</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup29</b></em></td><td valign=top >Property 29</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup30</b></em></td><td valign=top >Property 30</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup31</b></em></td><td valign=top >Property 31</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup32</b></em></td><td valign=top >Property 32</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup33</b></em></td><td valign=top >Property 33</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup34</b></em></td><td valign=top >Property 34</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup35</b></em></td><td valign=top >Property 35</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup36</b></em></td><td valign=top >Property 36</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup37</b></em></td><td valign=top >Property 37</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup38</b></em></td><td valign=top >Property 38</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup39</b></em></td><td valign=top >Property 39</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup40</b></em></td><td valign=top >Property 40</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup41</b></em></td><td valign=top >Property 41</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup42</b></em></td><td valign=top >Property 42</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup43</b></em></td><td valign=top >Property 43</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup44</b></em></td><td valign=top >Property 44</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup45</b></em></td><td valign=top >Property 45</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup46</b></em></td><td valign=top >Property 46</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup47</b></em></td><td valign=top >Property 47</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup48</b></em></td><td valign=top >Property 48</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup49</b></em></td><td valign=top >Property 49</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup50</b></em></td><td valign=top >Property 50</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup51</b></em></td><td valign=top >Property 51</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup52</b></em></td><td valign=top >Property 52</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup53</b></em></td><td valign=top >Property 53</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup54</b></em></td><td valign=top >Property 54</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup55</b></em></td><td valign=top >Property 55</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup56</b></em></td><td valign=top >Property 56</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup57</b></em></td><td valign=top >Property 57</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup58</b></em></td><td valign=top >Property 58</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup59</b></em></td><td valign=top >Property 59</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup60</b></em></td><td valign=top >Property 60</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup61</b></em></td><td valign=top >Property 61</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup62</b></em></td><td valign=top >Property 62</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup63</b></em></td><td valign=top >Property 63</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>QryGroup64</b></em></td><td valign=top >Property 64</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CreateDate</b></em></td><td valign=top >Date of Creation</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UpdateDate</b></em></td><td valign=top >Date of Update</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DataSource</b></em></td><td valign=top >Data Source</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  Unknown<hr>I)  Interface<hr>U)  Update<hr>M)  Import<hr>O)  DI API<hr>A)  Doc. Generation Wizard<hr>D)  Restore Wizard<hr>P)  Partner Implementation<hr>T)  Year Transfer</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ValidComm</b></em></td><td valign=top >Active Remarks</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>30</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FrozenComm</b></em></td><td valign=top >Inactive Remarks</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>30</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ObjType</b></em></td><td valign=top >Object Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>290</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Deleted</b></em></td><td valign=top >Deleted</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign2</b></em></td><td valign=top >Updating User</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attachment</b></em></td><td valign=top >Attachment</td><td valign=top ><em style='color:#010089;'>Text</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AtcEntry</b></em></td><td valign=top >Attachment Entry</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LastPurPrc</b></em></td><td valign=top >Last Purchase Price</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LastPurCur</b></em></td><td valign=top >Last Purchase Currency</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LastPurDat</b></em></td><td valign=top >Last Purchase Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LstEvlPric</b></em></td><td valign=top >Last Evaluated Price</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LstEvlDate</b></em></td><td valign=top >Date of Last Reval. Price</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NumResUnit</b></em></td><td valign=top >No. of Resource Units</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TimeResUn</b></em></td><td valign=top >Time per Resource Units</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResAlloc</b></em></td><td valign=top >Resource Allocation</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>D)  On Due Date<hr>B)  Automatic</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>D</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OCRD', font: { multi: true }, label: 'OCRD', title: 'Business Partner'},{id: 'ARSC', font: { multi: true }, label: '<b>ARSC</b>', title:'ARSC'},{id: 'ORSB', font: { multi: true }, label: 'ORSB', title: 'Resource Groups'},{id: 'NNM1', font: { multi: true }, label: 'NNM1', title: 'Documents Numbering - Series'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OCRD', to: 'ARSC', arrows:'from'}, {from: 'ORSB', to: 'ARSC', arrows:'from'}, {from: 'NNM1', to: 'ARSC', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   ARSC.ResCode AS 'Internal Code', 
+   ARSC.VisResCode AS 'Resource No.', 
+   ARSC.Series AS 'Series', 
+   ARSC.Number AS 'Number', 
+   ARSC.CodeBars AS 'Bar Code', 
+   ARSC.ResName AS 'Resource Description', 
+   ARSC.FrgnName AS 'Description in Foreign Lang.', 
+   ARSC.ResType AS 'Resource Type', 
+   ARSC.ResGrpCod AS 'Resource Group', 
+   ARSC.UnitOfMsr AS 'Unit of Measure', 
+   ARSC.PrchseRes AS 'Purchase Resource [Yes/No]', 
+   ARSC.SellRes AS 'Sales Resource [Yes/No]', 
+   ARSC.ProdRes AS 'Production Resource [Yes/No]', 
+   ARSC.CardCode AS 'Preferred Vendor', 
+   ARSC.NoDiscount AS 'No Discounts', 
+   ARSC.IssueMthd AS 'Issue Method', 
+   ARSC.StdCost1 AS 'Resource Cost 1', 
+   ARSC.StdCost2 AS 'Resource Cost 2', 
+   ARSC.StdCost3 AS 'Resource Cost 3', 
+   ARSC.StdCost4 AS 'Resource Cost 4', 
+   ARSC.StdCost5 AS 'Resource Cost 5', 
+   ARSC.StdCost6 AS 'Resource Cost 6', 
+   ARSC.StdCost7 AS 'Resource Cost 7', 
+   ARSC.StdCost8 AS 'Resource Cost 8', 
+   ARSC.StdCost9 AS 'Resource Cost 9', 
+   ARSC.StdCost10 AS 'Resource Cost 10', 
+   ARSC.validFor AS 'Active', 
+   ARSC.validFrom AS 'Active From', 
+   ARSC.validTo AS 'Active To', 
+   ARSC.frozenFor AS 'Inactive', 
+   ARSC.frozenFrom AS 'Inactive From', 
+   ARSC.frozenTo AS 'Inactive To', 
+   ARSC.DfltWH AS 'Default Warehouse', 
+   ARSC.QueryGroup AS 'Properties', 
+   ARSC.PicturName AS 'Picture', 
+   ARSC.UserText AS 'Item Remarks', 
+   ARSC.QryGroup1 AS 'Property 1', 
+   ARSC.QryGroup2 AS 'Property 2', 
+   ARSC.QryGroup3 AS 'Property 3', 
+   ARSC.QryGroup4 AS 'Property 4', 
+   ARSC.QryGroup5 AS 'Property 5', 
+   ARSC.QryGroup6 AS 'Property 6', 
+   ARSC.QryGroup7 AS 'Property 7', 
+   ARSC.QryGroup8 AS 'Property 8', 
+   ARSC.QryGroup9 AS 'Property 9', 
+   ARSC.QryGroup10 AS 'Property 10', 
+   ARSC.QryGroup11 AS 'Property 11', 
+   ARSC.QryGroup12 AS 'Property 12', 
+   ARSC.QryGroup13 AS 'Property 13', 
+   ARSC.QryGroup14 AS 'Property 14', 
+   ARSC.QryGroup15 AS 'Property 15', 
+   ARSC.QryGroup16 AS 'Property 16', 
+   ARSC.QryGroup17 AS 'Property 17', 
+   ARSC.QryGroup18 AS 'Property 18', 
+   ARSC.QryGroup19 AS 'Property 19', 
+   ARSC.QryGroup20 AS 'Property 20', 
+   ARSC.QryGroup21 AS 'Property 21', 
+   ARSC.QryGroup22 AS 'Property 22', 
+   ARSC.QryGroup23 AS 'Property 23', 
+   ARSC.QryGroup24 AS 'Property 24', 
+   ARSC.QryGroup25 AS 'Property 25', 
+   ARSC.QryGroup26 AS 'Property 26', 
+   ARSC.QryGroup27 AS 'Property 27', 
+   ARSC.QryGroup28 AS 'Property 28', 
+   ARSC.QryGroup29 AS 'Property 29', 
+   ARSC.QryGroup30 AS 'Property 30', 
+   ARSC.QryGroup31 AS 'Property 31', 
+   ARSC.QryGroup32 AS 'Property 32', 
+   ARSC.QryGroup33 AS 'Property 33', 
+   ARSC.QryGroup34 AS 'Property 34', 
+   ARSC.QryGroup35 AS 'Property 35', 
+   ARSC.QryGroup36 AS 'Property 36', 
+   ARSC.QryGroup37 AS 'Property 37', 
+   ARSC.QryGroup38 AS 'Property 38', 
+   ARSC.QryGroup39 AS 'Property 39', 
+   ARSC.QryGroup40 AS 'Property 40', 
+   ARSC.QryGroup41 AS 'Property 41', 
+   ARSC.QryGroup42 AS 'Property 42', 
+   ARSC.QryGroup43 AS 'Property 43', 
+   ARSC.QryGroup44 AS 'Property 44', 
+   ARSC.QryGroup45 AS 'Property 45', 
+   ARSC.QryGroup46 AS 'Property 46', 
+   ARSC.QryGroup47 AS 'Property 47', 
+   ARSC.QryGroup48 AS 'Property 48', 
+   ARSC.QryGroup49 AS 'Property 49', 
+   ARSC.QryGroup50 AS 'Property 50', 
+   ARSC.QryGroup51 AS 'Property 51', 
+   ARSC.QryGroup52 AS 'Property 52', 
+   ARSC.QryGroup53 AS 'Property 53', 
+   ARSC.QryGroup54 AS 'Property 54', 
+   ARSC.QryGroup55 AS 'Property 55', 
+   ARSC.QryGroup56 AS 'Property 56', 
+   ARSC.QryGroup57 AS 'Property 57', 
+   ARSC.QryGroup58 AS 'Property 58', 
+   ARSC.QryGroup59 AS 'Property 59', 
+   ARSC.QryGroup60 AS 'Property 60', 
+   ARSC.QryGroup61 AS 'Property 61', 
+   ARSC.QryGroup62 AS 'Property 62', 
+   ARSC.QryGroup63 AS 'Property 63', 
+   ARSC.QryGroup64 AS 'Property 64', 
+   ARSC.CreateDate AS 'Date of Creation', 
+   ARSC.UpdateDate AS 'Date of Update', 
+   ARSC.DataSource AS 'Data Source', 
+   ARSC.ValidComm AS 'Active Remarks', 
+   ARSC.FrozenComm AS 'Inactive Remarks', 
+   ARSC.LogInstanc AS 'Log Instance', 
+   ARSC.ObjType AS 'Object Type', 
+   ARSC.Deleted AS 'Deleted', 
+   ARSC.UserSign2 AS 'Updating User', 
+   ARSC.Attachment AS 'Attachment', 
+   ARSC.AtcEntry AS 'Attachment Entry', 
+   ARSC.LastPurPrc AS 'Last Purchase Price', 
+   ARSC.LastPurCur AS 'Last Purchase Currency', 
+   ARSC.LastPurDat AS 'Last Purchase Date', 
+   ARSC.LstEvlPric AS 'Last Evaluated Price', 
+   ARSC.LstEvlDate AS 'Date of Last Reval. Price', 
+   ARSC.NumResUnit AS 'No. of Resource Units', 
+   ARSC.TimeResUn AS 'Time per Resource Units', 
+   ARSC.ResAlloc AS 'Resource Allocation'
+FROM ARSC AS ARSC</div><h2 class=np>Related information</h2><dir class=np><br><a href=/OCRD class=related>Business Partner</a> <em class=comment>OCRD</em> <b>SQL Table</b><br><br><a href=/ORSB class=related>Resource Groups</a> <em class=comment>ORSB</em> <b>SQL Table</b><br><br><a href=/NNM1 class=related>Documents Numbering - Series</a> <em class=comment>NNM1</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''><br><a class=eli style='max-width:99%;'   href='//'></a></font><hr></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

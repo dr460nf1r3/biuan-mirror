@@ -1,0 +1,377 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OCTR - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#11aabb; color:#d9ffff;'><div class=eli2><b>SQL</b> <a href='/sql/Service'> Service</a> / <a href='/sql/Service Contracts'> Service Contracts</a></div></div><div class=' tit' style='width:50%; background-color:#75ffff; color:#007889;'><div class=eli2><b>API</b> OCTR /  Service Contracts</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #007889;'  class='titol sm titoltxt'>  <a style='color:#007889;' href='/OCTR/'> OCTR - Service Contracts</a> Table</font><script>
+                    document.title = 'OCTR - Service Contracts - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>ContractID</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Contract No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b>CstmrCode</b></em></td><td valign=top >Customer Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CstmrName</b></em></td><td valign=top >Customer Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CntctCode</b></em></td><td valign=top >Contact Person Code</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OCPR title='Contact Persons'>OCPR</a><br><small class=s2>Contact Persons</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Owner</b></em></td><td valign=top >Owner</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Status</b></em></td><td valign=top >Contract Status</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>A)  Approved<hr>F)  On Hold<hr>D)  Draft<hr>T)  Terminated</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>D</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CntrcTmplt</b></em></td><td valign=top >Contract Template</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/OCTT title='Contract Template'>OCTT</a><br><small class=s2>Contract Template</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CntrcType</b></em></td><td valign=top >Contract Type</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>C)  Customer<hr>G)  Item Group<hr>S)  Serial Number</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>S</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Renewal</b></em></td><td valign=top >Renewal</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RemindVal</b></em></td><td valign=top >Reminder Time</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RemindUnit</b></em></td><td valign=top >Remind Unit</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>D)  Day(s)<hr>W)  Week(s)<hr>M)  Month(s)</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>D</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Duration</b></em></td><td valign=top >Duration of Coverage</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StartDate</b></em></td><td valign=top >Start Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EndDate</b></em></td><td valign=top >End Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResponsVal</b></em></td><td valign=top >Resolution Time</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResponsUnt</b></em></td><td valign=top >Resolution Unit</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>D)  Day(s)<hr>H)  Hour(s)</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>D</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Descriptio</b></em></td><td valign=top >Description</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SrcDocType</b></em></td><td valign=top >Source Document Type</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Q)  Sales Quotation<hr>O)  Sales Order<hr>D)  Delivery<hr>I)  A/R Invoice</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>I</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocNum</b></em></td><td valign=top >Source Document</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MonEnabled</b></em></td><td valign=top >Monday Enabled</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TueEnabled</b></em></td><td valign=top >Tuesday Enabled</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WedEnabled</b></em></td><td valign=top >Wednesday Enabled</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ThuEnabled</b></em></td><td valign=top >Thursday Enabled</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FriEnabled</b></em></td><td valign=top >Friday Enabled</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SatEnabled</b></em></td><td valign=top >Saturday Enabled</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SunEnabled</b></em></td><td valign=top >Sunday Enabled</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MonStart</b></em></td><td valign=top >Monday Start</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>800</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MonEnd</b></em></td><td valign=top >Monday End</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1700</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TueStart</b></em></td><td valign=top >Tuesday Start</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>800</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TueEnd</b></em></td><td valign=top >Tuesday End</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1700</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WedStart</b></em></td><td valign=top >Wednesday Start</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>800</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WedEnd</b></em></td><td valign=top >Wednesday End</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1700</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ThuStart</b></em></td><td valign=top >Thursday Start</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>800</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ThuEnd</b></em></td><td valign=top >Thursday End</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1700</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FriStart</b></em></td><td valign=top >Friday Start</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>800</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FriEnd</b></em></td><td valign=top >Friday End</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1700</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SatStart</b></em></td><td valign=top >Saturday Start</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SatEnd</b></em></td><td valign=top >Saturday End</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>2359</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SunStrart</b></em></td><td valign=top >Sunday Start</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SunEnd</b></em></td><td valign=top >Sunday End</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>2359</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InclParts</b></em></td><td valign=top >Include Parts</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InclWork</b></em></td><td valign=top >Include Labor</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InclTravel</b></em></td><td valign=top >Include Travel</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attachment</b></em></td><td valign=top >Attachments</td><td valign=top ><em style='color:#010089;'>Text</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CreateDate</b></em></td><td valign=top >Creation Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Remarks1</b></em></td><td valign=top >Template Remarks</td><td valign=top ><em style='color:#010089;'>Text</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Remarks2</b></em></td><td valign=top >Remarks</td><td valign=top ><em style='color:#010089;'>Text</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RemindFlg</b></em></td><td valign=top >Reminder Sent</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CTR1Count</b></em></td><td valign=top >CTR1 Counter</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocEntry</b></em></td><td valign=top >Linked Document No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RemTmDays</b></em></td><td valign=top >Remind Time in Days</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResTmHours</b></em></td><td valign=top >Response Time in Hours</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InclHldays</b></em></td><td valign=top >Include Holidays</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SrvcType</b></em></td><td valign=top >Service Type</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>R)  Regular<hr>W)  Warranty</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>R</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TermDate</b></em></td><td valign=top >Termination Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResponseV</b></em></td><td valign=top >Response Time</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResponseU</b></em></td><td valign=top >Response Unit</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>D)  Day(s)<hr>H)  Hour(s)</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>H</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AtcEntry</b></em></td><td valign=top >Attachment Entry</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OATC title='Attachments'>OATC</a><br><small class=s2>Attachments</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Transfered</b></em></td><td valign=top >Year Transfer</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Instance</b></em></td><td valign=top >Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OCTR', font: { multi: true }, label: 'OCTR', title: ''},{id: 'AINS', font: { multi: true }, label: '<b>AINS</b>', title:'Customer Equipment Card - History'},{id: 'CTR1', font: { multi: true }, label: '<b>CTR1</b>', title:'Service Contract - Items'},{id: 'CTR2', font: { multi: true }, label: '<b>CTR2</b>', title:'Service Contract - Recurring Transactions'},{id: 'OINS', font: { multi: true }, label: '<b>OINS</b>', title:'Customer Equipment Card'},{id: 'OSCL', font: { multi: true }, label: '<b>OSCL</b>', title:'Service Calls'},{id: 'OATC', font: { multi: true }, label: 'OATC', title: 'Attachments'},{id: 'OCPR', font: { multi: true }, label: 'OCPR', title: 'Contact Persons'},{id: 'OCTT', font: { multi: true }, label: 'OCTT', title: 'Contract Template'},{id: 'OCRD', font: { multi: true }, label: 'OCRD', title: 'Business Partner'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OCTR', to: 'AINS', arrows:'from'}, {from: 'OCTR', to: 'CTR1', arrows:'from'}, {from: 'OCTR', to: 'CTR2', arrows:'from'}, {from: 'OCTR', to: 'OINS', arrows:'from'}, {from: 'OCTR', to: 'OSCL', arrows:'from'}, {from: 'OATC', to: 'OCTR', arrows:'from'}, {from: 'OCPR', to: 'OCTR', arrows:'from'}, {from: 'OCTT', to: 'OCTR', arrows:'from'}, {from: 'OCRD', to: 'OCTR', arrows:'from'}, {from: 'OUSR', to: 'OCTR', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OCTR.ContractID AS 'Contract No.', 
+   OCTR.CstmrCode AS 'Customer Code', 
+   OCTR.CstmrName AS 'Customer Name', 
+   OCTR.CntctCode AS 'Contact Person Code', 
+   OCTR.Owner AS 'Owner', 
+   OCTR.Status AS 'Contract Status', 
+   OCTR.CntrcTmplt AS 'Contract Template', 
+   OCTR.CntrcType AS 'Contract Type', 
+   OCTR.Renewal AS 'Renewal', 
+   OCTR.RemindVal AS 'Reminder Time', 
+   OCTR.RemindUnit AS 'Remind Unit', 
+   OCTR.Duration AS 'Duration of Coverage', 
+   OCTR.StartDate AS 'Start Date', 
+   OCTR.EndDate AS 'End Date', 
+   OCTR.ResponsVal AS 'Resolution Time', 
+   OCTR.ResponsUnt AS 'Resolution Unit', 
+   OCTR.Descriptio AS 'Description', 
+   OCTR.SrcDocType AS 'Source Document Type', 
+   OCTR.DocNum AS 'Source Document', 
+   OCTR.MonEnabled AS 'Monday Enabled', 
+   OCTR.TueEnabled AS 'Tuesday Enabled', 
+   OCTR.WedEnabled AS 'Wednesday Enabled', 
+   OCTR.ThuEnabled AS 'Thursday Enabled', 
+   OCTR.FriEnabled AS 'Friday Enabled', 
+   OCTR.SatEnabled AS 'Saturday Enabled', 
+   OCTR.SunEnabled AS 'Sunday Enabled', 
+   OCTR.MonStart AS 'Monday Start', 
+   OCTR.MonEnd AS 'Monday End', 
+   OCTR.TueStart AS 'Tuesday Start', 
+   OCTR.TueEnd AS 'Tuesday End', 
+   OCTR.WedStart AS 'Wednesday Start', 
+   OCTR.WedEnd AS 'Wednesday End', 
+   OCTR.ThuStart AS 'Thursday Start', 
+   OCTR.ThuEnd AS 'Thursday End', 
+   OCTR.FriStart AS 'Friday Start', 
+   OCTR.FriEnd AS 'Friday End', 
+   OCTR.SatStart AS 'Saturday Start', 
+   OCTR.SatEnd AS 'Saturday End', 
+   OCTR.SunStrart AS 'Sunday Start', 
+   OCTR.SunEnd AS 'Sunday End', 
+   OCTR.InclParts AS 'Include Parts', 
+   OCTR.InclWork AS 'Include Labor', 
+   OCTR.InclTravel AS 'Include Travel', 
+   OCTR.Attachment AS 'Attachments', 
+   OCTR.CreateDate AS 'Creation Date', 
+   OCTR.Remarks1 AS 'Template Remarks', 
+   OCTR.Remarks2 AS 'Remarks', 
+   OCTR.RemindFlg AS 'Reminder Sent', 
+   OCTR.CTR1Count AS 'CTR1 Counter', 
+   OCTR.DocEntry AS 'Linked Document No.', 
+   OCTR.RemTmDays AS 'Remind Time in Days', 
+   OCTR.ResTmHours AS 'Response Time in Hours', 
+   OCTR.InclHldays AS 'Include Holidays', 
+   OCTR.SrvcType AS 'Service Type', 
+   OCTR.TermDate AS 'Termination Date', 
+   OCTR.ResponseV AS 'Response Time', 
+   OCTR.ResponseU AS 'Response Unit', 
+   OCTR.AtcEntry AS 'Attachment Entry', 
+   OCTR.Transfered AS 'Year Transfer', 
+   OCTR.Instance AS 'Instance'
+FROM OCTR AS OCTR</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+214.45345878601074
+0' class=related href='/ServiceContracts'> Service Contracts</a> <em class=comment>ServiceContracts</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OCTR/ >OCTR</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>ServiceContracts is a business object that represents the service contracts table in the Service module of SAP Business One application.
+This object enables you to:
+
+Add a service contract. 
+Retrieve a service contract by its key. 
+Update a...</div><br><a href=/OCTR class=related></a> <em class=comment>OCTR</em> <b>SQL Table</b><br><br><a href=/OATC class=related>Attachments</a> <em class=comment>OATC</em> <b>SQL Table</b><br><br><a href=/OCPR class=related>Contact Persons</a> <em class=comment>OCPR</em> <b>SQL Table</b><br><br><a href=/OCTT class=related>Contract Template</a> <em class=comment>OCTT</em> <b>SQL Table</b><br><br><a href=/OCRD class=related>Business Partner</a> <em class=comment>OCRD</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/ServiceContracts/'>ServiceContracts</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Contract Types' href=/ServiceContracts/BoContractTypes/ class=eli>BoContractTypes</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Remind Units' href=/ServiceContracts/BoRemindUnits/ class=eli>BoRemindUnits</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Resolution Units' href=/ServiceContracts/BoResolutionUnits/ class=eli>BoResolutionUnits</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Response Unit' href=/ServiceContracts/BoResponseUnit/ class=eli>BoResponseUnit</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Service Types' href=/ServiceContracts/BoServiceTypes/ class=eli>BoServiceTypes</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Svc Contract Status' href=/ServiceContracts/BoSvcContractStatus/ class=eli>BoSvcContractStatus</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/ServiceContracts/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Close' href=/ServiceContracts/Close/ class=eli>Close</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/ServiceContracts/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/ServiceContracts/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/ServiceContracts/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/ServiceContracts/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/ServiceContracts/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/ServiceContracts/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Service Contract - Items
+ Service Contract   Lines' href=/ServiceContracts/ServiceContract_Lines/ class=eli>ServiceContract_Lines</a>    <small class='eli s'> CTR1</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Attachment Entry' href=/ServiceContracts/AttachmentEntry/ class=eli>AttachmentEntry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attachments' href=/ServiceContracts/Attachments/ class=eli>Attachments</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/ServiceContracts/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Contact Code' href=/ServiceContracts/ContactCode/ class=eli>ContactCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Contract ID' href=/ServiceContracts/ContractID/ class=eli>ContractID</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Contract Template' href=/ServiceContracts/ContractTemplate/ class=eli>ContractTemplate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Contract Type' href=/ServiceContracts/ContractType/ class=eli>ContractType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customer Code' href=/ServiceContracts/CustomerCode/ class=eli>CustomerCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customer Name' href=/ServiceContracts/CustomerName/ class=eli>CustomerName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Description' href=/ServiceContracts/Description/ class=eli>Description</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Duration Of Coverage' href=/ServiceContracts/DurationOfCoverage/ class=eli>DurationOfCoverage</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='End Date' href=/ServiceContracts/EndDate/ class=eli>EndDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Friday Enabled' href=/ServiceContracts/FridayEnabled/ class=eli>FridayEnabled</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Friday End' href=/ServiceContracts/FridayEnd/ class=eli>FridayEnd</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Friday Start' href=/ServiceContracts/FridayStart/ class=eli>FridayStart</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include Holidays' href=/ServiceContracts/IncludeHolidays/ class=eli>IncludeHolidays</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include Labor' href=/ServiceContracts/IncludeLabor/ class=eli>IncludeLabor</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include Parts' href=/ServiceContracts/IncludeParts/ class=eli>IncludeParts</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include Travel' href=/ServiceContracts/IncludeTravel/ class=eli>IncludeTravel</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Lines' href=/ServiceContracts/Lines/ class=eli>Lines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Monday Enabled' href=/ServiceContracts/MondayEnabled/ class=eli>MondayEnabled</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Monday End' href=/ServiceContracts/MondayEnd/ class=eli>MondayEnd</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Monday Start' href=/ServiceContracts/MondayStart/ class=eli>MondayStart</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Owner' href=/ServiceContracts/Owner/ class=eli>Owner</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remarks' href=/ServiceContracts/Remarks/ class=eli>Remarks</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reminder Time' href=/ServiceContracts/ReminderTime/ class=eli>ReminderTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remind Unit' href=/ServiceContracts/RemindUnit/ class=eli>RemindUnit</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Renewal' href=/ServiceContracts/Renewal/ class=eli>Renewal</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Resolution Time' href=/ServiceContracts/ResolutionTime/ class=eli>ResolutionTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Resolution Unit' href=/ServiceContracts/ResolutionUnit/ class=eli>ResolutionUnit</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Response Time' href=/ServiceContracts/ResponseTime/ class=eli>ResponseTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Response Unit' href=/ServiceContracts/ResponseUnit/ class=eli>ResponseUnit</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Saturday Enabled' href=/ServiceContracts/SaturdayEnabled/ class=eli>SaturdayEnabled</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Saturday End' href=/ServiceContracts/SaturdayEnd/ class=eli>SaturdayEnd</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Saturday Start' href=/ServiceContracts/SaturdayStart/ class=eli>SaturdayStart</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Service Type' href=/ServiceContracts/ServiceType/ class=eli>ServiceType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Start Date' href=/ServiceContracts/StartDate/ class=eli>StartDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Status' href=/ServiceContracts/Status/ class=eli>Status</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sunday Enabled' href=/ServiceContracts/SundayEnabled/ class=eli>SundayEnabled</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sunday End' href=/ServiceContracts/SundayEnd/ class=eli>SundayEnd</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sunday Start' href=/ServiceContracts/SundayStart/ class=eli>SundayStart</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Template Remarks' href=/ServiceContracts/TemplateRemarks/ class=eli>TemplateRemarks</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Termination Date' href=/ServiceContracts/TerminationDate/ class=eli>TerminationDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Thursday Enabled' href=/ServiceContracts/ThursdayEnabled/ class=eli>ThursdayEnabled</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Thursday End' href=/ServiceContracts/ThursdayEnd/ class=eli>ThursdayEnd</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Thursday Start' href=/ServiceContracts/ThursdayStart/ class=eli>ThursdayStart</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tuesday Enabled' href=/ServiceContracts/TuesdayEnabled/ class=eli>TuesdayEnabled</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tuesday End' href=/ServiceContracts/TuesdayEnd/ class=eli>TuesdayEnd</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tuesday Start' href=/ServiceContracts/TuesdayStart/ class=eli>TuesdayStart</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/ServiceContracts/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Wednesday Enabled' href=/ServiceContracts/WednesdayEnabled/ class=eli>WednesdayEnabled</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Wednesday End' href=/ServiceContracts/WednesdayEnd/ class=eli>WednesdayEnd</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Wednesday Start' href=/ServiceContracts/WednesdayStart/ class=eli>WednesdayStart</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

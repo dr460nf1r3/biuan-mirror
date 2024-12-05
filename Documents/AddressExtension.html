@@ -1,0 +1,493 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>Documents AddressExtension - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:100%; background-color:#cacaca; color:#343434;'><div class=eli2><b>API</b> Documents /  Address Extension</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #343434;' > <a style='text-decoration:none; color:#343434;' title='92
+1141.750135421753
+34.19684600830078' href='/Documents/AddressExtension/'> Address Extension</a> Property</div><script>
+                        document.title = 'AddressExtension -   - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P>The <EM>Bill To</EM> and <EM>Ship To</EM> addresses for the document.</P>
+<P>This property enables you to specify the <EM>BillTo </EM>and <EM>ShipTo</EM> addresses by defining their component parts -- for example, the street name, city name, and country -- instead of specifying the address as free-text strings.</P>
+<P>After setting the <EM>AddressExtension</EM> property, the system does the following:</P>
+<OL>
+<LI>Clears the <A href="/Documents/Address/">Address</A> and <A href="/Documents/Address2/">Address2</A> properties.</LI>
+<LI>Creates <EM>BillTo</EM> and <EM>ShipTo</EM> addresses based on the values in the <EM>AddressExtension</EM> property. The address format is determined by the country's address format, which is specified at <SPAN><EM>Administration</EM> --&gt; <EM>Setup</EM> --&gt; <EM>Business Partner</EM> --&gt; <EM>Countries</EM>. </SPAN><SPAN>The format used is either the format for the country specified in the <EM>BillToCountry</EM> or <EM>ShipToCountry</EM> property of the <EM>AddressExtension</EM> property or, if no country is specified, the company country. </SPAN></LI>
+<LI>Copies these addresses to the <A href="/Documents/Address/">Address</A> and <A href="/Documents/Address2/">Address2</A> properties.</LI></OL></div>
+            <h2 class="heading"><span  tabindex="0"><img id="propertytypeToggle"  src="/images/1x1.png"></img>Property type</span></h2><div id="propertytypeSection" class="section" >Read-only property</div>
+            <h2 class="heading"><span  tabindex="0"><img id="syntaxToggle"  src="/images/1x1.png"></img>Syntax</span></h2><div id="syntaxSection" class="section" ><DIV  id=Syntax_VB><table   cellpadding="0" cellspacing="0"><tr><th>Visual Basic</th></tr><tr><td><pre><PRE class=" vbs hljs" class=" vbs hljs">Public Property <a style='color:inherit;' href=/Documents/AddressExtension/>AddressExtension</a>() As <a href="/AddressExtension/">AddressExtension</a></PRE></pre></tr></table></div></div>
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img id="remarksToggle"  src="/images/1x1.png"></img>Remarks</span></h2><div class="remarksSection" class="section" ><UL>
+<LI>If both the <EM>AddressExtension</EM> <EM>BillTo</EM> properties and and the <A href="/Documents/Address/">Address</A> property are modified, the <EM>AddressExtension</EM> properties are cleared and the <A href="/Documents/Address/">Address</A> property is stored. The same is true for the <EM>AddressExtension</EM> <EM>ShipTo</EM> properties and <A href="/Documents/Address2/">Address2</A> property.</LI>
+<LI>If only the <EM>AddressExtension</EM> <EM>BillTo </EM>properties are changed, then the <A href="/Documents/Address/">Address</A> property is updated, but the <EM>AddressExtension</EM> ShipTo properties and the <A href="/Documents/Address2/">Address2</A> property are not affected (and vice versa).</LI></UL></div>
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            <h2 class="heading"><span  tabindex="0"><img id="examplelinksToggle"  src="/images/1x1.png"></img>Example</span></h2><div id="examplelinksSection" class="section" ><p id=dxseealsocontent><a href="/AddressExtension/">AddressExtension Object</a>
+</p></div>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/Documents/">Documents Object</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div></p></div><div class=' tit' style='width:100%; background-color:#cacaca; color:#343434;'><div class=eli2><b>API</b> Documents /  Address Extension</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #343434;' > <a style='text-decoration:none; color:#343434;' title='92
+1134.2129459381104
+34.19684600830078' href='/Documents/AddressExtension/'> Address Extension</a> Object</div><script>
+                        document.title = 'AddressExtension -   - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P>The <EM>Bill To</EM> and <EM>Ship To</EM> address for a marketing document.</P>
+<P>Source table: <A href="/INV12/">INV12</A></P></div>
+            
+            
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Example</span></h2><div  class="section" ><DIV  ><table   cellpadding="0" cellspacing="0"><tr><th>Setting the address for an invoice (C#)</th><th><span  tabindex="0"><img  align="absmiddle" src=""></span></th></tr><tr><td colspan="2"><DIV  ><TABLE  CellPadding="0" CellSpacing="0" Border="0"><TR><TD ><CODE class=" cs hljs">// Get Invoice document 
+m_Doc = (SAPbobsCOM.<a style='color:inherit;' href=/Documents/>Documents</a>)m_Company.GetBusinessObject(BoObjectTypes.oInvoices); 
+m_Doc.<a style='color:inherit;' href=/Documents/GetByKey/>GetByKey</a>(4); 
+ 
+// Get the address sub object from the document object 
+m_AddrExtension = (AddressExtension)m_Doc.<a style='color:inherit;' href=/Documents/AddressExtension/>AddressExtension</a>; 
+ 
+// Set bill to address properties 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/BillToBlock/>BillToBlock</a> = "BillToBlockU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/BillToBuilding/>BillToBuilding</a> = "BillToBuildingU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/BillToCity/>BillToCity</a> = "BillToCityU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/BillToCountry/>BillToCountry</a> = "BCU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/BillToCounty/>BillToCounty</a> = "BUt"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/BillToState/>BillToState</a> = "BSU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/BillToStreet/>BillToStreet</a> = "BillToStreetU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/BillToStreetNo/>BillToStreetNo</a> = "BillToStreetNoU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/BillToZipCode/>BillToZipCode</a> = "BillToZipCodeU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/BillToAddressType/>BillToAddressType</a> = "BillToAddressTypeU"; 
+ 
+// Set ship to address properties 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/ShipToBlock/>ShipToBlock</a> = "ShipToBlockU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/ShipToBuilding/>ShipToBuilding</a> = "ShipToBuildingU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/ShipToCity/>ShipToCity</a> = "ShipToCityU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/ShipToCountry/>ShipToCountry</a> = "SCU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/ShipToCounty/>ShipToCounty</a> = "SUt"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/ShipToState/>ShipToState</a> = "SUt"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/ShipToStreet/>ShipToStreet</a> = "ShipToStreetU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/ShipToStreetNo/>ShipToStreetNo</a> = "ShipToStreetNoU"; 
+m_AddrExtension.<a style='color:inherit;' href=/AddressExtension/ShipToZipCode/>ShipToZipCode</a> = "ShipToZipCodeU"; 
+ 
+// <a style='color:inherit;' href=/Documents/Update/>Update</a> the document 
+m_Doc.<a style='color:inherit;' href=/Documents/Update/>Update</a>(); 
+</CODE></TD></TR></TABLE></DIV></td></tr></table></DIV>
+</div>
+            
+            <a name="seealsobookmark"></a>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/AddressExtension/">AddressExtension Members</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div><div><h2>SAP® B1 DI-API C# definition</h2><div class='cs hljs'>public class <a style='color:inherit;' href=/Documents/AddressExtension/>AddressExtension</a>Class : IAddressExtension, <a style='color:inherit;' href=/Documents/AddressExtension/>AddressExtension</a>
+  { 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToAddress2/>BillToAddress2</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToAddress3/>BillToAddress3</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToAddressType/>BillToAddressType</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToBlock/>BillToBlock</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToBuilding/>BillToBuilding</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToCity/>BillToCity</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToCountry/>BillToCountry</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToCounty/>BillToCounty</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToGlobalLocationNumber/>BillToGlobalLocationNumber</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToState/>BillToState</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToStreet/>BillToStreet</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToStreetNo/>BillToStreetNo</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/BillToZipCode/>BillToZipCode</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToAddress2/>ShipToAddress2</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToAddress3/>ShipToAddress3</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToAddressType/>ShipToAddressType</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToBlock/>ShipToBlock</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToBuilding/>ShipToBuilding</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToCity/>ShipToCity</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToCountry/>ShipToCountry</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToCounty/>ShipToCounty</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToGlobalLocationNumber/>ShipToGlobalLocationNumber</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToState/>ShipToState</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToStreet/>ShipToStreet</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToStreetNo/>ShipToStreetNo</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/AddressExtension/ShipToZipCode/>ShipToZipCode</a>
+    { 
+      get; 
+      set;
+    }
+    public extern <a style='color:inherit;' href=/Documents/AddressExtension/>AddressExtension</a>Class();
+  }</div></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+594.1968460083008
+34.19684600830078' class=related href='/Documents/Documents'> Documents</a> <em class=comment>Documents</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OIGE/ >OIGE</a> <a href=/OIGN/ >OIGN</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Documents is a business object that represents the header data of documents in the Marketing <a style='color:inherit;' href=/Documents/>Documents</a> and Receipts module and the Inventory and Production module of SAP Business One application.
+The source table for each document is according...</div><br><br><a title='92
+515
+34.19684600830078' class=related href='/Documents/Document_ApprovalRequests'> Document   Approval Requests</a> <em class=comment>Document_ApprovalRequests</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OWDDV/ >OWDDV</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Documents_ApprovalRequests is a child object of the <a style='color:inherit;' href=/Documents/>Documents</a> object. You can set the remarks field of the approval request.
+Source table: OWDDV.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Documents> Documents</a> <small>Documents</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OIGE/ >OIGE</a> <a href=/OIGN/ >OIGN</a> </span><br><br><a title='92
+515
+34.19684600830078' class=related href='/Documents/Document_Installments'> Document   Installments</a> <em class=comment>Document_Installments</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>A child object of <a style='color:inherit;' href=/Documents/>Documents</a> object representing the installments feature in marketing documents.
+Source tables:  INV6, OPCH6.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Documents> Documents</a> <small>Documents</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OIGE/ >OIGE</a> <a href=/OIGN/ >OIGN</a> </span><br><br><a title='92
+515
+34.19684600830078' class=related href='/Documents/Document_Lines'> Document   Lines</a> <em class=comment>Document_Lines</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/IGE1/ >IGE1</a> <a href=/IGN1/ >IGN1</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Document_Lines is a child object of <a style='color:inherit;' href=/Documents/>Documents</a> object and represents the line entries of a document in the Marketing <a style='color:inherit;' href=/Documents/>Documents</a> and Receipts module and the Inventory and Production module.
+The source table for each document is according to the...</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Documents> Documents</a> <small>Documents</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OIGE/ >OIGE</a> <a href=/OIGN/ >OIGN</a> </span><br><br><a title='92
+515
+34.19684600830078' class=related href='/Documents/Document_SpecialLines'> Document   Special Lines</a> <em class=comment>Document_SpecialLines</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/INV10/ >INV10</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>This object represents text and subtotal lines in marketing documents.
+Source table: INV10 and IN10V (a virtual table for storing calculated values).</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Documents> Documents</a> <small>Documents</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OIGE/ >OIGE</a> <a href=/OIGN/ >OIGN</a> </span><br><br><a title='92
+515
+34.19684600830078' class=related href='/Documents/DocumentPackages'> Document Packages</a> <em class=comment>DocumentPackages</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>This object holds a collection of packaging types you can attach to items in Delivery or A/R Invoice documents.
+Access this object via <a style='color:inherit;' href=/Documents/>Documents</a>.<a style='color:inherit;' href=/Documents/Packages/>Packages</a> property.
+Source tables: DLN7, DLN8, INV7, INV8.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Documents> Documents</a> <small>Documents</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OIGE/ >OIGE</a> <a href=/OIGN/ >OIGN</a> </span><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/Documents/'>Documents</a></font><hr><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/Documents/AddressExtension/'>AddressExtension</a></font><hr><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Bill To Address 2' href=/AddressExtension/BillToAddress2/ class=eli>BillToAddress2</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To Address 3' href=/AddressExtension/BillToAddress3/ class=eli>BillToAddress3</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To Address Type' href=/AddressExtension/BillToAddressType/ class=eli>BillToAddressType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To Block' href=/AddressExtension/BillToBlock/ class=eli>BillToBlock</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To Building' href=/AddressExtension/BillToBuilding/ class=eli>BillToBuilding</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To City' href=/AddressExtension/BillToCity/ class=eli>BillToCity</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To Country' href=/AddressExtension/BillToCountry/ class=eli>BillToCountry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To County' href=/AddressExtension/BillToCounty/ class=eli>BillToCounty</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To Global Location Number' href=/AddressExtension/BillToGlobalLocationNumber/ class=eli>BillToGlobalLocationNumber</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To State' href=/AddressExtension/BillToState/ class=eli>BillToState</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To Street' href=/AddressExtension/BillToStreet/ class=eli>BillToStreet</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To Street No' href=/AddressExtension/BillToStreetNo/ class=eli>BillToStreetNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill To Zip Code' href=/AddressExtension/BillToZipCode/ class=eli>BillToZipCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Address 2' href=/AddressExtension/ShipToAddress2/ class=eli>ShipToAddress2</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Address 3' href=/AddressExtension/ShipToAddress3/ class=eli>ShipToAddress3</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Address Type' href=/AddressExtension/ShipToAddressType/ class=eli>ShipToAddressType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Block' href=/AddressExtension/ShipToBlock/ class=eli>ShipToBlock</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Building' href=/AddressExtension/ShipToBuilding/ class=eli>ShipToBuilding</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To City' href=/AddressExtension/ShipToCity/ class=eli>ShipToCity</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Country' href=/AddressExtension/ShipToCountry/ class=eli>ShipToCountry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To County' href=/AddressExtension/ShipToCounty/ class=eli>ShipToCounty</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Global Location Number' href=/AddressExtension/ShipToGlobalLocationNumber/ class=eli>ShipToGlobalLocationNumber</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To State' href=/AddressExtension/ShipToState/ class=eli>ShipToState</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Street' href=/AddressExtension/ShipToStreet/ class=eli>ShipToStreet</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Street No' href=/AddressExtension/ShipToStreetNo/ class=eli>ShipToStreetNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Zip Code' href=/AddressExtension/ShipToZipCode/ class=eli>ShipToZipCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

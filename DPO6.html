@@ -1,0 +1,376 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>DPO6 - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#ff4422; color:#ffffea;'><div class=eli2><b>SQL</b> <a href='/sql/Down Payment Out - Installments'>Down Payment Out - Installments</a></div></div><div class=' tit' style='width:33%; background-color:#ff7654; color:#cd1200;'><div class=eli2><b>DTW</b> Down Payment Out - Installments</div></div><div class=' tit' style='width:33%; background-color:#ffa886; color:#cd1200;'><div class=eli2><b>API</b> Document   Installments /  Due Date</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #cd1200;'  class='titol sm titoltxt'>  <a style='color:#cd1200;' href='/DPO6/'> DPO6 - Down Payment Out - Installments</a> Table</font><script>
+                    document.title = 'DPO6 - Down Payment Out - Installments - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>DocEntry</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Document Internal ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ODPO title='A/P Down Payment'>ODPO</a><br><small class=s2>A/P Down Payment</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b>InstlmntID</b></em></td><td valign=top >Installment ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ObjType</b></em></td><td valign=top >Object Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ADP1 title='Object Settings - History'>ADP1</a><br><small class=s2>Object Settings - History</small></td><td valign=top class=nomobile>204</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DueDate</b></em></td><td valign=top >Due Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Status</b></em></td><td valign=top >Installment Status</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>O)  Open<hr>C)  Closed</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>O</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DunnLevel</b></em></td><td valign=top >Dunning Level</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InsTotal</b></em></td><td valign=top >Total Installment</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InsTotalFC</b></em></td><td valign=top >Total Installment (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InsTotalSy</b></em></td><td valign=top >Total Installment (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PaidToDate</b></em></td><td valign=top >Paid to Date</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PaidFC</b></em></td><td valign=top >Paid (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PaidSys</b></em></td><td valign=top >Paid (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatSum</b></em></td><td valign=top >Total Tax</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatSumFC</b></em></td><td valign=top >Tax Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatSumSy</b></em></td><td valign=top >Tax Amount (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatPaid</b></em></td><td valign=top >Tax Paid to Date</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatPaidFC</b></em></td><td valign=top >Tax Paid (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatPaidSys</b></em></td><td valign=top >Tax Paid (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TotalExpns</b></em></td><td valign=top >Total Freight Charges</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TotalExpFC</b></em></td><td valign=top >Total Freight Charges (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TotalExpSC</b></em></td><td valign=top >Total Freight Charges (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpAppl</b></em></td><td valign=top >Applied Freight Charges</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpApplFC</b></em></td><td valign=top >Applied Freight Charges (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpApplSC</b></em></td><td valign=top >Applied Freight Charges (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WTSum</b></em></td><td valign=top >WTax Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WTSumFC</b></em></td><td valign=top >WTax Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WTSumSC</b></em></td><td valign=top >WTax Amount (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WTApplied</b></em></td><td valign=top >Applied WTax</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WTAppliedF</b></em></td><td valign=top >Applied WTax (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WTAppliedS</b></em></td><td valign=top >Applied WTax (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TotalBlck</b></em></td><td valign=top >Total Reserved Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TotalBlckF</b></em></td><td valign=top >Total Reserved Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TotalBlckS</b></em></td><td valign=top >Total Reserved Amount (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VATBlck</b></em></td><td valign=top >Reserved Tax Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VATBlckFC</b></em></td><td valign=top >Reserved Tax Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VATBlckSC</b></em></td><td valign=top >Reserved Tax Amount (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpnsBlck</b></em></td><td valign=top >Reserved Freight Charges</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpnsBlckF</b></em></td><td valign=top >Reserved Freight Charges (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpnsBlckS</b></em></td><td valign=top >Reserved Freight Charges (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WTBlocked</b></em></td><td valign=top >Reserved WTax Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WTBlockedF</b></em></td><td valign=top >Reserved WTax Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WTBlockedS</b></em></td><td valign=top >Reserved WTax Amount (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InstPrcnt</b></em></td><td valign=top >Installment %</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DunWizBlck</b></em></td><td valign=top >Wizard dunning block</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DunDate</b></em></td><td valign=top >Last Dunning Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Paid</b></em></td><td valign=top >Paid</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PaidFrgn</b></em></td><td valign=top >Paid (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PaidSc</b></em></td><td valign=top >Paid (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>reserved</b></em></td><td valign=top >Reserved</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxOnExp</b></em></td><td valign=top >Tax on Expenses</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxOnExpFc</b></em></td><td valign=top >Tax on Expenses (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxOnExpSc</b></em></td><td valign=top >Tax on Expenses (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxOnExpAp</b></em></td><td valign=top >Applied Tax on Expenses</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxOnExApF</b></em></td><td valign=top >Applied Tax on Expenses (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxOnExApS</b></em></td><td valign=top >Applied Tax on Expenses (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxOnExBlo</b></em></td><td valign=top >Reserved Tax on Freight Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxOnExBlF</b></em></td><td valign=top >Reserved Tax on Freight Amt FC</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxOnExBlS</b></em></td><td valign=top >Reserved Tax on Freight Amt SC</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LvlUpdDate</b></em></td><td valign=top >Dunning Level Update Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Ordered</b></em></td><td valign=top >Payment Ordered</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PaidDpm</b></em></td><td valign=top >Paid by Down Payment</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PaidDpmFc</b></em></td><td valign=top >Paid by Down Payment (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PaidDpmSc</b></em></td><td valign=top >Paid by Down Payment (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'ODPO', font: { multi: true }, label: 'ODPO', title: 'A/P Down Payment'},{id: 'DPO6', font: { multi: true }, label: '<b>DPO6</b>', title:'DPO6'},{id: 'ADP1', font: { multi: true }, label: 'ADP1', title: 'Object Settings - History'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'ODPO', to: 'DPO6', arrows:'from'}, {from: 'ADP1', to: 'DPO6', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   DPO6.DocEntry AS 'Document Internal ID', 
+   DPO6.InstlmntID AS 'Installment ID', 
+   DPO6.ObjType AS 'Object Type', 
+   DPO6.LogInstanc AS 'Log Instance', 
+   DPO6.DueDate AS 'Due Date', 
+   DPO6.Status AS 'Installment Status', 
+   DPO6.DunnLevel AS 'Dunning Level', 
+   DPO6.InsTotal AS 'Total Installment', 
+   DPO6.InsTotalFC AS 'Total Installment (FC)', 
+   DPO6.InsTotalSy AS 'Total Installment (SC)', 
+   DPO6.PaidToDate AS 'Paid to Date', 
+   DPO6.PaidFC AS 'Paid (FC)', 
+   DPO6.PaidSys AS 'Paid (SC)', 
+   DPO6.VatSum AS 'Total Tax', 
+   DPO6.VatSumFC AS 'Tax Amount (FC)', 
+   DPO6.VatSumSy AS 'Tax Amount (SC)', 
+   DPO6.VatPaid AS 'Tax Paid to Date', 
+   DPO6.VatPaidFC AS 'Tax Paid (FC)', 
+   DPO6.VatPaidSys AS 'Tax Paid (SC)', 
+   DPO6.TotalExpns AS 'Total Freight Charges', 
+   DPO6.TotalExpFC AS 'Total Freight Charges (FC)', 
+   DPO6.TotalExpSC AS 'Total Freight Charges (SC)', 
+   DPO6.ExpAppl AS 'Applied Freight Charges', 
+   DPO6.ExpApplFC AS 'Applied Freight Charges (FC)', 
+   DPO6.ExpApplSC AS 'Applied Freight Charges (SC)', 
+   DPO6.WTSum AS 'WTax Amount', 
+   DPO6.WTSumFC AS 'WTax Amount (FC)', 
+   DPO6.WTSumSC AS 'WTax Amount (SC)', 
+   DPO6.WTApplied AS 'Applied WTax', 
+   DPO6.WTAppliedF AS 'Applied WTax (FC)', 
+   DPO6.WTAppliedS AS 'Applied WTax (SC)', 
+   DPO6.TotalBlck AS 'Total Reserved Amount', 
+   DPO6.TotalBlckF AS 'Total Reserved Amount (FC)', 
+   DPO6.TotalBlckS AS 'Total Reserved Amount (SC)', 
+   DPO6.VATBlck AS 'Reserved Tax Amount', 
+   DPO6.VATBlckFC AS 'Reserved Tax Amount (FC)', 
+   DPO6.VATBlckSC AS 'Reserved Tax Amount (SC)', 
+   DPO6.ExpnsBlck AS 'Reserved Freight Charges', 
+   DPO6.ExpnsBlckF AS 'Reserved Freight Charges (FC)', 
+   DPO6.ExpnsBlckS AS 'Reserved Freight Charges (SC)', 
+   DPO6.WTBlocked AS 'Reserved WTax Amount', 
+   DPO6.WTBlockedF AS 'Reserved WTax Amount (FC)', 
+   DPO6.WTBlockedS AS 'Reserved WTax Amount (SC)', 
+   DPO6.InstPrcnt AS 'Installment %', 
+   DPO6.DunWizBlck AS 'Wizard dunning block', 
+   DPO6.DunDate AS 'Last Dunning Date', 
+   DPO6.Paid AS 'Paid', 
+   DPO6.PaidFrgn AS 'Paid (FC)', 
+   DPO6.PaidSc AS 'Paid (SC)', 
+   DPO6.reserved AS 'Reserved', 
+   DPO6.TaxOnExp AS 'Tax on Expenses', 
+   DPO6.TaxOnExpFc AS 'Tax on Expenses (FC)', 
+   DPO6.TaxOnExpSc AS 'Tax on Expenses (SC)', 
+   DPO6.TaxOnExpAp AS 'Applied Tax on Expenses', 
+   DPO6.TaxOnExApF AS 'Applied Tax on Expenses (FC)', 
+   DPO6.TaxOnExApS AS 'Applied Tax on Expenses (SC)', 
+   DPO6.TaxOnExBlo AS 'Reserved Tax on Freight Amount', 
+   DPO6.TaxOnExBlF AS 'Reserved Tax on Freight Amt FC', 
+   DPO6.TaxOnExBlS AS 'Reserved Tax on Freight Amt SC', 
+   DPO6.LvlUpdDate AS 'Dunning Level Update Date', 
+   DPO6.Ordered AS 'Payment Ordered', 
+   DPO6.PaidDpm AS 'Paid by Down Payment', 
+   DPO6.PaidDpmFc AS 'Paid by Down Payment (FC)', 
+   DPO6.PaidDpmSc AS 'Paid by Down Payment (SC)'
+FROM DPO6 AS DPO6</div><h2 class=np>Related information</h2><dir class=np><br><b style='background-color:#379e00;' class=alert>&nbsp;v9.0&nbsp;</b> <a title='90
+-19.69792604446411
+5.302073955535889' class=related href='/Document_Installments/DueDate'> Due Date</a> <em class=comment>DueDate</em> <b>Property</b>&middot; <font class=grey>Table:</font> <span><a href=/DPO6/ >DPO6</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Returns or sets the due date of the installment.
+Field name: <a style='color:inherit;' href=/Document_Installments/DueDate/>DueDate</a></div>&middot; <font class=grey>Table:</font> <span><a href=/DRF6/ >DRF6</a> <a href=/DPO6/ >DPO6</a> <a href=/PCH6/ >PCH6</a> <a href=/CPI6/ >CPI6</a> <a href=/CPV6/ >CPV6</a> <a href=/DPI6/ >DPI6</a> <a href=/INV6/ >INV6</a> <a href=/CSI6/ >CSI6</a> <a href=/CSV6/ >CSV6</a> </span>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Document_Installments> Document   Installments</a> <small>Document_Installments</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/DRF6/ >DRF6</a> <a href=/DPO6/ >DPO6</a> <a href=/PCH6/ >PCH6</a> <a href=/CPI6/ >CPI6</a> <a href=/CPV6/ >CPV6</a> <a href=/DPI6/ >DPI6</a> <a href=/INV6/ >INV6</a> <a href=/CSI6/ >CSI6</a> <a href=/CSV6/ >CSV6</a> </span><br><a href=/ODPO class=related>A/P Down Payment</a> <em class=comment>ODPO</em> <b>SQL Table</b><br><br><a href=/ADP1 class=related>Object Settings - History</a> <em class=comment>ADP1</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/Document_Installments/'>Document_Installments</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/Document_Installments/DueDate/'>DueDate</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/Document_Installments/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Delete' href=/Document_Installments/Delete/ class=eli>Delete</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Set Current Line' href=/Document_Installments/SetCurrentLine/ class=eli>SetCurrentLine</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Count' href=/Document_Installments/Count/ class=eli>Count</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Due Date' href=/Document_Installments/DueDate/ class=eli>DueDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#379e00;' class=alert>9.0</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Dunning Level' href=/Document_Installments/DunningLevel/ class=eli>DunningLevel</a>  <div style='float:right; font-size:7px;'><b style='background-color:#379e00;' class=alert>9.0</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Installment Id' href=/Document_Installments/InstallmentId/ class=eli>InstallmentId</a>  <div style='float:right; font-size:7px;'><b style='background-color:#379e00;' class=alert>9.0</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Last Dunning Date' href=/Document_Installments/LastDunningDate/ class=eli>LastDunningDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Ordered' href=/Document_Installments/PaymentOrdered/ class=eli>PaymentOrdered</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Percentage' href=/Document_Installments/Percentage/ class=eli>Percentage</a>  <div style='float:right; font-size:7px;'><b style='background-color:#379e00;' class=alert>9.0</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Total' href=/Document_Installments/Total/ class=eli>Total</a>  <div style='float:right; font-size:7px;'><b style='background-color:#379e00;' class=alert>9.0</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Total FC' href=/Document_Installments/TotalFC/ class=eli>TotalFC</a>  <div style='float:right; font-size:7px;'><b style='background-color:#379e00;' class=alert>9.0</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/Document_Installments/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><br><b>Collection</b><br><div class=sm><a style='min-width:50px;' title='Valid Values' href=/Field/ValidValues/ class=eli>ValidValues</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Is Null' href=/Field/IsNull/ class=eli>IsNull</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Set Null Value' href=/Field/SetNullValue/ class=eli>SetNullValue</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Default Value' href=/Field/DefaultValue/ class=eli>DefaultValue</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Description' href=/Field/Description/ class=eli>Description</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Linked Table' href=/Field/LinkedTable/ class=eli>LinkedTable</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Mandatory' href=/Field/Mandatory/ class=eli>Mandatory</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Name' href=/Field/Name/ class=eli>Name</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Size' href=/Field/Size/ class=eli>Size</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sub Type' href=/Field/SubType/ class=eli>SubType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Type' href=/Field/Type/ class=eli>Type</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Valid Value' href=/Field/ValidValue/ class=eli>ValidValue</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Valid Values' href=/Field/ValidValues/ class=eli>ValidValues</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Value' href=/Field/Value/ class=eli>Value</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

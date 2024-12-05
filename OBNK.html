@@ -1,0 +1,394 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OBNK - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#ee1100; color:#ffd9c8;'><div class=eli2><b>SQL</b> <a href='/sql/Banking'> Banking</a> / <a href='/sql/External Bank Statement Received'> External Bank Statement Received</a></div></div><div class=' tit' style='width:33%; background-color:#ff4332; color:#bc0000;'><div class=eli2><b>DTW</b>  Banking /  Bill of Exchange /  Bill of Exchange Transactions</div></div><div class=' tit' style='width:33%; background-color:#ff7564; color:#bc0000;'><div class=eli2><b>API</b> OBNK /  Bank Pages</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #bc0000;'  class='titol sm titoltxt'>  <a style='color:#bc0000;' href='/OBNK/'> OBNK - External Bank Statement Received</a> Table</font><script>
+                    document.title = 'OBNK - External Bank Statement Received - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b>IdNumber</b></em></td><td valign=top >External Bank Statement No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBNH title='Bank Statement Header'>OBNH</a><br><small class=s2>Bank Statement Header</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td><tr><td valign=top ><em><b><u title='Primary'>AcctCode</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Account Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b>Sequence</b></em></td><td valign=top >Sequence No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AcctName</b></em></td><td valign=top >Account Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Ref</b></em></td><td valign=top >Reference</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>27</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DueDate</b></em></td><td valign=top >Due Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Memo</b></em></td><td valign=top >Details</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DebAmount</b></em></td><td valign=top >Debit Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DebAmntCur</b></em></td><td valign=top >Currency for Accounts Payable</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/OCRN title='Currency Codes'>OCRN</a><br><small class=s2>Currency Codes</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CredAmnt</b></em></td><td valign=top >Credit Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CredAmntCu</b></em></td><td valign=top >Credit Currency</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/OCRN title='Currency Codes'>OCRN</a><br><small class=s2>Currency Codes</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>balance</b></em></td><td valign=top >Balance</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>BankMatch</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Reconciliation No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>MATCH_ID</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>DataSource</b></em></td><td valign=top >Data Source</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  Unknown<hr>I)  Interface<hr>U)  Update<hr>M)  Import<hr>O)  DI API<hr>A)  Doc. Generation Wizard<hr>D)  Restore Wizard<hr>P)  Partner Implementation<hr>T)  Year Transfer</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExternCode</b></em></td><td valign=top >External Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>30</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CardCode</b></em></td><td valign=top >BP Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CardName</b></em></td><td valign=top >BP Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StatemNo</b></em></td><td valign=top >Statement Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocNum</b></em></td><td valign=top >Invoice Document</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>27</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PaymCreat</b></em></td><td valign=top >Payment Created</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LineStatus</b></em></td><td valign=top >Row Status</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VisOrder</b></em></td><td valign=top >Visual Order</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocNumType</b></em></td><td valign=top >Doc. No. Source</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>P)  Payment Reference No.<hr>I)  ISR<hr>D)  Doc Num</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>D</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Memo2</b></em></td><td valign=top >Details 2</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PaymentRef</b></em></td><td valign=top >Payment Reference No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>27</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>autoCreate</b></em></td><td valign=top >Manually/Automatically Create</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>M)  Manual<hr>A)  Automatic</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>M</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BSLineDate</b></em></td><td valign=top >Bank Statement Entry Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BSValuDate</b></em></td><td valign=top >Bank Statement Due Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InOpCode</b></em></td><td valign=top >Internal Bank Operation Code</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBTC title='Internal Bank Operation Codes'>OBTC</a><br><small class=s2>Internal Bank Operation Codes</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Cleared</b></em></td><td valign=top >Cleared</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OposAct</b></em></td><td valign=top >BP Bank Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DebAmntLC</b></em></td><td valign=top >Debit Amount (LC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CredAmntLC</b></em></td><td valign=top >Credit Amount (LC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExchngRate</b></em></td><td valign=top >Exchange Rate</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BPIBAN</b></em></td><td valign=top >IBAN of the BP Bank Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Fee</b></em></td><td valign=top >Fee on the Line</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PmnPstDate</b></em></td><td valign=top >Payment Posting Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PmnValDate</b></em></td><td valign=top >Payment Due Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LnDocDate</b></em></td><td valign=top >Line Document Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatAmntLC</b></em></td><td valign=top >VAT Amount (LC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatAmntFC</b></em></td><td valign=top >VAT Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>JDTID</b></em></td><td valign=top >Journal Entry ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OJDT title='Journal Entry'>OJDT</a><br><small class=s2>Journal Entry</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PmntID</b></em></td><td valign=top >Payment ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ObjCrtType</b></em></td><td valign=top >Document Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>24</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PstMethod</b></em></td><td valign=top >Posting Method</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>A)  G/L Account from/to Bank Account<hr>C)  BP from/to Bank Account<hr>J)  Interim Account from/to Bank Account<hr>E)  External Reconciliation<hr>I)  Ignore</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>C</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FeeAct</b></em></td><td valign=top >G/L Account for Fee</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FeeProfitC</b></em></td><td valign=top >Fee Distribution Rule</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FeeProj</b></em></td><td valign=top >Project Fee</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/OPRJ title='Project Codes'>OPRJ</a><br><small class=s2>Project Codes</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BpBankCode</b></em></td><td valign=top >BP Bank Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>30</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FeeProfit2</b></em></td><td valign=top >Fee Distribution Rule2</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FeeProfit3</b></em></td><td valign=top >Fee Distribution Rule3</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FeeProfit4</b></em></td><td valign=top >Fee Distribution Rule4</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FeeProfit5</b></em></td><td valign=top >Fee Distribution Rule5</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ApplWTSum</b></em></td><td valign=top >Applied WTax Sum</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InfoLog</b></em></td><td valign=top >Information Log</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LineOrigin</b></em></td><td valign=top >Row Origin</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>R)  Regular<hr>A)  Archive</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>R</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BPSwift</b></em></td><td valign=top >BP BIC/SWIFT Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Source</b></em></td><td valign=top >Source</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>I)  Imported<hr>A)  Imported and Amended<hr>M)  Manually Entered</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>I</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PayOrderNo</b></em></td><td valign=top >Payment Order Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxIDNum</b></em></td><td valign=top >Federal Tax ID</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PONumber</b></em></td><td valign=top >External Payment Order Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FormatName</b></em></td><td valign=top >Format Name for Bank Statement</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FileCRC</b></em></td><td valign=top >Bank Statement File Hash Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FolioPref</b></em></td><td valign=top >Folio Prefix String</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>4</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FolioNum</b></em></td><td valign=top >Folio Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BPLIdPmn</b></em></td><td valign=top >Branch for Payment ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBPL title='Business Place'>OBPL</a><br><small class=s2>Business Place</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BPAcctName</b></em></td><td valign=top >BP Bank Account Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OACT', font: { multi: true }, label: 'OACT', title: 'G/L Accounts'},{id: 'OBNK', font: { multi: true }, label: '<b>OBNK</b>', title:'OBNK'},{id: 'OBPL', font: { multi: true }, label: 'OBPL', title: 'Business Place'},{id: 'OCRD', font: { multi: true }, label: 'OCRD', title: 'Business Partner'},{id: 'OCRN', font: { multi: true }, label: 'OCRN', title: 'Currency Codes'},{id: 'OOCR', font: { multi: true }, label: 'OOCR', title: 'Distribution Rule'},{id: 'OPRJ', font: { multi: true }, label: 'OPRJ', title: 'Project Codes'},{id: 'OBNH', font: { multi: true }, label: 'OBNH', title: 'Bank Statement Header'},{id: 'OBTC', font: { multi: true }, label: 'OBTC', title: 'Internal Bank Operation Codes'},{id: 'OJDT', font: { multi: true }, label: 'OJDT', title: 'Journal Entry'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OACT', to: 'OBNK', arrows:'from'}, {from: 'OBPL', to: 'OBNK', arrows:'from'}, {from: 'OCRD', to: 'OBNK', arrows:'from'}, {from: 'OCRN', to: 'OBNK', arrows:'from'}, {from: 'OOCR', to: 'OBNK', arrows:'from'}, {from: 'OPRJ', to: 'OBNK', arrows:'from'}, {from: 'OBNH', to: 'OBNK', arrows:'from'}, {from: 'OBTC', to: 'OBNK', arrows:'from'}, {from: 'OJDT', to: 'OBNK', arrows:'from'}, {from: 'OUSR', to: 'OBNK', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OBNK.IdNumber AS 'External Bank Statement No.', 
+   OBNK.AcctCode AS 'Account Number', 
+   OBNK.Sequence AS 'Sequence No.', 
+   OBNK.AcctName AS 'Account Name', 
+   OBNK.Ref AS 'Reference', 
+   OBNK.DueDate AS 'Due Date', 
+   OBNK.Memo AS 'Details', 
+   OBNK.DebAmount AS 'Debit Amount (FC)', 
+   OBNK.DebAmntCur AS 'Currency for Accounts Payable', 
+   OBNK.CredAmnt AS 'Credit Amount (FC)', 
+   OBNK.CredAmntCu AS 'Credit Currency', 
+   OBNK.balance AS 'Balance', 
+   OBNK.BankMatch AS 'Reconciliation No.', 
+   OBNK.DataSource AS 'Data Source', 
+   OBNK.UserSign AS 'User Signature', 
+   OBNK.ExternCode AS 'External Code', 
+   OBNK.CardCode AS 'BP Code', 
+   OBNK.CardName AS 'BP Name', 
+   OBNK.StatemNo AS 'Statement Number', 
+   OBNK.DocNum AS 'Invoice Document', 
+   OBNK.PaymCreat AS 'Payment Created', 
+   OBNK.LineStatus AS 'Row Status', 
+   OBNK.VisOrder AS 'Visual Order', 
+   OBNK.DocNumType AS 'Doc. No. Source', 
+   OBNK.Memo2 AS 'Details 2', 
+   OBNK.PaymentRef AS 'Payment Reference No.', 
+   OBNK.autoCreate AS 'Manually/Automatically Create', 
+   OBNK.BSLineDate AS 'Bank Statement Entry Date', 
+   OBNK.BSValuDate AS 'Bank Statement Due Date', 
+   OBNK.InOpCode AS 'Internal Bank Operation Code', 
+   OBNK.Cleared AS 'Cleared', 
+   OBNK.OposAct AS 'BP Bank Account', 
+   OBNK.DebAmntLC AS 'Debit Amount (LC)', 
+   OBNK.CredAmntLC AS 'Credit Amount (LC)', 
+   OBNK.ExchngRate AS 'Exchange Rate', 
+   OBNK.BPIBAN AS 'IBAN of the BP Bank Account', 
+   OBNK.Fee AS 'Fee on the Line', 
+   OBNK.PmnPstDate AS 'Payment Posting Date', 
+   OBNK.PmnValDate AS 'Payment Due Date', 
+   OBNK.LnDocDate AS 'Line Document Date', 
+   OBNK.VatAmntLC AS 'VAT Amount (LC)', 
+   OBNK.VatAmntFC AS 'VAT Amount (FC)', 
+   OBNK.JDTID AS 'Journal Entry ID', 
+   OBNK.PmntID AS 'Payment ID', 
+   OBNK.ObjCrtType AS 'Document Type', 
+   OBNK.PstMethod AS 'Posting Method', 
+   OBNK.FeeAct AS 'G/L Account for Fee', 
+   OBNK.FeeProfitC AS 'Fee Distribution Rule', 
+   OBNK.FeeProj AS 'Project Fee', 
+   OBNK.BpBankCode AS 'BP Bank Code', 
+   OBNK.FeeProfit2 AS 'Fee Distribution Rule2', 
+   OBNK.FeeProfit3 AS 'Fee Distribution Rule3', 
+   OBNK.FeeProfit4 AS 'Fee Distribution Rule4', 
+   OBNK.FeeProfit5 AS 'Fee Distribution Rule5', 
+   OBNK.ApplWTSum AS 'Applied WTax Sum', 
+   OBNK.InfoLog AS 'Information Log', 
+   OBNK.LineOrigin AS 'Row Origin', 
+   OBNK.BPSwift AS 'BP BIC/SWIFT Code', 
+   OBNK.Source AS 'Source', 
+   OBNK.PayOrderNo AS 'Payment Order Number', 
+   OBNK.TaxIDNum AS 'Federal Tax ID', 
+   OBNK.PONumber AS 'External Payment Order Number', 
+   OBNK.FormatName AS 'Format Name for Bank Statement', 
+   OBNK.FileCRC AS 'Bank Statement File Hash Code', 
+   OBNK.FolioPref AS 'Folio Prefix String', 
+   OBNK.FolioNum AS 'Folio Number', 
+   OBNK.BPLIdPmn AS 'Branch for Payment ID', 
+   OBNK.BPAcctName AS 'BP Bank Account Name'
+FROM OBNK AS OBNK</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+216.72153663635254
+0' class=related href='/BankPages'> Bank Pages</a> <em class=comment>BankPages</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBNK/ >OBNK</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>BankPages is a business object that represents external bank statements in the Banking module.
+This object enables you to:
+
+Add bank statements. 
+Retrieve a bank statement by its key. 
+Update bank statements. 
+Save the object in XML format....</div><br><br><a title='92
+216.72153663635254
+0' class=related href='/BankStatementRows/BankStatementRow'> Bank Statement Row</a> <em class=comment>BankStatementRow</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBNK/ >OBNK</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>A data structure related to the BankStatementService holding the properties of a bank statement line.
+Access this object via BankStatement.BankStatementRows. 
+Source table: OBNK</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/BankStatementRows> Bank Statement Rows</a> <small>BankStatementRows</small> <b>Collection</b><br><br><a title='92
+216.72153663635254
+0' class=related href='/ReconciliationBankStatementLines/ReconciliationBankStatementLine'> Reconciliation Bank Statement Line</a> <em class=comment>ReconciliationBankStatementLine</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBNK/ >OBNK</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Represents open transactions to be reconciled in external bank statement. ReconciliationBankStatementLine is a child object of the ExternalReconciliation object.
+Source table: OBNK. </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/ReconciliationBankStatementLines> Reconciliation Bank Statement Lines</a> <small>ReconciliationBankStatementLines</small> <b>Collection</b><br><br><a title='92
+210.86076831817627
+0' class=related href='/BillOfExchangeTransaction/BillOfExchangeTrans_BankPages'> Bill Of Exchange Trans   Bank Pages</a> <em class=comment>BillOfExchangeTrans_BankPages</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBNK/ >OBNK</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>For internal use.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/BillOfExchangeTransaction> Bill Of Exchange Transaction</a> <small>BillOfExchangeTransaction</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBOT/ >OBOT</a> </span><br><a href=/OACT class=related>G/L Accounts</a> <em class=comment>OACT</em> <b>SQL Table</b><br><br><a href=/OBPL class=related>Business Place</a> <em class=comment>OBPL</em> <b>SQL Table</b><br><br><a href=/OCRD class=related>Business Partner</a> <em class=comment>OCRD</em> <b>SQL Table</b><br><br><a href=/OCRN class=related>Currency Codes</a> <em class=comment>OCRN</em> <b>SQL Table</b><br><br><a href=/OOCR class=related>Distribution Rule</a> <em class=comment>OOCR</em> <b>SQL Table</b><br><br><a href=/OPRJ class=related>Project Codes</a> <em class=comment>OPRJ</em> <b>SQL Table</b><br><br><a href=/OBNH class=related>Bank Statement Header</a> <em class=comment>OBNH</em> <b>SQL Table</b><br><br><a href=/OBTC class=related>Internal Bank Operation Codes</a> <em class=comment>OBTC</em> <b>SQL Table</b><br><br><a href=/OJDT class=related>Journal Entry</a> <em class=comment>OJDT</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/BankPages/'>BankPages</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/BankPages/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/BankPages/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/BankPages/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/BankPages/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/BankPages/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/BankPages/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/BankPages/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Account Code' href=/BankPages/AccountCode/ class=eli>AccountCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Account Name' href=/BankPages/AccountName/ class=eli>AccountName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Match' href=/BankPages/BankMatch/ class=eli>BankMatch</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BIC Swift Code' href=/BankPages/BICSwiftCode/ class=eli>BICSwiftCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/BankPages/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Card Code' href=/BankPages/CardCode/ class=eli>CardCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Card Name' href=/BankPages/CardName/ class=eli>CardName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Credit Amount' href=/BankPages/CreditAmount/ class=eli>CreditAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Data Source' href=/BankPages/DataSource/ class=eli>DataSource</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Debit Amount' href=/BankPages/DebitAmount/ class=eli>DebitAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Number Type' href=/BankPages/DocNumberType/ class=eli>DocNumberType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Due Date' href=/BankPages/DueDate/ class=eli>DueDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='External Code' href=/BankPages/ExternalCode/ class=eli>ExternalCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Invoice Number' href=/BankPages/InvoiceNumber/ class=eli>InvoiceNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Invoice Number Ex' href=/BankPages/InvoiceNumberEx/ class=eli>InvoiceNumberEx</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Memo' href=/BankPages/Memo/ class=eli>Memo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Created' href=/BankPages/PaymentCreated/ class=eli>PaymentCreated</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Reference' href=/BankPages/PaymentReference/ class=eli>PaymentReference</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reference' href=/BankPages/Reference/ class=eli>Reference</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sequence' href=/BankPages/Sequence/ class=eli>Sequence</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Statement Number' href=/BankPages/StatementNumber/ class=eli>StatementNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/BankPages/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Signature' href=/BankPages/UserSignature/ class=eli>UserSignature</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Visual Order' href=/BankPages/VisualOrder/ class=eli>VisualOrder</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

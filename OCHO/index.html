@@ -1,0 +1,365 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OCHO - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#ee1100; color:#ffd9c8;'><div class=eli2><b>SQL</b> <a href='/sql/Banking'> Banking</a> / <a href='/sql/Checks for Payment'> Checks for Payment</a></div></div><div class=' tit' style='width:33%; background-color:#ff4332; color:#bc0000;'><div class=eli2><b>DTW</b>  Banking /  Outgoing Payments /  Checks for Payment</div></div><div class=' tit' style='width:33%; background-color:#ff7564; color:#bc0000;'><div class=eli2><b>API</b> OCHO /  /  Checksfor Payment</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #bc0000;'  class='titol sm titoltxt'>  <a style='color:#bc0000;' href='/OCHO/'> OCHO - Checks for Payment</a> Table</font><script>
+                    document.title = 'OCHO - Checks for Payment - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>CheckKey</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Check Key</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b>CheckNum</b></em></td><td valign=top >Check No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BankNum</b></em></td><td valign=top >Bank Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>30</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Branch</b></em></td><td valign=top >Branch</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BankName</b></em></td><td valign=top >Bank Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CheckDate</b></em></td><td valign=top >Check Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DpstAcct</b></em></td><td valign=top >Bank Account No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DpstBranch</b></em></td><td valign=top >Branch for Payments</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AcctNum</b></em></td><td valign=top >Account No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Details</b></em></td><td valign=top >Details</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TransRef</b></em></td><td valign=top >Journal Entry Reference</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PmntDate</b></em></td><td valign=top >Payment Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>PmntNum</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Payment No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OVPM title='Outgoing Payments'>OVPM</a><br><small class=s2>Outgoing Payments</small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile>VPM_NUM</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>CheckSum</b></em></td><td valign=top >Check Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Trnsfrable</b></em></td><td valign=top >Negotiable</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VendorCode</b></em></td><td valign=top >Vendor Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Currency</b></em></td><td valign=top >Check Currency</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Canceled</b></em></td><td valign=top >Canceled</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CardOrAcct</b></em></td><td valign=top >Business Partner or Account</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>C)  BP<hr>A)  Account</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>C</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Printed</b></em></td><td valign=top >Printed</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VendorName</b></em></td><td valign=top >Vendor Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TotalWords</b></em></td><td valign=top >Total in Words</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Signature</b></em></td><td valign=top >Signature</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>30</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CheckAcct</b></em></td><td valign=top >Customer Account Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>TransNum</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Transaction Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OJDT title='Journal Entry'>OJDT</a><br><small class=s2>Journal Entry</small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile>TRANS_NUM</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>LinesSum</b></em></td><td valign=top >Row Totals</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Deduction</b></em></td><td valign=top >Deduction Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DdctPrcnt</b></em></td><td valign=top >Withholding Tax Deduction %</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Address</b></em></td><td valign=top >Address</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CreateJdt</b></em></td><td valign=top >Create Journal Entry</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UpdateDate</b></em></td><td valign=top >Date of Update</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CreateDate</b></em></td><td valign=top >Creation Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatTotal</b></em></td><td valign=top >Total Tax</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatCalcult</b></em></td><td valign=top >Calculate Tax</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxDate</b></em></td><td valign=top >Document Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DataSource</b></em></td><td valign=top >Data Source</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  Unknown<hr>I)  Interface<hr>U)  Update<hr>M)  Import<hr>O)  DI API<hr>A)  Doc. Generation Wizard<hr>D)  Restore Wizard<hr>P)  Partner Implementation<hr>T)  Year Transfer</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SumRfndCln</b></em></td><td valign=top >Deduction Refund Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PrintedBy</b></em></td><td valign=top >Printed By</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Transfered</b></em></td><td valign=top >Transferred to next year</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Instance</b></em></td><td valign=top >Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ObjType</b></em></td><td valign=top >Object Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ADP1 title='Object Settings - History'>ADP1</a><br><small class=s2>Object Settings - History</small></td><td valign=top class=nomobile>57</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CountryCod</b></em></td><td valign=top >Country Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/OCRY title='Countries'>OCRY</a><br><small class=s2>Countries</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AddrName</b></em></td><td valign=top >Address Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PrnConfrm</b></em></td><td valign=top >Confirm Printing</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BnkActKey</b></em></td><td valign=top >Bank Account Internal ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/DSC1 title='House Bank Accounts'>DSC1</a><br><small class=s2>House Bank Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CancelDate</b></em></td><td valign=top >Cancelation Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ManualChk</b></em></td><td valign=top >Manual Check</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BPLId</b></em></td><td valign=top >Branch</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBPL title='Business Place'>OBPL</a><br><small class=s2>Business Place</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BPLName</b></em></td><td valign=top >Branch Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VATRegNum</b></em></td><td valign=top >Branch Reg. No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OCHO', font: { multi: true }, label: 'OCHO', title: ''},{id: 'ACH1', font: { multi: true }, label: '<b>ACH1</b>', title:'Checks for Payment - Rows - History'},{id: 'ARC1', font: { multi: true }, label: '<b>ARC1</b>', title:'Incoming Payment - Checks - History'},{id: 'CHO1', font: { multi: true }, label: '<b>CHO1</b>', title:'Checks for Payment - Rows'},{id: 'PDF1', font: { multi: true }, label: '<b>PDF1</b>', title:'Payment Draft - Checks'},{id: 'VPM1', font: { multi: true }, label: '<b>VPM1</b>', title:'Outgoing Payments - Check Rows'},{id: 'DSC1', font: { multi: true }, label: 'DSC1', title: 'House Bank Accounts'},{id: 'OBPL', font: { multi: true }, label: 'OBPL', title: 'Business Place'},{id: 'OCRY', font: { multi: true }, label: 'OCRY', title: 'Countries'},{id: 'ADP1', font: { multi: true }, label: 'ADP1', title: 'Object Settings - History'},{id: 'OVPM', font: { multi: true }, label: 'OVPM', title: 'Outgoing Payments'},{id: 'OJDT', font: { multi: true }, label: 'OJDT', title: 'Journal Entry'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OCHO', to: 'ACH1', arrows:'from'}, {from: 'OCHO', to: 'ARC1', arrows:'from'}, {from: 'OCHO', to: 'CHO1', arrows:'from'}, {from: 'OCHO', to: 'PDF1', arrows:'from'}, {from: 'OCHO', to: 'VPM1', arrows:'from'}, {from: 'DSC1', to: 'OCHO', arrows:'from'}, {from: 'OBPL', to: 'OCHO', arrows:'from'}, {from: 'OCRY', to: 'OCHO', arrows:'from'}, {from: 'ADP1', to: 'OCHO', arrows:'from'}, {from: 'OVPM', to: 'OCHO', arrows:'from'}, {from: 'OJDT', to: 'OCHO', arrows:'from'}, {from: 'OUSR', to: 'OCHO', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OCHO.CheckKey AS 'Check Key', 
+   OCHO.CheckNum AS 'Check No.', 
+   OCHO.BankNum AS 'Bank Code', 
+   OCHO.Branch AS 'Branch', 
+   OCHO.BankName AS 'Bank Name', 
+   OCHO.CheckDate AS 'Check Date', 
+   OCHO.DpstAcct AS 'Bank Account No.', 
+   OCHO.DpstBranch AS 'Branch for Payments', 
+   OCHO.AcctNum AS 'Account No.', 
+   OCHO.Details AS 'Details', 
+   OCHO.TransRef AS 'Journal Entry Reference', 
+   OCHO.PmntDate AS 'Payment Date', 
+   OCHO.PmntNum AS 'Payment No.', 
+   OCHO.CheckSum AS 'Check Amount', 
+   OCHO.Trnsfrable AS 'Negotiable', 
+   OCHO.VendorCode AS 'Vendor Code', 
+   OCHO.Currency AS 'Check Currency', 
+   OCHO.Canceled AS 'Canceled', 
+   OCHO.CardOrAcct AS 'Business Partner or Account', 
+   OCHO.Printed AS 'Printed', 
+   OCHO.VendorName AS 'Vendor Name', 
+   OCHO.TotalWords AS 'Total in Words', 
+   OCHO.Signature AS 'Signature', 
+   OCHO.CheckAcct AS 'Customer Account Code', 
+   OCHO.TransNum AS 'Transaction Number', 
+   OCHO.LinesSum AS 'Row Totals', 
+   OCHO.Deduction AS 'Deduction Amount', 
+   OCHO.DdctPrcnt AS 'Withholding Tax Deduction %', 
+   OCHO.Address AS 'Address', 
+   OCHO.CreateJdt AS 'Create Journal Entry', 
+   OCHO.UpdateDate AS 'Date of Update', 
+   OCHO.CreateDate AS 'Creation Date', 
+   OCHO.VatTotal AS 'Total Tax', 
+   OCHO.VatCalcult AS 'Calculate Tax', 
+   OCHO.TaxDate AS 'Document Date', 
+   OCHO.DataSource AS 'Data Source', 
+   OCHO.SumRfndCln AS 'Deduction Refund Amount', 
+   OCHO.UserSign AS 'User Signature', 
+   OCHO.PrintedBy AS 'Printed By', 
+   OCHO.Transfered AS 'Transferred to next year', 
+   OCHO.Instance AS 'Instance', 
+   OCHO.LogInstanc AS 'Log Instance', 
+   OCHO.ObjType AS 'Object Type', 
+   OCHO.CountryCod AS 'Country Code', 
+   OCHO.AddrName AS 'Address Name', 
+   OCHO.PrnConfrm AS 'Confirm Printing', 
+   OCHO.BnkActKey AS 'Bank Account Internal ID', 
+   OCHO.CancelDate AS 'Cancelation Date', 
+   OCHO.ManualChk AS 'Manual Check', 
+   OCHO.BPLId AS 'Branch', 
+   OCHO.BPLName AS 'Branch Name', 
+   OCHO.VATRegNum AS 'Branch Reg. No.'
+FROM OCHO AS OCHO</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+216.68515396118164
+0' class=related href='/ChecksforPayment'> Checksfor Payment</a> <em class=comment>ChecksforPayment</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OCHO/ >OCHO</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Represents checks that are not tied to a document. 
+SAP Business One updates the balances of vendor accounts each time you add a check for payment. This object is part of the Banking module. Checks tied to documents are represented by the...</div><br><a href=/OCHO class=related></a> <em class=comment>OCHO</em> <b>SQL Table</b><br><br><a href=/DSC1 class=related>House Bank Accounts</a> <em class=comment>DSC1</em> <b>SQL Table</b><br><br><a href=/OBPL class=related>Business Place</a> <em class=comment>OBPL</em> <b>SQL Table</b><br><br><a href=/OCRY class=related>Countries</a> <em class=comment>OCRY</em> <b>SQL Table</b><br><br><a href=/ADP1 class=related>Object Settings - History</a> <em class=comment>ADP1</em> <b>SQL Table</b><br><br><a href=/OVPM class=related>Outgoing Payments</a> <em class=comment>OVPM</em> <b>SQL Table</b><br><br><a href=/OJDT class=related>Journal Entry</a> <em class=comment>OJDT</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/ChecksforPayment/'>ChecksforPayment</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Cp Card Acct' href=/ChecksforPayment/BoCpCardAcct/ class=eli>BoCpCardAcct</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/ChecksforPayment/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cancel' href=/ChecksforPayment/Cancel/ class=eli>Cancel</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Close' href=/ChecksforPayment/Close/ class=eli>Close</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/ChecksforPayment/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/ChecksforPayment/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/ChecksforPayment/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/ChecksforPayment/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/ChecksforPayment/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/ChecksforPayment/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Checks for Payment - Rows
+ Checksfor Payment Lines' href=/ChecksforPayment/ChecksforPaymentLines/ class=eli>ChecksforPaymentLines</a>    <small class='eli s'> CHO1</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Account Number' href=/ChecksforPayment/AccountNumber/ class=eli>AccountNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address' href=/ChecksforPayment/Address/ class=eli>Address</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address Name' href=/ChecksforPayment/AddressName/ class=eli>AddressName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Code' href=/ChecksforPayment/BankCode/ class=eli>BankCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Name' href=/ChecksforPayment/BankName/ class=eli>BankName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Branch' href=/ChecksforPayment/Branch/ class=eli>Branch</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/ChecksforPayment/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Canceled' href=/ChecksforPayment/Canceled/ class=eli>Canceled</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Card Or Account' href=/ChecksforPayment/CardOrAccount/ class=eli>CardOrAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Check Amount' href=/ChecksforPayment/CheckAmount/ class=eli>CheckAmount</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Check Currency' href=/ChecksforPayment/CheckCurrency/ class=eli>CheckCurrency</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Check Date' href=/ChecksforPayment/CheckDate/ class=eli>CheckDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Check Key' href=/ChecksforPayment/CheckKey/ class=eli>CheckKey</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Check Number' href=/ChecksforPayment/CheckNumber/ class=eli>CheckNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Country Code' href=/ChecksforPayment/CountryCode/ class=eli>CountryCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Create Journal Entry' href=/ChecksforPayment/CreateJournalEntry/ class=eli>CreateJournalEntry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Creation Date' href=/ChecksforPayment/CreationDate/ class=eli>CreationDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customer Account Code' href=/ChecksforPayment/CustomerAccountCode/ class=eli>CustomerAccountCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Deduction Refund Amount' href=/ChecksforPayment/DeductionRefundAmount/ class=eli>DeductionRefundAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Details' href=/ChecksforPayment/Details/ class=eli>Details</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Journal Entry Reference' href=/ChecksforPayment/JournalEntryReference/ class=eli>JournalEntryReference</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Lines' href=/ChecksforPayment/Lines/ class=eli>Lines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Manual Check' href=/ChecksforPayment/ManualCheck/ class=eli>ManualCheck</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Date' href=/ChecksforPayment/PaymentDate/ class=eli>PaymentDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment No' href=/ChecksforPayment/PaymentNo/ class=eli>PaymentNo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Printed' href=/ChecksforPayment/Printed/ class=eli>Printed</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Printed By' href=/ChecksforPayment/PrintedBy/ class=eli>PrintedBy</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Signature' href=/ChecksforPayment/Signature/ class=eli>Signature</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Date' href=/ChecksforPayment/TaxDate/ class=eli>TaxDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Total' href=/ChecksforPayment/TaxTotal/ class=eli>TaxTotal</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Totalin Words' href=/ChecksforPayment/TotalinWords/ class=eli>TotalinWords</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transaction Number' href=/ChecksforPayment/TransactionNumber/ class=eli>TransactionNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transferable' href=/ChecksforPayment/Transferable/ class=eli>Transferable</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update Date' href=/ChecksforPayment/UpdateDate/ class=eli>UpdateDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/ChecksforPayment/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vendor Code' href=/ChecksforPayment/VendorCode/ class=eli>VendorCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vendor Name' href=/ChecksforPayment/VendorName/ class=eli>VendorName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

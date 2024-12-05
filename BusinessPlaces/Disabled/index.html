@@ -1,0 +1,281 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>BusinessPlaces Disabled - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#ff4422; color:#ffffea;'><div class=eli2><b>SQL</b> <a href='/sql/Business Partners'> Business Partners</a> / <a href='/sql/Business Place'> Business Place</a></div></div><div class=' tit' style='width:33%; background-color:#ff7654; color:#cd1200;'><div class=eli2><b>DTW</b> Administration /  Setup /  Financials /  Business Places</div></div><div class=' tit' style='width:33%; background-color:#ffa886; color:#cd1200;'><div class=eli2><b>API</b> Business Places /  Disabled</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #cd1200;' > <a style='text-decoration:none; color:#cd1200;' title='92
+1199.1896362304688
+73.0247802734375' href='/BusinessPlaces/Disabled/'> Disabled</a> Property</div><script>
+                        document.title = 'Disabled -  Business Places - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" >Returns a valid value of BoYesNoEnum type that specifies whether to disable (Y) or enable (N) the business place. <P>Field name: <EM>Disabled</em>.</p></div>
+            <h2 class="heading"><span  tabindex="0"><img id="propertytypeToggle"  src="/images/1x1.png"></img>Property type</span></h2><div id="propertytypeSection" class="section" >Read-write property</div>
+            <h2 class="heading"><span  tabindex="0"><img id="syntaxToggle"  src="/images/1x1.png"></img>Syntax</span></h2><div id="syntaxSection" class="section" ><DIV  id=Syntax_VB><table   cellpadding="0" cellspacing="0"><tr><th>Visual Basic</th></tr><tr><td><pre><PRE class=" vbs hljs" class=" vbs hljs">Public Property <a style='color:inherit;' href=/BusinessPlaces/Disabled/>Disabled</a>() As <a href="/BoYesNoEnum/">BoYesNoEnum</a></PRE></pre></tr></table></div></div>
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img id="remarksToggle"  src="/images/1x1.png"></img>Remarks</span></h2><div class="remarksSection" class="section" >Default: N (enable).</div>
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/BusinessPlaces/">BusinessPlaces Object</a>
+</p>
+</p></div>
+        </div>
+        <div class=dblink><h2>Data Transfer Workbench</h2><li>Description: Cash Flow Line Item Name</li><li>Type: <strong>string</strong></li><li>Field Length: <em>1</em></li><li>DTW table: <em><a href=/OBPL/>OBPL</a></em> Business Place</li><li>DTW field: <em>Disabled</em></li><li>Position: <em>12</em></li></div><div class=dblink><h2>Database information </h2><li>Field: <em>Disabled</em></li><li>Description: Disabled</li><li>Type: <strong>VarChar</strong></li><li>Constraints: Y)  Disabled, N)  Enabled</li><li>Size: <em>1</em></li><li>Table: <em><a href=/OBPL/>OBPL</a></em> Business Place</li><li>Position: <em>12</em></li><li>Default Value: N</li></div><div style='clear:both;'></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+73.0247802734375' class=related href='/BusinessPlaces/BusinessPlaceIENumbers'> Business Place IE Numbers</a> <em class=comment>BusinessPlaceIENumbers</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>BusinessPlaceIENumbers Class  </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/BusinessPlaces> Business Places</a> <small>BusinessPlaces</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBPL/ >OBPL</a> </span><br><br><a title='92
+515
+73.0247802734375' class=related href='/BusinessPlaces/BusinessPlaceTributaryInfos'> Business Place Tributary Infos</a> <em class=comment>BusinessPlaceTributaryInfos</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>BusinessPlaceTributaryInfos Class  </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/BusinessPlaces> Business Places</a> <small>BusinessPlaces</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBPL/ >OBPL</a> </span><br><br><a title='92
+78.0247802734375
+0' class=related href='/BusinessPlaces'> Business Places</a> <em class=comment>BusinessPlaces</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBPL/ >OBPL</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>BusinessPlaces is a business object that represents a company's business locations. Each Korean company that issues tax invoices and VAT reports must indicate its business place. Each business place is bound with a VAT registry number. 
+This...</div><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/BusinessPlaces/'>BusinessPlaces</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/BusinessPlaces/Disabled/'>Disabled</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/BusinessPlaces/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/BusinessPlaces/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/BusinessPlaces/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/BusinessPlaces/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/BusinessPlaces/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/BusinessPlaces/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/BusinessPlaces/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Business Place IE Numbers' href=/BusinessPlaces/BusinessPlaceIENumbers/ class=eli>BusinessPlaceIENumbers</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Business Place Tributary Infos' href=/BusinessPlaces/BusinessPlaceTributaryInfos/ class=eli>BusinessPlaceTributaryInfos</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Additional Id Number' href=/BusinessPlaces/AdditionalIdNumber/ class=eli>AdditionalIdNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address' href=/BusinessPlaces/Address/ class=eli>Address</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Addressforeign' href=/BusinessPlaces/Addressforeign/ class=eli>Addressforeign</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address Type' href=/BusinessPlaces/AddressType/ class=eli>AddressType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Alias Name' href=/BusinessPlaces/AliasName/ class=eli>AliasName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Block' href=/BusinessPlaces/Block/ class=eli>Block</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPLID' href=/BusinessPlaces/BPLID/ class=eli>BPLID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPL Name' href=/BusinessPlaces/BPLName/ class=eli>BPLName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPL Name Foreign' href=/BusinessPlaces/BPLNameForeign/ class=eli>BPLNameForeign</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/BusinessPlaces/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Building' href=/BusinessPlaces/Building/ class=eli>Building</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Business' href=/BusinessPlaces/Business/ class=eli>Business</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='City' href=/BusinessPlaces/City/ class=eli>City</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Commercial Register' href=/BusinessPlaces/CommercialRegister/ class=eli>CommercialRegister</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Qualification Code' href=/BusinessPlaces/CompanyQualificationCode/ class=eli>CompanyQualificationCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cooperative Association Type Code' href=/BusinessPlaces/CooperativeAssociationTypeCode/ class=eli>CooperativeAssociationTypeCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Country' href=/BusinessPlaces/Country/ class=eli>Country</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='County' href=/BusinessPlaces/County/ class=eli>County</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Credit Contribution Origin Code' href=/BusinessPlaces/CreditContributionOriginCode/ class=eli>CreditContributionOriginCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Date Of Incorporation' href=/BusinessPlaces/DateOfIncorporation/ class=eli>DateOfIncorporation</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Declarer Type Code' href=/BusinessPlaces/DeclarerTypeCode/ class=eli>DeclarerTypeCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Customer ID' href=/BusinessPlaces/DefaultCustomerID/ class=eli>DefaultCustomerID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Resource Warehouse ID' href=/BusinessPlaces/DefaultResourceWarehouseID/ class=eli>DefaultResourceWarehouseID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Tax Code' href=/BusinessPlaces/DefaultTaxCode/ class=eli>DefaultTaxCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Vendor ID' href=/BusinessPlaces/DefaultVendorID/ class=eli>DefaultVendorID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Warehouse ID' href=/BusinessPlaces/DefaultWarehouseID/ class=eli>DefaultWarehouseID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Disabled' href=/BusinessPlaces/Disabled/ class=eli>Disabled</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Economic Activity Type Code' href=/BusinessPlaces/EconomicActivityTypeCode/ class=eli>EconomicActivityTypeCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Environment Type' href=/BusinessPlaces/EnvironmentType/ class=eli>EnvironmentType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Federal Tax ID' href=/BusinessPlaces/FederalTaxID/ class=eli>FederalTaxID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Federal Tax ID2' href=/BusinessPlaces/FederalTaxID2/ class=eli>FederalTaxID2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Federal Tax ID3' href=/BusinessPlaces/FederalTaxID3/ class=eli>FederalTaxID3</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Global Location Number' href=/BusinessPlaces/GlobalLocationNumber/ class=eli>GlobalLocationNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='IE Numbers' href=/BusinessPlaces/IENumbers/ class=eli>IENumbers</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Industry' href=/BusinessPlaces/Industry/ class=eli>Industry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='IPI Period Code' href=/BusinessPlaces/IPIPeriodCode/ class=eli>IPIPeriodCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Main BPL' href=/BusinessPlaces/MainBPL/ class=eli>MainBPL</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Nature Of Company Code' href=/BusinessPlaces/NatureOfCompanyCode/ class=eli>NatureOfCompanyCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Opting 4ICMS' href=/BusinessPlaces/Opting4ICMS/ class=eli>Opting4ICMS</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Clearing Account' href=/BusinessPlaces/PaymentClearingAccount/ class=eli>PaymentClearingAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Preferred State Code' href=/BusinessPlaces/PreferredStateCode/ class=eli>PreferredStateCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Profit Taxation Code' href=/BusinessPlaces/ProfitTaxationCode/ class=eli>ProfitTaxationCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Rep Name' href=/BusinessPlaces/RepName/ class=eli>RepName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='SPED Profile' href=/BusinessPlaces/SPEDProfile/ class=eli>SPEDProfile</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='State' href=/BusinessPlaces/State/ class=eli>State</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Street' href=/BusinessPlaces/Street/ class=eli>Street</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Street No' href=/BusinessPlaces/StreetNo/ class=eli>StreetNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Office' href=/BusinessPlaces/TaxOffice/ class=eli>TaxOffice</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Office No' href=/BusinessPlaces/TaxOfficeNo/ class=eli>TaxOfficeNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tributary Infos' href=/BusinessPlaces/TributaryInfos/ class=eli>TributaryInfos</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/BusinessPlaces/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='VAT Reg Num' href=/BusinessPlaces/VATRegNum/ class=eli>VATRegNum</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Zip Code' href=/BusinessPlaces/ZipCode/ class=eli>ZipCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

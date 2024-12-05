@@ -1,0 +1,335 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OCRY - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Administration'> Administration</a> / <a href='/sql/Countries'> Countries</a> / <a href='/sql/Countries'>Countries</a></div></div><div class=' tit' style='width:33%; background-color:#44efeb; color:#008b87;'><div class=eli2><b>DTW</b> Administration /  Setup /  Purchasing / Countries</div></div><div class=' tit' style='width:33%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> Countries Service /  Country</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #008b87;'  class='titol sm titoltxt'>  <a style='color:#008b87;' href='/OCRY/'> OCRY - Countries</a> Table</font><script>
+                    document.title = 'OCRY - Countries - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>Code</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b>Name</b></em></td><td valign=top >Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AddrFormat</b></em></td><td valign=top >Address Format</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OADF title='Address Formats'>OADF</a><br><small class=s2>Address Formats</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IsEC</b></em></td><td valign=top >EU</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ReportCode</b></em></td><td valign=top >Code for Reports</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxIdDigts</b></em></td><td valign=top >No. of Digits for Tax ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BnkCodDgts</b></em></td><td valign=top >No. of Digits for Bank Code</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BnkBchDgts</b></em></td><td valign=top >No. of Digits for Branch</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BnkActDgts</b></em></td><td valign=top >No. of Digits for Account No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BnkCtKDgts</b></em></td><td valign=top >No. of Digits for Control No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ValDomAcct</b></em></td><td valign=top >Domestic Bank Acct. Validation</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr>XX) <hr>BE)  Belgium<hr>ES)  Spain<hr>FR)  France<hr>IT)  Italy<hr>NL)  Netherlands<hr>PT)  Portugal</div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>XX</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ValIban</b></em></td><td valign=top >IBAN Validation</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IsBlackLst</b></em></td><td valign=top >On Black List</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UICCode</b></em></td><td valign=top >UIC Country Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CntCodNum</b></em></td><td valign=top >Country Code Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>4</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Siscomex</b></em></td><td valign=top >SISCOMEX Country Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OCRY', font: { multi: true }, label: 'OCRY', title: ''},{id: 'AAD1', font: { multi: true }, label: '<b>AAD1</b>', title:'Administration Extension-Log'},{id: 'AADM', font: { multi: true }, label: '<b>AADM</b>', title:'Administration - Log'},{id: 'ABOE', font: { multi: true }, label: '<b>ABOE</b>', title:'Bill of Exchange for Payment - History'},{id: 'ACHO', font: { multi: true }, label: '<b>ACHO</b>', title:'Checks for Payment - History'},{id: 'ACP1', font: { multi: true }, label: '<b>ACP1</b>', title:'Campaign - BPs'},{id: 'ACR1', font: { multi: true }, label: '<b>ACR1</b>', title:'Business Partner Addresses - History'},{id: 'ACRB', font: { multi: true }, label: '<b>ACRB</b>', title:'Business Partner Bank Accounts - History'},{id: 'ACRC', font: { multi: true }, label: '<b>ACRC</b>', title:'Credit Cards'},{id: 'ACRD', font: { multi: true }, label: '<b>ACRD</b>', title:'Business Partners - History'},{id: 'ADM1', font: { multi: true }, label: '<b>ADM1</b>', title:'Administration Extension'},{id: 'ADM2', font: { multi: true }, label: '<b>ADM2</b>', title:'Administration Electronic Report'},{id: 'ADO12', font: { multi: true }, label: '<b>ADO12</b>', title:'A/R Invoice - Tax Extension - History'},{id: 'ADOC', font: { multi: true }, label: '<b>ADOC</b>', title:'Invoice - History'},{id: 'ADS1', font: { multi: true }, label: '<b>ADS1</b>', title:'House Bank Accounts'},{id: 'AGAR', font: { multi: true }, label: '<b>AGAR</b>', title:'G/L Account Advanced Rules - History'},{id: 'AHEM', font: { multi: true }, label: '<b>AHEM</b>', title:'Employees'},{id: 'AINS', font: { multi: true }, label: '<b>AINS</b>', title:'Customer Equipment Card - History'},{id: 'ARC1', font: { multi: true }, label: '<b>ARC1</b>', title:'Incoming Payment - Checks - History'},{id: 'ARCT', font: { multi: true }, label: '<b>ARCT</b>', title:'Incoming Payment - History'},{id: 'ASCL', font: { multi: true }, label: '<b>ASCL</b>', title:'History'},{id: 'AUSR', font: { multi: true }, label: '<b>AUSR</b>', title:'Archive Users - History'},{id: 'BOT1', font: { multi: true }, label: '<b>BOT1</b>', title:'Bill of Exchange Transactions'},{id: 'CIF1', font: { multi: true }, label: '<b>CIF1</b>', title:'Country Specific Information'},{id: 'CIN12', font: { multi: true }, label: '<b>CIN12</b>', title:'Correction Invoice - Tax Extension'},{id: 'CPI12', font: { multi: true }, label: '<b>CPI12</b>', title:'A/P Correction Invoice - Tax Extension'},{id: 'CPN1', font: { multi: true }, label: '<b>CPN1</b>', title:'Campaign - BPs'},{id: 'CPV12', font: { multi: true }, label: '<b>CPV12</b>', title:'A/P Correction Invoice Reversal - Tax Extension'},{id: 'CRD1', font: { multi: true }, label: '<b>CRD1</b>', title:'Business Partners - Addresses'},{id: 'CRD9', font: { multi: true }, label: '<b>CRD9</b>', title:'OCRD Extension'},{id: 'CSI12', font: { multi: true }, label: '<b>CSI12</b>', title:'A/R Correction Invoice - Tax Extension'},{id: 'CSV12', font: { multi: true }, label: '<b>CSV12</b>', title:'A/R Correction Invoice Reversal - Tax Extension'},{id: 'DLN12', font: { multi: true }, label: '<b>DLN12</b>', title:'Delivery - Tax Extension'},{id: 'DPI12', font: { multi: true }, label: '<b>DPI12</b>', title:'Down Payment In - Tax Extension'},{id: 'DPO12', font: { multi: true }, label: '<b>DPO12</b>', title:'Down Payment - Tax Extension'},{id: 'DRF12', font: { multi: true }, label: '<b>DRF12</b>', title:'Draft - Tax Extension'},{id: 'DSC1', font: { multi: true }, label: '<b>DSC1</b>', title:'House Bank Accounts'},{id: 'IEI12', font: { multi: true }, label: '<b>IEI12</b>', title:'Incoming Excise Invoice - Tax Extension'},{id: 'IGE12', font: { multi: true }, label: '<b>IGE12</b>', title:'Goods Issue - Tax Extension'},{id: 'IGN12', font: { multi: true }, label: '<b>IGN12</b>', title:'Goods Receipt - Tax Extension'},{id: 'INV12', font: { multi: true }, label: '<b>INV12</b>', title:'A/R Invoice - Tax Extension'},{id: 'ITM10', font: { multi: true }, label: '<b>ITM10</b>', title:'OITM Extension'},{id: 'OADM', font: { multi: true }, label: '<b>OADM</b>', title:'Administration'},{id: 'OBOE', font: { multi: true }, label: '<b>OBOE</b>', title:'Bill of Exchange for Payment'},{id: 'OBPL', font: { multi: true }, label: '<b>OBPL</b>', title:'Business Place'},{id: 'OCHD', font: { multi: true }, label: '<b>OCHD</b>', title:'Checks for Payment Drafts'},{id: 'OCHH', font: { multi: true }, label: '<b>OCHH</b>', title:'Check Register'},{id: 'OCHO', font: { multi: true }, label: '<b>OCHO</b>', title:'Checks for Payment'},{id: 'OCIN', font: { multi: true }, label: '<b>OCIN</b>', title:'A/R Correction Invoice'},{id: 'OCLG', font: { multi: true }, label: '<b>OCLG</b>', title:'Activities'},{id: 'OCPI', font: { multi: true }, label: '<b>OCPI</b>', title:'A/P Correction Invoice'},{id: 'OCPV', font: { multi: true }, label: '<b>OCPV</b>', title:'A/P Correction Invoice Reversal'},{id: 'OCRB', font: { multi: true }, label: '<b>OCRB</b>', title:'BP - Bank Account'},{id: 'OCRC', font: { multi: true }, label: '<b>OCRC</b>', title:'Credit Cards'},{id: 'OCRD', font: { multi: true }, label: '<b>OCRD</b>', title:'Business Partner'},{id: 'OCSI', font: { multi: true }, label: '<b>OCSI</b>', title:'A/R Correction Invoice'},{id: 'OCST', font: { multi: true }, label: '<b>OCST</b>', title:'States'},{id: 'OCSV', font: { multi: true }, label: '<b>OCSV</b>', title:'A/R Correction Invoice Reversal'},{id: 'ODLN', font: { multi: true }, label: '<b>ODLN</b>', title:'Delivery'},{id: 'ODPI', font: { multi: true }, label: '<b>ODPI</b>', title:'A/R Down Payment'},{id: 'ODPO', font: { multi: true }, label: '<b>ODPO</b>', title:'A/P Down Payment'},{id: 'ODPS', font: { multi: true }, label: '<b>ODPS</b>', title:'Deposit'},{id: 'ODRF', font: { multi: true }, label: '<b>ODRF</b>', title:'Drafts'},{id: 'ODSC', font: { multi: true }, label: '<b>ODSC</b>', title:'Bank Codes'},{id: 'OEI12', font: { multi: true }, label: '<b>OEI12</b>', title:'Outgoing Excise Invoice - Tax Extension'},{id: 'OGAR', font: { multi: true }, label: '<b>OGAR</b>', title:'G/L Account Advanced Rules'},{id: 'OHEM', font: { multi: true }, label: '<b>OHEM</b>', title:'Employees'},{id: 'OIEI', font: { multi: true }, label: '<b>OIEI</b>', title:'Incoming Excise Invoice'},{id: 'OIGE', font: { multi: true }, label: '<b>OIGE</b>', title:'Goods Issue'},{id: 'OIGN', font: { multi: true }, label: '<b>OIGN</b>', title:'Goods Receipt'},{id: 'OINS', font: { multi: true }, label: '<b>OINS</b>', title:'Customer Equipment Card'},{id: 'OINV', font: { multi: true }, label: '<b>OINV</b>', title:'A/R Invoice'},{id: 'OISW', font: { multi: true }, label: '<b>OISW</b>', title:'Intrastat Wizard'},{id: 'OLCT', font: { multi: true }, label: '<b>OLCT</b>', title:'Location'},{id: 'OOEI', font: { multi: true }, label: '<b>OOEI</b>', title:'Outgoing Excise Invoice'},{id: 'OPCH', font: { multi: true }, label: '<b>OPCH</b>', title:'A/P Invoice'},{id: 'OPDF', font: { multi: true }, label: '<b>OPDF</b>', title:'Payment Draft'},{id: 'OPDN', font: { multi: true }, label: '<b>OPDN</b>', title:'Goods Receipt PO'},{id: 'OPOR', font: { multi: true }, label: '<b>OPOR</b>', title:'Purchase Order'},{id: 'OPQT', font: { multi: true }, label: '<b>OPQT</b>', title:'Purchase Quotation'},{id: 'OPRQ', font: { multi: true }, label: '<b>OPRQ</b>', title:'Purchase Request'},{id: 'OPWB', font: { multi: true }, label: '<b>OPWB</b>', title:'PWZ - Bank Account'},{id: 'OPYM', font: { multi: true }, label: '<b>OPYM</b>', title:'Payment Methods for Payment Wizard'},{id: 'OQUT', font: { multi: true }, label: '<b>OQUT</b>', title:'Sales Quotation'},{id: 'ORCT', font: { multi: true }, label: '<b>ORCT</b>', title:'Incoming Payment'},{id: 'ORDN', font: { multi: true }, label: '<b>ORDN</b>', title:'Returns'},{id: 'ORDR', font: { multi: true }, label: '<b>ORDR</b>', title:'Sales Order'},{id: 'ORIN', font: { multi: true }, label: '<b>ORIN</b>', title:'A/R Credit Memo'},{id: 'ORPC', font: { multi: true }, label: '<b>ORPC</b>', title:'A/P Credit Memo'},{id: 'ORPD', font: { multi: true }, label: '<b>ORPD</b>', title:'Goods Return'},{id: 'OSCL', font: { multi: true }, label: '<b>OSCL</b>', title:'Service Calls'},{id: 'OUDG', font: { multi: true }, label: '<b>OUDG</b>', title:'User Defaults'},{id: 'OUSR', font: { multi: true }, label: '<b>OUSR</b>', title:'Users'},{id: 'OVPM', font: { multi: true }, label: '<b>OVPM</b>', title:'Outgoing Payments'},{id: 'OWHS', font: { multi: true }, label: '<b>OWHS</b>', title:'Warehouses'},{id: 'OWTQ', font: { multi: true }, label: '<b>OWTQ</b>', title:'Inventory Transfer Request'},{id: 'OWTR', font: { multi: true }, label: '<b>OWTR</b>', title:'Inventory Transfer'},{id: 'PCH12', font: { multi: true }, label: '<b>PCH12</b>', title:'A/P Invoice - Tax Extension'},{id: 'PDF1', font: { multi: true }, label: '<b>PDF1</b>', title:'Payment Draft - Checks'},{id: 'PDN12', font: { multi: true }, label: '<b>PDN12</b>', title:'Goods Receipt PO - Tax Extension'},{id: 'POR12', font: { multi: true }, label: '<b>POR12</b>', title:'Purchase Order - Tax Extension'},{id: 'PQT12', font: { multi: true }, label: '<b>PQT12</b>', title:'Purchase Quotation - Tax Extension'},{id: 'PRQ12', font: { multi: true }, label: '<b>PRQ12</b>', title:'Purchase Request - Tax Extension'},{id: 'PWZ3', font: { multi: true }, label: '<b>PWZ3</b>', title:'Payment Wizard - Rows 3'},{id: 'PWZ4', font: { multi: true }, label: '<b>PWZ4</b>', title:'Payment Wizard - Rows 4'},{id: 'QUT12', font: { multi: true }, label: '<b>QUT12</b>', title:'Sales Quotation - Tax Extension'},{id: 'RCT1', font: { multi: true }, label: '<b>RCT1</b>', title:'Incoming Payment - Checks'},{id: 'RDN12', font: { multi: true }, label: '<b>RDN12</b>', title:'Returns - Tax Extension'},{id: 'RDR12', font: { multi: true }, label: '<b>RDR12</b>', title:'Sales Order - Tax Extension'},{id: 'RIN12', font: { multi: true }, label: '<b>RIN12</b>', title:'A/R Credit Memo - Tax Extension'},{id: 'RPC12', font: { multi: true }, label: '<b>RPC12</b>', title:'A/P Credit Memo - Tax Extension'},{id: 'RPD12', font: { multi: true }, label: '<b>RPD12</b>', title:'Goods Return - Tax Extension'},{id: 'TGG1', font: { multi: true }, label: '<b>TGG1</b>', title:'Target Group Details'},{id: 'VPM1', font: { multi: true }, label: '<b>VPM1</b>', title:'Outgoing Payments - Check Rows'},{id: 'WTQ12', font: { multi: true }, label: '<b>WTQ12</b>', title:'Inventory Transfer Request - Tax Extension'},{id: 'WTR12', font: { multi: true }, label: '<b>WTR12</b>', title:'Inventory Transfer - Tax Extension'},{id: 'OADF', font: { multi: true }, label: 'OADF', title: 'Address Formats'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OCRY', to: 'AAD1', arrows:'from'}, {from: 'OCRY', to: 'AADM', arrows:'from'}, {from: 'OCRY', to: 'ABOE', arrows:'from'}, {from: 'OCRY', to: 'ACHO', arrows:'from'}, {from: 'OCRY', to: 'ACP1', arrows:'from'}, {from: 'OCRY', to: 'ACR1', arrows:'from'}, {from: 'OCRY', to: 'ACRB', arrows:'from'}, {from: 'OCRY', to: 'ACRC', arrows:'from'}, {from: 'OCRY', to: 'ACRD', arrows:'from'}, {from: 'OCRY', to: 'ADM1', arrows:'from'}, {from: 'OCRY', to: 'ADM2', arrows:'from'}, {from: 'OCRY', to: 'ADO12', arrows:'from'}, {from: 'OCRY', to: 'ADOC', arrows:'from'}, {from: 'OCRY', to: 'ADS1', arrows:'from'}, {from: 'OCRY', to: 'AGAR', arrows:'from'}, {from: 'OCRY', to: 'AHEM', arrows:'from'}, {from: 'OCRY', to: 'AINS', arrows:'from'}, {from: 'OCRY', to: 'ARC1', arrows:'from'}, {from: 'OCRY', to: 'ARCT', arrows:'from'}, {from: 'OCRY', to: 'ASCL', arrows:'from'}, {from: 'OCRY', to: 'AUSR', arrows:'from'}, {from: 'OCRY', to: 'BOT1', arrows:'from'}, {from: 'OCRY', to: 'CIF1', arrows:'from'}, {from: 'OCRY', to: 'CIN12', arrows:'from'}, {from: 'OCRY', to: 'CPI12', arrows:'from'}, {from: 'OCRY', to: 'CPN1', arrows:'from'}, {from: 'OCRY', to: 'CPV12', arrows:'from'}, {from: 'OCRY', to: 'CRD1', arrows:'from'}, {from: 'OCRY', to: 'CRD9', arrows:'from'}, {from: 'OCRY', to: 'CSI12', arrows:'from'}, {from: 'OCRY', to: 'CSV12', arrows:'from'}, {from: 'OCRY', to: 'DLN12', arrows:'from'}, {from: 'OCRY', to: 'DPI12', arrows:'from'}, {from: 'OCRY', to: 'DPO12', arrows:'from'}, {from: 'OCRY', to: 'DRF12', arrows:'from'}, {from: 'OCRY', to: 'DSC1', arrows:'from'}, {from: 'OCRY', to: 'IEI12', arrows:'from'}, {from: 'OCRY', to: 'IGE12', arrows:'from'}, {from: 'OCRY', to: 'IGN12', arrows:'from'}, {from: 'OCRY', to: 'INV12', arrows:'from'}, {from: 'OCRY', to: 'ITM10', arrows:'from'}, {from: 'OCRY', to: 'OADM', arrows:'from'}, {from: 'OCRY', to: 'OBOE', arrows:'from'}, {from: 'OCRY', to: 'OBPL', arrows:'from'}, {from: 'OCRY', to: 'OCHD', arrows:'from'}, {from: 'OCRY', to: 'OCHH', arrows:'from'}, {from: 'OCRY', to: 'OCHO', arrows:'from'}, {from: 'OCRY', to: 'OCIN', arrows:'from'}, {from: 'OCRY', to: 'OCLG', arrows:'from'}, {from: 'OCRY', to: 'OCPI', arrows:'from'}, {from: 'OCRY', to: 'OCPV', arrows:'from'}, {from: 'OCRY', to: 'OCRB', arrows:'from'}, {from: 'OCRY', to: 'OCRC', arrows:'from'}, {from: 'OCRY', to: 'OCRD', arrows:'from'}, {from: 'OCRY', to: 'OCSI', arrows:'from'}, {from: 'OCRY', to: 'OCST', arrows:'from'}, {from: 'OCRY', to: 'OCSV', arrows:'from'}, {from: 'OCRY', to: 'ODLN', arrows:'from'}, {from: 'OCRY', to: 'ODPI', arrows:'from'}, {from: 'OCRY', to: 'ODPO', arrows:'from'}, {from: 'OCRY', to: 'ODPS', arrows:'from'}, {from: 'OCRY', to: 'ODRF', arrows:'from'}, {from: 'OCRY', to: 'ODSC', arrows:'from'}, {from: 'OCRY', to: 'OEI12', arrows:'from'}, {from: 'OCRY', to: 'OGAR', arrows:'from'}, {from: 'OCRY', to: 'OHEM', arrows:'from'}, {from: 'OCRY', to: 'OIEI', arrows:'from'}, {from: 'OCRY', to: 'OIGE', arrows:'from'}, {from: 'OCRY', to: 'OIGN', arrows:'from'}, {from: 'OCRY', to: 'OINS', arrows:'from'}, {from: 'OCRY', to: 'OINV', arrows:'from'}, {from: 'OCRY', to: 'OISW', arrows:'from'}, {from: 'OCRY', to: 'OLCT', arrows:'from'}, {from: 'OCRY', to: 'OOEI', arrows:'from'}, {from: 'OCRY', to: 'OPCH', arrows:'from'}, {from: 'OCRY', to: 'OPDF', arrows:'from'}, {from: 'OCRY', to: 'OPDN', arrows:'from'}, {from: 'OCRY', to: 'OPOR', arrows:'from'}, {from: 'OCRY', to: 'OPQT', arrows:'from'}, {from: 'OCRY', to: 'OPRQ', arrows:'from'}, {from: 'OCRY', to: 'OPWB', arrows:'from'}, {from: 'OCRY', to: 'OPYM', arrows:'from'}, {from: 'OCRY', to: 'OQUT', arrows:'from'}, {from: 'OCRY', to: 'ORCT', arrows:'from'}, {from: 'OCRY', to: 'ORDN', arrows:'from'}, {from: 'OCRY', to: 'ORDR', arrows:'from'}, {from: 'OCRY', to: 'ORIN', arrows:'from'}, {from: 'OCRY', to: 'ORPC', arrows:'from'}, {from: 'OCRY', to: 'ORPD', arrows:'from'}, {from: 'OCRY', to: 'OSCL', arrows:'from'}, {from: 'OCRY', to: 'OUDG', arrows:'from'}, {from: 'OCRY', to: 'OUSR', arrows:'from'}, {from: 'OCRY', to: 'OVPM', arrows:'from'}, {from: 'OCRY', to: 'OWHS', arrows:'from'}, {from: 'OCRY', to: 'OWTQ', arrows:'from'}, {from: 'OCRY', to: 'OWTR', arrows:'from'}, {from: 'OCRY', to: 'PCH12', arrows:'from'}, {from: 'OCRY', to: 'PDF1', arrows:'from'}, {from: 'OCRY', to: 'PDN12', arrows:'from'}, {from: 'OCRY', to: 'POR12', arrows:'from'}, {from: 'OCRY', to: 'PQT12', arrows:'from'}, {from: 'OCRY', to: 'PRQ12', arrows:'from'}, {from: 'OCRY', to: 'PWZ3', arrows:'from'}, {from: 'OCRY', to: 'PWZ4', arrows:'from'}, {from: 'OCRY', to: 'QUT12', arrows:'from'}, {from: 'OCRY', to: 'RCT1', arrows:'from'}, {from: 'OCRY', to: 'RDN12', arrows:'from'}, {from: 'OCRY', to: 'RDR12', arrows:'from'}, {from: 'OCRY', to: 'RIN12', arrows:'from'}, {from: 'OCRY', to: 'RPC12', arrows:'from'}, {from: 'OCRY', to: 'RPD12', arrows:'from'}, {from: 'OCRY', to: 'TGG1', arrows:'from'}, {from: 'OCRY', to: 'VPM1', arrows:'from'}, {from: 'OCRY', to: 'WTQ12', arrows:'from'}, {from: 'OCRY', to: 'WTR12', arrows:'from'}, {from: 'OADF', to: 'OCRY', arrows:'from'}, {from: 'OUSR', to: 'OCRY', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OCRY.Code AS 'Code', 
+   OCRY.Name AS 'Name', 
+   OCRY.AddrFormat AS 'Address Format', 
+   OCRY.UserSign AS 'User Signature', 
+   OCRY.IsEC AS 'EU', 
+   OCRY.ReportCode AS 'Code for Reports', 
+   OCRY.TaxIdDigts AS 'No. of Digits for Tax ID', 
+   OCRY.BnkCodDgts AS 'No. of Digits for Bank Code', 
+   OCRY.BnkBchDgts AS 'No. of Digits for Branch', 
+   OCRY.BnkActDgts AS 'No. of Digits for Account No.', 
+   OCRY.BnkCtKDgts AS 'No. of Digits for Control No.', 
+   OCRY.ValDomAcct AS 'Domestic Bank Acct. Validation', 
+   OCRY.ValIban AS 'IBAN Validation', 
+   OCRY.IsBlackLst AS 'On Black List', 
+   OCRY.UICCode AS 'UIC Country Code', 
+   OCRY.CntCodNum AS 'Country Code Number', 
+   OCRY.Siscomex AS 'SISCOMEX Country Code'
+FROM OCRY AS OCRY</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+209.70132637023926
+4.701326370239258' class=related href='/CountriesService/Country'> Country</a> <em class=comment>Country</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OCRY/ >OCRY</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>A data structure object holding properties for the  CountriesService object.
+Source table: OCRY.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CountriesService> Countries Service</a> <small>CountriesService</small> <b>Service</b>&middot; <font class=grey>Table:</font> <span><a href=/OCRY/ >OCRY</a> </span><br><br><a title='92
+209.70132637023926
+4.701326370239258' class=related href='/CountriesService/CountryParams'> Country Params</a> <em class=comment>CountryParams</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OCRY/ >OCRY</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>This object holds identification properties for the CountriesService object.
+Source table: OCRY.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CountriesService> Countries Service</a> <small>CountriesService</small> <b>Service</b>&middot; <font class=grey>Table:</font> <span><a href=/OCRY/ >OCRY</a> </span><br><br><a title='92
+209.70132637023926
+0' class=related href='/CountriesService'> Countries Service</a> <em class=comment>CountriesService</em> <b>Service</b>&middot; <font class=grey>Table:</font> <span><a href=/OCRY/ >OCRY</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The CountriesService manages the setting of each country in SAP Business One. For example, country code, country name and address format.
+Source table: OCRY.</div><br><a href=/OCRY class=related></a> <em class=comment>OCRY</em> <b>SQL Table</b><br><br><a href=/OADF class=related>Address Formats</a> <em class=comment>OADF</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Service<br><a style='max-width:99%;' class=eli href='/CountriesService/'>CountriesService</a></font><hr><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/CountriesService/Country/'>Country</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Domestic Bank Account Validation Enum' href=/Country/DomesticBankAccountValidationEnum/ class=eli>DomesticBankAccountValidationEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='From XML File' href=/Country/FromXMLFile/ class=eli>FromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From XML String' href=/Country/FromXMLString/ class=eli>FromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XML Schema' href=/Country/GetXMLSchema/ class=eli>GetXMLSchema</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML File' href=/Country/ToXMLFile/ class=eli>ToXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML String' href=/Country/ToXMLString/ class=eli>ToXMLString</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Address Format' href=/Country/AddressFormat/ class=eli>AddressFormat</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Account Digits' href=/Country/BankAccountDigits/ class=eli>BankAccountDigits</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Branch Digits' href=/Country/BankBranchDigits/ class=eli>BankBranchDigits</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Code Digits' href=/Country/BankCodeDigits/ class=eli>BankCodeDigits</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Control Key Digits' href=/Country/BankControlKeyDigits/ class=eli>BankControlKeyDigits</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Blacklisted' href=/Country/Blacklisted/ class=eli>Blacklisted</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Code' href=/Country/Code/ class=eli>Code</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Code For Reports' href=/Country/CodeForReports/ class=eli>CodeForReports</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Domestic Account Validation' href=/Country/DomesticAccountValidation/ class=eli>DomesticAccountValidation</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='EU' href=/Country/EU/ class=eli>EU</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Iban Validation' href=/Country/IbanValidation/ class=eli>IbanValidation</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Name' href=/Country/Name/ class=eli>Name</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Number Of Digits For Tax ID' href=/Country/NumberOfDigitsForTaxID/ class=eli>NumberOfDigitsForTaxID</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='UIC Country Code' href=/Country/UICCountryCode/ class=eli>UICCountryCode</a>    <small class='eli s'> </small></div><br><b>Collection</b><br><div class=sm><a style='min-width:50px;' title='Credit Lines Params' href=/CreditLinesService/CreditLinesParams/ class=eli>CreditLinesParams</a>    <small class='eli s'> </small></div><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Credit Lines Service Data Interfaces' href=/CreditLinesService/CreditLinesServiceDataInterfaces/ class=eli>CreditLinesServiceDataInterfaces</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Get Credit Line' href=/CreditLinesService/GetCreditLine/ class=eli>GetCreditLine</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Data Interface' href=/CreditLinesService/GetDataInterface/ class=eli>GetDataInterface</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Data Interface From XML File' href=/CreditLinesService/GetDataInterfaceFromXMLFile/ class=eli>GetDataInterfaceFromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Data Interface From XML String' href=/CreditLinesService/GetDataInterfaceFromXMLString/ class=eli>GetDataInterfaceFromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Valid Credit Line List' href=/CreditLinesService/GetValidCreditLineList/ class=eli>GetValidCreditLineList</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

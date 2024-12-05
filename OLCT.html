@@ -1,0 +1,352 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OLCT - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Inventory and Production'> Inventory and Production</a> / <a href='/sql/Location'> Location</a></div></div><div class=' tit' style='width:33%; background-color:#44efeb; color:#008b87;'><div class=eli2><b>DTW</b>  Administration /  Setup /  Inventory /  Warehouse Locations</div></div><div class=' tit' style='width:33%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> OLCT /  Warehouse Locations</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #008b87;'  class='titol sm titoltxt'>  <a style='color:#008b87;' href='/OLCT/'> OLCT - Location</a> Table</font><script>
+                    document.title = 'OLCT - Location - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>Code</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Location Code</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b><u title='Primary'>Location</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>LOCATION</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PanCirNo</b></em></td><td valign=top >PAN Circle No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PanWardNo</b></em></td><td valign=top >PAN Ward No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PanOfficer</b></em></td><td valign=top >PAN Assessing Officer</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TanCirNo</b></em></td><td valign=top >TAN Circle No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TanWardNo</b></em></td><td valign=top >TAN Ward No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TanOfficer</b></em></td><td valign=top >TAN Assessing Officer</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LstVatNo</b></em></td><td valign=top >LST/VAT Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CstNo</b></em></td><td valign=top >CST Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExemptNo</b></em></td><td valign=top >Exemption Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TanNo</b></em></td><td valign=top >TAN Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ServTaxNo</b></em></td><td valign=top >Service Tax Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AsseType</b></em></td><td valign=top >Assessee Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CompType</b></em></td><td valign=top >Company Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NatOfBiz</b></em></td><td valign=top >Nature of Business</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TinNo</b></em></td><td valign=top >TIN Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PanNo</b></em></td><td valign=top >PAN Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>10</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RegType</b></em></td><td valign=top >Registration Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr>XM)  XM<hr>XD)  XD<hr>EM)  EM<hr>ED)  ED<hr>SD)  SD</div></td><td valign=top class=nomobile>2</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EccNo</b></em></td><td valign=top >ECC Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>40</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CeRegNo</b></em></td><td valign=top >CE Register Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>40</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CeRange</b></em></td><td valign=top >CE Range</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>60</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CeDivision</b></em></td><td valign=top >CE Division</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>60</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CeComRate</b></em></td><td valign=top >CE Commissionerate</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>60</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ManuCode</b></em></td><td valign=top >Manufaturer Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>60</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Jurisd</b></em></td><td valign=top >Jurisdiction</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>60</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Street</b></em></td><td valign=top >Street</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Block</b></em></td><td valign=top >Block</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ZipCode</b></em></td><td valign=top >Zip Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>City</b></em></td><td valign=top >City</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>County</b></em></td><td valign=top >County</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Country</b></em></td><td valign=top >Country</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/OCRY title='Countries'>OCRY</a><br><small class=s2>Countries</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>State</b></em></td><td valign=top >State</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Building</b></em></td><td valign=top >Building/Floor/Room</td><td valign=top ><em style='color:#010089;'>Text</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SSIExmpt</b></em></td><td valign=top >SSI Exemption</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SSIExmptSt</b></em></td><td valign=top >SSI Exemption Status</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>E)  New Location<hr>N)  Upgrade Not Changed<hr>C)  Upgrade Changed</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>E</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CitAddress</b></em></td><td valign=top >CIT Address</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CitCity</b></em></td><td valign=top >CIT City</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CitPinCode</b></em></td><td valign=top >CIT Pin Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>10</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OLCT', font: { multi: true }, label: 'OLCT', title: ''},{id: 'ADO1', font: { multi: true }, label: '<b>ADO1</b>', title:'A/R Invoice (Rows) - History'},{id: 'AITM', font: { multi: true }, label: '<b>AITM</b>', title:'Items - History'},{id: 'AJD1', font: { multi: true }, label: '<b>AJD1</b>', title:'Journal Entry - History - Rows'},{id: 'AJDT', font: { multi: true }, label: '<b>AJDT</b>', title:'Journal Entry - History'},{id: 'ARC4', font: { multi: true }, label: '<b>ARC4</b>', title:'Incoming Payment - Account List - History'},{id: 'ARCT', font: { multi: true }, label: '<b>ARCT</b>', title:'Incoming Payment - History'},{id: 'AWHS', font: { multi: true }, label: '<b>AWHS</b>', title:'Warehouses - History'},{id: 'AWHT', font: { multi: true }, label: '<b>AWHT</b>', title:'Withholding Tax'},{id: 'AWO1', font: { multi: true }, label: '<b>AWO1</b>', title:'Production Order (Rows) - History'},{id: 'BTF1', font: { multi: true }, label: '<b>BTF1</b>', title:'Journal Voucher - Rows'},{id: 'CIN1', font: { multi: true }, label: '<b>CIN1</b>', title:'Correction Invoice - Rows'},{id: 'CPI1', font: { multi: true }, label: '<b>CPI1</b>', title:'A/P Correction Invoice - Rows'},{id: 'CPV1', font: { multi: true }, label: '<b>CPV1</b>', title:'A/P Correction Invoice Reversal - Rows'},{id: 'CSI1', font: { multi: true }, label: '<b>CSI1</b>', title:'A/R Correction Invoice - Rows'},{id: 'CSV1', font: { multi: true }, label: '<b>CSV1</b>', title:'A/R Correction Invoice Reversal - Rows'},{id: 'DADB', font: { multi: true }, label: '<b>DADB</b>', title:'Data Archive DSA Balance'},{id: 'DATB', font: { multi: true }, label: '<b>DATB</b>', title:'Data Archive Tax Balance'},{id: 'DLN1', font: { multi: true }, label: '<b>DLN1</b>', title:'Delivery - Rows'},{id: 'DPI1', font: { multi: true }, label: '<b>DPI1</b>', title:'A/R Down Payment - Rows'},{id: 'DPO1', font: { multi: true }, label: '<b>DPO1</b>', title:'A/P Down Payment - Rows'},{id: 'DRF1', font: { multi: true }, label: '<b>DRF1</b>', title:'Draft - Rows'},{id: 'IEI1', font: { multi: true }, label: '<b>IEI1</b>', title:'Incoming Excise Invoice - Rows'},{id: 'IGE1', font: { multi: true }, label: '<b>IGE1</b>', title:'Goods Issue - Rows'},{id: 'IGN1', font: { multi: true }, label: '<b>IGN1</b>', title:'Goods Receipt - Rows'},{id: 'INV1', font: { multi: true }, label: '<b>INV1</b>', title:'A/R Invoice - Rows'},{id: 'JDT1', font: { multi: true }, label: '<b>JDT1</b>', title:'Journal Entry - Rows'},{id: 'NFN1', font: { multi: true }, label: '<b>NFN1</b>', title:'Not a Fiscal Sequence'},{id: 'OACK', font: { multi: true }, label: '<b>OACK</b>', title:'Acknowledge Number'},{id: 'OAIM', font: { multi: true }, label: '<b>OAIM</b>', title:'Archive Inventory Message'},{id: 'OBTF', font: { multi: true }, label: '<b>OBTF</b>', title:'Journal Voucher Entry'},{id: 'OCSN', font: { multi: true }, label: '<b>OCSN</b>', title:'Certificate Series'},{id: 'OEI1', font: { multi: true }, label: '<b>OEI1</b>', title:'Outgoing Excise Invoice - Rows'},{id: 'OERX', font: { multi: true }, label: '<b>OERX</b>', title:'Excise Register Numbering Ext'},{id: 'OILM', font: { multi: true }, label: '<b>OILM</b>', title:'Inventory Log Message'},{id: 'OITM', font: { multi: true }, label: '<b>OITM</b>', title:'Items'},{id: 'OJDT', font: { multi: true }, label: '<b>OJDT</b>', title:'Journal Entry'},{id: 'OLTB', font: { multi: true }, label: '<b>OLTB</b>', title:'Location-based Tax Bal Table'},{id: 'OPDF', font: { multi: true }, label: '<b>OPDF</b>', title:'Payment Draft'},{id: 'ORCT', font: { multi: true }, label: '<b>ORCT</b>', title:'Incoming Payment'},{id: 'OVPM', font: { multi: true }, label: '<b>OVPM</b>', title:'Outgoing Payments'},{id: 'OWHS', font: { multi: true }, label: '<b>OWHS</b>', title:'Warehouses'},{id: 'OWHT', font: { multi: true }, label: '<b>OWHT</b>', title:'Withholding Tax'},{id: 'PCH1', font: { multi: true }, label: '<b>PCH1</b>', title:'A/P Invoice - Rows'},{id: 'PDF4', font: { multi: true }, label: '<b>PDF4</b>', title:'Payment Draft - Account List'},{id: 'PDN1', font: { multi: true }, label: '<b>PDN1</b>', title:'Goods Receipt PO - Rows'},{id: 'POR1', font: { multi: true }, label: '<b>POR1</b>', title:'Purchase Order - Rows'},{id: 'PQT1', font: { multi: true }, label: '<b>PQT1</b>', title:'Purchase Quotation - Rows'},{id: 'PRQ1', font: { multi: true }, label: '<b>PRQ1</b>', title:'Purchase Request - Rows'},{id: 'QUT1', font: { multi: true }, label: '<b>QUT1</b>', title:'Sales Quotation - Rows'},{id: 'RCC4', font: { multi: true }, label: '<b>RCC4</b>', title:'Incoming Payment - Credit Vouchers'},{id: 'RCT4', font: { multi: true }, label: '<b>RCT4</b>', title:'Incoming Payment - Account List'},{id: 'RDN1', font: { multi: true }, label: '<b>RDN1</b>', title:'Returns - Rows'},{id: 'RDR1', font: { multi: true }, label: '<b>RDR1</b>', title:'Sales Order - Rows'},{id: 'RIN1', font: { multi: true }, label: '<b>RIN1</b>', title:'A/R Credit Memo - Rows'},{id: 'RPC1', font: { multi: true }, label: '<b>RPC1</b>', title:'A/P Credit Memo - Rows'},{id: 'RPD1', font: { multi: true }, label: '<b>RPD1</b>', title:'Goods Return - Rows'},{id: 'SITM', font: { multi: true }, label: '<b>SITM</b>', title:'Items'},{id: 'TPW1', font: { multi: true }, label: '<b>TPW1</b>', title:'Selection Criteria'},{id: 'UILM', font: { multi: true }, label: '<b>UILM</b>', title:'IVI Inventory Log Message'},{id: 'UITM', font: { multi: true }, label: '<b>UITM</b>', title:'Items'},{id: 'UWOR1', font: { multi: true }, label: '<b>UWOR1</b>', title:'Production Order - Rows'},{id: 'VPM4', font: { multi: true }, label: '<b>VPM4</b>', title:'Outgoing Payments - Accounts'},{id: 'WOR1', font: { multi: true }, label: '<b>WOR1</b>', title:'Production Order - Rows'},{id: 'WTQ1', font: { multi: true }, label: '<b>WTQ1</b>', title:'Inventory Transfer Request - Rows'},{id: 'WTR1', font: { multi: true }, label: '<b>WTR1</b>', title:'Inventory Transfer - Rows'},{id: 'OCRY', font: { multi: true }, label: 'OCRY', title: 'Countries'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OLCT', to: 'ADO1', arrows:'from'}, {from: 'OLCT', to: 'AITM', arrows:'from'}, {from: 'OLCT', to: 'AJD1', arrows:'from'}, {from: 'OLCT', to: 'AJDT', arrows:'from'}, {from: 'OLCT', to: 'ARC4', arrows:'from'}, {from: 'OLCT', to: 'ARCT', arrows:'from'}, {from: 'OLCT', to: 'AWHS', arrows:'from'}, {from: 'OLCT', to: 'AWHT', arrows:'from'}, {from: 'OLCT', to: 'AWO1', arrows:'from'}, {from: 'OLCT', to: 'BTF1', arrows:'from'}, {from: 'OLCT', to: 'CIN1', arrows:'from'}, {from: 'OLCT', to: 'CPI1', arrows:'from'}, {from: 'OLCT', to: 'CPV1', arrows:'from'}, {from: 'OLCT', to: 'CSI1', arrows:'from'}, {from: 'OLCT', to: 'CSV1', arrows:'from'}, {from: 'OLCT', to: 'DADB', arrows:'from'}, {from: 'OLCT', to: 'DATB', arrows:'from'}, {from: 'OLCT', to: 'DLN1', arrows:'from'}, {from: 'OLCT', to: 'DPI1', arrows:'from'}, {from: 'OLCT', to: 'DPO1', arrows:'from'}, {from: 'OLCT', to: 'DRF1', arrows:'from'}, {from: 'OLCT', to: 'IEI1', arrows:'from'}, {from: 'OLCT', to: 'IGE1', arrows:'from'}, {from: 'OLCT', to: 'IGN1', arrows:'from'}, {from: 'OLCT', to: 'INV1', arrows:'from'}, {from: 'OLCT', to: 'JDT1', arrows:'from'}, {from: 'OLCT', to: 'NFN1', arrows:'from'}, {from: 'OLCT', to: 'OACK', arrows:'from'}, {from: 'OLCT', to: 'OAIM', arrows:'from'}, {from: 'OLCT', to: 'OBTF', arrows:'from'}, {from: 'OLCT', to: 'OCSN', arrows:'from'}, {from: 'OLCT', to: 'OEI1', arrows:'from'}, {from: 'OLCT', to: 'OERX', arrows:'from'}, {from: 'OLCT', to: 'OILM', arrows:'from'}, {from: 'OLCT', to: 'OITM', arrows:'from'}, {from: 'OLCT', to: 'OJDT', arrows:'from'}, {from: 'OLCT', to: 'OLTB', arrows:'from'}, {from: 'OLCT', to: 'OPDF', arrows:'from'}, {from: 'OLCT', to: 'ORCT', arrows:'from'}, {from: 'OLCT', to: 'OVPM', arrows:'from'}, {from: 'OLCT', to: 'OWHS', arrows:'from'}, {from: 'OLCT', to: 'OWHT', arrows:'from'}, {from: 'OLCT', to: 'PCH1', arrows:'from'}, {from: 'OLCT', to: 'PDF4', arrows:'from'}, {from: 'OLCT', to: 'PDN1', arrows:'from'}, {from: 'OLCT', to: 'POR1', arrows:'from'}, {from: 'OLCT', to: 'PQT1', arrows:'from'}, {from: 'OLCT', to: 'PRQ1', arrows:'from'}, {from: 'OLCT', to: 'QUT1', arrows:'from'}, {from: 'OLCT', to: 'RCC4', arrows:'from'}, {from: 'OLCT', to: 'RCT4', arrows:'from'}, {from: 'OLCT', to: 'RDN1', arrows:'from'}, {from: 'OLCT', to: 'RDR1', arrows:'from'}, {from: 'OLCT', to: 'RIN1', arrows:'from'}, {from: 'OLCT', to: 'RPC1', arrows:'from'}, {from: 'OLCT', to: 'RPD1', arrows:'from'}, {from: 'OLCT', to: 'SITM', arrows:'from'}, {from: 'OLCT', to: 'TPW1', arrows:'from'}, {from: 'OLCT', to: 'UILM', arrows:'from'}, {from: 'OLCT', to: 'UITM', arrows:'from'}, {from: 'OLCT', to: 'UWOR1', arrows:'from'}, {from: 'OLCT', to: 'VPM4', arrows:'from'}, {from: 'OLCT', to: 'WOR1', arrows:'from'}, {from: 'OLCT', to: 'WTQ1', arrows:'from'}, {from: 'OLCT', to: 'WTR1', arrows:'from'}, {from: 'OCRY', to: 'OLCT', arrows:'from'}, {from: 'OUSR', to: 'OLCT', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OLCT.Code AS 'Location Code', 
+   OLCT.Location AS 'Name', 
+   OLCT.UserSign AS 'User Signature', 
+   OLCT.PanCirNo AS 'PAN Circle No.', 
+   OLCT.PanWardNo AS 'PAN Ward No.', 
+   OLCT.PanOfficer AS 'PAN Assessing Officer', 
+   OLCT.TanCirNo AS 'TAN Circle No.', 
+   OLCT.TanWardNo AS 'TAN Ward No.', 
+   OLCT.TanOfficer AS 'TAN Assessing Officer', 
+   OLCT.LstVatNo AS 'LST/VAT Number', 
+   OLCT.CstNo AS 'CST Number', 
+   OLCT.ExemptNo AS 'Exemption Number', 
+   OLCT.TanNo AS 'TAN Number', 
+   OLCT.ServTaxNo AS 'Service Tax Number', 
+   OLCT.AsseType AS 'Assessee Type', 
+   OLCT.CompType AS 'Company Type', 
+   OLCT.NatOfBiz AS 'Nature of Business', 
+   OLCT.TinNo AS 'TIN Number', 
+   OLCT.PanNo AS 'PAN Number', 
+   OLCT.RegType AS 'Registration Type', 
+   OLCT.EccNo AS 'ECC Number', 
+   OLCT.CeRegNo AS 'CE Register Number', 
+   OLCT.CeRange AS 'CE Range', 
+   OLCT.CeDivision AS 'CE Division', 
+   OLCT.CeComRate AS 'CE Commissionerate', 
+   OLCT.ManuCode AS 'Manufaturer Code', 
+   OLCT.Jurisd AS 'Jurisdiction', 
+   OLCT.Street AS 'Street', 
+   OLCT.Block AS 'Block', 
+   OLCT.ZipCode AS 'Zip Code', 
+   OLCT.City AS 'City', 
+   OLCT.County AS 'County', 
+   OLCT.Country AS 'Country', 
+   OLCT.State AS 'State', 
+   OLCT.Building AS 'Building/Floor/Room', 
+   OLCT.SSIExmpt AS 'SSI Exemption', 
+   OLCT.SSIExmptSt AS 'SSI Exemption Status', 
+   OLCT.CitAddress AS 'CIT Address', 
+   OLCT.CitCity AS 'CIT City', 
+   OLCT.CitPinCode AS 'CIT Pin Code'
+FROM OLCT AS OLCT</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+213.07090663909912
+0' class=related href='/WarehouseLocations'> Warehouse Locations</a> <em class=comment>WarehouseLocations</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OLCT/ >OLCT</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The WarehouseLocations object enables to define geographical locations for warehouses.
+Source table: OLCT.</div><br><a href=/OLCT class=related></a> <em class=comment>OLCT</em> <b>SQL Table</b><br><br><a href=/OCRY class=related>Countries</a> <em class=comment>OCRY</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/WarehouseLocations/'>WarehouseLocations</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/WarehouseLocations/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/WarehouseLocations/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/WarehouseLocations/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/WarehouseLocations/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/WarehouseLocations/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/WarehouseLocations/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Assessee Type' href=/WarehouseLocations/AssesseeType/ class=eli>AssesseeType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Block' href=/WarehouseLocations/Block/ class=eli>Block</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/WarehouseLocations/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Building Floor Room' href=/WarehouseLocations/BuildingFloorRoom/ class=eli>BuildingFloorRoom</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CE Commissionerate' href=/WarehouseLocations/CECommissionerate/ class=eli>CECommissionerate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CE Division' href=/WarehouseLocations/CEDivision/ class=eli>CEDivision</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CE Range' href=/WarehouseLocations/CERange/ class=eli>CERange</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CE Register Number' href=/WarehouseLocations/CERegisterNumber/ class=eli>CERegisterNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='City' href=/WarehouseLocations/City/ class=eli>City</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Code' href=/WarehouseLocations/Code/ class=eli>Code</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Type' href=/WarehouseLocations/CompanyType/ class=eli>CompanyType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Country' href=/WarehouseLocations/Country/ class=eli>Country</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='County' href=/WarehouseLocations/County/ class=eli>County</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CST Number' href=/WarehouseLocations/CSTNumber/ class=eli>CSTNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ecc Number' href=/WarehouseLocations/EccNumber/ class=eli>EccNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Exemption Number' href=/WarehouseLocations/ExemptionNumber/ class=eli>ExemptionNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Jurisdiction' href=/WarehouseLocations/Jurisdiction/ class=eli>Jurisdiction</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='LSTVAT Number' href=/WarehouseLocations/LSTVATNumber/ class=eli>LSTVATNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Manufacturer Code' href=/WarehouseLocations/ManufacturerCode/ class=eli>ManufacturerCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Name' href=/WarehouseLocations/Name/ class=eli>Name</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Nature Of Business' href=/WarehouseLocations/NatureOfBusiness/ class=eli>NatureOfBusiness</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='PAN Number' href=/WarehouseLocations/PANNumber/ class=eli>PANNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Registration Type' href=/WarehouseLocations/RegistrationType/ class=eli>RegistrationType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Service Tax Number' href=/WarehouseLocations/ServiceTaxNumber/ class=eli>ServiceTaxNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='State' href=/WarehouseLocations/State/ class=eli>State</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Street' href=/WarehouseLocations/Street/ class=eli>Street</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='TAN Number' href=/WarehouseLocations/TANNumber/ class=eli>TANNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='TIN Number' href=/WarehouseLocations/TINNumber/ class=eli>TINNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/WarehouseLocations/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Zip Code' href=/WarehouseLocations/ZipCode/ class=eli>ZipCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

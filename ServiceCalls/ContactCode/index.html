@@ -1,0 +1,303 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>ServiceCalls ContactCode - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#11aabb; color:#d9ffff;'><div class=eli2><b>SQL</b> <a href='/sql/Service'> Service</a> / <a href='/sql/Service Calls'> Service Calls</a></div></div><div class=' tit' style='width:50%; background-color:#75ffff; color:#007889;'><div class=eli2><b>API</b> Service Calls /  Contact Code</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #007889;' > <a style='text-decoration:none; color:#007889;' title='92
+1146.4963836669922
+42.52495574951172' href='/ServiceCalls/ContactCode/'> Contact Code</a> Property</div><script>
+                        document.title = 'ContactCode -  Service Calls - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P>Sets or returns the code of the contact person from the business partner master data. </P><P>Field name: <EM>contctCode</em>.</p><p>This is a foreign key to the <A href="/ContactEmployees/">ContactEmployees</A> object.</p></div>
+            <h2 class="heading"><span  tabindex="0"><img id="propertytypeToggle"  src="/images/1x1.png"></img>Property type</span></h2><div id="propertytypeSection" class="section" >Read-write property</div>
+            <h2 class="heading"><span  tabindex="0"><img id="syntaxToggle"  src="/images/1x1.png"></img>Syntax</span></h2><div id="syntaxSection" class="section" ><DIV  id=Syntax_VB><table   cellpadding="0" cellspacing="0"><tr><th>Visual Basic</th></tr><tr><td><pre><PRE class=" vbs hljs" class=" vbs hljs">Public Property <a style='color:inherit;' href=/ServiceCalls/ContactCode/>ContactCode</a>() As Long</PRE></pre></tr></table></div></div>
+            
+            
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/ServiceCalls/">ServiceCalls Object</a>
+</p>
+</p></div>
+        </div>
+        <div class=dblink><h2>Database information </h2><li>Field: <em>contctCode</em></li><li>Description: Contact Person</li><li>Type: <strong>Int</strong></li><li>Size: <em>11</em></li><li>Related: <em><a href=/OCPR/>OCPR</a></em> Contact Persons</li><li>Table: <em><a href=/OSCL/>OSCL</a></em> Service Calls</li><li>Position: <em>5</em></li></div><div style='clear:both;'></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+42.52495574951172' class=related href='/ServiceCalls/ServiceCallActivities'> Service Call Activities</a> <em class=comment>ServiceCallActivities</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/SCL5/ >SCL5</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>ServiceCallActivities is a child object of the ServiceCalls object in the Service module. The service call activities are associated with the <a style='color:inherit;' href=/ServiceCalls/Activities/>Activities</a> with Business Partners table. 
+Source table: SCL5.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/ServiceCalls> Service Calls</a> <small>ServiceCalls</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OSCL/ >OSCL</a> </span><br><br><a title='92
+515
+42.52495574951172' class=related href='/ServiceCalls/ServiceCallInventoryExpenses'> Service Call Inventory Expenses</a> <em class=comment>ServiceCallInventoryExpenses</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/SCL4/ >SCL4</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>ServiceCallInventoryExpenses is a child object of the ServiceCalls object in the Service module.
+Source table: SCL4.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/ServiceCalls> Service Calls</a> <small>ServiceCalls</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OSCL/ >OSCL</a> </span><br><br><a title='92
+515
+42.52495574951172' class=related href='/ServiceCalls/EntitledforService'> Entitledfor Service</a> <em class=comment>EntitledforService</em> <b>Service</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Returns a valid value of BoYesNoEnum type that specifies whether or not the business partner is entitled for a service based on the existence of a valid contract. Field name: isEntitled.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/ServiceCalls> Service Calls</a> <small>ServiceCalls</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OSCL/ >OSCL</a> </span><br><br><a title='92
+515
+42.52495574951172' class=related href='/ServiceCalls/ServiceCallSolutions'> Service Call Solutions</a> <em class=comment>ServiceCallSolutions</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/SCL1/ >SCL1</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>ServiceCallSolutions is a child object of the ServiceCalls object in the Service module. The service call solutions are associated with the Knowledge Base <a style='color:inherit;' href=/ServiceCalls/Solutions/>Solutions</a> table.
+Source table: SCL1.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/ServiceCalls> Service Calls</a> <small>ServiceCalls</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OSCL/ >OSCL</a> </span><br><br><a title='92
+515
+42.52495574951172' class=related href='/ServiceCalls/BoAddressType'> Bo Address Type</a> <em class=comment>BoAddressType</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specifies address types.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/ServiceCalls> Service Calls</a> <small>ServiceCalls</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OSCL/ >OSCL</a> </span><br><br><a title='92
+515
+42.52495574951172' class=related href='/ServiceCalls/BoDurations'> Bo Durations</a> <em class=comment>BoDurations</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specifies duration types.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/ServiceCalls> Service Calls</a> <small>ServiceCalls</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OSCL/ >OSCL</a> </span><br><br><a title='92
+515
+42.52495574951172' class=related href='/ServiceCalls/BoSvcCallPriorities'> Bo Svc Call Priorities</a> <em class=comment>BoSvcCallPriorities</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specifies the service call priority.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/ServiceCalls> Service Calls</a> <small>ServiceCalls</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OSCL/ >OSCL</a> </span><br><br><a title='92
+47.52495574951172
+0' class=related href='/ServiceCalls'> Service Calls</a> <em class=comment>ServiceCalls</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OSCL/ >OSCL</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>ServiceCalls is a business object that represents the service calls table in the Service module.
+This object enables you to:
+
+Add a service call. 
+Retrieve a service call by its key. 
+Update a service call. 
+Remove a service call. 
+Save...</div><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/ServiceCalls/'>ServiceCalls</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/ServiceCalls/ContactCode/'>ContactCode</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Address Type' href=/ServiceCalls/BoAddressType/ class=eli>BoAddressType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Durations' href=/ServiceCalls/BoDurations/ class=eli>BoDurations</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Svc Call Priorities' href=/ServiceCalls/BoSvcCallPriorities/ class=eli>BoSvcCallPriorities</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/ServiceCalls/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Close' href=/ServiceCalls/Close/ class=eli>Close</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/ServiceCalls/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/ServiceCalls/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/ServiceCalls/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/ServiceCalls/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/ServiceCalls/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/ServiceCalls/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Service Call Activities
+ Service Call Activities' href=/ServiceCalls/ServiceCallActivities/ class=eli>ServiceCallActivities</a>    <small class='eli s'> SCL5</small></div><div class=sm><a style='min-width:50px;' title='Expense Documents
+ Service Call Inventory Expenses' href=/ServiceCalls/ServiceCallInventoryExpenses/ class=eli>ServiceCallInventoryExpenses</a>    <small class='eli s'> SCL4</small></div><div class=sm><a style='min-width:50px;' title='Service Call Solutions - Rows
+ Service Call Solutions' href=/ServiceCalls/ServiceCallSolutions/ class=eli>ServiceCallSolutions</a>    <small class='eli s'> SCL1</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Activities' href=/ServiceCalls/Activities/ class=eli>Activities</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address Name' href=/ServiceCalls/AddressName/ class=eli>AddressName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address Type' href=/ServiceCalls/AddressType/ class=eli>AddressType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Assigned Date' href=/ServiceCalls/AssignedDate/ class=eli>AssignedDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Assigned Time' href=/ServiceCalls/AssignedTime/ class=eli>AssignedTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Assignee Code' href=/ServiceCalls/AssigneeCode/ class=eli>AssigneeCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attachment Entry' href=/ServiceCalls/AttachmentEntry/ class=eli>AttachmentEntry</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Belongs To A Queue' href=/ServiceCalls/BelongsToAQueue/ class=eli>BelongsToAQueue</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/ServiceCalls/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Call Type' href=/ServiceCalls/CallType/ class=eli>CallType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='City' href=/ServiceCalls/City/ class=eli>City</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Closing Date' href=/ServiceCalls/ClosingDate/ class=eli>ClosingDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Closing Time' href=/ServiceCalls/ClosingTime/ class=eli>ClosingTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Closing Time Ex' href=/ServiceCalls/ClosingTimeEx/ class=eli>ClosingTimeEx</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Contact Code' href=/ServiceCalls/ContactCode/ class=eli>ContactCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Contract End Date' href=/ServiceCalls/ContractEndDate/ class=eli>ContractEndDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Contract ID' href=/ServiceCalls/ContractID/ class=eli>ContractID</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Country' href=/ServiceCalls/Country/ class=eli>Country</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Creation Date' href=/ServiceCalls/CreationDate/ class=eli>CreationDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Creation Time' href=/ServiceCalls/CreationTime/ class=eli>CreationTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customer Code' href=/ServiceCalls/CustomerCode/ class=eli>CustomerCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customer Name' href=/ServiceCalls/CustomerName/ class=eli>CustomerName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customer Ref No' href=/ServiceCalls/CustomerRefNo/ class=eli>CustomerRefNo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Description' href=/ServiceCalls/Description/ class=eli>Description</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Display In Calendar' href=/ServiceCalls/DisplayInCalendar/ class=eli>DisplayInCalendar</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Num' href=/ServiceCalls/DocNum/ class=eli>DocNum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Duration' href=/ServiceCalls/Duration/ class=eli>Duration</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Duration Type' href=/ServiceCalls/DurationType/ class=eli>DurationType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='End Duedate' href=/ServiceCalls/EndDuedate/ class=eli>EndDuedate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='End Time' href=/ServiceCalls/EndTime/ class=eli>EndTime</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Expenses' href=/ServiceCalls/Expenses/ class=eli>Expenses</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Hand Written' href=/ServiceCalls/HandWritten/ class=eli>HandWritten</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Internal Serial Num' href=/ServiceCalls/InternalSerialNum/ class=eli>InternalSerialNum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Item Code' href=/ServiceCalls/ItemCode/ class=eli>ItemCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Item Description' href=/ServiceCalls/ItemDescription/ class=eli>ItemDescription</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Item Group Code' href=/ServiceCalls/ItemGroupCode/ class=eli>ItemGroupCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Location' href=/ServiceCalls/Location/ class=eli>Location</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Manufacturer Serial Num' href=/ServiceCalls/ManufacturerSerialNum/ class=eli>ManufacturerSerialNum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Origin' href=/ServiceCalls/Origin/ class=eli>Origin</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Period Indicator' href=/ServiceCalls/PeriodIndicator/ class=eli>PeriodIndicator</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Priority' href=/ServiceCalls/Priority/ class=eli>Priority</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Problem Sub Type' href=/ServiceCalls/ProblemSubType/ class=eli>ProblemSubType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Problem Type' href=/ServiceCalls/ProblemType/ class=eli>ProblemType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Queue' href=/ServiceCalls/Queue/ class=eli>Queue</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reminder' href=/ServiceCalls/Reminder/ class=eli>Reminder</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reminder Period' href=/ServiceCalls/ReminderPeriod/ class=eli>ReminderPeriod</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reminder Type' href=/ServiceCalls/ReminderType/ class=eli>ReminderType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Resolution' href=/ServiceCalls/Resolution/ class=eli>Resolution</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Resolution Date' href=/ServiceCalls/ResolutionDate/ class=eli>ResolutionDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Resolution On Date' href=/ServiceCalls/ResolutionOnDate/ class=eli>ResolutionOnDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Resolution On Time' href=/ServiceCalls/ResolutionOnTime/ class=eli>ResolutionOnTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Resolution Time' href=/ServiceCalls/ResolutionTime/ class=eli>ResolutionTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Responder' href=/ServiceCalls/Responder/ class=eli>Responder</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Response Assignee' href=/ServiceCalls/ResponseAssignee/ class=eli>ResponseAssignee</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Response By Date' href=/ServiceCalls/ResponseByDate/ class=eli>ResponseByDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Response By Time' href=/ServiceCalls/ResponseByTime/ class=eli>ResponseByTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Response On Date' href=/ServiceCalls/ResponseOnDate/ class=eli>ResponseOnDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Response On Time' href=/ServiceCalls/ResponseOnTime/ class=eli>ResponseOnTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Room' href=/ServiceCalls/Room/ class=eli>Room</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Series' href=/ServiceCalls/Series/ class=eli>Series</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Service Call ID' href=/ServiceCalls/ServiceCallID/ class=eli>ServiceCallID</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Solutions' href=/ServiceCalls/Solutions/ class=eli>Solutions</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Start Date' href=/ServiceCalls/StartDate/ class=eli>StartDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Start Time' href=/ServiceCalls/StartTime/ class=eli>StartTime</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='State' href=/ServiceCalls/State/ class=eli>State</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Status' href=/ServiceCalls/Status/ class=eli>Status</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Street' href=/ServiceCalls/Street/ class=eli>Street</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Subject' href=/ServiceCalls/Subject/ class=eli>Subject</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Technician Code' href=/ServiceCalls/TechnicianCode/ class=eli>TechnicianCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Updated Time' href=/ServiceCalls/UpdatedTime/ class=eli>UpdatedTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/ServiceCalls/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><br><b>Service</b><br><div class=sm><a style='min-width:50px;' title='Entitledfor Service' href=/ServiceCalls/EntitledforService/ class=eli>EntitledforService</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

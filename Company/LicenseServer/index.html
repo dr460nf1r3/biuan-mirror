@@ -1,0 +1,298 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>Company LicenseServer - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:100%; background-color:#cacaca; color:#343434;'><div class=eli2><b>API</b> Company /  License Server</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #343434;' > <a style='text-decoration:none; color:#343434;' title='92
+1155.9392127990723
+50.13825225830078' href='/Company/LicenseServer/'> License Server</a> Property</div><script>
+                        document.title = 'LicenseServer -   - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P>The license server name and port for connecting to the company database. The value is in the format <EM><STRONG>myServer:30000</STRONG></EM>.</P>
+<P>If no value is given, the default license server and port are used. If a server is given but no port is given, <EM><STRONG>30000</STRONG></EM> is used for the port.</P></div>
+            <h2 class="heading"><span  tabindex="0"><img id="propertytypeToggle"  src="/images/1x1.png"></img>Property type</span></h2><div id="propertytypeSection" class="section" >Read-write property</div>
+            <h2 class="heading"><span  tabindex="0"><img id="syntaxToggle"  src="/images/1x1.png"></img>Syntax</span></h2><div id="syntaxSection" class="section" ><DIV  id=Syntax_VB><table   cellpadding="0" cellspacing="0"><tr><th>Visual Basic</th></tr><tr><td><pre><PRE class=" vbs hljs" class=" vbs hljs">Public Property <a style='color:inherit;' href=/Company/LicenseServer/>LicenseServer</a>() As String</PRE></pre></tr></table></div></div>
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img id="remarksToggle"  src="/images/1x1.png"></img>Remarks</span></h2><div class="remarksSection" class="section" >Previously, the default license for all clients was stored in the SLIC table of the SBO-COMMON database. From release 8.8, the default license file is stored in the <EM>b1-local-machine.xml</EM> file, which is located by default in <EM>c:\Program Files\SAP\SAP Business One DI API\Conf</EM>.</div>
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/Company/">Company Object</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+50.13825225830078' class=related href='/Company/GetCompanyService'> Get Company Service</a> <em class=comment>GetCompanyService</em> <b>Service</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Creates a new <a style='color:inherit;' href=/Company/CompanyService/>CompanyService</a>.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Company> Company</a> <small>Company</small> <b>Object</b><br><br><a title='92
+515
+50.13825225830078' class=related href='/Company/ProgressIndicator'> Progress Indicator</a> <em class=comment>ProgressIndicator</em> <b>Event</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Progress indicator for long process execution. To be supported in future releases.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Company> Company</a> <small>Company</small> <b>Object</b><br><br><a title='92
+515
+50.13825225830078' class=related href='/Company/CompanyService'> Company Service</a> <em class=comment>CompanyService</em> <b>Service</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/Company/CompanyService/>CompanyService</a> enables to manage the company administration data. This includes the following tables:
+
+Administration data - OADM (AdminInfo object). 
+Company data -  CINF (CompanyInfo object). 
+Posting Periods - OACT (ChartOfAccounts...</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Company> Company</a> <small>Company</small> <b>Object</b><br><br><a title='92
+515
+50.13825225830078' class=related href='/Company/UserTables'> User Tables</a> <em class=comment>UserTables</em> <b>Collection</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>UserTables is a collection of UserTable objects. </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Company> Company</a> <small>Company</small> <b>Object</b><br><br><a title='92
+515
+50.13825225830078' class=related href='/Company/AuthenticateUserResultsEnum'> Authenticate User Results Enum</a> <em class=comment>AuthenticateUserResultsEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The check results of the username and password.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Company> Company</a> <small>Company</small> <b>Object</b><br><br><a title='92
+515
+50.13825225830078' class=related href='/Company/BoDataServerTypes'> Bo Data Server Types</a> <em class=comment>BoDataServerTypes</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Database server types.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Company> Company</a> <small>Company</small> <b>Object</b><br><br><a title='92
+515
+50.13825225830078' class=related href='/Company/BoSuppLangs'> Bo Supp Langs</a> <em class=comment>BoSuppLangs</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Defines the current resource <a style='color:inherit;' href=/Company/language/>language</a>.
+Note: The <a style='color:inherit;' href=/Company/language/>language</a>s marked with * (asterisk) are country-specific only.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Company> Company</a> <small>Company</small> <b>Object</b><br><br><a title='92
+515
+50.13825225830078' class=related href='/Company/BoXmlExportTypes'> Bo Xml Export Types</a> <em class=comment>BoXmlExportTypes</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Defines the type for exporting an object to XML. </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Company> Company</a> <small>Company</small> <b>Object</b><br><br><a title='92
+55.13825225830078
+0' class=related href='/Company'> Company</a> <em class=comment>Company</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Company is the primary DI API object that represents a single SAP Business One company database. This object enables you to connect to the company database and to create business objects to use with the company database.</div><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/Company/'>Company</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/Company/LicenseServer/'>LicenseServer</a></font><hr><br><b>Collection</b><br><div class=sm><a style='min-width:50px;' title='User Tables' href=/Company/UserTables/ class=eli>UserTables</a>    <small class='eli s'> </small></div><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Authenticate User Results Enum' href=/Company/AuthenticateUserResultsEnum/ class=eli>AuthenticateUserResultsEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Data Server Types' href=/Company/BoDataServerTypes/ class=eli>BoDataServerTypes</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Supp Langs' href=/Company/BoSuppLangs/ class=eli>BoSuppLangs</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Xml Export Types' href=/Company/BoXmlExportTypes/ class=eli>BoXmlExportTypes</a>    <small class='eli s'> </small></div><br><b>Event</b><br><div class=sm><a style='min-width:50px;' title='Progress Indicator' href=/Company/ProgressIndicator/ class=eli>ProgressIndicator</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Authenticate User' href=/Company/AuthenticateUser/ class=eli>AuthenticateUser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Change Password' href=/Company/ChangePassword/ class=eli>ChangePassword</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Connect' href=/Company/Connect/ class=eli>Connect</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Disconnect' href=/Company/Disconnect/ class=eli>Disconnect</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='End Transaction' href=/Company/EndTransaction/ class=eli>EndTransaction</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Business Object' href=/Company/GetBusinessObject/ class=eli>GetBusinessObject</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Business Object From XML' href=/Company/GetBusinessObjectFromXML/ class=eli>GetBusinessObjectFromXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Business Object Xml Schema' href=/Company/GetBusinessObjectXmlSchema/ class=eli>GetBusinessObjectXmlSchema</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Company Date' href=/Company/GetCompanyDate/ class=eli>GetCompanyDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Company List' href=/Company/GetCompanyList/ class=eli>GetCompanyList</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Company Time' href=/Company/GetCompanyTime/ class=eli>GetCompanyTime</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Context Cookie' href=/Company/GetContextCookie/ class=eli>GetContextCookie</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get DB Server Date' href=/Company/GetDBServerDate/ class=eli>GetDBServerDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get DB Server Time' href=/Company/GetDBServerTime/ class=eli>GetDBServerTime</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Last Error' href=/Company/GetLastError/ class=eli>GetLastError</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Last Error Code' href=/Company/GetLastErrorCode/ class=eli>GetLastErrorCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Last Error Description' href=/Company/GetLastErrorDescription/ class=eli>GetLastErrorDescription</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get New Object Code' href=/Company/GetNewObjectCode/ class=eli>GetNewObjectCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get New Object Key' href=/Company/GetNewObjectKey/ class=eli>GetNewObjectKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get New Object Type' href=/Company/GetNewObjectType/ class=eli>GetNewObjectType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Registered Servers List' href=/Company/GetRegisteredServersList/ class=eli>GetRegisteredServersList</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XM Lelement Count' href=/Company/GetXMLelementCount/ class=eli>GetXMLelementCount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XM Lobject Type' href=/Company/GetXMLobjectType/ class=eli>GetXMLobjectType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Is DTC Transaction Object Set' href=/Company/IsDTCTransactionObjectSet/ class=eli>IsDTCTransactionObjectSet</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Set Sbo Login Context' href=/Company/SetSboLoginContext/ class=eli>SetSboLoginContext</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Start Transaction' href=/Company/StartTransaction/ class=eli>StartTransaction</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Addon Identifier' href=/Company/AddonIdentifier/ class=eli>AddonIdentifier</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Application' href=/Company/Application/ class=eli>Application</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attach Ment Path' href=/Company/AttachMentPath/ class=eli>AttachMentPath</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bit Map Path' href=/Company/BitMapPath/ class=eli>BitMapPath</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company DB' href=/Company/CompanyDB/ class=eli>CompanyDB</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Name' href=/Company/CompanyName/ class=eli>CompanyName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Connected' href=/Company/Connected/ class=eli>Connected</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Db Password' href=/Company/DbPassword/ class=eli>DbPassword</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Db Server Type' href=/Company/DbServerType/ class=eli>DbServerType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Db User Name' href=/Company/DbUserName/ class=eli>DbUserName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='DTC Transaction Object' href=/Company/DTCTransactionObject/ class=eli>DTCTransactionObject</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Excel Docs Path' href=/Company/ExcelDocsPath/ class=eli>ExcelDocsPath</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='In Transaction' href=/Company/InTransaction/ class=eli>InTransaction</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='language' href=/Company/language/ class=eli>language</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='License Server' href=/Company/LicenseServer/ class=eli>LicenseServer</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Minimal Supported Version' href=/Company/MinimalSupportedVersion/ class=eli>MinimalSupportedVersion</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Password' href=/Company/Password/ class=eli>Password</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Server' href=/Company/Server/ class=eli>Server</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Name' href=/Company/UserName/ class=eli>UserName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Signature' href=/Company/UserSignature/ class=eli>UserSignature</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Tables' href=/Company/UserTables/ class=eli>UserTables</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Use Trusted' href=/Company/UseTrusted/ class=eli>UseTrusted</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Version' href=/Company/Version/ class=eli>Version</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Word Docs Path' href=/Company/WordDocsPath/ class=eli>WordDocsPath</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='XML As String' href=/Company/XMLAsString/ class=eli>XMLAsString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Xml Export Type' href=/Company/XmlExportType/ class=eli>XmlExportType</a>    <small class='eli s'> </small></div><br><b>Service</b><br><div class=sm><a style='min-width:50px;' title='Company Service' href=/Company/CompanyService/ class=eli>CompanyService</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Company Service' href=/Company/GetCompanyService/ class=eli>GetCompanyService</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

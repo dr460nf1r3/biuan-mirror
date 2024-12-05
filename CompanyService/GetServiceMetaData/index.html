@@ -1,0 +1,496 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>CompanyService GetServiceMetaData - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:100%; background-color:#cacaca; color:#343434;'><div class=eli2><b>API</b> Company Service /  Get Service Meta Data</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #343434;' > <a style='text-decoration:none; color:#343434;' title='92
+1178.4564018249512
+64.85163879394531' href='/CompanyService/GetServiceMetaData/'> Get Service Meta Data</a> Method</div><script>
+                        document.title = 'GetServiceMetaData -   - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" >GetServiceMetaData  </div>
+            <h2 class="heading"><span  tabindex="0"><img id="syntaxToggle"  src="/images/1x1.png"></img>Syntax</span></h2><div id="syntaxSection" class="section" ><DIV  id=Syntax_VB><table   cellpadding="0" cellspacing="0"><tr><th>Visual Basic</th></tr><tr><td><pre><PRE class=" vbs hljs" class=" vbs hljs">Public Function <a style='color:inherit;' href=/CompanyService/GetServiceMetaData/>GetServiceMetaData</a>( _
+   ByVal <i><a class="parameter" id="ServiceCode" href="#" onclick="javascript:showParamBox(event);">ServiceCode</a></i> As <a href="/ServiceTypes/">ServiceTypes</a> _
+) As String</PRE></pre></tr></table></div></div>
+            <h2 class="heading"><span  tabindex="0"><img id="parametersToggle"  src="/images/1x1.png"></img>Parameters</span></h2><div id="parametersSection" class="section" ><DL>
+<DT><I>ServiceCode</I></DT>
+<DD><TABLE CLASS="FilteredItemListTable"><TR VALIGN="top"><TH>Value</TH><TH>Description</TH></TR>
+<TR><TD CLASS="mnc">MessagesService</TD><TD CLASS="DescriptionCell">The<STRONG> </STRONG><A href="/MessagesService/">MessagesService</A> service enables to manage the Inbox and Outbox messages, and to send or receive messages.</TD></TR>
+<TR><TD CLASS="mnc">SeriesService</TD><TD CLASS="DescriptionCell">The <A href="/SeriesService/">SeriesService</A> service enables the management of series that are used as part documents numbering. </TD></TR>
+<TR><TD CLASS="mnc">ReportLayoutsService</TD><TD CLASS="DescriptionCell">The <A href="/ReportLayoutsService/">ReportLayoutsService</A> service enables to copy the print layout of a specified document type from one company database to another. </TD></TR>
+<TR><TD CLASS="mnc">FormPreferencesService</TD><TD CLASS="DescriptionCell">The <A href="/FormPreferencesService/">FormPreferencesService</A> service enables to get and update the display preferences of a specified form for a specified user. </TD></TR>
+<TR><TD CLASS="mnc">AccountsService</TD><TD CLASS="DescriptionCell">The <A href="/AccountsService/">AccountsService</A> service enables to transfer credit or debit amounts from a specified opening balance account to one or more G/L accounts. This service creates journal entry lines.</TD></TR>
+<TR><TD CLASS="mnc">BusinessPartnersService</TD><TD CLASS="DescriptionCell">The <A href="/BusinessPartnersService/">BusinessPartnersService</A> service enables to transfer credit or debit amounts from a specified opening balance account to one or more business partner accounts. This service creates a journal entry line.</TD></TR>
+<TR><TD CLASS="mnc">UserMenuService</TD><TD CLASS="DescriptionCell">The <A href="/UserMenuService/">UserMenuService</A> service enables the management of User Menu.</TD></TR>
+<TR><TD CLASS="mnc">ApprovalStagesService</TD><TD CLASS="DescriptionCell">The <A href="/ApprovalStagesService/">ApprovalStagesService</A> service manages the Approval stages Process in SAP Business One environment. </TD></TR>
+<TR><TD CLASS="mnc">AlertManagementService</TD><TD CLASS="DescriptionCell">The <A href="/AlertManagementService/">AlertManagementService</A> service manages Alerts Process in SAP Business One environment. </TD></TR>
+<TR><TD CLASS="mnc">ApprovalTemplatesService</TD><TD CLASS="DescriptionCell">The <A href="/ApprovalStagesService/">ApprovalStagesService</A> service manages the approval stages process in SAP Business One environment. </TD></TR>
+<TR><TD CLASS="mnc">ReportFilterService</TD><TD CLASS="DescriptionCell">The <A href="/ReportFilterService/">ReportFilterService</A> service manages the information displayed by tax report.</TD></TR>
+<TR><TD CLASS="mnc">ExternalCallsService</TD><TD CLASS="DescriptionCell">For internal use.</TD></TR>
+<TR><TD CLASS="mnc">ProjectsService</TD><TD CLASS="DescriptionCell">The <A href="/ProjectsService/">ProjectsService</A> service manages SAP Business One projects.</TD></TR>
+<TR><TD CLASS="mnc">BankStatementsService</TD><TD CLASS="DescriptionCell">The <A href="/BankStatementsService/">BankStatementsService</A> service manages bank statement drafts that can be posted to SAP Business One.</TD></TR>
+<TR><TD CLASS="mnc">CustomsDeclarationService</TD><TD CLASS="DescriptionCell">The <A href="/CustomsDeclarationService/">CustomsDeclarationService</A> service enables manages Cargo Customs Declarations (CCDs). </TD></TR>
+<TR><TD CLASS="mnc">AlternativeItemsService</TD><TD CLASS="DescriptionCell">The <A href="/AlternativeItemsService/">AlternativeItemsService</A> service manages alternative items.</TD></TR>
+<TR><TD CLASS="mnc">AccountCategoryService</TD><TD CLASS="DescriptionCell">The <A href="/AccountCategoryService/">AccountCategoryService</A> service enables you to manage account categories for use with the Copy Express add-on.</TD></TR>
+<TR><TD CLASS="mnc">BOEDocumentTypesService</TD><TD CLASS="DescriptionCell">The <A href="/BOEDocumentTypesService/">BOEDocumentTypesService</A> service manages BOE document types.</TD></TR>
+<TR><TD CLASS="mnc">BOEPortfoliosService</TD><TD CLASS="DescriptionCell">The <A href="/BOEPortfoliosService/">BOEPortfoliosService</A> service manages BOE portfolios.</TD></TR>
+<TR><TD CLASS="mnc">BOEInstructionsService</TD><TD CLASS="DescriptionCell">The <A href="/BOEInstructionsService/">BOEInstructionsService</A> service manages BOE instructions.</TD></TR>
+<TR><TD CLASS="mnc">CountriesService</TD><TD CLASS="DescriptionCell">The <A href="/CountriesService/">CountriesService</A> service manages the setting of each country in SAP Business One. For example, country code, country name and address format.</TD></TR>
+<TR><TD CLASS="mnc">SalesOpportunityInterestsSetupService</TD><TD CLASS="DescriptionCell">The <A href="/SalesOpportunityInterestsSetupService/">SalesOpportunityInterestsSetupService</A> service enables you to add, look up and remove interests in the interests master data table. Interests can be assigned to sales opportunities; the interest describes an area of interest to the sales opportunity.</TD></TR>
+<TR><TD CLASS="mnc">SalesOpportunitySourcesSetupService</TD><TD CLASS="DescriptionCell">The <A href="/SalesOpportunitySourcesSetupService/">SalesOpportunitySourcesSetupService</A> service enables you to add, look up and remove sources in the sources master data table. Sources can be assigned to sales opportunities; the source explains how a sales opportunity was generated.</TD></TR>
+<TR><TD CLASS="mnc">SalesOpportunityCompetitorsSetupService</TD><TD CLASS="DescriptionCell">The <A href="/SalesOpportunityCompetitorsSetupService/">SalesOpportunityCompetitorsSetupService</A><EM> </EM>service enables you to add, look up and remove competitors in the competitors master data table. Competitors can be assigned to sales opportunities.</TD></TR>
+<TR><TD CLASS="mnc">SalesOpportunityReasonsSetupService</TD><TD CLASS="DescriptionCell">The <A href="/SalesOpportunityReasonsSetupService/">SalesOpportunityReasonsSetupService</A> service enables you to add, look up and remove reasons in the reasons master data table. Reasons can be assigned to sales opportunities; the reason explain why a sales opportunity was won or lost.</TD></TR>
+<TR><TD CLASS="mnc">PredefinedTextsService</TD><TD CLASS="DescriptionCell">The <A href="/PredefinedTextsService/">PredefinedTextsService</A><EM> </EM>service enables you to add, look up and remove predefined texts in the predefined texts master data table. Predefined texts are stored text strings that can be added as remarks in marketing documents.</TD></TR>
+<TR><TD CLASS="mnc">BusinessPartnerPropertiesService</TD><TD CLASS="DescriptionCell">The <A href="/BusinessPartnerPropertiesService/">BusinessPartnerPropertiesService</A> service enables you to update and look up business partner properties in the business partner properties master data table.</TD></TR>
+<TR><TD CLASS="mnc">ServiceCallStatusService</TD><TD CLASS="DescriptionCell">The <A href="/ServiceCallStatusService/">ServiceCallStatusService</A><EM> </EM>service enables you to add, look up and remove service call statuses in the service call status master data table. Service call statuses are used to specify the status of a service call.</TD></TR>
+<TR><TD CLASS="mnc">ServiceCallProblemTypesService</TD><TD CLASS="DescriptionCell">The <A href="/ServiceCallProblemTypesService/">ServiceCallProblemTypesService</A><EM> </EM>service enables you to add, look up and remove service call problem types in the service call problem type master data table. Service call problem types are used to classify service calls.</TD></TR>
+<TR><TD CLASS="mnc">DepartmentsService</TD><TD CLASS="DescriptionCell">The <A href="/DepartmentsService/">DepartmentsService</A> service enables you to add, look up and remove departments in the departments master data table. Users and employees can be assigned to departments.</TD></TR>
+<TR><TD CLASS="mnc">EmployeeRolesSetupService</TD><TD CLASS="DescriptionCell">The <A href="/EmployeeRolesSetupService/">EmployeeRolesSetupService</A> service enables you to add, look up and remove roles in the employee roles master data table.</TD></TR>
+<TR><TD CLASS="mnc">BranchesService</TD><TD CLASS="DescriptionCell">The <A href="/BranchesService/">BranchesService</A> service enables you to add, look up and remove branches in the branches master data table.</TD></TR>
+<TR><TD CLASS="mnc">ServiceCallTypesService</TD><TD CLASS="DescriptionCell">The <A href="/ServiceCallTypesService/">ServiceCallTypesService</A><EM> </EM>service enables you to add, look up and remove service call types in the service call type master data table. Service call types are used to classify service calls.</TD></TR>
+<TR><TD CLASS="mnc">ServiceCallOriginsService</TD><TD CLASS="DescriptionCell">The <A href="/ServiceCallOriginsService/">ServiceCallOriginsService</A><EM> </EM>service enables you to add, look up and remove service call origins in the service call origin master data table. Service call origins are used to specify the channel through which a call was made, such as by telephone or via the Web.</TD></TR>
+<TR><TD CLASS="mnc">ServiceCallSolutionStatusService</TD><TD CLASS="DescriptionCell">The <A href="/ServiceCallSolutionStatusService/">ServiceCallSolutionStatusService</A><EM> </EM>service enables you to add, look up and remove service call solution statuses in the service call solution status master data table. Service call solution statuses are used to specify the status of a solution for a service call.</TD></TR>
+<TR><TD CLASS="mnc">CashDiscountsService</TD><TD CLASS="DescriptionCell">The <A href="/CashDiscountsService/">CashDiscountsService</A> service enables you to add, look up and remove cash discount policies. Each policy specifies a set of discounts and the conditions for applying the discount.</TD></TR>
+<TR><TD CLASS="mnc">DimensionsService</TD><TD CLASS="DescriptionCell">The <A href="/DimensionsService/">DimensionsService</A> service enables you to activate dimensions, as well as change a dimension's description.</TD></TR>
+<TR><TD CLASS="mnc">DNFCodeSetupService</TD><TD CLASS="DescriptionCell">The <A href="/DNFCodeSetupService/">DNFCodeSetupService</A> service enables you to add, look up and remove DNF codes in the DNF codes master data table. NCM codes are assigned to items, and then DNF codes can be assigned to that NCM code for that item.</TD></TR>
+<TR><TD CLASS="mnc">ProfitCentersService</TD><TD CLASS="DescriptionCell"><P class="">The <A href="/ProfitCentersService/">ProfitCentersService</A><EM> </EM>service enables you to add, look up and remove profit centers.</TD></TR>
+<TR><TD CLASS="mnc">NCMCodesSetupService</TD><TD CLASS="DescriptionCell">The <A href="/NCMCodesSetupService/">NCMCodesSetupService</A> service enables you to add, look up and remove NCM codes in the NCM codes master data table. NCM codes can be assigned to items.</TD></TR>
+<TR><TD CLASS="mnc">DunningTermsService</TD><TD CLASS="DescriptionCell">The <A href="/DunningTermsService/">DunningTermsService</A> service enables you to add, look up and remove dunning terms for defining when to send out dunning terms for delinquent balances.</TD></TR>
+<TR><TD CLASS="mnc">DistributionRulesService</TD><TD CLASS="DescriptionCell">The <A href="/DistributionRulesService/">DistributionRulesService</A> service enables you to add, look up and remove distribution rules for spreading a specific expense, account, journal entry, or other entity among profit centers.</TD></TR>
+<TR><TD CLASS="mnc">FinancialYearsService</TD><TD CLASS="DescriptionCell">The <A href="/FinancialYearsService/">FinancialYearsService</A> service enables you to add, look up and remove financial roles for TDS (withholding tax) reports. For India only.</TD></TR>
+<TR><TD CLASS="mnc">SectionsService</TD><TD CLASS="DescriptionCell">The <A href="/SectionsService/">SectionsService</A> service enables you to add, look up and remove sections in the section master data table. Sections are used to specify a type of business transaction subject to TDS (withholding tax).</TD></TR>
+<TR><TD CLASS="mnc">CertificateSeriesService</TD><TD CLASS="DescriptionCell">The <A href="/CertificateSeriesService/">CertificateSeriesService</A> service enables you to add, look up and remove certificate series. Certificate series are used for TDS (withholding tax) reports.</TD></TR>
+<TR><TD CLASS="mnc">NatureOfAssesseesService</TD><TD CLASS="DescriptionCell">The <A href="/NatureOfAssesseesService/">NatureOfAssesseesService</A> service enables you to add, look up and remove nature of assessees in the nature of assessee master data table. Nature of assessees are used to specify a type of entity subject to TDS (withholding tax).</TD></TR>
+<TR><TD CLASS="mnc">MaterialRevaluationFIFOService</TD><TD CLASS="DescriptionCell">The <A href="/MaterialRevaluationFIFOService/">MaterialRevaluationFIFOService</A> service enables you to retrieve the FIFO layers for a specific item and location. You can then use information about the FIFO layers to specify specific layers to revalue (<A href="/FIFOLayers/">FIFOLayers</A>) and provide these to the <A href="/MaterialRevaluation/">MaterialRevaluation</A> object.</TD></TR>
+<TR><TD CLASS="mnc">StatesService</TD><TD CLASS="DescriptionCell">The <A href="/StatesService/">StatesService</A> service enables you to add, look up and remove states in the states master data table. States are assigned to business partners and other objects as part of the address information.</TD></TR>
+<TR><TD CLASS="mnc">PaymentBlocksService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BankChargesAllocationCodesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">MaterialGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ServiceGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">CheckLinesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">CreditLinesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BOELinesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">DepositsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ChangeLogsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ApprovalRequestsService</TD><TD CLASS="DescriptionCell">The <A href="/ApprovalRequestsService/">ApprovalRequestsService</A> service manages the approval request process in the SAP Business One environment. </TD></TR>
+<TR><TD CLASS="mnc">DeductionTaxSubGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">EmployeeTransfersService</TD><TD CLASS="DescriptionCell">The <A href="/EmployeeTransfersService/">EmployeeTransfersService</A> service manages the employee master data transfer from SAP Business One to DATEV HR client application. </TD></TR>
+<TR><TD CLASS="mnc">GTIsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">CockpitsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">TaxWebSitesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">CashFlowLineItemsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">TaxCodeDeterminationsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ReportTypesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ActivitiesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">AccrualTypesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">CostCenterTypesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ElectronicFileFormatsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">DashboardPackagesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">NFModelsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ExternalReconciliationsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BrazilNumericIndexersService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BrazilStringIndexersService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BrazilFuelIndexersService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BrazilBeverageIndexersService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BlanketAgreementsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">LandedCostsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ExtendedTranslationsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">KPIsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">TargetGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">CampaignsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">PartnersSetupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">JournalEntryDocumentTypeService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">EmployeeIDTypeService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">TransactionCodesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">LegalDataService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ServiceTaxPostingService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BatchNumberDetailsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">SerialNumberDetailsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">OccurrenceCodesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">RetornoCodesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BrazilMultiIndexersService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">DepreciationTypePoolsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">DepreciationTypesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">DeterminationCriteriasService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">GLAccountAdvancedRulesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">WarehouseSublevelCodesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BinLocationAttributesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BinLocationFieldsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BinLocationsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">EnhancedDiscountGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">DepreciationAreasService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">FAAccountDeterminationsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">AssetClassesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">AssetCapitalizationService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">AssetCapitalizationCreditMemoService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">AssetTransferService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">AssetManualDepreciationService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">AssetRetirementService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">BarCodesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">UnitOfMeasurementGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">UnitOfMeasurementsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">FixedAssetItemsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">AssetDepreciationGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">AssetGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">AttributeGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">IntrastatConfigurationService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">IntegrationPackagesConfigureService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">EmployeePositionService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">TerminationReasonService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">EmployeeStatusService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">MaterialRevaluationSNBService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">TrackingNotesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">InventoryPostingsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">InventoryCountingsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">InventoryOpeningBalancesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">EmailGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">NFTaxCategoriesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">GovPayCodesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">TaxCodeDeterminationsTCDService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">FiscalPrinterService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">POSDailySummaryService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">CycleCountDeterminationsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ServiceCallProblemSubTypesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">PaymentCalculationService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">TaxInvoiceReportService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">WorkflowTaskService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">CampaignResponseTypeService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">WitholdingTaxDefinitionService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ElectronicCommunicationActionService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ResourcesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ResourcePropertiesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ResourceGroupsService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+<TR><TD CLASS="mnc">ResourceCapacitiesService</TD><TD CLASS="DescriptionCell"> </TD></TR>
+</TABLE></DD>
+</DL></div>
+            
+            
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/CompanyService/">CompanyService Object</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/AdminInfo'> Admin Info</a> <em class=comment>AdminInfo</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OADM/ >OADM</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/CompanyService/AdminInfo/>AdminInfo</a> is a data structure related to the CompanyService. It includes administration properties for system initialization (company details, document settings, and general settings), and various definitions, such as financials and banking....</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/AdvancedGLAccountParams'> Advanced GL Account Params</a> <em class=comment>AdvancedGLAccountParams</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>AdvancedGLAccountParams Class  </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/AdvancedGLAccountReturnParams'> Advanced GL Account Return Params</a> <em class=comment>AdvancedGLAccountReturnParams</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>AdvancedGLAccountReturnParams Class  </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/Blob'> Blob</a> <em class=comment>Blob</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Holds blob content to be added to or retrieved from a blob field in the SAP Business One database.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/BlobParams'> Blob Params</a> <em class=comment>BlobParams</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specifies a set of blob fields, as follows:
+
+The Table property specifies the database table.
+The Field property specifies the blob field in the database table.
+The BlobTableKeySegments property specifies the records whose blob fields are to...</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/CompanyInfo'> Company Info</a> <em class=comment>CompanyInfo</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/CINF/ >CINF</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/CompanyService/CompanyInfo/>CompanyInfo</a> is a data structure related to the CompanyService. It includes initial parameters related to the company. The default values of part of the properties vary according to the country localization.
+Source table: CINF.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/GetBusinessService'> Get Business Service</a> <em class=comment>GetBusinessService</em> <b>Service</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Creates a specified business service. Use this method for all types of services </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/GetGeneralService'> Get General Service</a> <em class=comment>GetGeneralService</em> <b>Service</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Returns an instance of <a style='color:inherit;' href=/CompanyService/GeneralService/>GeneralService</a> for the specified user-defined object (UDO).
+The <a style='color:inherit;' href=/CompanyService/GeneralService/>GeneralService</a> instance can be used to add, retrieve and delete rows of the main table and child tables linked to the specified UDO.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/DecimalData'> Decimal Data</a> <em class=comment>DecimalData</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Represents the data before rounding.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/FeatureStatusCollection'> Feature Status Collection</a> <em class=comment>FeatureStatusCollection</em> <b>Collection</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>FeatureStatusCollection is a Data Collection of FeatureStatus data structures. </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/FinancePeriod'> Finance Period</a> <em class=comment>FinancePeriod</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OFPR/ >OFPR</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/CompanyService/FinancePeriod/>FinancePeriod</a> object is a data structure related to the CompanyService. 
+The object is used to identify and define a new Finance Period.
+Source table: OFPR.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/FinancePeriodParams'> Finance Period Params</a> <em class=comment>FinancePeriodParams</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/CompanyService/FinancePeriodParams/>FinancePeriodParams</a> specifies the identification key(system number, period indicator ) for which the CompanyService is related. </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/FinancePeriods'> Finance Periods</a> <em class=comment>FinancePeriods</em> <b>Collection</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>FinancePeriods is a collection of <a style='color:inherit;' href=/CompanyService/FinancePeriod/>FinancePeriod</a> objects. </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/GeneralService'> General Service</a> <em class=comment>GeneralService</em> <b>Service</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/CompanyService/GeneralService/>GeneralService</a> provides access to UDOs.
+With the service, you can add, look up and remove rows from user-defined tables. You can also invoke custom methods on the UDO's custom business implementation DLL.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/ItemPriceParams'> Item Price Params</a> <em class=comment>ItemPriceParams</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>ItemPriceParams Class  </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/ItemPriceReturnParams'> Item Price Return Params</a> <em class=comment>ItemPriceReturnParams</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>ItemPriceReturnParams Class  </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/PathAdmin'> Path Admin</a> <em class=comment>PathAdmin</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>An object for setting and getting directory paths for storing various files.
+Source tables: OADP</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/PeriodCategory'> Period Category</a> <em class=comment>PeriodCategory</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/CompanyService/PeriodCategory/>PeriodCategory</a> object is a data structure related to the CompanyService. 
+The <a style='color:inherit;' href=/CompanyService/PeriodCategory/>PeriodCategory</a> object provides two types of properties:
+
+Properties that access existing Accounts and function as foreign keys to ChartOfAccounts Object....</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/PeriodCategoryParams'> Period Category Params</a> <em class=comment>PeriodCategoryParams</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/CompanyService/PeriodCategoryParams/>PeriodCategoryParams</a> specifies the identification key (AbsoluteEntry) for which the DocumentSeriesParams service is related. 
+. </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/PeriodCategoryParamsCollection'> Period Category Params Collection</a> <em class=comment>PeriodCategoryParamsCollection</em> <b>Collection</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>PeriodCategoryParamsCollection is a collection of <a style='color:inherit;' href=/CompanyService/PeriodCategoryParams/>PeriodCategoryParams</a> identification keys.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/RoundedData'> Rounded Data</a> <em class=comment>RoundedData</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Represents the data after rounding.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/UserLicenseParams'> User License Params</a> <em class=comment>UserLicenseParams</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Contains the parameters for assigning licenses.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/CompanyServiceDataInterfaces'> Company Service Data Interfaces</a> <em class=comment>CompanyServiceDataInterfaces</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>CompanyService data interfaces. </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+515
+64.85163879394531' class=related href='/CompanyService/ServiceTypes'> Service Types</a> <em class=comment>ServiceTypes</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>DI API services.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><br><a title='92
+69.85163879394531
+0' class=related href='/Company/CompanyService'> Company Service</a> <em class=comment>CompanyService</em> <b>Service</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The CompanyService enables to manage the company administration data. This includes the following tables:
+
+Administration data - OADM (AdminInfo object). 
+Company data -  CINF (CompanyInfo object). 
+Posting Periods - OACT (ChartOfAccounts...</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Company> Company</a> <small>Company</small> <b>Object</b><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Service<br><a style='max-width:99%;' class=eli href='/CompanyService/'>CompanyService</a></font><hr><font style=''>Method<br><a class=eli style='max-width:99%;'   href='/CompanyService/GetServiceMetaData/'>GetServiceMetaData</a></font><hr><br><b>Collection</b><br><div class=sm><a style='min-width:50px;' title='Feature Status Collection' href=/CompanyService/FeatureStatusCollection/ class=eli>FeatureStatusCollection</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Finance Periods' href=/CompanyService/FinancePeriods/ class=eli>FinancePeriods</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Period Category Params Collection' href=/CompanyService/PeriodCategoryParamsCollection/ class=eli>PeriodCategoryParamsCollection</a>    <small class='eli s'> </small></div><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Company Service Data Interfaces' href=/CompanyService/CompanyServiceDataInterfaces/ class=eli>CompanyServiceDataInterfaces</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Service Types' href=/CompanyService/ServiceTypes/ class=eli>ServiceTypes</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Create Period' href=/CompanyService/CreatePeriod/ class=eli>CreatePeriod</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Create Period With Finance Params' href=/CompanyService/CreatePeriodWithFinanceParams/ class=eli>CreatePeriodWithFinanceParams</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Admin Info' href=/CompanyService/GetAdminInfo/ class=eli>GetAdminInfo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Advanced GL Account' href=/CompanyService/GetAdvancedGLAccount/ class=eli>GetAdvancedGLAccount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Blob' href=/CompanyService/GetBlob/ class=eli>GetBlob</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Company Info' href=/CompanyService/GetCompanyInfo/ class=eli>GetCompanyInfo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Data Interface' href=/CompanyService/GetDataInterface/ class=eli>GetDataInterface</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Data Interface From XML File' href=/CompanyService/GetDataInterfaceFromXMLFile/ class=eli>GetDataInterfaceFromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Data Interface From XML String' href=/CompanyService/GetDataInterfaceFromXMLString/ class=eli>GetDataInterfaceFromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Features Status' href=/CompanyService/GetFeaturesStatus/ class=eli>GetFeaturesStatus</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Finance Period' href=/CompanyService/GetFinancePeriod/ class=eli>GetFinancePeriod</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Finance Periods' href=/CompanyService/GetFinancePeriods/ class=eli>GetFinancePeriods</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Item Price' href=/CompanyService/GetItemPrice/ class=eli>GetItemPrice</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Path Admin' href=/CompanyService/GetPathAdmin/ class=eli>GetPathAdmin</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Period' href=/CompanyService/GetPeriod/ class=eli>GetPeriod</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Periods' href=/CompanyService/GetPeriods/ class=eli>GetPeriods</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Service Meta Data' href=/CompanyService/GetServiceMetaData/ class=eli>GetServiceMetaData</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Is User Licensed' href=/CompanyService/IsUserLicensed/ class=eli>IsUserLicensed</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Load Blob From File' href=/CompanyService/LoadBlobFromFile/ class=eli>LoadBlobFromFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Round Decimal' href=/CompanyService/RoundDecimal/ class=eli>RoundDecimal</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save Blob To File' href=/CompanyService/SaveBlobToFile/ class=eli>SaveBlobToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Set Blob' href=/CompanyService/SetBlob/ class=eli>SetBlob</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update Admin Info' href=/CompanyService/UpdateAdminInfo/ class=eli>UpdateAdminInfo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update Company Info' href=/CompanyService/UpdateCompanyInfo/ class=eli>UpdateCompanyInfo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update Finance Period' href=/CompanyService/UpdateFinancePeriod/ class=eli>UpdateFinancePeriod</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update Path Admin' href=/CompanyService/UpdatePathAdmin/ class=eli>UpdatePathAdmin</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update Period' href=/CompanyService/UpdatePeriod/ class=eli>UpdatePeriod</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update User License' href=/CompanyService/UpdateUserLicense/ class=eli>UpdateUserLicense</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Administration
+ Admin Info' href=/CompanyService/AdminInfo/ class=eli>AdminInfo</a>    <small class='eli s'> OADM</small></div><div class=sm><a style='min-width:50px;' title='Advanced GL Account Params' href=/CompanyService/AdvancedGLAccountParams/ class=eli>AdvancedGLAccountParams</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Advanced GL Account Return Params' href=/CompanyService/AdvancedGLAccountReturnParams/ class=eli>AdvancedGLAccountReturnParams</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Blob' href=/CompanyService/Blob/ class=eli>Blob</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Blob Params' href=/CompanyService/BlobParams/ class=eli>BlobParams</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Info
+ Company Info' href=/CompanyService/CompanyInfo/ class=eli>CompanyInfo</a>    <small class='eli s'> CINF</small></div><div class=sm><a style='min-width:50px;' title='Decimal Data' href=/CompanyService/DecimalData/ class=eli>DecimalData</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Posting Period
+ Finance Period' href=/CompanyService/FinancePeriod/ class=eli>FinancePeriod</a>    <small class='eli s'> OFPR</small></div><div class=sm><a style='min-width:50px;' title='Finance Period Params' href=/CompanyService/FinancePeriodParams/ class=eli>FinancePeriodParams</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Item Price Params' href=/CompanyService/ItemPriceParams/ class=eli>ItemPriceParams</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Item Price Return Params' href=/CompanyService/ItemPriceReturnParams/ class=eli>ItemPriceReturnParams</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Path Admin' href=/CompanyService/PathAdmin/ class=eli>PathAdmin</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Period Category' href=/CompanyService/PeriodCategory/ class=eli>PeriodCategory</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Period Category Params' href=/CompanyService/PeriodCategoryParams/ class=eli>PeriodCategoryParams</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Rounded Data' href=/CompanyService/RoundedData/ class=eli>RoundedData</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User License Params' href=/CompanyService/UserLicenseParams/ class=eli>UserLicenseParams</a>    <small class='eli s'> </small></div><br><b>Service</b><br><div class=sm><a style='min-width:50px;' title='General Service' href=/CompanyService/GeneralService/ class=eli>GeneralService</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Business Service' href=/CompanyService/GetBusinessService/ class=eli>GetBusinessService</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get General Service' href=/CompanyService/GetGeneralService/ class=eli>GetGeneralService</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

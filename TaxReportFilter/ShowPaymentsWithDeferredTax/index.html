@@ -1,0 +1,306 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>TaxReportFilter ShowPaymentsWithDeferredTax - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#11aabb; color:#d9ffff;'><div class=eli2><b>SQL</b> <a href='/sql/Finance'> Finance</a> / <a href='/sql/Tax Report'> Tax Report</a></div></div><div class=' tit' style='width:50%; background-color:#75ffff; color:#007889;'><div class=eli2><b>API</b> Tax Report Filter /  Show Payments With Deferred Tax</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #007889;' > <a style='text-decoration:none; color:#007889;' title='92
+1167.886863708496
+63.84939193725586' href='/TaxReportFilter/ShowPaymentsWithDeferredTax/'> Show Payments With Deferred Tax</a> Property</div><script>
+                        document.title = 'ShowPaymentsWithDeferredTax -  Tax Report - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P>Sets or returns a valid value that determines wether or not . </p><p>Field name: <EM>DeferTaxIn</em>.</p></div>
+            <h2 class="heading"><span  tabindex="0"><img id="propertytypeToggle"  src="/images/1x1.png"></img>Property type</span></h2><div id="propertytypeSection" class="section" >Read-write property</div>
+            <h2 class="heading"><span  tabindex="0"><img id="syntaxToggle"  src="/images/1x1.png"></img>Syntax</span></h2><div id="syntaxSection" class="section" ><DIV  id=Syntax_VB><table   cellpadding="0" cellspacing="0"><tr><th>Visual Basic</th></tr><tr><td><pre><PRE class=" vbs hljs" class=" vbs hljs">Public Property <a style='color:inherit;' href=/TaxReportFilter/ShowPaymentsWithDeferredTax/>ShowPaymentsWithDeferredTax</a>() As <a href="/BoYesNoEnum/">BoYesNoEnum</a></PRE></pre></tr></table></div></div>
+            
+            
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/TaxReportFilter/">TaxReportFilter Object</a>
+</p>
+</p></div>
+        </div>
+        <div class=dblink><h2>Database information </h2><li>Field: <em>DeferTaxIn</em></li><li>Description: Show Pmts with Deferred Tax</li><li>Type: <strong>VarChar</strong></li><li>Constraints: Y)  Yes, N)  No</li><li>Size: <em>1</em></li><li>Table: <em><a href=/OVTR/>OVTR</a></em> Tax Report</li><li>Position: <em>22</em></li><li>Default Value: Y</li></div><div style='clear:both;'></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+63.84939193725586' class=related href='/TaxReportFilter/TaxReportAccounts'> Tax Report Accounts</a> <em class=comment>TaxReportAccounts</em> <b>Collection</b>&middot; <font class=grey>Table:</font> <span><a href=/VTR5/ >VTR5</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>TaxReportAccounts is a Data Collection of TaxReportAccount data structures. 
+Source table: VTR5.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/TaxReportFilter> Tax Report Filter</a> <small>TaxReportFilter</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br><br><a title='92
+515
+63.84939193725586' class=related href='/TaxReportFilter/TaxReportBusinessPartners'> Tax Report Business Partners</a> <em class=comment>TaxReportBusinessPartners</em> <b>Collection</b>&middot; <font class=grey>Table:</font> <span><a href=/VTR4/ >VTR4</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>TaxReportBusinessPartners is a Data Collection of TaxReportBusinessPartner data structures. 
+Source table: VTR4.
+Remark: VTR4 is a virtual table and not exposed in the database reference files.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/TaxReportFilter> Tax Report Filter</a> <small>TaxReportFilter</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br><br><a title='92
+515
+63.84939193725586' class=related href='/TaxReportFilter/TaxReportDocuments'> Tax Report Documents</a> <em class=comment>TaxReportDocuments</em> <b>Collection</b>&middot; <font class=grey>Table:</font> <span><a href=/VTR2/ >VTR2</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>TaxReportDocuments is a Data Collection of TaxReportDocument data structures. 
+Source table: VTR2.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/TaxReportFilter> Tax Report Filter</a> <small>TaxReportFilter</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br><br><a title='92
+515
+63.84939193725586' class=related href='/TaxReportFilter/TaxReportGroups'> Tax Report Groups</a> <em class=comment>TaxReportGroups</em> <b>Collection</b>&middot; <font class=grey>Table:</font> <span><a href=/VTR1/ >VTR1</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>TaxReportGroups is a Data Collection of <a style='color:inherit;' href=/TaxReportFilter/TaxReportGroups/>TaxReportGroups</a>s. 
+Source table: VTR1.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/TaxReportFilter> Tax Report Filter</a> <small>TaxReportFilter</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br><br><a title='92
+515
+63.84939193725586' class=related href='/TaxReportFilter/TaxReportSeriesCollection'> Tax Report Series Collection</a> <em class=comment>TaxReportSeriesCollection</em> <b>Collection</b>&middot; <font class=grey>Table:</font> <span><a href=/VTR3/ >VTR3</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>TaxReportSeriesCollection is a Data Collection of TaxReportSeries. 
+Source table: VTR3.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/TaxReportFilter> Tax Report Filter</a> <small>TaxReportFilter</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br><br><a title='92
+515
+63.84939193725586' class=related href='/TaxReportFilter/TaxReportFilterApArDocumentType'> Tax Report Filter Ap Ar Document Type</a> <em class=comment>TaxReportFilterApArDocumentType</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Tax report types, either AP or AR.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/TaxReportFilter> Tax Report Filter</a> <small>TaxReportFilter</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br><br><a title='92
+515
+63.84939193725586' class=related href='/TaxReportFilter/TaxReportFilterDeclarationType'> Tax Report Filter Declaration Type</a> <em class=comment>TaxReportFilterDeclarationType</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Tax report declarations.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/TaxReportFilter> Tax Report Filter</a> <small>TaxReportFilter</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br><br><a title='92
+515
+63.84939193725586' class=related href='/TaxReportFilter/TaxReportFilterPeriod'> Tax Report Filter Period</a> <em class=comment>TaxReportFilterPeriod</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Tax report periods.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/TaxReportFilter> Tax Report Filter</a> <small>TaxReportFilter</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br><br><a title='92
+515
+63.84939193725586' class=related href='/TaxReportFilter/TaxReportFilterQuarterOrDates'> Tax Report Filter Quarter Or Dates</a> <em class=comment>TaxReportFilterQuarterOrDates</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Methods for defining a tax report period.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/TaxReportFilter> Tax Report Filter</a> <small>TaxReportFilter</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br><br><a title='92
+515
+63.84939193725586' class=related href='/TaxReportFilter/TaxReportFilterReportLayoutType'> Tax Report Filter Report Layout Type</a> <em class=comment>TaxReportFilterReportLayoutType</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Types of tax report layouts.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/TaxReportFilter> Tax Report Filter</a> <small>TaxReportFilter</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br><br><a title='92
+68.84939193725586
+0' class=related href='/ReportFilterService/TaxReportFilter'> Tax Report Filter</a> <em class=comment>TaxReportFilter</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>TaxReportFilter is a data structure related to the TaxReportsService. 
+Source table: OVTR.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/ReportFilterService> Report Filter Service</a> <small>ReportFilterService</small> <b>Service</b>&middot; <font class=grey>Table:</font> <span><a href=/OVTR/ >OVTR</a> </span><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/TaxReportFilter/'>TaxReportFilter</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/TaxReportFilter/ShowPaymentsWithDeferredTax/'>ShowPaymentsWithDeferredTax</a></font><hr><br><b>Collection</b><br><div class=sm><a style='min-width:50px;' title='Tax Report Accounts' href=/TaxReportFilter/TaxReportAccounts/ class=eli>TaxReportAccounts</a>    <small class='eli s'> VTR5</small></div><div class=sm><a style='min-width:50px;' title='Tax Report Business Partners' href=/TaxReportFilter/TaxReportBusinessPartners/ class=eli>TaxReportBusinessPartners</a>    <small class='eli s'> VTR4</small></div><div class=sm><a style='min-width:50px;' title='Doc. Type Filter
+ Tax Report Documents' href=/TaxReportFilter/TaxReportDocuments/ class=eli>TaxReportDocuments</a>    <small class='eli s'> VTR2</small></div><div class=sm><a style='min-width:50px;' title='Tax Groups
+ Tax Report Groups' href=/TaxReportFilter/TaxReportGroups/ class=eli>TaxReportGroups</a>    <small class='eli s'> VTR1</small></div><div class=sm><a style='min-width:50px;' title='Series Filter
+ Tax Report Series Collection' href=/TaxReportFilter/TaxReportSeriesCollection/ class=eli>TaxReportSeriesCollection</a>    <small class='eli s'> VTR3</small></div><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Tax Report Filter Ap Ar Document Type' href=/TaxReportFilter/TaxReportFilterApArDocumentType/ class=eli>TaxReportFilterApArDocumentType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Report Filter Declaration Type' href=/TaxReportFilter/TaxReportFilterDeclarationType/ class=eli>TaxReportFilterDeclarationType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Report Filter Period' href=/TaxReportFilter/TaxReportFilterPeriod/ class=eli>TaxReportFilterPeriod</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Report Filter Quarter Or Dates' href=/TaxReportFilter/TaxReportFilterQuarterOrDates/ class=eli>TaxReportFilterQuarterOrDates</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Report Filter Report Layout Type' href=/TaxReportFilter/TaxReportFilterReportLayoutType/ class=eli>TaxReportFilterReportLayoutType</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='From XML File' href=/TaxReportFilter/FromXMLFile/ class=eli>FromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From XML String' href=/TaxReportFilter/FromXMLString/ class=eli>FromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XML Schema' href=/TaxReportFilter/GetXMLSchema/ class=eli>GetXMLSchema</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML File' href=/TaxReportFilter/ToXMLFile/ class=eli>ToXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML String' href=/TaxReportFilter/ToXMLString/ class=eli>ToXMLString</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Appendix Oor P Selection' href=/TaxReportFilter/AppendixOorPSelection/ class=eli>AppendixOorPSelection</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cancellation' href=/TaxReportFilter/Cancellation/ class=eli>Cancellation</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Code' href=/TaxReportFilter/Code/ class=eli>Code</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Declaration Type' href=/TaxReportFilter/DeclarationType/ class=eli>DeclarationType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Diplay Credit Memos In Separate Column' href=/TaxReportFilter/DiplayCreditMemosInSeparateColumn/ class=eli>DiplayCreditMemosInSeparateColumn</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Document Type' href=/TaxReportFilter/DocumentType/ class=eli>DocumentType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Exclude WT' href=/TaxReportFilter/ExcludeWT/ class=eli>ExcludeWT</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Filter Type' href=/TaxReportFilter/FilterType/ class=eli>FilterType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='First Printed Number' href=/TaxReportFilter/FirstPrintedNumber/ class=eli>FirstPrintedNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='First Register Number' href=/TaxReportFilter/FirstRegisterNumber/ class=eli>FirstRegisterNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From Date' href=/TaxReportFilter/FromDate/ class=eli>FromDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From Series' href=/TaxReportFilter/FromSeries/ class=eli>FromSeries</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Hide Tax Without Transaction' href=/TaxReportFilter/HideTaxWithoutTransaction/ class=eli>HideTaxWithoutTransaction</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include Customers' href=/TaxReportFilter/IncludeCustomers/ class=eli>IncludeCustomers</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include Document Type' href=/TaxReportFilter/IncludeDocumentType/ class=eli>IncludeDocumentType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include GL Accounts' href=/TaxReportFilter/IncludeGLAccounts/ class=eli>IncludeGLAccounts</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include Series Filter' href=/TaxReportFilter/IncludeSeriesFilter/ class=eli>IncludeSeriesFilter</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include Vendors' href=/TaxReportFilter/IncludeVendors/ class=eli>IncludeVendors</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Name' href=/TaxReportFilter/Name/ class=eli>Name</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Opening And Closing Balance' href=/TaxReportFilter/OpeningAndClosingBalance/ class=eli>OpeningAndClosingBalance</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Period' href=/TaxReportFilter/Period/ class=eli>Period</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Quarter' href=/TaxReportFilter/Quarter/ class=eli>Quarter</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Quarter Or Dates' href=/TaxReportFilter/QuarterOrDates/ class=eli>QuarterOrDates</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Report Layout' href=/TaxReportFilter/ReportLayout/ class=eli>ReportLayout</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Round Amount' href=/TaxReportFilter/RoundAmount/ class=eli>RoundAmount</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Show Payments With Deferred Tax' href=/TaxReportFilter/ShowPaymentsWithDeferredTax/ class=eli>ShowPaymentsWithDeferredTax</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Date' href=/TaxReportFilter/TaxDate/ class=eli>TaxDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Report Accounts' href=/TaxReportFilter/TaxReportAccounts/ class=eli>TaxReportAccounts</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Report Business Partners' href=/TaxReportFilter/TaxReportBusinessPartners/ class=eli>TaxReportBusinessPartners</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Report Documents' href=/TaxReportFilter/TaxReportDocuments/ class=eli>TaxReportDocuments</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Report Groups' href=/TaxReportFilter/TaxReportGroups/ class=eli>TaxReportGroups</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Report Series Collection' href=/TaxReportFilter/TaxReportSeriesCollection/ class=eli>TaxReportSeriesCollection</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To Date' href=/TaxReportFilter/ToDate/ class=eli>ToDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To Series' href=/TaxReportFilter/ToSeries/ class=eli>ToSeries</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Year' href=/TaxReportFilter/Year/ class=eli>Year</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

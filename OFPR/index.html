@@ -1,0 +1,338 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OFPR - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#11aabb; color:#d9ffff;'><div class=eli2><b>SQL</b> <a href='/sql/Finance'> Finance</a> / <a href='/sql/Posting Period'> Posting Period</a></div></div><div class=' tit' style='width:50%; background-color:#75ffff; color:#007889;'><div class=eli2><b>API</b> Company Service /  Finance Period</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #007889;'  class='titol sm titoltxt'>  <a style='color:#007889;' href='/OFPR/'> OFPR - Posting Period</a> Table</font><script>
+                    document.title = 'OFPR - Posting Period - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>AbsEntry</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >System Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b><u title='Primary'>Code</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Period Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>CODE</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b><u title='Primary'>Name</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Period Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>NAME</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b>F_RefDate</b></em></td><td valign=top >Posting Date From</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>T_RefDate</b></em></td><td valign=top >Posting Date To</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>F_DueDate</b></em></td><td valign=top >Due Date From</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>T_DueDate</b></em></td><td valign=top >Due Date To</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>F_TaxDate</b></em></td><td valign=top >Document Date From</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>T_TaxDate</b></em></td><td valign=top >Document Date To</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Free2</b></em></td><td valign=top >Free</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Free3</b></em></td><td valign=top >Free</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  Unlocked<hr>S)  Unlocked Except Sales<hr>C)  Closing Period<hr>Y)  Locked</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DataSource</b></em></td><td valign=top >Data Source</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  Unknown<hr>I)  Interface<hr>U)  Update<hr>M)  Import<hr>O)  DI API<hr>A)  Doc. Generation Wizard<hr>D)  Restore Wizard<hr>P)  Partner Implementation<hr>T)  Year Transfer</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SubNum</b></em></td><td valign=top >No. of Sub-Period</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Free</b></em></td><td valign=top >Free</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Free1</b></em></td><td valign=top >Free1</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Addition</b></em></td><td valign=top >Additional Sub-Periods</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AddNum</b></em></td><td valign=top >No. of Additional</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Category</b></em></td><td valign=top >Category</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>10</td><td valign=top class=nomobile><a href=/OACP title='Periods Category'>OACP</a><br><small class=s2>Periods Category</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Indicator</b></em></td><td valign=top >Period Indicator</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>10</td><td valign=top class=nomobile><a href=/OPID title='Period Indicator'>OPID</a><br><small class=s2>Period Indicator</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UpdateDate</b></em></td><td valign=top >Date of Update</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WasStatChd</b></em></td><td valign=top >Status Was Checked</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PeriodStat</b></em></td><td valign=top >Period Status</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  Unlocked<hr>S)  Unlocked Except Sales<hr>C)  Closing Period<hr>Y)  Locked<hr>A)  Archived</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign2</b></em></td><td valign=top >Updating User</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OFPR', font: { multi: true }, label: 'OFPR', title: ''},{id: 'ADO1', font: { multi: true }, label: '<b>ADO1</b>', title:'A/R Invoice (Rows) - History'},{id: 'ADOC', font: { multi: true }, label: '<b>ADOC</b>', title:'Invoice - History'},{id: 'AFAD', font: { multi: true }, label: '<b>AFAD</b>', title:'Asset Document - History'},{id: 'AJD1', font: { multi: true }, label: '<b>AJD1</b>', title:'Journal Entry - History - Rows'},{id: 'AJDT', font: { multi: true }, label: '<b>AJDT</b>', title:'Journal Entry - History'},{id: 'ARCT', font: { multi: true }, label: '<b>ARCT</b>', title:'Incoming Payment - History'},{id: 'BTF1', font: { multi: true }, label: '<b>BTF1</b>', title:'Journal Voucher - Rows'},{id: 'CIN1', font: { multi: true }, label: '<b>CIN1</b>', title:'Correction Invoice - Rows'},{id: 'CPI1', font: { multi: true }, label: '<b>CPI1</b>', title:'A/P Correction Invoice - Rows'},{id: 'CPV1', font: { multi: true }, label: '<b>CPV1</b>', title:'A/P Correction Invoice Reversal - Rows'},{id: 'CSI1', font: { multi: true }, label: '<b>CSI1</b>', title:'A/R Correction Invoice - Rows'},{id: 'CSV1', font: { multi: true }, label: '<b>CSV1</b>', title:'A/R Correction Invoice Reversal - Rows'},{id: 'DLN1', font: { multi: true }, label: '<b>DLN1</b>', title:'Delivery - Rows'},{id: 'DPI1', font: { multi: true }, label: '<b>DPI1</b>', title:'A/R Down Payment - Rows'},{id: 'DPO1', font: { multi: true }, label: '<b>DPO1</b>', title:'A/P Down Payment - Rows'},{id: 'DRF1', font: { multi: true }, label: '<b>DRF1</b>', title:'Draft - Rows'},{id: 'IEI1', font: { multi: true }, label: '<b>IEI1</b>', title:'Incoming Excise Invoice - Rows'},{id: 'IGE1', font: { multi: true }, label: '<b>IGE1</b>', title:'Goods Issue - Rows'},{id: 'IGN1', font: { multi: true }, label: '<b>IGN1</b>', title:'Goods Receipt - Rows'},{id: 'INV1', font: { multi: true }, label: '<b>INV1</b>', title:'A/R Invoice - Rows'},{id: 'JDT1', font: { multi: true }, label: '<b>JDT1</b>', title:'Journal Entry - Rows'},{id: 'OACD', font: { multi: true }, label: '<b>OACD</b>', title:'Credit Memo'},{id: 'OACQ', font: { multi: true }, label: '<b>OACQ</b>', title:'Capitalization'},{id: 'OBTF', font: { multi: true }, label: '<b>OBTF</b>', title:'Journal Voucher Entry'},{id: 'OCIN', font: { multi: true }, label: '<b>OCIN</b>', title:'A/R Correction Invoice'},{id: 'OCPI', font: { multi: true }, label: '<b>OCPI</b>', title:'A/P Correction Invoice'},{id: 'OCPV', font: { multi: true }, label: '<b>OCPV</b>', title:'A/P Correction Invoice Reversal'},{id: 'OCSI', font: { multi: true }, label: '<b>OCSI</b>', title:'A/R Correction Invoice'},{id: 'OCSV', font: { multi: true }, label: '<b>OCSV</b>', title:'A/R Correction Invoice Reversal'},{id: 'ODLN', font: { multi: true }, label: '<b>ODLN</b>', title:'Delivery'},{id: 'ODPI', font: { multi: true }, label: '<b>ODPI</b>', title:'A/R Down Payment'},{id: 'ODPO', font: { multi: true }, label: '<b>ODPO</b>', title:'A/P Down Payment'},{id: 'ODPS', font: { multi: true }, label: '<b>ODPS</b>', title:'Deposit'},{id: 'ODPT', font: { multi: true }, label: '<b>ODPT</b>', title:'Postdated Deposit'},{id: 'ODRF', font: { multi: true }, label: '<b>ODRF</b>', title:'Drafts'},{id: 'OEI1', font: { multi: true }, label: '<b>OEI1</b>', title:'Outgoing Excise Invoice - Rows'},{id: 'OFTR', font: { multi: true }, label: '<b>OFTR</b>', title:'Transfer'},{id: 'OIEI', font: { multi: true }, label: '<b>OIEI</b>', title:'Incoming Excise Invoice'},{id: 'OIGE', font: { multi: true }, label: '<b>OIGE</b>', title:'Goods Issue'},{id: 'OIGN', font: { multi: true }, label: '<b>OIGN</b>', title:'Goods Receipt'},{id: 'OINC', font: { multi: true }, label: '<b>OINC</b>', title:'Inventory Counting'},{id: 'OINV', font: { multi: true }, label: '<b>OINV</b>', title:'A/R Invoice'},{id: 'OIQI', font: { multi: true }, label: '<b>OIQI</b>', title:'Inventory Opening Balance'},{id: 'OIQR', font: { multi: true }, label: '<b>OIQR</b>', title:'Inventory Posting'},{id: 'OJDT', font: { multi: true }, label: '<b>OJDT</b>', title:'Journal Entry'},{id: 'OMDP', font: { multi: true }, label: '<b>OMDP</b>', title:'Manual Depreciation'},{id: 'OMRL', font: { multi: true }, label: '<b>OMRL</b>', title:'Advanced Inventory Revaluation'},{id: 'OOEI', font: { multi: true }, label: '<b>OOEI</b>', title:'Outgoing Excise Invoice'},{id: 'OPCH', font: { multi: true }, label: '<b>OPCH</b>', title:'A/P Invoice'},{id: 'OPDF', font: { multi: true }, label: '<b>OPDF</b>', title:'Payment Draft'},{id: 'OPDN', font: { multi: true }, label: '<b>OPDN</b>', title:'Goods Receipt PO'},{id: 'OPOR', font: { multi: true }, label: '<b>OPOR</b>', title:'Purchase Order'},{id: 'OPQT', font: { multi: true }, label: '<b>OPQT</b>', title:'Purchase Quotation'},{id: 'OPRQ', font: { multi: true }, label: '<b>OPRQ</b>', title:'Purchase Request'},{id: 'OQUT', font: { multi: true }, label: '<b>OQUT</b>', title:'Sales Quotation'},{id: 'ORCT', font: { multi: true }, label: '<b>ORCT</b>', title:'Incoming Payment'},{id: 'ORDN', font: { multi: true }, label: '<b>ORDN</b>', title:'Returns'},{id: 'ORDR', font: { multi: true }, label: '<b>ORDR</b>', title:'Sales Order'},{id: 'ORIN', font: { multi: true }, label: '<b>ORIN</b>', title:'A/R Credit Memo'},{id: 'ORPC', font: { multi: true }, label: '<b>ORPC</b>', title:'A/P Credit Memo'},{id: 'ORPD', font: { multi: true }, label: '<b>ORPD</b>', title:'Goods Return'},{id: 'ORTI', font: { multi: true }, label: '<b>ORTI</b>', title:'Retirement'},{id: 'OVPM', font: { multi: true }, label: '<b>OVPM</b>', title:'Outgoing Payments'},{id: 'OWKO', font: { multi: true }, label: '<b>OWKO</b>', title:'Production Instructions'},{id: 'OWTQ', font: { multi: true }, label: '<b>OWTQ</b>', title:'Inventory Transfer Request'},{id: 'OWTR', font: { multi: true }, label: '<b>OWTR</b>', title:'Inventory Transfer'},{id: 'PCH1', font: { multi: true }, label: '<b>PCH1</b>', title:'A/P Invoice - Rows'},{id: 'PDN1', font: { multi: true }, label: '<b>PDN1</b>', title:'Goods Receipt PO - Rows'},{id: 'POR1', font: { multi: true }, label: '<b>POR1</b>', title:'Purchase Order - Rows'},{id: 'PQT1', font: { multi: true }, label: '<b>PQT1</b>', title:'Purchase Quotation - Rows'},{id: 'PRQ1', font: { multi: true }, label: '<b>PRQ1</b>', title:'Purchase Request - Rows'},{id: 'QUT1', font: { multi: true }, label: '<b>QUT1</b>', title:'Sales Quotation - Rows'},{id: 'RDN1', font: { multi: true }, label: '<b>RDN1</b>', title:'Returns - Rows'},{id: 'RDR1', font: { multi: true }, label: '<b>RDR1</b>', title:'Sales Order - Rows'},{id: 'RIN1', font: { multi: true }, label: '<b>RIN1</b>', title:'A/R Credit Memo - Rows'},{id: 'RPC1', font: { multi: true }, label: '<b>RPC1</b>', title:'A/P Credit Memo - Rows'},{id: 'RPD1', font: { multi: true }, label: '<b>RPD1</b>', title:'Goods Return - Rows'},{id: 'UWKO', font: { multi: true }, label: '<b>UWKO</b>', title:'Production Instructions'},{id: 'UWKO1', font: { multi: true }, label: '<b>UWKO1</b>', title:'Production Instructions - Rows'},{id: 'WKO1', font: { multi: true }, label: '<b>WKO1</b>', title:'Production Instructions - Rows'},{id: 'WTQ1', font: { multi: true }, label: '<b>WTQ1</b>', title:'Inventory Transfer Request - Rows'},{id: 'WTR1', font: { multi: true }, label: '<b>WTR1</b>', title:'Inventory Transfer - Rows'},{id: 'OACP', font: { multi: true }, label: 'OACP', title: 'Periods Category'},{id: 'OPID', font: { multi: true }, label: 'OPID', title: 'Period Indicator'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OFPR', to: 'ADO1', arrows:'from'}, {from: 'OFPR', to: 'ADOC', arrows:'from'}, {from: 'OFPR', to: 'AFAD', arrows:'from'}, {from: 'OFPR', to: 'AJD1', arrows:'from'}, {from: 'OFPR', to: 'AJDT', arrows:'from'}, {from: 'OFPR', to: 'ARCT', arrows:'from'}, {from: 'OFPR', to: 'BTF1', arrows:'from'}, {from: 'OFPR', to: 'CIN1', arrows:'from'}, {from: 'OFPR', to: 'CPI1', arrows:'from'}, {from: 'OFPR', to: 'CPV1', arrows:'from'}, {from: 'OFPR', to: 'CSI1', arrows:'from'}, {from: 'OFPR', to: 'CSV1', arrows:'from'}, {from: 'OFPR', to: 'DLN1', arrows:'from'}, {from: 'OFPR', to: 'DPI1', arrows:'from'}, {from: 'OFPR', to: 'DPO1', arrows:'from'}, {from: 'OFPR', to: 'DRF1', arrows:'from'}, {from: 'OFPR', to: 'IEI1', arrows:'from'}, {from: 'OFPR', to: 'IGE1', arrows:'from'}, {from: 'OFPR', to: 'IGN1', arrows:'from'}, {from: 'OFPR', to: 'INV1', arrows:'from'}, {from: 'OFPR', to: 'JDT1', arrows:'from'}, {from: 'OFPR', to: 'OACD', arrows:'from'}, {from: 'OFPR', to: 'OACQ', arrows:'from'}, {from: 'OFPR', to: 'OBTF', arrows:'from'}, {from: 'OFPR', to: 'OCIN', arrows:'from'}, {from: 'OFPR', to: 'OCPI', arrows:'from'}, {from: 'OFPR', to: 'OCPV', arrows:'from'}, {from: 'OFPR', to: 'OCSI', arrows:'from'}, {from: 'OFPR', to: 'OCSV', arrows:'from'}, {from: 'OFPR', to: 'ODLN', arrows:'from'}, {from: 'OFPR', to: 'ODPI', arrows:'from'}, {from: 'OFPR', to: 'ODPO', arrows:'from'}, {from: 'OFPR', to: 'ODPS', arrows:'from'}, {from: 'OFPR', to: 'ODPT', arrows:'from'}, {from: 'OFPR', to: 'ODRF', arrows:'from'}, {from: 'OFPR', to: 'OEI1', arrows:'from'}, {from: 'OFPR', to: 'OFTR', arrows:'from'}, {from: 'OFPR', to: 'OIEI', arrows:'from'}, {from: 'OFPR', to: 'OIGE', arrows:'from'}, {from: 'OFPR', to: 'OIGN', arrows:'from'}, {from: 'OFPR', to: 'OINC', arrows:'from'}, {from: 'OFPR', to: 'OINV', arrows:'from'}, {from: 'OFPR', to: 'OIQI', arrows:'from'}, {from: 'OFPR', to: 'OIQR', arrows:'from'}, {from: 'OFPR', to: 'OJDT', arrows:'from'}, {from: 'OFPR', to: 'OMDP', arrows:'from'}, {from: 'OFPR', to: 'OMRL', arrows:'from'}, {from: 'OFPR', to: 'OOEI', arrows:'from'}, {from: 'OFPR', to: 'OPCH', arrows:'from'}, {from: 'OFPR', to: 'OPDF', arrows:'from'}, {from: 'OFPR', to: 'OPDN', arrows:'from'}, {from: 'OFPR', to: 'OPOR', arrows:'from'}, {from: 'OFPR', to: 'OPQT', arrows:'from'}, {from: 'OFPR', to: 'OPRQ', arrows:'from'}, {from: 'OFPR', to: 'OQUT', arrows:'from'}, {from: 'OFPR', to: 'ORCT', arrows:'from'}, {from: 'OFPR', to: 'ORDN', arrows:'from'}, {from: 'OFPR', to: 'ORDR', arrows:'from'}, {from: 'OFPR', to: 'ORIN', arrows:'from'}, {from: 'OFPR', to: 'ORPC', arrows:'from'}, {from: 'OFPR', to: 'ORPD', arrows:'from'}, {from: 'OFPR', to: 'ORTI', arrows:'from'}, {from: 'OFPR', to: 'OVPM', arrows:'from'}, {from: 'OFPR', to: 'OWKO', arrows:'from'}, {from: 'OFPR', to: 'OWTQ', arrows:'from'}, {from: 'OFPR', to: 'OWTR', arrows:'from'}, {from: 'OFPR', to: 'PCH1', arrows:'from'}, {from: 'OFPR', to: 'PDN1', arrows:'from'}, {from: 'OFPR', to: 'POR1', arrows:'from'}, {from: 'OFPR', to: 'PQT1', arrows:'from'}, {from: 'OFPR', to: 'PRQ1', arrows:'from'}, {from: 'OFPR', to: 'QUT1', arrows:'from'}, {from: 'OFPR', to: 'RDN1', arrows:'from'}, {from: 'OFPR', to: 'RDR1', arrows:'from'}, {from: 'OFPR', to: 'RIN1', arrows:'from'}, {from: 'OFPR', to: 'RPC1', arrows:'from'}, {from: 'OFPR', to: 'RPD1', arrows:'from'}, {from: 'OFPR', to: 'UWKO', arrows:'from'}, {from: 'OFPR', to: 'UWKO1', arrows:'from'}, {from: 'OFPR', to: 'WKO1', arrows:'from'}, {from: 'OFPR', to: 'WTQ1', arrows:'from'}, {from: 'OFPR', to: 'WTR1', arrows:'from'}, {from: 'OACP', to: 'OFPR', arrows:'from'}, {from: 'OPID', to: 'OFPR', arrows:'from'}, {from: 'OUSR', to: 'OFPR', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OFPR.AbsEntry AS 'System Number', 
+   OFPR.Code AS 'Period Code', 
+   OFPR.Name AS 'Period Name', 
+   OFPR.F_RefDate AS 'Posting Date From', 
+   OFPR.T_RefDate AS 'Posting Date To', 
+   OFPR.F_DueDate AS 'Due Date From', 
+   OFPR.T_DueDate AS 'Due Date To', 
+   OFPR.F_TaxDate AS 'Document Date From', 
+   OFPR.T_TaxDate AS 'Document Date To', 
+   OFPR.Free2 AS 'Free', 
+   OFPR.Free3 AS 'Free', 
+   OFPR.DataSource AS 'Data Source', 
+   OFPR.UserSign AS 'User Signature', 
+   OFPR.SubNum AS 'No. of Sub-Period', 
+   OFPR.Free AS 'Free', 
+   OFPR.Free1 AS 'Free1', 
+   OFPR.Addition AS 'Additional Sub-Periods', 
+   OFPR.AddNum AS 'No. of Additional', 
+   OFPR.Category AS 'Category', 
+   OFPR.Indicator AS 'Period Indicator', 
+   OFPR.LogInstanc AS 'Log Instance', 
+   OFPR.UpdateDate AS 'Date of Update', 
+   OFPR.WasStatChd AS 'Status Was Checked', 
+   OFPR.PeriodStat AS 'Period Status', 
+   OFPR.UserSign2 AS 'Updating User'
+FROM OFPR AS OFPR</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+216.9871368408203
+5.993568420410156' class=related href='/CompanyService/FinancePeriod'> Finance Period</a> <em class=comment>FinancePeriod</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OFPR/ >OFPR</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/CompanyService/FinancePeriod/>FinancePeriod</a> object is a data structure related to the CompanyService. 
+The object is used to identify and define a new Finance Period.
+Source table: OFPR.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/CompanyService> Company Service</a> <small>CompanyService</small> <b>Service</b><br><a href=/OFPR class=related></a> <em class=comment>OFPR</em> <b>SQL Table</b><br><br><a href=/OACP class=related>Periods Category</a> <em class=comment>OACP</em> <b>SQL Table</b><br><br><a href=/OPID class=related>Period Indicator</a> <em class=comment>OPID</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Service<br><a style='max-width:99%;' class=eli href='/CompanyService/'>CompanyService</a></font><hr><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/CompanyService/FinancePeriod/'>FinancePeriod</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Period Status Enum' href=/FinancePeriod/PeriodStatusEnum/ class=eli>PeriodStatusEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='From XML File' href=/FinancePeriod/FromXMLFile/ class=eli>FromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From XML String' href=/FinancePeriod/FromXMLString/ class=eli>FromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XML Schema' href=/FinancePeriod/GetXMLSchema/ class=eli>GetXMLSchema</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML File' href=/FinancePeriod/ToXMLFile/ class=eli>ToXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML String' href=/FinancePeriod/ToXMLString/ class=eli>ToXMLString</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Absolute Entry' href=/FinancePeriod/AbsoluteEntry/ class=eli>AbsoluteEntry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Activefor Feed' href=/FinancePeriod/ActiveforFeed/ class=eli>ActiveforFeed</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Additional Sub Periods' href=/FinancePeriod/AdditionalSubPeriods/ class=eli>AdditionalSubPeriods</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Locked' href=/FinancePeriod/Locked/ class=eli>Locked</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Period Code' href=/FinancePeriod/PeriodCode/ class=eli>PeriodCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Period Indicator' href=/FinancePeriod/PeriodIndicator/ class=eli>PeriodIndicator</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Period Name' href=/FinancePeriod/PeriodName/ class=eli>PeriodName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Period Status' href=/FinancePeriod/PeriodStatus/ class=eli>PeriodStatus</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Posting Date From' href=/FinancePeriod/PostingDateFrom/ class=eli>PostingDateFrom</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Posting Date To' href=/FinancePeriod/PostingDateTo/ class=eli>PostingDateTo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sub Num' href=/FinancePeriod/SubNum/ class=eli>SubNum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Date From' href=/FinancePeriod/TaxDateFrom/ class=eli>TaxDateFrom</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Date To' href=/FinancePeriod/TaxDateTo/ class=eli>TaxDateTo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Value Date From' href=/FinancePeriod/ValueDateFrom/ class=eli>ValueDateFrom</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Value Date To' href=/FinancePeriod/ValueDateTo/ class=eli>ValueDateTo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

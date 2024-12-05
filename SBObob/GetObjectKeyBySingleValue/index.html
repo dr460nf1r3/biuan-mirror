@@ -1,0 +1,429 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>SBObob GetObjectKeyBySingleValue - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#11aabb; color:#d9ffff;'><div class=eli2><b>SQL</b> <a href='/sql/Finance'> Finance</a> / <a href='/sql/CPI and FC Rates'> CPI and FC Rates</a></div></div><div class=' tit' style='width:50%; background-color:#75ffff; color:#007889;'><div class=eli2><b>API</b> SB Obob /  Get Object Key By Single Value</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #007889;' > <a style='text-decoration:none; color:#007889;' title='92
+1143.1845016479492
+36.080257415771484' href='/SBObob/GetObjectKeyBySingleValue/'> Get Object Key By Single Value</a> Method</div><script>
+                        document.title = 'GetObjectKeyBySingleValue -  CPI and FC Rates - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" >Returns a <STRONG>Recordset</STRONG> object that contains the object key by single value. <P>See <A href="/diapi/SBObob_Get_Object_Key_By_Single_Value.htm">Get Object Key By Single Value sample</A>.</P> </div>
+            <h2 class="heading"><span  tabindex="0"><img id="syntaxToggle"  src="/images/1x1.png"></img>Syntax</span></h2><div id="syntaxSection" class="section" ><DIV  id=Syntax_VB><table   cellpadding="0" cellspacing="0"><tr><th>Visual Basic</th></tr><tr><td><pre><PRE class=" vbs hljs" class=" vbs hljs">Public Function <a style='color:inherit;' href=/SBObob/GetObjectKeyBySingleValue/>GetObjectKeyBySingleValue</a>( _
+   ByVal <i><a class="parameter" id="ObjNum" href="#" onclick="javascript:showParamBox(event);">ObjNum</a></i> As <a href="/BoObjectTypes/">BoObjectTypes</a>, _
+   ByVal <i><a class="parameter" id="PropName" href="#" onclick="javascript:showParamBox(event);">PropName</a></i> As String, _
+   ByVal <i><a class="parameter" id="Value" href="#" onclick="javascript:showParamBox(event);">Value</a></i> As String, _
+   ByVal <i><a class="parameter" id="Condition" href="#" onclick="javascript:showParamBox(event);">Condition</a></i> As <a href="/BoQueryConditions/">BoQueryConditions</a> _
+) As <a href="/Recordset/">Recordset</a></PRE></pre></tr></table></div></div>
+            <h2 class="heading"><span  tabindex="0"><img id="parametersToggle"  src="/images/1x1.png"></img>Parameters</span></h2><div id="parametersSection" class="section" ><DL>
+<DT><I>ObjNum</I></DT>
+<DD><TABLE CLASS="FilteredItemListTable"><TR VALIGN="top"><TH>Value</TH><TH>Description</TH></TR>
+<TR><TD CLASS="mnc">oChartOfAccounts</TD><TD CLASS="DescriptionCell"><A href="/ChartOfAccounts/">ChartOfAccounts</A> object</TD></TR>
+<TR><TD CLASS="mnc">oBusinessPartners</TD><TD CLASS="DescriptionCell"><A href="/BusinessPartners/">BusinessPartners</A> object</TD></TR>
+<TR><TD CLASS="mnc">oBanks</TD><TD CLASS="DescriptionCell"><A href="/Banks/">Banks</A> object</TD></TR>
+<TR><TD CLASS="mnc">oItems</TD><TD CLASS="DescriptionCell"><A href="/Items/">Items</A> object</TD></TR>
+<TR><TD CLASS="mnc">oVatGroups</TD><TD CLASS="DescriptionCell"><SPAN style="FONT-FAMILY: Verdana; COLOR: black; FONT-SIZE: 8.5pt; mso-fareast-language: EN-US; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-bidi-language: AR-SA"><A href="/VatGroups/">VatGroups</A></A></SPAN> object</TD></TR>
+<TR><TD CLASS="mnc">oPriceLists</TD><TD CLASS="DescriptionCell"><A href="/PriceLists/">PriceLists</A> object</TD></TR>
+<TR><TD CLASS="mnc">oSpecialPrices</TD><TD CLASS="DescriptionCell"><A href="/SpecialPrices/">SpecialPrices</A> object</TD></TR>
+<TR><TD CLASS="mnc">oItemProperties</TD><TD CLASS="DescriptionCell"><A href="/ItemProperties/">ItemProperties</A> object</TD></TR>
+<TR><TD CLASS="mnc">oUsers</TD><TD CLASS="DescriptionCell"><A href="/Users/">Users</A> object</TD></TR>
+<TR><TD CLASS="mnc">oInvoices</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a sales invoice document</TD></TR>
+<TR><TD CLASS="mnc">oCreditNotes</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a sales credit note document</TD></TR>
+<TR><TD CLASS="mnc">oDeliveryNotes</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a sales delivery note document</TD></TR>
+<TR><TD CLASS="mnc">oReturns</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a sales return document</TD></TR>
+<TR><TD CLASS="mnc">oOrders</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a sales order document</TD></TR>
+<TR><TD CLASS="mnc">oPurchaseInvoices</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a purchase invoice document</TD></TR>
+<TR><TD CLASS="mnc">oPurchaseCreditNotes</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a purchase credit note document</TD></TR>
+<TR><TD CLASS="mnc">oPurchaseDeliveryNotes</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a purchase delivery note document</TD></TR>
+<TR><TD CLASS="mnc">oPurchaseReturns</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a a purchase return document</TD></TR>
+<TR><TD CLASS="mnc">oPurchaseOrders</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a purchase order document</TD></TR>
+<TR><TD CLASS="mnc">oQuotations</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a sales quotation document</TD></TR>
+<TR><TD CLASS="mnc">oIncomingPayments</TD><TD CLASS="DescriptionCell"><A href="/Payments/">Payments</A> object</TD></TR>
+<TR><TD CLASS="mnc">oJournalVouchers</TD><TD CLASS="DescriptionCell"><A href="/JournalVouchers/">JournalVouchers</A> object</TD></TR>
+<TR><TD CLASS="mnc">oJournalEntries</TD><TD CLASS="DescriptionCell"><A href="/JournalEntries/">JournalEntries</A> object that represents a normal journal entry</TD></TR>
+<TR><TD CLASS="mnc">oStockTakings</TD><TD CLASS="DescriptionCell"><A href="/StockTaking/">StockTaking</A> object</TD></TR>
+<TR><TD CLASS="mnc">oContacts</TD><TD CLASS="DescriptionCell"><A href="/Contacts/">Contacts</A> object</TD></TR>
+<TR><TD CLASS="mnc">oCreditCards</TD><TD CLASS="DescriptionCell"><A href="/CreditCards/">CreditCards</A> object</TD></TR>
+<TR><TD CLASS="mnc">oCurrencyCodes</TD><TD CLASS="DescriptionCell"><A href="/Currencies/">Currencies</A> object</TD></TR>
+<TR><TD CLASS="mnc">oPaymentTermsTypes</TD><TD CLASS="DescriptionCell"><A href="/PaymentTermsTypes/">PaymentTermsTypes</A> object</TD></TR>
+<TR><TD CLASS="mnc">oBankPages</TD><TD CLASS="DescriptionCell"><A href="/BankPages/">BankPages</A> object</TD></TR>
+<TR><TD CLASS="mnc">oManufacturers</TD><TD CLASS="DescriptionCell"><A href="/Manufacturers/">Manufacturers</A> object</TD></TR>
+<TR><TD CLASS="mnc">oVendorPayments</TD><TD CLASS="DescriptionCell"><A href="/Payments/">Payments</A> object that represents payments to vendors</TD></TR>
+<TR><TD CLASS="mnc">oLandedCostsCodes</TD><TD CLASS="DescriptionCell"><A href="/LandedCostsCodes/">LandedCostsCodes</A> object</TD></TR>
+<TR><TD CLASS="mnc">oShippingTypes</TD><TD CLASS="DescriptionCell"><A href="/ShippingTypes/">ShippingTypes</A> object</TD></TR>
+<TR><TD CLASS="mnc">oLengthMeasures</TD><TD CLASS="DescriptionCell"><A href="/LengthMeasures/">LengthMeasures</A> object</TD></TR>
+<TR><TD CLASS="mnc">oWeightMeasures</TD><TD CLASS="DescriptionCell"><A href="/WeightMeasures/">WeightMeasures</A> object</TD></TR>
+<TR><TD CLASS="mnc">oItemGroups</TD><TD CLASS="DescriptionCell"><A href="/ItemGroups/">ItemGroups</A> object</TD></TR>
+<TR><TD CLASS="mnc">oSalesPersons</TD><TD CLASS="DescriptionCell"><A href="/SalesPersons/">SalesPersons</A> object</TD></TR>
+<TR><TD CLASS="mnc">oCustomsGroups</TD><TD CLASS="DescriptionCell"><A href="/CustomsGroups/">CustomsGroups</A> object</TD></TR>
+<TR><TD CLASS="mnc">oChecksforPayment</TD><TD CLASS="DescriptionCell"><A href="/ChecksforPayment/">ChecksforPayment</A> object</TD></TR>
+<TR><TD CLASS="mnc">oInventoryGenEntry</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object for entering general items to inventory</TD></TR>
+<TR><TD CLASS="mnc">oInventoryGenExit</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object for removing general items from inventory</TD></TR>
+<TR><TD CLASS="mnc">oWarehouses</TD><TD CLASS="DescriptionCell"><A href="/Warehouses/">Warehouses</A> object</TD></TR>
+<TR><TD CLASS="mnc">oCommissionGroups</TD><TD CLASS="DescriptionCell"><A href="/CommissionGroups/">CommissionGroups</A> object</TD></TR>
+<TR><TD CLASS="mnc">oProductTrees</TD><TD CLASS="DescriptionCell"><A href="/ProductTrees/">ProductTrees</A> object</TD></TR>
+<TR><TD CLASS="mnc">oStockTransfer</TD><TD CLASS="DescriptionCell"><A href="/StockTransfer/">StockTransfer</A> object</TD></TR>
+<TR><TD CLASS="mnc">oWorkOrders</TD><TD CLASS="DescriptionCell"><A href="/WorkOrders/">WorkOrders</A> object</TD></TR>
+<TR><TD CLASS="mnc">oCreditPaymentMethods</TD><TD CLASS="DescriptionCell"><A href="/CreditPaymentMethods/">CreditPaymentMethods</A> object</TD></TR>
+<TR><TD CLASS="mnc">oCreditCardPayments</TD><TD CLASS="DescriptionCell"><A href="/CreditCardPayments/">CreditCardPayments</A> object</TD></TR>
+<TR><TD CLASS="mnc">oAlternateCatNum</TD><TD CLASS="DescriptionCell"><A href="/AlternateCatNum/">AlternateCatNum</A> object</TD></TR>
+<TR><TD CLASS="mnc">oBudget</TD><TD CLASS="DescriptionCell"><A href="/Budget/">Budget</A> object</TD></TR>
+<TR><TD CLASS="mnc">oBudgetDistribution</TD><TD CLASS="DescriptionCell"><A href="/BudgetDistribution/">BudgetDistribution</A> object</TD></TR>
+<TR><TD CLASS="mnc">oMessages</TD><TD CLASS="DescriptionCell"><A href="/Messages/">Messages</A> object</TD></TR>
+<TR><TD CLASS="mnc">oBudgetScenarios</TD><TD CLASS="DescriptionCell"><A href="/BudgetScenarios/">BudgetScenarios</A> object</TD></TR>
+<TR><TD CLASS="mnc">oSalesOpportunities</TD><TD CLASS="DescriptionCell"><A href="/SalesOpportunities/">SalesOpportunities</A> object</TD></TR>
+<TR><TD CLASS="mnc">oUserDefaultGroups</TD><TD CLASS="DescriptionCell"><A href="/UserDefaultGroups/">UserDefaultGroups</A> object</TD></TR>
+<TR><TD CLASS="mnc">oSalesStages</TD><TD CLASS="DescriptionCell"><A href="/SalesStages/">SalesStages</A> object</TD></TR>
+<TR><TD CLASS="mnc">oActivityTypes</TD><TD CLASS="DescriptionCell"><A href="/ActivityTypes/">ActivityTypes</A> object</TD></TR>
+<TR><TD CLASS="mnc">oActivityLocations</TD><TD CLASS="DescriptionCell"><A href="/ActivityLocations/">ActivityLocations</A> object</TD></TR>
+<TR><TD CLASS="mnc">oDrafts</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a draft document (see <A href="/Documents/Creating%20a%20draft%20document%20sample_E/">Creating a draft document sample</A>)</TD></TR>
+<TR><TD CLASS="mnc">oDeductionTaxHierarchies</TD><TD CLASS="DescriptionCell"><A href="/DeductionTaxHierarchies/">DeductionTaxHierarchies</A> object</TD></TR>
+<TR><TD CLASS="mnc">oDeductionTaxGroups</TD><TD CLASS="DescriptionCell"><A href="/DeductionTaxGroups/">DeductionTaxGroups</A> object</TD></TR>
+<TR><TD CLASS="mnc">oAdditionalExpenses</TD><TD CLASS="DescriptionCell"><A href="/AdditionalExpenses/">AdditionalExpenses</A> object</TD></TR>
+<TR><TD CLASS="mnc">oSalesTaxAuthorities</TD><TD CLASS="DescriptionCell"><A href="/SalesTaxAuthorities/">SalesTaxAuthorities</A> object</TD></TR>
+<TR><TD CLASS="mnc">oSalesTaxAuthoritiesTypes</TD><TD CLASS="DescriptionCell"><A href="/SalesTaxAuthoritiesTypes/">SalesTaxAuthoritiesTypes</A> object</TD></TR>
+<TR><TD CLASS="mnc">oSalesTaxCodes</TD><TD CLASS="DescriptionCell"><A href="/SalesTaxCodes/">SalesTaxCodes</A> object</TD></TR>
+<TR><TD CLASS="mnc">oQueryCategories</TD><TD CLASS="DescriptionCell"><A href="/QueryCategories/">QueryCategories</A> object</TD></TR>
+<TR><TD CLASS="mnc">oFactoringIndicators</TD><TD CLASS="DescriptionCell"><A href="/FactoringIndicators/"></A><A href="/FactoringIndicators/">FactoringIndicators</A> object</TD></TR>
+<TR><TD CLASS="mnc">oPaymentsDrafts</TD><TD CLASS="DescriptionCell"><A href="/Payments/">Payments</A> object</TD></TR>
+<TR><TD CLASS="mnc">oAccountSegmentations</TD><TD CLASS="DescriptionCell"><A href="/AccountSegmentations/">AccountSegmentations</A> object</TD></TR>
+<TR><TD CLASS="mnc">oAccountSegmentationCategories</TD><TD CLASS="DescriptionCell"><A href="/AccountSegmentationCategories/">AccountSegmentationCategories</A> object</TD></TR>
+<TR><TD CLASS="mnc">oWarehouseLocations</TD><TD CLASS="DescriptionCell"><A href="/WarehouseLocations /">WarehouseLocations </A>object</TD></TR>
+<TR><TD CLASS="mnc">oForms1099</TD><TD CLASS="DescriptionCell"><A href="/Forms1099/">Forms1099</A> object</TD></TR>
+<TR><TD CLASS="mnc">oInventoryCycles</TD><TD CLASS="DescriptionCell"><A href="/InventoryCycles/">InventoryCycles </A>object</TD></TR>
+<TR><TD CLASS="mnc">oWizardPaymentMethods</TD><TD CLASS="DescriptionCell"><A href="/WizardPaymentMethods/">WizardPaymentMethods</A> object</TD></TR>
+<TR><TD CLASS="mnc">oBPPriorities</TD><TD CLASS="DescriptionCell"><A href="/BPPriorities/">BPPriorities</A> object</TD></TR>
+<TR><TD CLASS="mnc">oDunningLetters</TD><TD CLASS="DescriptionCell"><A href="/DunningLetters/">DunningLetters</A> object</TD></TR>
+<TR><TD CLASS="mnc">oUserFields</TD><TD CLASS="DescriptionCell"><A href="/UserFieldsMD/">UserFieldsMD</A> object</TD></TR>
+<TR><TD CLASS="mnc">oUserTables</TD><TD CLASS="DescriptionCell"><A href="/UserTablesMD/">UserTablesMD</A> object</TD></TR>
+<TR><TD CLASS="mnc">oPickLists</TD><TD CLASS="DescriptionCell"><A href="/PickLists/">PickLists</A> object</TD></TR>
+<TR><TD CLASS="mnc">oPaymentRunExport</TD><TD CLASS="DescriptionCell"><A href="/PaymentRunExport/">PaymentRunExport</A> object</TD></TR>
+<TR><TD CLASS="mnc">oUserQueries</TD><TD CLASS="DescriptionCell"><A href="/UserQueries/">UserQueries</A> object</TD></TR>
+<TR><TD CLASS="mnc">oMaterialRevaluation</TD><TD CLASS="DescriptionCell"><A href="/MaterialRevaluation/">MaterialRevaluation</A> object</TD></TR>
+<TR><TD CLASS="mnc">oCorrectionPurchaseInvoice</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a purchase invoice correction document</TD></TR>
+<TR><TD CLASS="mnc">oCorrectionPurchaseInvoiceReversal</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a reverse purchase invoice correction document</TD></TR>
+<TR><TD CLASS="mnc">oCorrectionInvoice</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a correction invoice document</TD></TR>
+<TR><TD CLASS="mnc">oCorrectionInvoiceReversal</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a reverse invoice correction document</TD></TR>
+<TR><TD CLASS="mnc">oContractTemplates</TD><TD CLASS="DescriptionCell"><A href="/ContractTemplates/">ContractTemplates</A> object</TD></TR>
+<TR><TD CLASS="mnc">oEmployeesInfo</TD><TD CLASS="DescriptionCell"><A href="/EmployeesInfo/">EmployeesInfo</A> object</TD></TR>
+<TR><TD CLASS="mnc">oCustomerEquipmentCards</TD><TD CLASS="DescriptionCell"><A href="/CustomerEquipmentCards/">CustomerEquipmentCards</A> object</TD></TR>
+<TR><TD CLASS="mnc">oWithholdingTaxCodes</TD><TD CLASS="DescriptionCell"><A href="/WithholdingTaxCodes/">WithholdingTaxCodes</A> object</TD></TR>
+<TR><TD CLASS="mnc">oBillOfExchangeTransactions</TD><TD CLASS="DescriptionCell"><A href="/BillOfExchangeTransaction/">BillOfExchangeTransaction</A> object</TD></TR>
+<TR><TD CLASS="mnc">oKnowledgeBaseSolutions</TD><TD CLASS="DescriptionCell"><A href="/KnowledgeBaseSolutions/">KnowledgeBaseSolutions</A> object</TD></TR>
+<TR><TD CLASS="mnc">oServiceContracts</TD><TD CLASS="DescriptionCell"><A href="/ServiceContracts/">ServiceContracts</A> object</TD></TR>
+<TR><TD CLASS="mnc">oServiceCalls</TD><TD CLASS="DescriptionCell"><A href="/ServiceCalls/">ServiceCalls</A> object</TD></TR>
+<TR><TD CLASS="mnc">oUserKeys</TD><TD CLASS="DescriptionCell"><A href="/UserKeysMD/">UserKeysMD</A> object</TD></TR>
+<TR><TD CLASS="mnc">oQueue</TD><TD CLASS="DescriptionCell"><A href="/Queue/">Queue</A> object</TD></TR>
+<TR><TD CLASS="mnc">oSalesForecast</TD><TD CLASS="DescriptionCell"><A href="/SalesForecast/">SalesForecast</A> object</TD></TR>
+<TR><TD CLASS="mnc">oTerritories</TD><TD CLASS="DescriptionCell"><A href="/Territories/">Territories</A> object</TD></TR>
+<TR><TD CLASS="mnc">oIndustries</TD><TD CLASS="DescriptionCell"><A href="/Industries/">Industries</A> object</TD></TR>
+<TR><TD CLASS="mnc">oProductionOrders</TD><TD CLASS="DescriptionCell"><A href="/ProductionOrders/">ProductionOrders</A> object</TD></TR>
+<TR><TD CLASS="mnc">oPackagesTypes</TD><TD CLASS="DescriptionCell"><A href="/PackagesTypes/">PackagesTypes</A> object</TD></TR>
+<TR><TD CLASS="mnc">oUserObjectsMD</TD><TD CLASS="DescriptionCell"><A href="/UserObjectsMD/">UserObjectsMD</A> object</TD></TR>
+<TR><TD CLASS="mnc">oTeams</TD><TD CLASS="DescriptionCell"><A href="/Teams/">Teams</A> object</TD></TR>
+<TR><TD CLASS="mnc">oRelationships</TD><TD CLASS="DescriptionCell"><A href="/Relationships/">Relationships</A> object</TD></TR>
+<TR><TD CLASS="mnc">oUserPermissionTree</TD><TD CLASS="DescriptionCell"><A href="/UserPermissionTree/">UserPermissionTree</A> object</TD></TR>
+<TR><TD CLASS="mnc">oActivityStatus</TD><TD CLASS="DescriptionCell"><A href="/ActivityStatus/">ActivityStatus</A> object</TD></TR>
+<TR><TD CLASS="mnc">oChooseFromList</TD><TD CLASS="DescriptionCell"><A href="/ChooseFromList/">ChooseFromList</A> object</TD></TR>
+<TR><TD CLASS="mnc">oFormattedSearches</TD><TD CLASS="DescriptionCell"><A href="/FormattedSearches/">FormattedSearches </A>object</TD></TR>
+<TR><TD CLASS="mnc">oAttachments2</TD><TD CLASS="DescriptionCell"><A href="/Attachments2/">Attachments2</A> object</TD></TR>
+<TR><TD CLASS="mnc">oUserLanguages</TD><TD CLASS="DescriptionCell"><A href="/UserLanguages/">UserLanguages</A> object</TD></TR>
+<TR><TD CLASS="mnc">oMultiLanguageTranslations</TD><TD CLASS="DescriptionCell"><A href="/MultiLanguageTranslations/">MultiLanguageTranslations</A> object</TD></TR>
+<TR><TD CLASS="mnc">oDynamicSystemStrings</TD><TD CLASS="DescriptionCell"><A href="/DynamicSystemStrings/">DynamicSystemStrings</A> object</TD></TR>
+<TR><TD CLASS="mnc">oHouseBankAccounts</TD><TD CLASS="DescriptionCell"><A href="/HouseBankAccounts/">HouseBankAccounts </A>object</TD></TR>
+<TR><TD CLASS="mnc">oBusinessPlaces</TD><TD CLASS="DescriptionCell"><A href="/BusinessPlaces/">BusinessPlaces</A> object</TD></TR>
+<TR><TD CLASS="mnc">oLocalEra</TD><TD CLASS="DescriptionCell"><A href="/LocalEra/">LocalEra</A> object</TD></TR>
+<TR><TD CLASS="mnc">oSalesTaxInvoice</TD><TD CLASS="DescriptionCell">Sales tax invoice object (see <A href="/TaxInvoices/">TaxInvoices</A> object and <A href="/TaxInvoices/DocType/">DocType</A> property with the valid value <STRONG><EM>botit_Invoice</EM></STRONG>)</TD></TR>
+<TR><TD CLASS="mnc">oPurchaseTaxInvoice</TD><TD CLASS="DescriptionCell">Purchase tax invoice object (see <A href="/TaxInvoices/">TaxInvoices</A> object and <A href="/TaxInvoices/DocType/">DocType</A> property with the valid value <STRONG><EM>botit_Payment</EM></STRONG>)</TD></TR>
+<TR><TD CLASS="mnc">BoRecordset</TD><TD CLASS="DescriptionCell"><A href="/Recordset/">Recordset</A> object</TD></TR>
+<TR><TD CLASS="mnc">BoBridge</TD><TD CLASS="DescriptionCell"><A href="/SBObob/">SBObob</A> object</TD></TR>
+<TR><TD CLASS="mnc">oNotaFiscalUsage</TD><TD CLASS="DescriptionCell"><A href="/NotaFiscalUsage/">NotaFiscalUsage</A> object</TD></TR>
+<TR><TD CLASS="mnc">oNotaFiscalCFOP</TD><TD CLASS="DescriptionCell"><A href="//">NotaFiscalCFOP</A> object</TD></TR>
+<TR><TD CLASS="mnc">oNotaFiscalCST</TD><TD CLASS="DescriptionCell"><A href="/NotaFiscalCST/">NotaFiscalCST</A> object</TD></TR>
+<TR><TD CLASS="mnc">oClosingDateProcedure</TD><TD CLASS="DescriptionCell"><A href="/ClosingDateProcedure/">ClosingDateProcedure</A> object</TD></TR>
+<TR><TD CLASS="mnc">oBusinessPartnerGroups</TD><TD CLASS="DescriptionCell"><A href="/BusinessPartnerGroups/">BusinessPartnerGroups </A>object</TD></TR>
+<TR><TD CLASS="mnc">oBPFiscalRegistryID</TD><TD CLASS="DescriptionCell"><A href="/BPFiscalRegistryID/">BPFiscalRegistryID</A> object</TD></TR>
+<TR><TD CLASS="mnc">oDownPayments</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a down payments document</TD></TR>
+<TR><TD CLASS="mnc">oPurchaseDownPayments</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a purchase down payments document</TD></TR>
+<TR><TD CLASS="mnc">oStockTransferDraft</TD><TD CLASS="DescriptionCell"><A href="/StockTransfer/">StockTransfer</A> draft object</TD></TR>
+<TR><TD CLASS="mnc">oPurchaseQuotations</TD><TD CLASS="DescriptionCell"><A href="/Documents/">Documents</A> object that represents a purchase quotation document</TD></TR>
+<TR><TD CLASS="mnc">oInventoryTransferRequest</TD><TD CLASS="DescriptionCell"><A href="/StockTransfer/">StockTransfer</A> request object</TD></TR>
+<TR><TD CLASS="mnc">oPurchaseRequest</TD><TD CLASS="DescriptionCell"> </TD></TR>
+</TABLE>Object number.</DD>
+<DT><I>PropName</I></DT>
+<DD>Property name of the selected object. </DD>
+<DT><I>Value</I></DT>
+<DD>Value for the specified property. </DD>
+<DT><I>Condition</I></DT>
+<DD><TABLE CLASS="FilteredItemListTable"><TR VALIGN="top"><TH>Value</TH><TH>Description</TH></TR>
+<TR><TD CLASS="mnc">bqc_Equal</TD><TD CLASS="DescriptionCell">The query conditions is set to Equal.</TD></TR>
+<TR><TD CLASS="mnc">bqc_NotEqual</TD><TD CLASS="DescriptionCell">The query conditions is set to Not Equal.</TD></TR>
+<TR><TD CLASS="mnc">bqc_Like</TD><TD CLASS="DescriptionCell">The query conditions is set to Like.</TD></TR>
+</TABLE>Query condition.</DD>
+</DL></div>
+            
+            
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/SBObob/">SBObob Object</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+36.080257415771484' class=related href='/SBObob/BoMoneyPrecisionTypes'> Bo Money Precision Types</a> <em class=comment>BoMoneyPrecisionTypes</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Defines the precision type (number of decimal places, up to 6) for conversion of money (double integer) to string. The precision of each type depends on definitions in SAP Business One. </div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/SBObob> SB Obob</a> <small>SBObob</small> <b>Object</b><br><br><a title='92
+41.080257415771484
+0' class=related href='/SBObob'> SB Obob</a> <em class=comment>SBObob</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The SBObob object is raw data access object that enables you to retrieve information quickly and easily. The returned data is usually a Recordset object that enables data manipulation.
+See SBObob samples.</div><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/SBObob/'>SBObob</a></font><hr><font style=''>Method<br><a class=eli style='max-width:99%;'   href='/SBObob/GetObjectKeyBySingleValue/'>GetObjectKeyBySingleValue</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Money Precision Types' href=/SBObob/BoMoneyPrecisionTypes/ class=eli>BoMoneyPrecisionTypes</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Convert Enum Value To Valid Value' href=/SBObob/ConvertEnumValueToValidValue/ class=eli>ConvertEnumValueToValidValue</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Convert Valid Value To Enum Value' href=/SBObob/ConvertValidValueToEnumValue/ class=eli>ConvertValidValueToEnumValue</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Format   Date To String' href=/SBObob/Format_DateToString/ class=eli>Format_DateToString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Format   Money To String' href=/SBObob/Format_MoneyToString/ class=eli>Format_MoneyToString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Format   String To Date' href=/SBObob/Format_StringToDate/ class=eli>Format_StringToDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Account Segments By Code' href=/SBObob/GetAccountSegmentsByCode/ class=eli>GetAccountSegmentsByCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get BP List' href=/SBObob/GetBPList/ class=eli>GetBPList</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Contact Employees' href=/SBObob/GetContactEmployees/ class=eli>GetContactEmployees</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CPI and FC Rates
+ Get Currency Rate' href=/SBObob/GetCurrencyRate/ class=eli>GetCurrencyRate</a>    <small class='eli s'> ORTT</small></div><div class=sm><a style='min-width:50px;' title='Get Due Date' href=/SBObob/GetDueDate/ class=eli>GetDueDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Ewa Parameters' href=/SBObob/GetEwaParameters/ class=eli>GetEwaParameters</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Field Valid Values' href=/SBObob/GetFieldValidValues/ class=eli>GetFieldValidValues</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Index Rate' href=/SBObob/GetIndexRate/ class=eli>GetIndexRate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Item List' href=/SBObob/GetItemList/ class=eli>GetItemList</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Item Price' href=/SBObob/GetItemPrice/ class=eli>GetItemPrice</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Local Currency' href=/SBObob/GetLocalCurrency/ class=eli>GetLocalCurrency</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Object Key By Single Value' href=/SBObob/GetObjectKeyBySingleValue/ class=eli>GetObjectKeyBySingleValue</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Object Permission' href=/SBObob/GetObjectPermission/ class=eli>GetObjectPermission</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get System Currency' href=/SBObob/GetSystemCurrency/ class=eli>GetSystemCurrency</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get System Permission' href=/SBObob/GetSystemPermission/ class=eli>GetSystemPermission</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Table Field List' href=/SBObob/GetTableFieldList/ class=eli>GetTableFieldList</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Table List' href=/SBObob/GetTableList/ class=eli>GetTableList</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get User List' href=/SBObob/GetUserList/ class=eli>GetUserList</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Valid Value Description' href=/SBObob/GetValidValueDescription/ class=eli>GetValidValueDescription</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Ware House List' href=/SBObob/GetWareHouseList/ class=eli>GetWareHouseList</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Put Ewa Parameters' href=/SBObob/PutEwaParameters/ class=eli>PutEwaParameters</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Set Currency Rate' href=/SBObob/SetCurrencyRate/ class=eli>SetCurrencyRate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Set System Permission' href=/SBObob/SetSystemPermission/ class=eli>SetSystemPermission</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

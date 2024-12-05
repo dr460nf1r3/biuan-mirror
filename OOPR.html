@@ -1,0 +1,371 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OOPR - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#aacc22; color:#ffffea;'><div class=eli2><b>SQL</b> <a href='/sql/Sales Opportunities'> Sales Opportunities</a> / <a href='/sql/Opportunity'> Opportunity</a></div></div><div class=' tit' style='width:50%; background-color:#ffff86; color:#789a00;'><div class=eli2><b>API</b> OOPR /  Sales Opportunities</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #789a00;'  class='titol sm titoltxt'>  <a style='color:#789a00;' href='/OOPR/'> OOPR - Opportunity</a> Table</font><script>
+                    document.title = 'OOPR - Opportunity - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>OpprId</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Sequence No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b>CardCode</b></em></td><td valign=top >BP Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SlpCode</b></em></td><td valign=top >Main Sales Emp.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OSLP title='Sales Employee'>OSLP</a><br><small class=s2>Sales Employee</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CprCode</b></em></td><td valign=top >Contact Person</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OCPR title='Contact Persons'>OCPR</a><br><small class=s2>Contact Persons</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Source</b></em></td><td valign=top >Source</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OOSR title='Information Source'>OOSR</a><br><small class=s2>Information Source</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IntCat1</b></em></td><td valign=top >Interest - Field 1</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OOIN title='Interest'>OOIN</a><br><small class=s2>Interest</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IntCat2</b></em></td><td valign=top >Interest - Field 2</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OOIN title='Interest'>OOIN</a><br><small class=s2>Interest</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IntCat3</b></em></td><td valign=top >Interest - Field 3</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OOIN title='Interest'>OOIN</a><br><small class=s2>Interest</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IntRate</b></em></td><td valign=top >Interest Level</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OOIR title='Interest Level'>OOIR</a><br><small class=s2>Interest Level</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpenDate</b></em></td><td valign=top >Start Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DifType</b></em></td><td valign=top >Closing Type</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>M)  Months<hr>W)  Weeks<hr>D)  Days</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>D</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PredDate</b></em></td><td valign=top >Predicted Closing Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MaxSumLoc</b></em></td><td valign=top >Local Potential Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MaxSumSys</b></em></td><td valign=top >System Potential Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WtSumLoc</b></em></td><td valign=top >Weighted Amount (LC) - Document</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WtSumSys</b></em></td><td valign=top >Weighted Amount (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PrcnProf</b></em></td><td valign=top >Gross Profit %</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SumProfL</b></em></td><td valign=top >Gross Profit Total - Local</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SumProfS</b></em></td><td valign=top >Gross Profit Total - System</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Memo</b></em></td><td valign=top >Remarks</td><td valign=top ><em style='color:#010089;'>Text</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Status</b></em></td><td valign=top >Status</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>O)  Open<hr>L)  Lost<hr>W)  Won</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>O</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StatusRem</b></em></td><td valign=top >Status Remarks</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>30</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Reason</b></em></td><td valign=top >Reason for Closing</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OOFR title='Defect Cause'>OOFR</a><br><small class=s2>Defect Cause</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RealSumLoc</b></em></td><td valign=top >Total Amount - Local</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RealSumSys</b></em></td><td valign=top >Total Amount - System</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RealProfL</b></em></td><td valign=top >Closing Gross Profit - Local</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RealProfS</b></em></td><td valign=top >Closing Gross Profit - System</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CloPrcnt</b></em></td><td valign=top >Closing Percentage</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StepLast</b></em></td><td valign=top >Current Stage No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OOST title='Opportunity Stage'>OOST</a><br><small class=s2>Opportunity Stage</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Transfered</b></em></td><td valign=top >Transferred to next year</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Instance</b></em></td><td valign=top >Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CardName</b></em></td><td valign=top >BP Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CloseDate</b></em></td><td valign=top >Closing Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LastSlp</b></em></td><td valign=top >Last Sales Emp.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OSLP title='Sales Employee'>OSLP</a><br><small class=s2>Sales Employee</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Name</b></em></td><td valign=top >Opportunity Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Territory</b></em></td><td valign=top >Territory</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OTER title='Territories'>OTER</a><br><small class=s2>Territories</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Industry</b></em></td><td valign=top >Industry</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OOND title='Industries'>OOND</a><br><small class=s2>Industries</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ChnCrdCode</b></em></td><td valign=top >BP Channel Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ChnCrdName</b></em></td><td valign=top >BP Channel Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PrjCode</b></em></td><td valign=top >Project Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/OPRJ title='Project Codes'>OPRJ</a><br><small class=s2>Project Codes</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CardGroup</b></em></td><td valign=top >BP Group</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ChnCrdCon</b></em></td><td valign=top >BP Channel Contact</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OCPR title='Contact Persons'>OCPR</a><br><small class=s2>Contact Persons</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Owner</b></em></td><td valign=top >Data Ownership field</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OHEM title='Employees'>OHEM</a><br><small class=s2>Employees</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>attachment</b></em></td><td valign=top >Attachments</td><td valign=top ><em style='color:#010089;'>Text</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocType</b></em></td><td valign=top >Linked Document Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr>-1) <hr>23)  Quotations<hr>17)  Sales Orders<hr>15)  Delivery Notes<hr>13)  Sales Invoices<hr>540000006)  Purchase Quotations<hr>22)  Purchase Orders<hr>20)  Goods Receipt POs<hr>18)  Purchase Invoices</div></td><td valign=top class=nomobile>9</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocNum</b></em></td><td valign=top >Linked Document Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocEntry</b></em></td><td valign=top >Linked Document Entry</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DocChkbox</b></em></td><td valign=top >Document Checkbox</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AtcEntry</b></em></td><td valign=top >Attachment Entry</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign2</b></em></td><td valign=top >Updating User</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UpdateDate</b></em></td><td valign=top >Update Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OpprType</b></em></td><td valign=top >Opportunity Type</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>R)  Sales<hr>P)  Purchasing</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>R</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OOPR', font: { multi: true }, label: 'OOPR', title: ''},{id: 'ACP1', font: { multi: true }, label: '<b>ACP1</b>', title:'Campaign - BPs'},{id: 'CPN1', font: { multi: true }, label: '<b>CPN1</b>', title:'Campaign - BPs'},{id: 'OPR1', font: { multi: true }, label: '<b>OPR1</b>', title:'Opportunity - Rows'},{id: 'OCRD', font: { multi: true }, label: 'OCRD', title: 'Business Partner'},{id: 'OCPR', font: { multi: true }, label: 'OCPR', title: 'Contact Persons'},{id: 'OOND', font: { multi: true }, label: 'OOND', title: 'Industries'},{id: 'OOIN', font: { multi: true }, label: 'OOIN', title: 'Interest'},{id: 'OOIR', font: { multi: true }, label: 'OOIR', title: 'Interest Level'},{id: 'OSLP', font: { multi: true }, label: 'OSLP', title: 'Sales Employee'},{id: 'OHEM', font: { multi: true }, label: 'OHEM', title: 'Employees'},{id: 'OPRJ', font: { multi: true }, label: 'OPRJ', title: 'Project Codes'},{id: 'OOFR', font: { multi: true }, label: 'OOFR', title: 'Defect Cause'},{id: 'OOSR', font: { multi: true }, label: 'OOSR', title: 'Information Source'},{id: 'OOST', font: { multi: true }, label: 'OOST', title: 'Opportunity Stage'},{id: 'OTER', font: { multi: true }, label: 'OTER', title: 'Territories'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OOPR', to: 'ACP1', arrows:'from'}, {from: 'OOPR', to: 'CPN1', arrows:'from'}, {from: 'OOPR', to: 'OPR1', arrows:'from'}, {from: 'OCRD', to: 'OOPR', arrows:'from'}, {from: 'OCPR', to: 'OOPR', arrows:'from'}, {from: 'OOND', to: 'OOPR', arrows:'from'}, {from: 'OOIN', to: 'OOPR', arrows:'from'}, {from: 'OOIR', to: 'OOPR', arrows:'from'}, {from: 'OSLP', to: 'OOPR', arrows:'from'}, {from: 'OHEM', to: 'OOPR', arrows:'from'}, {from: 'OPRJ', to: 'OOPR', arrows:'from'}, {from: 'OOFR', to: 'OOPR', arrows:'from'}, {from: 'OOSR', to: 'OOPR', arrows:'from'}, {from: 'OOST', to: 'OOPR', arrows:'from'}, {from: 'OTER', to: 'OOPR', arrows:'from'}, {from: 'OUSR', to: 'OOPR', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OOPR.OpprId AS 'Sequence No.', 
+   OOPR.CardCode AS 'BP Code', 
+   OOPR.SlpCode AS 'Main Sales Emp.', 
+   OOPR.CprCode AS 'Contact Person', 
+   OOPR.Source AS 'Source', 
+   OOPR.IntCat1 AS 'Interest - Field 1', 
+   OOPR.IntCat2 AS 'Interest - Field 2', 
+   OOPR.IntCat3 AS 'Interest - Field 3', 
+   OOPR.IntRate AS 'Interest Level', 
+   OOPR.OpenDate AS 'Start Date', 
+   OOPR.DifType AS 'Closing Type', 
+   OOPR.PredDate AS 'Predicted Closing Date', 
+   OOPR.MaxSumLoc AS 'Local Potential Amount', 
+   OOPR.MaxSumSys AS 'System Potential Amount', 
+   OOPR.WtSumLoc AS 'Weighted Amount (LC) - Document', 
+   OOPR.WtSumSys AS 'Weighted Amount (SC)', 
+   OOPR.PrcnProf AS 'Gross Profit %', 
+   OOPR.SumProfL AS 'Gross Profit Total - Local', 
+   OOPR.SumProfS AS 'Gross Profit Total - System', 
+   OOPR.Memo AS 'Remarks', 
+   OOPR.Status AS 'Status', 
+   OOPR.StatusRem AS 'Status Remarks', 
+   OOPR.Reason AS 'Reason for Closing', 
+   OOPR.RealSumLoc AS 'Total Amount - Local', 
+   OOPR.RealSumSys AS 'Total Amount - System', 
+   OOPR.RealProfL AS 'Closing Gross Profit - Local', 
+   OOPR.RealProfS AS 'Closing Gross Profit - System', 
+   OOPR.CloPrcnt AS 'Closing Percentage', 
+   OOPR.StepLast AS 'Current Stage No.', 
+   OOPR.UserSign AS 'User Signature', 
+   OOPR.Transfered AS 'Transferred to next year', 
+   OOPR.Instance AS 'Instance', 
+   OOPR.CardName AS 'BP Name', 
+   OOPR.CloseDate AS 'Closing Date', 
+   OOPR.LastSlp AS 'Last Sales Emp.', 
+   OOPR.Name AS 'Opportunity Name', 
+   OOPR.Territory AS 'Territory', 
+   OOPR.Industry AS 'Industry', 
+   OOPR.ChnCrdCode AS 'BP Channel Code', 
+   OOPR.ChnCrdName AS 'BP Channel Name', 
+   OOPR.PrjCode AS 'Project Code', 
+   OOPR.CardGroup AS 'BP Group', 
+   OOPR.ChnCrdCon AS 'BP Channel Contact', 
+   OOPR.Owner AS 'Data Ownership field', 
+   OOPR.attachment AS 'Attachments', 
+   OOPR.DocType AS 'Linked Document Type', 
+   OOPR.DocNum AS 'Linked Document Number', 
+   OOPR.DocEntry AS 'Linked Document Entry', 
+   OOPR.DocChkbox AS 'Document Checkbox', 
+   OOPR.AtcEntry AS 'Attachment Entry', 
+   OOPR.LogInstanc AS 'Log Instance', 
+   OOPR.UserSign2 AS 'Updating User', 
+   OOPR.UpdateDate AS 'Update Date', 
+   OOPR.OpprType AS 'Opportunity Type'
+FROM OOPR AS OOPR</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+215.68457221984863
+0' class=related href='/SalesOpportunities'> Sales Opportunities</a> <em class=comment>SalesOpportunities</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OOPR/ >OOPR</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>SalesOpportunities is a business object that represents the sales opportunities data in SAP Business One. Sales opportunities include potential sale volumes that may arise from business with customers and interested parties.
+This object enables...</div><br><a href=/OOPR class=related></a> <em class=comment>OOPR</em> <b>SQL Table</b><br><br><a href=/OCRD class=related>Business Partner</a> <em class=comment>OCRD</em> <b>SQL Table</b><br><br><a href=/OCPR class=related>Contact Persons</a> <em class=comment>OCPR</em> <b>SQL Table</b><br><br><a href=/OOND class=related>Industries</a> <em class=comment>OOND</em> <b>SQL Table</b><br><br><a href=/OOIN class=related>Interest</a> <em class=comment>OOIN</em> <b>SQL Table</b><br><br><a href=/OOIR class=related>Interest Level</a> <em class=comment>OOIR</em> <b>SQL Table</b><br><br><a href=/OSLP class=related>Sales Employee</a> <em class=comment>OSLP</em> <b>SQL Table</b><br><br><a href=/OHEM class=related>Employees</a> <em class=comment>OHEM</em> <b>SQL Table</b><br><br><a href=/OPRJ class=related>Project Codes</a> <em class=comment>OPRJ</em> <b>SQL Table</b><br><br><a href=/OOFR class=related>Defect Cause</a> <em class=comment>OOFR</em> <b>SQL Table</b><br><br><a href=/OOSR class=related>Information Source</a> <em class=comment>OOSR</em> <b>SQL Table</b><br><br><a href=/OOST class=related>Opportunity Stage</a> <em class=comment>OOST</em> <b>SQL Table</b><br><br><a href=/OTER class=related>Territories</a> <em class=comment>OTER</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/SalesOpportunities/'>SalesOpportunities</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo So Closed In Types' href=/SalesOpportunities/BoSoClosedInTypes/ class=eli>BoSoClosedInTypes</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo So Os Status' href=/SalesOpportunities/BoSoOsStatus/ class=eli>BoSoOsStatus</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Opportunity Type Enum' href=/SalesOpportunities/OpportunityTypeEnum/ class=eli>OpportunityTypeEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/SalesOpportunities/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Close' href=/SalesOpportunities/Close/ class=eli>Close</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/SalesOpportunities/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/SalesOpportunities/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/SalesOpportunities/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/SalesOpportunities/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/SalesOpportunities/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/SalesOpportunities/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Opportunity - Competitors
+ Sales Opportunities Competition' href=/SalesOpportunities/SalesOpportunitiesCompetition/ class=eli>SalesOpportunitiesCompetition</a>    <small class='eli s'> OPR3</small></div><div class=sm><a style='min-width:50px;' title='Opportunity - Interests
+ Sales Opportunities Interests' href=/SalesOpportunities/SalesOpportunitiesInterests/ class=eli>SalesOpportunitiesInterests</a>    <small class='eli s'> OPR4</small></div><div class=sm><a style='min-width:50px;' title='Opportunity - Rows
+ Sales Opportunities Lines' href=/SalesOpportunities/SalesOpportunitiesLines/ class=eli>SalesOpportunitiesLines</a>    <small class='eli s'> OPR1</small></div><div class=sm><a style='min-width:50px;' title='Opportunity - Partners
+ Sales Opportunities Partners' href=/SalesOpportunities/SalesOpportunitiesPartners/ class=eli>SalesOpportunitiesPartners</a>    <small class='eli s'> OPR2</small></div><div class=sm><a style='min-width:50px;' title='Opportunity - Reasons
+ Sales Opportunities Reasons' href=/SalesOpportunities/SalesOpportunitiesReasons/ class=eli>SalesOpportunitiesReasons</a>    <small class='eli s'> OPR5</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Attachment Entry' href=/SalesOpportunities/AttachmentEntry/ class=eli>AttachmentEntry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BP Chanel Code' href=/SalesOpportunities/BPChanelCode/ class=eli>BPChanelCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BP Chanel Name' href=/SalesOpportunities/BPChanelName/ class=eli>BPChanelName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BP Channel Contact' href=/SalesOpportunities/BPChannelContact/ class=eli>BPChannelContact</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/SalesOpportunities/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Card Code' href=/SalesOpportunities/CardCode/ class=eli>CardCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Closing Date' href=/SalesOpportunities/ClosingDate/ class=eli>ClosingDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Closing Gross Profit Local' href=/SalesOpportunities/ClosingGrossProfitLocal/ class=eli>ClosingGrossProfitLocal</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Closing Gross Profit System' href=/SalesOpportunities/ClosingGrossProfitSystem/ class=eli>ClosingGrossProfitSystem</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Closing Percentage' href=/SalesOpportunities/ClosingPercentage/ class=eli>ClosingPercentage</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Closing Type' href=/SalesOpportunities/ClosingType/ class=eli>ClosingType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Competition' href=/SalesOpportunities/Competition/ class=eli>Competition</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Contact Person' href=/SalesOpportunities/ContactPerson/ class=eli>ContactPerson</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Current Stage No' href=/SalesOpportunities/CurrentStageNo/ class=eli>CurrentStageNo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Current Stage Number' href=/SalesOpportunities/CurrentStageNumber/ class=eli>CurrentStageNumber</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customer Name' href=/SalesOpportunities/CustomerName/ class=eli>CustomerName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Data Ownershipfield' href=/SalesOpportunities/DataOwnershipfield/ class=eli>DataOwnershipfield</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Document Checkbox' href=/SalesOpportunities/DocumentCheckbox/ class=eli>DocumentCheckbox</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Gross Profit' href=/SalesOpportunities/GrossProfit/ class=eli>GrossProfit</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Gross Profit Total Local' href=/SalesOpportunities/GrossProfitTotalLocal/ class=eli>GrossProfitTotalLocal</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Gross Profit Total System' href=/SalesOpportunities/GrossProfitTotalSystem/ class=eli>GrossProfitTotalSystem</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Industry' href=/SalesOpportunities/Industry/ class=eli>Industry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Interest Field 1' href=/SalesOpportunities/InterestField1/ class=eli>InterestField1</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Interest Field 2' href=/SalesOpportunities/InterestField2/ class=eli>InterestField2</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Interest Field 3' href=/SalesOpportunities/InterestField3/ class=eli>InterestField3</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Interest Level' href=/SalesOpportunities/InterestLevel/ class=eli>InterestLevel</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Interests' href=/SalesOpportunities/Interests/ class=eli>Interests</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Lines' href=/SalesOpportunities/Lines/ class=eli>Lines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Linked Document Number' href=/SalesOpportunities/LinkedDocumentNumber/ class=eli>LinkedDocumentNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Linked Document Type' href=/SalesOpportunities/LinkedDocumentType/ class=eli>LinkedDocumentType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Max Local Total' href=/SalesOpportunities/MaxLocalTotal/ class=eli>MaxLocalTotal</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Max System Total' href=/SalesOpportunities/MaxSystemTotal/ class=eli>MaxSystemTotal</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Opportunity Name' href=/SalesOpportunities/OpportunityName/ class=eli>OpportunityName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Opportunity Type' href=/SalesOpportunities/OpportunityType/ class=eli>OpportunityType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Partners' href=/SalesOpportunities/Partners/ class=eli>Partners</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Predicted Closing Date' href=/SalesOpportunities/PredictedClosingDate/ class=eli>PredictedClosingDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Project Code' href=/SalesOpportunities/ProjectCode/ class=eli>ProjectCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reason For Closing' href=/SalesOpportunities/ReasonForClosing/ class=eli>ReasonForClosing</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reasons' href=/SalesOpportunities/Reasons/ class=eli>Reasons</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remarks' href=/SalesOpportunities/Remarks/ class=eli>Remarks</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sales Person' href=/SalesOpportunities/SalesPerson/ class=eli>SalesPerson</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sequential No' href=/SalesOpportunities/SequentialNo/ class=eli>SequentialNo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Source' href=/SalesOpportunities/Source/ class=eli>Source</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Start Date' href=/SalesOpportunities/StartDate/ class=eli>StartDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Status' href=/SalesOpportunities/Status/ class=eli>Status</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Status Remarks' href=/SalesOpportunities/StatusRemarks/ class=eli>StatusRemarks</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Territory' href=/SalesOpportunities/Territory/ class=eli>Territory</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Total Amoun System' href=/SalesOpportunities/TotalAmounSystem/ class=eli>TotalAmounSystem</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Total Amount Local' href=/SalesOpportunities/TotalAmountLocal/ class=eli>TotalAmountLocal</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/SalesOpportunities/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Signature' href=/SalesOpportunities/UserSignature/ class=eli>UserSignature</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Weighted Sum LC' href=/SalesOpportunities/WeightedSumLC/ class=eli>WeightedSumLC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Weighted Sum SC' href=/SalesOpportunities/WeightedSumSC/ class=eli>WeightedSumSC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

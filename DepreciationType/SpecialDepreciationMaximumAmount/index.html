@@ -1,0 +1,312 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>DepreciationType SpecialDepreciationMaximumAmount - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#11aabb; color:#d9ffff;'><div class=eli2><b>SQL</b> <a href='/sql/Finance'> Finance</a> / <a href='/sql/Fixed Assets Depreciation Types'> Fixed Assets Depreciation Types</a></div></div><div class=' tit' style='width:50%; background-color:#75ffff; color:#007889;'><div class=eli2><b>API</b> Depreciation Type /  Special Depreciation Maximum Amount</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #007889;' > <a style='text-decoration:none; color:#007889;' title='92
+1174.9529876708984
+68.1578598022461' href='/DepreciationType/SpecialDepreciationMaximumAmount/'> Special Depreciation Maximum Amount</a> Property</div><script>
+                        document.title = 'SpecialDepreciationMaximumAmount -  Fixed Assets Depreciation Types - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P>The maximum depreciation amount allowed in addition to the normal depreciation. The maximum amount is an alternative to the maximum percentage.</P>
+<P>Field name: <EM>spMaxAmnt.</EM></P></div>
+            <h2 class="heading"><span  tabindex="0"><img id="propertytypeToggle"  src="/images/1x1.png"></img>Property type</span></h2><div id="propertytypeSection" class="section" >Read-write property</div>
+            <h2 class="heading"><span  tabindex="0"><img id="syntaxToggle"  src="/images/1x1.png"></img>Syntax</span></h2><div id="syntaxSection" class="section" ><DIV  id=Syntax_VB><table   cellpadding="0" cellspacing="0"><tr><th>Visual Basic</th></tr><tr><td><pre><PRE class=" vbs hljs" class=" vbs hljs">Public Property <a style='color:inherit;' href=/DepreciationType/SpecialDepreciationMaximumAmount/>SpecialDepreciationMaximumAmount</a>() As Double</PRE></pre></tr></table></div></div>
+            
+            
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/DepreciationType/">DepreciationType Object</a>
+</p>
+</p></div>
+        </div>
+        <div class=dblink><h2>Database information </h2><li>Field: <em>spMaxAmnt</em></li><li>Description: Maximum Amount</li><li>Type: <strong>Num</strong></li><li>Size: <em>20</em></li><li>Table: <em><a href=/ODTP/>ODTP</a></em> Fixed Assets Depreciation Types</li><li>Position: <em>38</em></li></div><div style='clear:both;'></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/DepreciationLevelCollection'> Depreciation Level Collection</a> <em class=comment>DepreciationLevelCollection</em> <b>Collection</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>A collection of DepreciationLevel objects.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/AcquisitionPeriodControlEnum'> Acquisition Period Control Enum</a> <em class=comment>AcquisitionPeriodControlEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specify how the acquisition of an asset determines the asset's depreciation start date.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/AcquisitionProRataTypeEnum'> Acquisition Pro Rata Type Enum</a> <em class=comment>AcquisitionProRataTypeEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specify one of the PR Temporis Type to determine the depreciation start date.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/CalculationBaseEnum'> Calculation Base Enum</a> <em class=comment>CalculationBaseEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The base with which you want to calculate the depreciation of assets.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/DepreciationMethodEnum'> Depreciation Method Enum</a> <em class=comment>DepreciationMethodEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The depreciation method of the asset.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/RetirementPeriodControlEnum'> Retirement Period Control Enum</a> <em class=comment>RetirementPeriodControlEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specify how an asset's retirement affects the asset's depreciation.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/RetirementProRataTypeEnum'> Retirement Pro Rata Type Enum</a> <em class=comment>RetirementProRataTypeEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specify one of the PR Temporis Type to determine the depreciation end date.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/SpecialDepreciationCalculationMethodEnum'> Special Depreciation Calculation Method Enum</a> <em class=comment>SpecialDepreciationCalculationMethodEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The calculation method of special depreciation.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/SpecialDepreciationMaximumFlagEnum'> Special Depreciation Maximum Flag Enum</a> <em class=comment>SpecialDepreciationMaximumFlagEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>To optimize depreciation from a tax point of view, you can split the concession period into multiple sub-periods and freely distribute the maximum percentage over these periods.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/StraightLineCalculationMethodEnum'> Straight Line Calculation Method Enum</a> <em class=comment>StraightLineCalculationMethodEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The calculation method of the straight line period control depreciation method.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/StraightLinePeriodControlDepreciationPeriodsEnum'> Straight Line Period Control Depreciation Periods Enum</a> <em class=comment>StraightLinePeriodControlDepreciationPeriodsEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The depreciation period of the straight line period control depreciation method.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/SubsequentAcquisitionPeriodControlEnum'> Subsequent Acquisition Period Control Enum</a> <em class=comment>SubsequentAcquisitionPeriodControlEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specify how an asset's subsequent acquisition affects the asset's depreciation.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/SubsequentAcquisitionProRataTypeEnum'> Subsequent Acquisition Pro Rata Type Enum</a> <em class=comment>SubsequentAcquisitionProRataTypeEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specify one of the PR Temporis Type to determine the depreciation start date.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/TransferSourcePeriodControlEnum'> Transfer Source Period Control Enum</a> <em class=comment>TransferSourcePeriodControlEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'></div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/TransferSourceProRataTypeEnum'> Transfer Source Pro Rata Type Enum</a> <em class=comment>TransferSourceProRataTypeEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'></div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/TransferTargetPeriodControlEnum'> Transfer Target Period Control Enum</a> <em class=comment>TransferTargetPeriodControlEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'></div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+515
+68.1578598022461' class=related href='/DepreciationType/TransferTargetProRataTypeEnum'> Transfer Target Pro Rata Type Enum</a> <em class=comment>TransferTargetProRataTypeEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'></div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationType> Depreciation Type</a> <small>DepreciationType</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br><br><a title='92
+73.1578598022461
+0' class=related href='/DepreciationTypesService/DepreciationType'> Depreciation Type</a> <em class=comment>DepreciationType</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>In SAP Business One, you can use depreciation types to define different depreciation calculation methods for your fixed assets.
+After you create a depreciation type, you can assign it to a specific depreciation area of an asset class. Then, by...</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/DepreciationTypesService> Depreciation Types Service</a> <small>DepreciationTypesService</small> <b>Service</b>&middot; <font class=grey>Table:</font> <span><a href=/ODTP/ >ODTP</a> </span><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/DepreciationType/'>DepreciationType</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/DepreciationType/SpecialDepreciationMaximumAmount/'>SpecialDepreciationMaximumAmount</a></font><hr><br><b>Collection</b><br><div class=sm><a style='min-width:50px;' title='Depreciation Level Collection' href=/DepreciationType/DepreciationLevelCollection/ class=eli>DepreciationLevelCollection</a>    <small class='eli s'> </small></div><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Acquisition Period Control Enum' href=/DepreciationType/AcquisitionPeriodControlEnum/ class=eli>AcquisitionPeriodControlEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Acquisition Pro Rata Type Enum' href=/DepreciationType/AcquisitionProRataTypeEnum/ class=eli>AcquisitionProRataTypeEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Calculation Base Enum' href=/DepreciationType/CalculationBaseEnum/ class=eli>CalculationBaseEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Depreciation Method Enum' href=/DepreciationType/DepreciationMethodEnum/ class=eli>DepreciationMethodEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Retirement Period Control Enum' href=/DepreciationType/RetirementPeriodControlEnum/ class=eli>RetirementPeriodControlEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Retirement Pro Rata Type Enum' href=/DepreciationType/RetirementProRataTypeEnum/ class=eli>RetirementProRataTypeEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Special Depreciation Calculation Method Enum' href=/DepreciationType/SpecialDepreciationCalculationMethodEnum/ class=eli>SpecialDepreciationCalculationMethodEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Special Depreciation Maximum Flag Enum' href=/DepreciationType/SpecialDepreciationMaximumFlagEnum/ class=eli>SpecialDepreciationMaximumFlagEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Straight Line Calculation Method Enum' href=/DepreciationType/StraightLineCalculationMethodEnum/ class=eli>StraightLineCalculationMethodEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Straight Line Period Control Depreciation Periods Enum' href=/DepreciationType/StraightLinePeriodControlDepreciationPeriodsEnum/ class=eli>StraightLinePeriodControlDepreciationPeriodsEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Subsequent Acquisition Period Control Enum' href=/DepreciationType/SubsequentAcquisitionPeriodControlEnum/ class=eli>SubsequentAcquisitionPeriodControlEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Subsequent Acquisition Pro Rata Type Enum' href=/DepreciationType/SubsequentAcquisitionProRataTypeEnum/ class=eli>SubsequentAcquisitionProRataTypeEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Source Period Control Enum' href=/DepreciationType/TransferSourcePeriodControlEnum/ class=eli>TransferSourcePeriodControlEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Source Pro Rata Type Enum' href=/DepreciationType/TransferSourceProRataTypeEnum/ class=eli>TransferSourceProRataTypeEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Target Period Control Enum' href=/DepreciationType/TransferTargetPeriodControlEnum/ class=eli>TransferTargetPeriodControlEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Target Pro Rata Type Enum' href=/DepreciationType/TransferTargetProRataTypeEnum/ class=eli>TransferTargetProRataTypeEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='From XML File' href=/DepreciationType/FromXMLFile/ class=eli>FromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From XML String' href=/DepreciationType/FromXMLString/ class=eli>FromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XML Schema' href=/DepreciationType/GetXMLSchema/ class=eli>GetXMLSchema</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML File' href=/DepreciationType/ToXMLFile/ class=eli>ToXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML String' href=/DepreciationType/ToXMLString/ class=eli>ToXMLString</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Acquisition Period Control' href=/DepreciationType/AcquisitionPeriodControl/ class=eli>AcquisitionPeriodControl</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Acquisition Pro Rata Type' href=/DepreciationType/AcquisitionProRataType/ class=eli>AcquisitionProRataType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Calculation Base' href=/DepreciationType/CalculationBase/ class=eli>CalculationBase</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Code' href=/DepreciationType/Code/ class=eli>Code</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Declining Change To' href=/DepreciationType/DecliningChangeTo/ class=eli>DecliningChangeTo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Declining Factor' href=/DepreciationType/DecliningFactor/ class=eli>DecliningFactor</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Declining Percentage' href=/DepreciationType/DecliningPercentage/ class=eli>DecliningPercentage</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Delta Coefficient' href=/DepreciationType/DeltaCoefficient/ class=eli>DeltaCoefficient</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Depreciation End At Last Full Year' href=/DepreciationType/DepreciationEndAtLastFullYear/ class=eli>DepreciationEndAtLastFullYear</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Depreciation Level Collection' href=/DepreciationType/DepreciationLevelCollection/ class=eli>DepreciationLevelCollection</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Depreciation Method' href=/DepreciationType/DepreciationMethod/ class=eli>DepreciationMethod</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Depreciation Type Pool' href=/DepreciationType/DepreciationTypePool/ class=eli>DepreciationTypePool</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Description' href=/DepreciationType/Description/ class=eli>Description</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Factor Only Relevant To First Fiscal Year' href=/DepreciationType/FactorOnlyRelevantToFirstFiscalYear/ class=eli>FactorOnlyRelevantToFirstFiscalYear</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include Previous Depreciation In Capitalization Period' href=/DepreciationType/IncludePreviousDepreciationInCapitalizationPeriod/ class=eli>IncludePreviousDepreciationInCapitalizationPeriod</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Include Salvage In Depreciation' href=/DepreciationType/IncludeSalvageInDepreciation/ class=eli>IncludeSalvageInDepreciation</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Manual Depreciation Reduce Depreciation Base' href=/DepreciationType/ManualDepreciationReduceDepreciationBase/ class=eli>ManualDepreciationReduceDepreciationBase</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Maximum Depreciable Value' href=/DepreciationType/MaximumDepreciableValue/ class=eli>MaximumDepreciableValue</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Minimum Depreciated Value' href=/DepreciationType/MinimumDepreciatedValue/ class=eli>MinimumDepreciatedValue</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Percentage Of Depreciation Reversed In Retirement Year' href=/DepreciationType/PercentageOfDepreciationReversedInRetirementYear/ class=eli>PercentageOfDepreciationReversedInRetirementYear</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Retirement Period Control' href=/DepreciationType/RetirementPeriodControl/ class=eli>RetirementPeriodControl</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Retirement Pro Rata Type' href=/DepreciationType/RetirementProRataType/ class=eli>RetirementProRataType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Round Year End Book Value' href=/DepreciationType/RoundYearEndBookValue/ class=eli>RoundYearEndBookValue</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Salvage Percentage' href=/DepreciationType/SalvagePercentage/ class=eli>SalvagePercentage</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Special Depreciation Alternative Depreciation' href=/DepreciationType/SpecialDepreciationAlternativeDepreciation/ class=eli>SpecialDepreciationAlternativeDepreciation</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Special Depreciation Calculation Method' href=/DepreciationType/SpecialDepreciationCalculationMethod/ class=eli>SpecialDepreciationCalculationMethod</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Special Depreciation Concession Period Years' href=/DepreciationType/SpecialDepreciationConcessionPeriodYears/ class=eli>SpecialDepreciationConcessionPeriodYears</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Special Depreciation Maximum Amount' href=/DepreciationType/SpecialDepreciationMaximumAmount/ class=eli>SpecialDepreciationMaximumAmount</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Special Depreciation Maximum Flag' href=/DepreciationType/SpecialDepreciationMaximumFlag/ class=eli>SpecialDepreciationMaximumFlag</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Special Depreciation Maximum Percentage' href=/DepreciationType/SpecialDepreciationMaximumPercentage/ class=eli>SpecialDepreciationMaximumPercentage</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Special Depreciation Normal Depreciation' href=/DepreciationType/SpecialDepreciationNormalDepreciation/ class=eli>SpecialDepreciationNormalDepreciation</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Straight Line Calculation Method' href=/DepreciationType/StraightLineCalculationMethod/ class=eli>StraightLineCalculationMethod</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Straight Line Percentage' href=/DepreciationType/StraightLinePercentage/ class=eli>StraightLinePercentage</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Straight Line Period Control Depreciation Periods' href=/DepreciationType/StraightLinePeriodControlDepreciationPeriods/ class=eli>StraightLinePeriodControlDepreciationPeriods</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Straight Line Period Control Factor' href=/DepreciationType/StraightLinePeriodControlFactor/ class=eli>StraightLinePeriodControlFactor</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Subsequent Acquisition Period Control' href=/DepreciationType/SubsequentAcquisitionPeriodControl/ class=eli>SubsequentAcquisitionPeriodControl</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Subsequent Acquisition Pro Rata Type' href=/DepreciationType/SubsequentAcquisitionProRataType/ class=eli>SubsequentAcquisitionProRataType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Source Period Control' href=/DepreciationType/TransferSourcePeriodControl/ class=eli>TransferSourcePeriodControl</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Source Pro Rata Type' href=/DepreciationType/TransferSourceProRataType/ class=eli>TransferSourceProRataType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Target Period Control' href=/DepreciationType/TransferTargetPeriodControl/ class=eli>TransferTargetPeriodControl</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Target Pro Rata Type' href=/DepreciationType/TransferTargetProRataType/ class=eli>TransferTargetProRataType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Valid From' href=/DepreciationType/ValidFrom/ class=eli>ValidFrom</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Valid To' href=/DepreciationType/ValidTo/ class=eli>ValidTo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

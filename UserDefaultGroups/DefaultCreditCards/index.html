@@ -1,0 +1,345 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>UserDefaultGroups DefaultCreditCards - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Administration'> Administration</a> / <a href='/sql/User Defaults'> User Defaults</a> / <a href='/sql/User Defaults - Credit Cards'>User Defaults - Credit Cards</a></div></div><div class=' tit' style='width:33%; background-color:#44efeb; color:#008b87;'><div class=eli2><b>DTW</b> Administration /  Setup /  General /  User Default Groups / User Defaults - Credit Cards</div></div><div class=' tit' style='width:33%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> User Default Groups /  Default Credit Cards</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #008b87;' > <a style='text-decoration:none; color:#008b87;' title='92
+1184.936378479004
+63.619384765625' href='/UserDefaultGroups/DefaultCreditCards/'> Default Credit Cards</a> Object</div><script>
+                        document.title = 'DefaultCreditCards -  User Default Groups - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P>The <STRONG>DefaultCreditCards</STRONG> is a child object of the <A href="/UserDefaultGroups/">UserDefaultGroups</A> object. It enables to link G/L accounts to credit card codes.</P>
+<P>Source table: <A href="/UDG2/">UDG2</A>.</P></div>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Object Model</span></h2><div class="oms" class="section" ><TABLE CELLSPACING=0 CELLPADDING=0 BORDER=0><TR><TD >
+<a href="/DefaultCreditCards/">DefaultCreditCards</a><br><img src="/images/parchild.gif" border=0><a href="/UserFields/">UserFields</a><br><img src="/images/space.gif" border=0><img src="/images/parchild.gif" border=0><a href="/Fields/">Fields</a><br><img src="/images/space.gif" border=0><img src="/images/space.gif" border=0><img src="/images/parchild.gif" border=0><a href="/Field/">Field</a><br><img src="/images/space.gif" border=0><img src="/images/space.gif" border=0><img src="/images/space.gif" border=0><img src="/images/parchild.gif" border=0><a href="/ValidValues/">ValidValues</a><img src="/images/paracros.gif" border=0><a href="/ValidValue/">ValidValue</a>
+</TD></TABLE>
+</div>
+            <h2 class="heading"><span  tabindex="0"><img id="remarksToggle"  src="/images/1x1.png"></img>Remarks</span></h2><div class="remarksSection" class="section" ><P>To display the form in the application:</P>
+<OL>
+<LI>Select <EM>Administration --&gt;Setup --&gt;General --&gt;Users</EM>. 
+<LI>From the <EM>Defaults</EM> field, click the <EM>Choose From List</EM> button. 
+<LI>In the <EM>List of User Defaults</EM>, click the <EM>New</EM> button. </LI>
+<LI>In the <EM>User Defaults</EM> form, select the <EM>Credit Cards</EM> tab.</LI></OL></div>
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/DefaultCreditCards/">DefaultCreditCards Members</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div><div><h2>SAP® B1 DI-API C# definition</h2><div class='cs hljs'>public class <a style='color:inherit;' href=/UserDefaultGroups/DefaultCreditCards/>DefaultCreditCards</a>Class : IDefaultCreditCards, <a style='color:inherit;' href=/UserDefaultGroups/DefaultCreditCards/>DefaultCreditCards</a>
+  { 
+    public virtual string <a style='color:inherit;' href=/DefaultCreditCards/Code/>Code</a>
+    { 
+      get;
+    } 
+    public virtual int <a style='color:inherit;' href=/DefaultCreditCards/Count/>Count</a>
+    { 
+      get;
+    } 
+    public virtual string <a style='color:inherit;' href=/DefaultCreditCards/CreditAccountCode/>CreditAccountCode</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/DefaultCreditCards/CreditCardCode/>CreditCardCode</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual SAPbobsCOM.<a style='color:inherit;' href=/DefaultCreditCards/UserFields/>UserFields</a> <a style='color:inherit;' href=/DefaultCreditCards/UserFields/>UserFields</a>
+    { 
+      get;
+    }
+    public extern <a style='color:inherit;' href=/UserDefaultGroups/DefaultCreditCards/>DefaultCreditCards</a>Class(); 
+    public virtual extern void <a style='color:inherit;' href=/DefaultCreditCards/Add/>Add</a>(); 
+    public virtual extern void <a style='color:inherit;' href=/DefaultCreditCards/SetCurrentLine/>SetCurrentLine</a>(int LineNum);
+  }</div></div></p></div><div class=' tit' style='width:33%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Administration'> Administration</a> / <a href='/sql/User Defaults'> User Defaults</a></div></div><div class=' tit' style='width:33%; background-color:#44efeb; color:#008b87;'><div class=eli2><b>DTW</b> Administration /  Setup /  General /  User Default Groups</div></div><div class=' tit' style='width:33%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> User Default Groups /  Default Credit Cards</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #008b87;' > <a style='text-decoration:none; color:#008b87;' title='92
+1162.8919105529785
+63.619384765625' href='/UserDefaultGroups/DefaultCreditCards/'> Default Credit Cards</a> Property</div><script>
+                        document.title = 'DefaultCreditCards -  User Default Groups - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P>Returns the <A href="/DefaultCreditCards/">DefaultCreditCards</A> child object.</P></div>
+            <h2 class="heading"><span  tabindex="0"><img id="propertytypeToggle"  src="/images/1x1.png"></img>Property type</span></h2><div id="propertytypeSection" class="section" >Read-only property</div>
+            <h2 class="heading"><span  tabindex="0"><img id="syntaxToggle"  src="/images/1x1.png"></img>Syntax</span></h2><div id="syntaxSection" class="section" ><DIV  id=Syntax_VB><table   cellpadding="0" cellspacing="0"><tr><th>Visual Basic</th></tr><tr><td><pre><PRE class=" vbs hljs" class=" vbs hljs">Public Property <a style='color:inherit;' href=/UserDefaultGroups/DefaultCreditCards/>DefaultCreditCards</a>() As <a href="/DefaultCreditCards/">DefaultCreditCards</a></PRE></pre></tr></table></div></div>
+            
+            
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/UserDefaultGroups/">UserDefaultGroups Object</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+63.619384765625' class=related href='/UserDefaultGroups/DefaultDocuments'> Default Documents</a> <em class=comment>DefaultDocuments</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/UDG1/ >UDG1</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/UserDefaultGroups/DefaultDocuments/>DefaultDocuments</a> is a child object of the UserDefaultGroups object. It enables to set default settings for printing documents per user or users group. 
+Source table: UDG1.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/UserDefaultGroups> User Default Groups</a> <small>UserDefaultGroups</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OUDG/ >OUDG</a> </span><br><br><a title='92
+515
+63.619384765625' class=related href='/UserDefaultGroups/UserFields'> User Fields</a> <em class=comment>UserFields</em> <b>Object</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/DefaultCreditCards/UserFields/>UserFields</a> object is a collection of Fields objects, which are user defined fields.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/UserDefaultGroups> User Default Groups</a> <small>UserDefaultGroups</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OUDG/ >OUDG</a> </span><br><br><a title='92
+515
+63.619384765625' class=related href='/UserDefaultGroups/BoPrintReceiptEnum'> Bo Print Receipt Enum</a> <em class=comment>BoPrintReceiptEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specifies when to print a payment with invoice.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/UserDefaultGroups> User Default Groups</a> <small>UserDefaultGroups</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OUDG/ >OUDG</a> </span><br><br><a title='92
+68.619384765625
+0' class=related href='/UserDefaultGroups'> User Default Groups</a> <em class=comment>UserDefaultGroups</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OUDG/ >OUDG</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The UserDefaultGroups object enables to define default values (such as, default documents, default address in printed documents, windows color, and so on). These default values can be applied to specific user or group of users by setting the...</div><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/UserDefaultGroups/'>UserDefaultGroups</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/UserDefaultGroups/DefaultCreditCards/'>DefaultCreditCards</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Print Receipt Enum' href=/UserDefaultGroups/BoPrintReceiptEnum/ class=eli>BoPrintReceiptEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/UserDefaultGroups/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/UserDefaultGroups/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/UserDefaultGroups/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/UserDefaultGroups/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/UserDefaultGroups/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/UserDefaultGroups/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/UserDefaultGroups/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='User Defaults - Credit Cards
+ Default Credit Cards' href=/UserDefaultGroups/DefaultCreditCards/ class=eli>DefaultCreditCards</a>    <small class='eli s'> UDG2</small></div><div class=sm><a style='min-width:50px;' title='User Defaults - Documents
+ Default Documents' href=/UserDefaultGroups/DefaultDocuments/ class=eli>DefaultDocuments</a>    <small class='eli s'> UDG1</small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/UserDefaultGroups/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Additional Id Number' href=/UserDefaultGroups/AdditionalIdNumber/ class=eli>AdditionalIdNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address' href=/UserDefaultGroups/Address/ class=eli>Address</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Addressin Foreign Language' href=/UserDefaultGroups/AddressinForeignLanguage/ class=eli>AddressinForeignLanguage</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Asset In Doc' href=/UserDefaultGroups/AssetInDoc/ class=eli>AssetInDoc</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='B Pfor Invoice Payment' href=/UserDefaultGroups/BPforInvoicePayment/ class=eli>BPforInvoicePayment</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPLID' href=/UserDefaultGroups/BPLID/ class=eli>BPLID</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/UserDefaultGroups/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cash Account' href=/UserDefaultGroups/CashAccount/ class=eli>CashAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Checking Acct' href=/UserDefaultGroups/CheckingAcct/ class=eli>CheckingAcct</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Code' href=/UserDefaultGroups/Code/ class=eli>Code</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Country' href=/UserDefaultGroups/Country/ class=eli>Country</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Credit Cards' href=/UserDefaultGroups/DefaultCreditCards/ class=eli>DefaultCreditCards</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Documents' href=/UserDefaultGroups/DefaultDocuments/ class=eli>DefaultDocuments</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default PTI Code' href=/UserDefaultGroups/DefaultPTICode/ class=eli>DefaultPTICode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Tax Code' href=/UserDefaultGroups/DefaultTaxCode/ class=eli>DefaultTaxCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='e Mail' href=/UserDefaultGroups/eMail/ class=eli>eMail</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Fax Number' href=/UserDefaultGroups/FaxNumber/ class=eli>FaxNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Fax Number Foreign Lang' href=/UserDefaultGroups/FaxNumberForeignLang/ class=eli>FaxNumberForeignLang</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Name' href=/UserDefaultGroups/Name/ class=eli>Name</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Phone Number 1' href=/UserDefaultGroups/PhoneNumber1/ class=eli>PhoneNumber1</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Phone Number 1 Foreign Lang' href=/UserDefaultGroups/PhoneNumber1ForeignLang/ class=eli>PhoneNumber1ForeignLang</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Phone Number 2' href=/UserDefaultGroups/PhoneNumber2/ class=eli>PhoneNumber2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Phone Number 2 Foreign Lang' href=/UserDefaultGroups/PhoneNumber2ForeignLang/ class=eli>PhoneNumber2ForeignLang</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Printing Header' href=/UserDefaultGroups/PrintingHeader/ class=eli>PrintingHeader</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Printing Header In Foreign Langu' href=/UserDefaultGroups/PrintingHeaderInForeignLangu/ class=eli>PrintingHeaderInForeignLangu</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Print Invoiceand Paymentin S' href=/UserDefaultGroups/PrintInvoiceandPaymentinS/ class=eli>PrintInvoiceandPaymentinS</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Print Receipt' href=/UserDefaultGroups/PrintReceipt/ class=eli>PrintReceipt</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sales Employee' href=/UserDefaultGroups/SalesEmployee/ class=eli>SalesEmployee</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/UserDefaultGroups/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Signature' href=/UserDefaultGroups/UserSignature/ class=eli>UserSignature</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Use Tax' href=/UserDefaultGroups/UseTax/ class=eli>UseTax</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Use Warehouse Addressin APD' href=/UserDefaultGroups/UseWarehouseAddressinAPD/ class=eli>UseWarehouseAddressinAPD</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Warehouse' href=/UserDefaultGroups/Warehouse/ class=eli>Warehouse</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Windows Color' href=/UserDefaultGroups/WindowsColor/ class=eli>WindowsColor</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

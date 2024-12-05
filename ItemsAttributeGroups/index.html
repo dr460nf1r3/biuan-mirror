@@ -1,0 +1,603 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>ItemsAttributeGroups - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Inventory and Production'> Inventory and Production</a> / <a href='/sql/Items'> Items</a> / <a href='/sql/Asset Attributes'>Asset Attributes</a></div></div><div class=' tit' style='width:33%; background-color:#44efeb; color:#008b87;'><div class=eli2><b>DTW</b> Inventory /  Item Master Data / Asset Attributes</div></div><div class=' tit' style='width:33%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> Items Attribute Groups</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #008b87;' > <a style='text-decoration:none; color:#008b87;' title='92
+616.7272338867188
+9.27271842956543' href='/Items/ItemsAttributeGroups/'> Items Attribute Groups</a> Object</div><script>
+                        document.title = 'ItemsAttributeGroups -  Item Master Data - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P><STRONG>ItemsAttributeGroups</STRONG> is a child object of the <A href="/Items/">Items</A> object.</P>
+<P>You can manage the attributes of an asset.</P>
+<P>Source table: <A href="/ITM13/">ITM13</A>.</P></div>
+            
+            <h2 class="heading"><span  tabindex="0"><img id="remarksToggle"  src="/images/1x1.png"></img>Remarks</span></h2><div class="remarksSection" class="section" ><P >To access the subtab, from the SAP Business One <I class="/ " title="Object name">Main Menu</I>, choose <SPAN class="SAPXDPNavigationPath " title="Navigation path"><I class="/ " title="Object name">Financials</I> --&gt; <I class="/ " title="Object name">Fixed Assets</I> --&gt; <I class="/ " title="Object name">Asset Master Data</I></SPAN>. Select the <I class="/ " title="Object name">Fixed Assets</I> tab and then the <I class="/ " title="Object name">Additional Information</I> subtab.</P></div>
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/ItemsAttributeGroups/">ItemsAttributeGroups Members</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div><div><h2>SAP® B1 DI-API C# definition</h2><div class='cs hljs'>public class <a style='color:inherit;' href=/Items/ItemsAttributeGroups/>ItemsAttributeGroups</a>Class : IItemsAttributeGroups, <a style='color:inherit;' href=/Items/ItemsAttributeGroups/>ItemsAttributeGroups</a>
+  { 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute1/>Attribute1</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute10/>Attribute10</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute11/>Attribute11</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute12/>Attribute12</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute13/>Attribute13</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute14/>Attribute14</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute15/>Attribute15</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute16/>Attribute16</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute17/>Attribute17</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute18/>Attribute18</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute19/>Attribute19</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute2/>Attribute2</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute20/>Attribute20</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute21/>Attribute21</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute22/>Attribute22</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute23/>Attribute23</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute24/>Attribute24</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute25/>Attribute25</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute26/>Attribute26</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute27/>Attribute27</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute28/>Attribute28</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute29/>Attribute29</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute3/>Attribute3</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute30/>Attribute30</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute31/>Attribute31</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute32/>Attribute32</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute33/>Attribute33</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute34/>Attribute34</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute35/>Attribute35</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute36/>Attribute36</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute37/>Attribute37</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute38/>Attribute38</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute39/>Attribute39</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute4/>Attribute4</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute40/>Attribute40</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute41/>Attribute41</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute42/>Attribute42</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual DateTime <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute43/>Attribute43</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual DateTime <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute44/>Attribute44</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual DateTime <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute45/>Attribute45</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual DateTime <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute46/>Attribute46</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual DateTime <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute47/>Attribute47</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute48/>Attribute48</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute49/>Attribute49</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute5/>Attribute5</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute50/>Attribute50</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute51/>Attribute51</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute52/>Attribute52</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute53/>Attribute53</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute54/>Attribute54</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute55/>Attribute55</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute56/>Attribute56</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute57/>Attribute57</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute58/>Attribute58</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute59/>Attribute59</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute6/>Attribute6</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute60/>Attribute60</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute61/>Attribute61</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute62/>Attribute62</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute63/>Attribute63</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute64/>Attribute64</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute7/>Attribute7</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute8/>Attribute8</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/ItemsAttributeGroups/Attribute9/>Attribute9</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/ItemsAttributeGroups/Count/>Count</a>
+    { 
+      get;
+    }
+    public extern <a style='color:inherit;' href=/Items/ItemsAttributeGroups/>ItemsAttributeGroups</a>Class(); 
+    public virtual extern void <a style='color:inherit;' href=/ItemsAttributeGroups/Add/>Add</a>(); 
+    public virtual extern void <a style='color:inherit;' href=/ItemsAttributeGroups/Delete/>Delete</a>(); 
+    public virtual extern void <a style='color:inherit;' href=/ItemsAttributeGroups/SetCurrentLine/>SetCurrentLine</a>(int LineNum);
+  }</div></div></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/Items/'>Items</a></font><hr><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/Items/ItemsAttributeGroups/'>ItemsAttributeGroups</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/ItemsAttributeGroups/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Delete' href=/ItemsAttributeGroups/Delete/ class=eli>Delete</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Set Current Line' href=/ItemsAttributeGroups/SetCurrentLine/ class=eli>SetCurrentLine</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Attribute 1' href=/ItemsAttributeGroups/Attribute1/ class=eli>Attribute1</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 10' href=/ItemsAttributeGroups/Attribute10/ class=eli>Attribute10</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 11' href=/ItemsAttributeGroups/Attribute11/ class=eli>Attribute11</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 12' href=/ItemsAttributeGroups/Attribute12/ class=eli>Attribute12</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 13' href=/ItemsAttributeGroups/Attribute13/ class=eli>Attribute13</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 14' href=/ItemsAttributeGroups/Attribute14/ class=eli>Attribute14</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 15' href=/ItemsAttributeGroups/Attribute15/ class=eli>Attribute15</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 16' href=/ItemsAttributeGroups/Attribute16/ class=eli>Attribute16</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 17' href=/ItemsAttributeGroups/Attribute17/ class=eli>Attribute17</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 18' href=/ItemsAttributeGroups/Attribute18/ class=eli>Attribute18</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 19' href=/ItemsAttributeGroups/Attribute19/ class=eli>Attribute19</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 2' href=/ItemsAttributeGroups/Attribute2/ class=eli>Attribute2</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 20' href=/ItemsAttributeGroups/Attribute20/ class=eli>Attribute20</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 21' href=/ItemsAttributeGroups/Attribute21/ class=eli>Attribute21</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 22' href=/ItemsAttributeGroups/Attribute22/ class=eli>Attribute22</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 23' href=/ItemsAttributeGroups/Attribute23/ class=eli>Attribute23</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 24' href=/ItemsAttributeGroups/Attribute24/ class=eli>Attribute24</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 25' href=/ItemsAttributeGroups/Attribute25/ class=eli>Attribute25</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 26' href=/ItemsAttributeGroups/Attribute26/ class=eli>Attribute26</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 27' href=/ItemsAttributeGroups/Attribute27/ class=eli>Attribute27</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 28' href=/ItemsAttributeGroups/Attribute28/ class=eli>Attribute28</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 29' href=/ItemsAttributeGroups/Attribute29/ class=eli>Attribute29</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 3' href=/ItemsAttributeGroups/Attribute3/ class=eli>Attribute3</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 30' href=/ItemsAttributeGroups/Attribute30/ class=eli>Attribute30</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 31' href=/ItemsAttributeGroups/Attribute31/ class=eli>Attribute31</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 32' href=/ItemsAttributeGroups/Attribute32/ class=eli>Attribute32</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 33' href=/ItemsAttributeGroups/Attribute33/ class=eli>Attribute33</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 34' href=/ItemsAttributeGroups/Attribute34/ class=eli>Attribute34</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 35' href=/ItemsAttributeGroups/Attribute35/ class=eli>Attribute35</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 36' href=/ItemsAttributeGroups/Attribute36/ class=eli>Attribute36</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 37' href=/ItemsAttributeGroups/Attribute37/ class=eli>Attribute37</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 38' href=/ItemsAttributeGroups/Attribute38/ class=eli>Attribute38</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 39' href=/ItemsAttributeGroups/Attribute39/ class=eli>Attribute39</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 4' href=/ItemsAttributeGroups/Attribute4/ class=eli>Attribute4</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 40' href=/ItemsAttributeGroups/Attribute40/ class=eli>Attribute40</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 41' href=/ItemsAttributeGroups/Attribute41/ class=eli>Attribute41</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 42' href=/ItemsAttributeGroups/Attribute42/ class=eli>Attribute42</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 43' href=/ItemsAttributeGroups/Attribute43/ class=eli>Attribute43</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 44' href=/ItemsAttributeGroups/Attribute44/ class=eli>Attribute44</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 45' href=/ItemsAttributeGroups/Attribute45/ class=eli>Attribute45</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 46' href=/ItemsAttributeGroups/Attribute46/ class=eli>Attribute46</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 47' href=/ItemsAttributeGroups/Attribute47/ class=eli>Attribute47</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 48' href=/ItemsAttributeGroups/Attribute48/ class=eli>Attribute48</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 49' href=/ItemsAttributeGroups/Attribute49/ class=eli>Attribute49</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 5' href=/ItemsAttributeGroups/Attribute5/ class=eli>Attribute5</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 50' href=/ItemsAttributeGroups/Attribute50/ class=eli>Attribute50</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 51' href=/ItemsAttributeGroups/Attribute51/ class=eli>Attribute51</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 52' href=/ItemsAttributeGroups/Attribute52/ class=eli>Attribute52</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 53' href=/ItemsAttributeGroups/Attribute53/ class=eli>Attribute53</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 54' href=/ItemsAttributeGroups/Attribute54/ class=eli>Attribute54</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 55' href=/ItemsAttributeGroups/Attribute55/ class=eli>Attribute55</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 56' href=/ItemsAttributeGroups/Attribute56/ class=eli>Attribute56</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 57' href=/ItemsAttributeGroups/Attribute57/ class=eli>Attribute57</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 58' href=/ItemsAttributeGroups/Attribute58/ class=eli>Attribute58</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 59' href=/ItemsAttributeGroups/Attribute59/ class=eli>Attribute59</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 6' href=/ItemsAttributeGroups/Attribute6/ class=eli>Attribute6</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 60' href=/ItemsAttributeGroups/Attribute60/ class=eli>Attribute60</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 61' href=/ItemsAttributeGroups/Attribute61/ class=eli>Attribute61</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 62' href=/ItemsAttributeGroups/Attribute62/ class=eli>Attribute62</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 63' href=/ItemsAttributeGroups/Attribute63/ class=eli>Attribute63</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 64' href=/ItemsAttributeGroups/Attribute64/ class=eli>Attribute64</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 7' href=/ItemsAttributeGroups/Attribute7/ class=eli>Attribute7</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 8' href=/ItemsAttributeGroups/Attribute8/ class=eli>Attribute8</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 9' href=/ItemsAttributeGroups/Attribute9/ class=eli>Attribute9</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Count' href=/ItemsAttributeGroups/Count/ class=eli>Count</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

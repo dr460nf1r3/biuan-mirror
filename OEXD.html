@@ -1,0 +1,347 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OEXD - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Administration'> Administration</a> / <a href='/sql/Freight Setup'> Freight Setup</a></div></div><div class=' tit' style='width:33%; background-color:#44efeb; color:#008b87;'><div class=eli2><b>DTW</b>  Administration /  System Initialization /  Additional Expenses</div></div><div class=' tit' style='width:33%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> OEXD /  Additional Expenses</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #008b87;'  class='titol sm titoltxt'>  <a style='color:#008b87;' href='/OEXD/'> OEXD - Freight Setup</a> Table</font><script>
+                    document.title = 'OEXD - Freight Setup - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>ExpnsCode</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b><u title='Primary'>ExpnsName</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>NAME</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b>RevAcct</b></em></td><td valign=top >Revenue Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpnsAcct</b></em></td><td valign=top >Expense Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxLiable</b></em></td><td valign=top >Tax Liable</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RevFixSum</b></em></td><td valign=top >Fixed Amount - Revenues</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpFixSum</b></em></td><td valign=top >Fixed Amount - Expenses</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DataSource</b></em></td><td valign=top >Data Source</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  Unknown<hr>I)  Interface<hr>U)  Upgrade<hr>M)  Import<hr>O)  DI API<hr>A)  Auto Incr.<hr>D)  Restore Wizard<hr>P)  Partner Implementation<hr>T)  Year Transfer</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatGroupI</b></em></td><td valign=top >Output Tax Group</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OVTG title='Tax Definition'>OVTG</a><br><small class=s2>Tax Definition</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatGroupO</b></em></td><td valign=top >Input Tax Group</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OVTG title='Tax Definition'>OVTG</a><br><small class=s2>Tax Definition</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DistrbMthd</b></em></td><td valign=top >Distribution Method</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  None<hr>Q)  Quantity<hr>V)  Volume<hr>W)  Weight<hr>E)  Equally<hr>T)  Row Total</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>In1099</b></em></td><td valign=top >Include in 1099</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpOfstAct</b></em></td><td valign=top >Freight Clearing Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>WTLiable</b></em></td><td valign=top >WTax Liable</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseMethod</b></em></td><td valign=top >Drawing Method</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  None<hr>Q)  Quantity<hr>T)  Total<hr>A)  All</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>T</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Stock</b></em></td><td valign=top >Stock</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LstPchPrce</b></em></td><td valign=top >Last Purchase Price</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SalseRpt</b></em></td><td valign=top >Sales Analysis Report</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PchRpt</b></em></td><td valign=top >Purchase Analysis Report</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RevExmAcct</b></em></td><td valign=top >Revenues Exempted Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpnsExAct</b></em></td><td valign=top >Expense Exempted Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RevRetAct</b></em></td><td valign=top >Revenue Returns Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpnsType</b></em></td><td valign=top >Freight Type</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>1)  Shipping<hr>2)  Insurance<hr>3)  Other<hr>4)  Special</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCode</b></em></td><td valign=top >Distr. Rule</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxDisMthd</b></em></td><td valign=top >Tax Distribution Method</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  None<hr>Q)  Quantity<hr>V)  Volume<hr>W)  Weight<hr>E)  Equally<hr>T)  Row Total</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCode2</b></em></td><td valign=top >Distr. Rule2</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCode3</b></em></td><td valign=top >Distr. Rule3</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCode4</b></em></td><td valign=top >Distr. Rule4</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCode5</b></em></td><td valign=top >Distr. Rule5</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>OcrCodeX</b></em></td><td valign=top >Distr. Rule</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/OOCR title='Distribution Rule'>OOCR</a><br><small class=s2>Distribution Rule</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UpdateDate</b></em></td><td valign=top >Date of Update</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign2</b></em></td><td valign=top >Updating User</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Project</b></em></td><td valign=top >Project</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/OPRJ title='Project Codes'>OPRJ</a><br><small class=s2>Project Codes</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Intrastat</b></em></td><td valign=top >Intrastat Relevant</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OEXD', font: { multi: true }, label: 'OEXD', title: ''},{id: 'ADO13', font: { multi: true }, label: '<b>ADO13</b>', title:'A/R Invoice Rows - Distributed Expenses'},{id: 'ADO2', font: { multi: true }, label: '<b>ADO2</b>', title:'A/R Invoice - Freight - Rows'},{id: 'ADO20', font: { multi: true }, label: '<b>ADO20</b>', title:'Intrastat Expenses'},{id: 'ADO3', font: { multi: true }, label: '<b>ADO3</b>', title:'A/R Invoice - Freight - History'},{id: 'ADO4', font: { multi: true }, label: '<b>ADO4</b>', title:'Documents - Tax - History'},{id: 'AWD5', font: { multi: true }, label: '<b>AWD5</b>', title:'WTax Codes Details for Freight'},{id: 'CIN13', font: { multi: true }, label: '<b>CIN13</b>', title:'Correction Invoice Rows - Distributed Expenses'},{id: 'CIN2', font: { multi: true }, label: '<b>CIN2</b>', title:'A/R Correction Invoice - Freight - Rows'},{id: 'CIN20', font: { multi: true }, label: '<b>CIN20</b>', title:'Intrastat Expenses'},{id: 'CIN3', font: { multi: true }, label: '<b>CIN3</b>', title:'A/R Correction Invoice - Freight'},{id: 'CIN4', font: { multi: true }, label: '<b>CIN4</b>', title:'Correction Invoice - Tax Amount per Document'},{id: 'CPI13', font: { multi: true }, label: '<b>CPI13</b>', title:'A/P Correction Invoice Rows - Distributed Expenses'},{id: 'CPI2', font: { multi: true }, label: '<b>CPI2</b>', title:'A/P Correction Invoice - Freight - Rows'},{id: 'CPI20', font: { multi: true }, label: '<b>CPI20</b>', title:'Intrastat Expenses'},{id: 'CPI3', font: { multi: true }, label: '<b>CPI3</b>', title:'A/P Correction Invoice - Freight'},{id: 'CPI4', font: { multi: true }, label: '<b>CPI4</b>', title:'A/P Correction Invoice - Tax Amount per Document'},{id: 'CPV13', font: { multi: true }, label: '<b>CPV13</b>', title:'A/P Correction Invoice Reversal Rows - Distributed Expenses'},{id: 'CPV2', font: { multi: true }, label: '<b>CPV2</b>', title:'A/P Correction Invoice Reversal - Freight - Rows'},{id: 'CPV20', font: { multi: true }, label: '<b>CPV20</b>', title:'Intrastat Expenses'},{id: 'CPV3', font: { multi: true }, label: '<b>CPV3</b>', title:'A/P Correction Invoice Reversal - Freight'},{id: 'CPV4', font: { multi: true }, label: '<b>CPV4</b>', title:'A/P Correction Invoice Reversal - Tax Amt per Doc.'},{id: 'CSI13', font: { multi: true }, label: '<b>CSI13</b>', title:'A/R Correction Invoice Rows - Distributed Expenses'},{id: 'CSI2', font: { multi: true }, label: '<b>CSI2</b>', title:'A/R Corr Inv - Freight - Rows'},{id: 'CSI20', font: { multi: true }, label: '<b>CSI20</b>', title:'Intrastat Expenses'},{id: 'CSI3', font: { multi: true }, label: '<b>CSI3</b>', title:'A/R Correction Invoice - Freight'},{id: 'CSI4', font: { multi: true }, label: '<b>CSI4</b>', title:'A/R Correction Invoice - Tax Amount Per Document'},{id: 'CSV13', font: { multi: true }, label: '<b>CSV13</b>', title:'A/R Correction Invoice Reversal Rows - Distributed Expenses'},{id: 'CSV2', font: { multi: true }, label: '<b>CSV2</b>', title:'A/R Correction Invoice Reversal - Freight - Rows'},{id: 'CSV20', font: { multi: true }, label: '<b>CSV20</b>', title:'Intrastat Expenses'},{id: 'CSV3', font: { multi: true }, label: '<b>CSV3</b>', title:'A/R Correction Invoice Reversal - Freight'},{id: 'CSV4', font: { multi: true }, label: '<b>CSV4</b>', title:'A/R Correction Invoice Reversal - Tax Amount Per Document'},{id: 'DLN13', font: { multi: true }, label: '<b>DLN13</b>', title:'Delivery Rows - Distributed Expenses'},{id: 'DLN2', font: { multi: true }, label: '<b>DLN2</b>', title:'Delivery Notes - Freight - Rows'},{id: 'DLN20', font: { multi: true }, label: '<b>DLN20</b>', title:'Intrastat Expenses'},{id: 'DLN3', font: { multi: true }, label: '<b>DLN3</b>', title:'Delivery Notes - Freight'},{id: 'DLN4', font: { multi: true }, label: '<b>DLN4</b>', title:'Delivery - Tax Amount per Document'},{id: 'DOC20', font: { multi: true }, label: '<b>DOC20</b>', title:'Intrastat Expenses'},{id: 'DPI13', font: { multi: true }, label: '<b>DPI13</b>', title:'A/R Down Payment Rows - Distributed Expenses'},{id: 'DPI2', font: { multi: true }, label: '<b>DPI2</b>', title:'A/R Down Payment - Freight - Rows'},{id: 'DPI20', font: { multi: true }, label: '<b>DPI20</b>', title:'Intrastat Expenses'},{id: 'DPI3', font: { multi: true }, label: '<b>DPI3</b>', title:'A/R Down Payment - Freight'},{id: 'DPI4', font: { multi: true }, label: '<b>DPI4</b>', title:'A/R Down Payment - Tax Amount per Document'},{id: 'DPO13', font: { multi: true }, label: '<b>DPO13</b>', title:'A/P Down Payment Rows - Distributed Expenses'},{id: 'DPO2', font: { multi: true }, label: '<b>DPO2</b>', title:'A/P Down Payment - Freight - Rows'},{id: 'DPO20', font: { multi: true }, label: '<b>DPO20</b>', title:'Intrastat Expenses'},{id: 'DPO3', font: { multi: true }, label: '<b>DPO3</b>', title:'A/P Down Payment - Freight'},{id: 'DPO4', font: { multi: true }, label: '<b>DPO4</b>', title:'A/P Down Payment - Tax Amount per Document'},{id: 'DRF13', font: { multi: true }, label: '<b>DRF13</b>', title:'Draft Rows - Distributed Expenses'},{id: 'DRF2', font: { multi: true }, label: '<b>DRF2</b>', title:'Draft - Freight - Rows'},{id: 'DRF20', font: { multi: true }, label: '<b>DRF20</b>', title:'Intrastat Expenses'},{id: 'DRF3', font: { multi: true }, label: '<b>DRF3</b>', title:'Draft - Freight'},{id: 'DRF4', font: { multi: true }, label: '<b>DRF4</b>', title:'Draft Documents - Tax'},{id: 'IEI13', font: { multi: true }, label: '<b>IEI13</b>', title:'Incoming Excise Invoice Rows - Distributed Expenses'},{id: 'IEI2', font: { multi: true }, label: '<b>IEI2</b>', title:'Incoming Excise Invoice - Freight - History - Rows'},{id: 'IEI20', font: { multi: true }, label: '<b>IEI20</b>', title:'Intrastat Expenses'},{id: 'IEI3', font: { multi: true }, label: '<b>IEI3</b>', title:'IEI - Freight'},{id: 'IEI4', font: { multi: true }, label: '<b>IEI4</b>', title:'Incoming Excise Invoice - Tax Amount per Document'},{id: 'IGE13', font: { multi: true }, label: '<b>IGE13</b>', title:'Goods Issue Rows - Distributed Expenses'},{id: 'IGE2', font: { multi: true }, label: '<b>IGE2</b>', title:'Goods Issue - Freight - Rows'},{id: 'IGE20', font: { multi: true }, label: '<b>IGE20</b>', title:'Intrastat Expenses'},{id: 'IGE3', font: { multi: true }, label: '<b>IGE3</b>', title:'Goods Issue - Freight'},{id: 'IGE4', font: { multi: true }, label: '<b>IGE4</b>', title:'Goods Issue - Tax Amount per Document'},{id: 'IGN13', font: { multi: true }, label: '<b>IGN13</b>', title:'Goods Receipt Rows - Distributed Expenses'},{id: 'IGN2', font: { multi: true }, label: '<b>IGN2</b>', title:'Goods Receipt - Freight - Rows'},{id: 'IGN20', font: { multi: true }, label: '<b>IGN20</b>', title:'Intrastat Expenses'},{id: 'IGN3', font: { multi: true }, label: '<b>IGN3</b>', title:'Goods Receipt - Freight'},{id: 'IGN4', font: { multi: true }, label: '<b>IGN4</b>', title:'Goods Receipt - Tax Amount per Document'},{id: 'INV13', font: { multi: true }, label: '<b>INV13</b>', title:'A/R Invoice Rows - Distributed Freights'},{id: 'INV2', font: { multi: true }, label: '<b>INV2</b>', title:'A/R Invoice - Freight - Rows'},{id: 'INV20', font: { multi: true }, label: '<b>INV20</b>', title:'Intrastat Expenses'},{id: 'INV3', font: { multi: true }, label: '<b>INV3</b>', title:'A/R Invoice - Freight'},{id: 'INV4', font: { multi: true }, label: '<b>INV4</b>', title:'A/R Invoice - Tax Amount per Document'},{id: 'OEI13', font: { multi: true }, label: '<b>OEI13</b>', title:'Outgoing Excise Invoice Rows - Distributed Expenses'},{id: 'OEI2', font: { multi: true }, label: '<b>OEI2</b>', title:'OEI - Freight Rows'},{id: 'OEI20', font: { multi: true }, label: '<b>OEI20</b>', title:'Intrastat Expenses'},{id: 'OEI3', font: { multi: true }, label: '<b>OEI3</b>', title:'OEI - Freight'},{id: 'OEI4', font: { multi: true }, label: '<b>OEI4</b>', title:'Outgoing Excise Invoice - Tax Amount per Document'},{id: 'PCH13', font: { multi: true }, label: '<b>PCH13</b>', title:'A/P Invoice Rows - Distributed Expenses'},{id: 'PCH2', font: { multi: true }, label: '<b>PCH2</b>', title:'A/P Invoice - Freight - Rows'},{id: 'PCH20', font: { multi: true }, label: '<b>PCH20</b>', title:'Intrastat Expenses'},{id: 'PCH3', font: { multi: true }, label: '<b>PCH3</b>', title:'A/P Invoice - Freight'},{id: 'PCH4', font: { multi: true }, label: '<b>PCH4</b>', title:'A/P Invoice - Tax Amount per Document'},{id: 'PDN13', font: { multi: true }, label: '<b>PDN13</b>', title:'Goods Receipt PO Rows - Distributed Expenses'},{id: 'PDN2', font: { multi: true }, label: '<b>PDN2</b>', title:'Goods Receipt PO - Freight - Rows'},{id: 'PDN20', font: { multi: true }, label: '<b>PDN20</b>', title:'Intrastat Expenses'},{id: 'PDN3', font: { multi: true }, label: '<b>PDN3</b>', title:'Goods Receipt PO - Freight'},{id: 'PDN4', font: { multi: true }, label: '<b>PDN4</b>', title:'Goods Receipt PO - Tax Amount per Document'},{id: 'POR13', font: { multi: true }, label: '<b>POR13</b>', title:'Purchase Order Rows - Distributed Expenses'},{id: 'POR2', font: { multi: true }, label: '<b>POR2</b>', title:'Purchase Order - Freight - Rows'},{id: 'POR20', font: { multi: true }, label: '<b>POR20</b>', title:'Intrastat Expenses'},{id: 'POR3', font: { multi: true }, label: '<b>POR3</b>', title:'Purchase Order - Freight'},{id: 'POR4', font: { multi: true }, label: '<b>POR4</b>', title:'Purchase Order - Tax Amount per Document'},{id: 'PQT13', font: { multi: true }, label: '<b>PQT13</b>', title:'Purchase Quotation Rows - Distributed Expenses'},{id: 'PQT2', font: { multi: true }, label: '<b>PQT2</b>', title:'Purchase Quotation - Freight - Rows'},{id: 'PQT20', font: { multi: true }, label: '<b>PQT20</b>', title:'Intrastat Expenses'},{id: 'PQT3', font: { multi: true }, label: '<b>PQT3</b>', title:'Purchase Quotation - Freight'},{id: 'PQT4', font: { multi: true }, label: '<b>PQT4</b>', title:'Purchase Quotation - Tax Amount per Document'},{id: 'PRQ13', font: { multi: true }, label: '<b>PRQ13</b>', title:'Purchase Request Rows - Distributed Expenses'},{id: 'PRQ2', font: { multi: true }, label: '<b>PRQ2</b>', title:'Purchase Request - Freight - Rows'},{id: 'PRQ20', font: { multi: true }, label: '<b>PRQ20</b>', title:'Intrastat Expenses'},{id: 'PRQ3', font: { multi: true }, label: '<b>PRQ3</b>', title:'Purchase Request - Freight'},{id: 'PRQ4', font: { multi: true }, label: '<b>PRQ4</b>', title:'Purchase Request - Tax Amount per Document'},{id: 'QUT13', font: { multi: true }, label: '<b>QUT13</b>', title:'Sales Quotation Rows - Distributed Expenses'},{id: 'QUT2', font: { multi: true }, label: '<b>QUT2</b>', title:'Sales Quotation - Freight - Rows'},{id: 'QUT20', font: { multi: true }, label: '<b>QUT20</b>', title:'Intrastat Expenses'},{id: 'QUT3', font: { multi: true }, label: '<b>QUT3</b>', title:'Sales Quotation - Freight'},{id: 'QUT4', font: { multi: true }, label: '<b>QUT4</b>', title:'Sales Quotation - Tax Amount per Document'},{id: 'RDN13', font: { multi: true }, label: '<b>RDN13</b>', title:'Returns Rows - Distributed Expenses'},{id: 'RDN2', font: { multi: true }, label: '<b>RDN2</b>', title:'Return - Freight - Rows'},{id: 'RDN20', font: { multi: true }, label: '<b>RDN20</b>', title:'Intrastat Expenses'},{id: 'RDN3', font: { multi: true }, label: '<b>RDN3</b>', title:'Return - Freight'},{id: 'RDN4', font: { multi: true }, label: '<b>RDN4</b>', title:'Returns - Tax Amount per Document'},{id: 'RDR13', font: { multi: true }, label: '<b>RDR13</b>', title:'Sales Order Rows - Distributed Expenses'},{id: 'RDR2', font: { multi: true }, label: '<b>RDR2</b>', title:'Sales Order - Freight - Rows'},{id: 'RDR20', font: { multi: true }, label: '<b>RDR20</b>', title:'Intrastat Expenses'},{id: 'RDR3', font: { multi: true }, label: '<b>RDR3</b>', title:'Sales Order - Freight'},{id: 'RDR4', font: { multi: true }, label: '<b>RDR4</b>', title:'Sales Order - Tax Amount per Document'},{id: 'RIN13', font: { multi: true }, label: '<b>RIN13</b>', title:'A/R Credit Memo Rows - Distributed Expenses'},{id: 'RIN2', font: { multi: true }, label: '<b>RIN2</b>', title:'A/R Credit Memo - Freight - Rows'},{id: 'RIN20', font: { multi: true }, label: '<b>RIN20</b>', title:'Intrastat Expenses'},{id: 'RIN3', font: { multi: true }, label: '<b>RIN3</b>', title:'A/R Credit Memo - Freight'},{id: 'RIN4', font: { multi: true }, label: '<b>RIN4</b>', title:'A/R Credit Memo - Tax Amount per Document'},{id: 'RPC13', font: { multi: true }, label: '<b>RPC13</b>', title:'A/P Credit Memo Rows - Distributed Expenses'},{id: 'RPC2', font: { multi: true }, label: '<b>RPC2</b>', title:'A/P Credit Memo Rows - Expenses'},{id: 'RPC20', font: { multi: true }, label: '<b>RPC20</b>', title:'Intrastat Expenses'},{id: 'RPC3', font: { multi: true }, label: '<b>RPC3</b>', title:'A/P Credit Memo - Freight'},{id: 'RPC4', font: { multi: true }, label: '<b>RPC4</b>', title:'A/P Credit Memo - Tax Amount per Document'},{id: 'RPD13', font: { multi: true }, label: '<b>RPD13</b>', title:'Goods Returns Rows - Distributed Expenses'},{id: 'RPD2', font: { multi: true }, label: '<b>RPD2</b>', title:'Goods Return - Freight - Rows'},{id: 'RPD20', font: { multi: true }, label: '<b>RPD20</b>', title:'Intrastat Expenses'},{id: 'RPD3', font: { multi: true }, label: '<b>RPD3</b>', title:'Goods Return - Freight'},{id: 'RPD4', font: { multi: true }, label: '<b>RPD4</b>', title:'Goods Return - Tax Amount per Document'},{id: 'WTD5', font: { multi: true }, label: '<b>WTD5</b>', title:'WTax Codes Details for Freight'},{id: 'WTQ13', font: { multi: true }, label: '<b>WTQ13</b>', title:'Inventory Transfer Request Rows - Distributed Freights'},{id: 'WTQ2', font: { multi: true }, label: '<b>WTQ2</b>', title:'Inventory Transfer Request - Freight - Rows'},{id: 'WTQ20', font: { multi: true }, label: '<b>WTQ20</b>', title:'Intrastat Expenses'},{id: 'WTQ3', font: { multi: true }, label: '<b>WTQ3</b>', title:'Inventory Transfer Request - Freight'},{id: 'WTQ4', font: { multi: true }, label: '<b>WTQ4</b>', title:'Inventory Transfer Request - Tax Amount per Document'},{id: 'WTR13', font: { multi: true }, label: '<b>WTR13</b>', title:'Inventory Transfer Rows - Distributed Freights'},{id: 'WTR2', font: { multi: true }, label: '<b>WTR2</b>', title:'Inventory Transfer - Freight - Rows'},{id: 'WTR20', font: { multi: true }, label: '<b>WTR20</b>', title:'Intrastat Expenses'},{id: 'WTR3', font: { multi: true }, label: '<b>WTR3</b>', title:'Inventory Transfer - Freight'},{id: 'WTR4', font: { multi: true }, label: '<b>WTR4</b>', title:'Inventory Transfer - Tax Amount per Document'},{id: 'OACT', font: { multi: true }, label: 'OACT', title: 'G/L Accounts'},{id: 'OOCR', font: { multi: true }, label: 'OOCR', title: 'Distribution Rule'},{id: 'OPRJ', font: { multi: true }, label: 'OPRJ', title: 'Project Codes'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},{id: 'OVTG', font: { multi: true }, label: 'OVTG', title: 'Tax Definition'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OEXD', to: 'ADO13', arrows:'from'}, {from: 'OEXD', to: 'ADO2', arrows:'from'}, {from: 'OEXD', to: 'ADO20', arrows:'from'}, {from: 'OEXD', to: 'ADO3', arrows:'from'}, {from: 'OEXD', to: 'ADO4', arrows:'from'}, {from: 'OEXD', to: 'AWD5', arrows:'from'}, {from: 'OEXD', to: 'CIN13', arrows:'from'}, {from: 'OEXD', to: 'CIN2', arrows:'from'}, {from: 'OEXD', to: 'CIN20', arrows:'from'}, {from: 'OEXD', to: 'CIN3', arrows:'from'}, {from: 'OEXD', to: 'CIN4', arrows:'from'}, {from: 'OEXD', to: 'CPI13', arrows:'from'}, {from: 'OEXD', to: 'CPI2', arrows:'from'}, {from: 'OEXD', to: 'CPI20', arrows:'from'}, {from: 'OEXD', to: 'CPI3', arrows:'from'}, {from: 'OEXD', to: 'CPI4', arrows:'from'}, {from: 'OEXD', to: 'CPV13', arrows:'from'}, {from: 'OEXD', to: 'CPV2', arrows:'from'}, {from: 'OEXD', to: 'CPV20', arrows:'from'}, {from: 'OEXD', to: 'CPV3', arrows:'from'}, {from: 'OEXD', to: 'CPV4', arrows:'from'}, {from: 'OEXD', to: 'CSI13', arrows:'from'}, {from: 'OEXD', to: 'CSI2', arrows:'from'}, {from: 'OEXD', to: 'CSI20', arrows:'from'}, {from: 'OEXD', to: 'CSI3', arrows:'from'}, {from: 'OEXD', to: 'CSI4', arrows:'from'}, {from: 'OEXD', to: 'CSV13', arrows:'from'}, {from: 'OEXD', to: 'CSV2', arrows:'from'}, {from: 'OEXD', to: 'CSV20', arrows:'from'}, {from: 'OEXD', to: 'CSV3', arrows:'from'}, {from: 'OEXD', to: 'CSV4', arrows:'from'}, {from: 'OEXD', to: 'DLN13', arrows:'from'}, {from: 'OEXD', to: 'DLN2', arrows:'from'}, {from: 'OEXD', to: 'DLN20', arrows:'from'}, {from: 'OEXD', to: 'DLN3', arrows:'from'}, {from: 'OEXD', to: 'DLN4', arrows:'from'}, {from: 'OEXD', to: 'DOC20', arrows:'from'}, {from: 'OEXD', to: 'DPI13', arrows:'from'}, {from: 'OEXD', to: 'DPI2', arrows:'from'}, {from: 'OEXD', to: 'DPI20', arrows:'from'}, {from: 'OEXD', to: 'DPI3', arrows:'from'}, {from: 'OEXD', to: 'DPI4', arrows:'from'}, {from: 'OEXD', to: 'DPO13', arrows:'from'}, {from: 'OEXD', to: 'DPO2', arrows:'from'}, {from: 'OEXD', to: 'DPO20', arrows:'from'}, {from: 'OEXD', to: 'DPO3', arrows:'from'}, {from: 'OEXD', to: 'DPO4', arrows:'from'}, {from: 'OEXD', to: 'DRF13', arrows:'from'}, {from: 'OEXD', to: 'DRF2', arrows:'from'}, {from: 'OEXD', to: 'DRF20', arrows:'from'}, {from: 'OEXD', to: 'DRF3', arrows:'from'}, {from: 'OEXD', to: 'DRF4', arrows:'from'}, {from: 'OEXD', to: 'IEI13', arrows:'from'}, {from: 'OEXD', to: 'IEI2', arrows:'from'}, {from: 'OEXD', to: 'IEI20', arrows:'from'}, {from: 'OEXD', to: 'IEI3', arrows:'from'}, {from: 'OEXD', to: 'IEI4', arrows:'from'}, {from: 'OEXD', to: 'IGE13', arrows:'from'}, {from: 'OEXD', to: 'IGE2', arrows:'from'}, {from: 'OEXD', to: 'IGE20', arrows:'from'}, {from: 'OEXD', to: 'IGE3', arrows:'from'}, {from: 'OEXD', to: 'IGE4', arrows:'from'}, {from: 'OEXD', to: 'IGN13', arrows:'from'}, {from: 'OEXD', to: 'IGN2', arrows:'from'}, {from: 'OEXD', to: 'IGN20', arrows:'from'}, {from: 'OEXD', to: 'IGN3', arrows:'from'}, {from: 'OEXD', to: 'IGN4', arrows:'from'}, {from: 'OEXD', to: 'INV13', arrows:'from'}, {from: 'OEXD', to: 'INV2', arrows:'from'}, {from: 'OEXD', to: 'INV20', arrows:'from'}, {from: 'OEXD', to: 'INV3', arrows:'from'}, {from: 'OEXD', to: 'INV4', arrows:'from'}, {from: 'OEXD', to: 'OEI13', arrows:'from'}, {from: 'OEXD', to: 'OEI2', arrows:'from'}, {from: 'OEXD', to: 'OEI20', arrows:'from'}, {from: 'OEXD', to: 'OEI3', arrows:'from'}, {from: 'OEXD', to: 'OEI4', arrows:'from'}, {from: 'OEXD', to: 'PCH13', arrows:'from'}, {from: 'OEXD', to: 'PCH2', arrows:'from'}, {from: 'OEXD', to: 'PCH20', arrows:'from'}, {from: 'OEXD', to: 'PCH3', arrows:'from'}, {from: 'OEXD', to: 'PCH4', arrows:'from'}, {from: 'OEXD', to: 'PDN13', arrows:'from'}, {from: 'OEXD', to: 'PDN2', arrows:'from'}, {from: 'OEXD', to: 'PDN20', arrows:'from'}, {from: 'OEXD', to: 'PDN3', arrows:'from'}, {from: 'OEXD', to: 'PDN4', arrows:'from'}, {from: 'OEXD', to: 'POR13', arrows:'from'}, {from: 'OEXD', to: 'POR2', arrows:'from'}, {from: 'OEXD', to: 'POR20', arrows:'from'}, {from: 'OEXD', to: 'POR3', arrows:'from'}, {from: 'OEXD', to: 'POR4', arrows:'from'}, {from: 'OEXD', to: 'PQT13', arrows:'from'}, {from: 'OEXD', to: 'PQT2', arrows:'from'}, {from: 'OEXD', to: 'PQT20', arrows:'from'}, {from: 'OEXD', to: 'PQT3', arrows:'from'}, {from: 'OEXD', to: 'PQT4', arrows:'from'}, {from: 'OEXD', to: 'PRQ13', arrows:'from'}, {from: 'OEXD', to: 'PRQ2', arrows:'from'}, {from: 'OEXD', to: 'PRQ20', arrows:'from'}, {from: 'OEXD', to: 'PRQ3', arrows:'from'}, {from: 'OEXD', to: 'PRQ4', arrows:'from'}, {from: 'OEXD', to: 'QUT13', arrows:'from'}, {from: 'OEXD', to: 'QUT2', arrows:'from'}, {from: 'OEXD', to: 'QUT20', arrows:'from'}, {from: 'OEXD', to: 'QUT3', arrows:'from'}, {from: 'OEXD', to: 'QUT4', arrows:'from'}, {from: 'OEXD', to: 'RDN13', arrows:'from'}, {from: 'OEXD', to: 'RDN2', arrows:'from'}, {from: 'OEXD', to: 'RDN20', arrows:'from'}, {from: 'OEXD', to: 'RDN3', arrows:'from'}, {from: 'OEXD', to: 'RDN4', arrows:'from'}, {from: 'OEXD', to: 'RDR13', arrows:'from'}, {from: 'OEXD', to: 'RDR2', arrows:'from'}, {from: 'OEXD', to: 'RDR20', arrows:'from'}, {from: 'OEXD', to: 'RDR3', arrows:'from'}, {from: 'OEXD', to: 'RDR4', arrows:'from'}, {from: 'OEXD', to: 'RIN13', arrows:'from'}, {from: 'OEXD', to: 'RIN2', arrows:'from'}, {from: 'OEXD', to: 'RIN20', arrows:'from'}, {from: 'OEXD', to: 'RIN3', arrows:'from'}, {from: 'OEXD', to: 'RIN4', arrows:'from'}, {from: 'OEXD', to: 'RPC13', arrows:'from'}, {from: 'OEXD', to: 'RPC2', arrows:'from'}, {from: 'OEXD', to: 'RPC20', arrows:'from'}, {from: 'OEXD', to: 'RPC3', arrows:'from'}, {from: 'OEXD', to: 'RPC4', arrows:'from'}, {from: 'OEXD', to: 'RPD13', arrows:'from'}, {from: 'OEXD', to: 'RPD2', arrows:'from'}, {from: 'OEXD', to: 'RPD20', arrows:'from'}, {from: 'OEXD', to: 'RPD3', arrows:'from'}, {from: 'OEXD', to: 'RPD4', arrows:'from'}, {from: 'OEXD', to: 'WTD5', arrows:'from'}, {from: 'OEXD', to: 'WTQ13', arrows:'from'}, {from: 'OEXD', to: 'WTQ2', arrows:'from'}, {from: 'OEXD', to: 'WTQ20', arrows:'from'}, {from: 'OEXD', to: 'WTQ3', arrows:'from'}, {from: 'OEXD', to: 'WTQ4', arrows:'from'}, {from: 'OEXD', to: 'WTR13', arrows:'from'}, {from: 'OEXD', to: 'WTR2', arrows:'from'}, {from: 'OEXD', to: 'WTR20', arrows:'from'}, {from: 'OEXD', to: 'WTR3', arrows:'from'}, {from: 'OEXD', to: 'WTR4', arrows:'from'}, {from: 'OACT', to: 'OEXD', arrows:'from'}, {from: 'OOCR', to: 'OEXD', arrows:'from'}, {from: 'OPRJ', to: 'OEXD', arrows:'from'}, {from: 'OUSR', to: 'OEXD', arrows:'from'}, {from: 'OVTG', to: 'OEXD', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OEXD.ExpnsCode AS 'Internal Number', 
+   OEXD.ExpnsName AS 'Name', 
+   OEXD.RevAcct AS 'Revenue Account', 
+   OEXD.ExpnsAcct AS 'Expense Account', 
+   OEXD.TaxLiable AS 'Tax Liable', 
+   OEXD.RevFixSum AS 'Fixed Amount - Revenues', 
+   OEXD.ExpFixSum AS 'Fixed Amount - Expenses', 
+   OEXD.DataSource AS 'Data Source', 
+   OEXD.UserSign AS 'User Signature', 
+   OEXD.VatGroupI AS 'Output Tax Group', 
+   OEXD.VatGroupO AS 'Input Tax Group', 
+   OEXD.DistrbMthd AS 'Distribution Method', 
+   OEXD.In1099 AS 'Include in 1099', 
+   OEXD.ExpOfstAct AS 'Freight Clearing Account', 
+   OEXD.WTLiable AS 'WTax Liable', 
+   OEXD.BaseMethod AS 'Drawing Method', 
+   OEXD.Stock AS 'Stock', 
+   OEXD.LstPchPrce AS 'Last Purchase Price', 
+   OEXD.SalseRpt AS 'Sales Analysis Report', 
+   OEXD.PchRpt AS 'Purchase Analysis Report', 
+   OEXD.RevExmAcct AS 'Revenues Exempted Account', 
+   OEXD.ExpnsExAct AS 'Expense Exempted Account', 
+   OEXD.RevRetAct AS 'Revenue Returns Account', 
+   OEXD.ExpnsType AS 'Freight Type', 
+   OEXD.OcrCode AS 'Distr. Rule', 
+   OEXD.TaxDisMthd AS 'Tax Distribution Method', 
+   OEXD.OcrCode2 AS 'Distr. Rule2', 
+   OEXD.OcrCode3 AS 'Distr. Rule3', 
+   OEXD.OcrCode4 AS 'Distr. Rule4', 
+   OEXD.OcrCode5 AS 'Distr. Rule5', 
+   OEXD.OcrCodeX AS 'Distr. Rule', 
+   OEXD.LogInstanc AS 'Log Instance', 
+   OEXD.UpdateDate AS 'Date of Update', 
+   OEXD.UserSign2 AS 'Updating User', 
+   OEXD.Project AS 'Project', 
+   OEXD.Intrastat AS 'Intrastat Relevant'
+FROM OEXD AS OEXD</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+212.5273633003235
+0' class=related href='/AdditionalExpenses'> Additional Expenses</a> <em class=comment>AdditionalExpenses</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OEXD/ >OEXD</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>AdditionalExpenses is a business object that represents the additional expenses defined in the Administration module. These definitions are used by the Marketing Documents and Receipts. This object enables to calculate additional costs connected...</div><br><a href=/OEXD class=related></a> <em class=comment>OEXD</em> <b>SQL Table</b><br><br><a href=/OACT class=related>G/L Accounts</a> <em class=comment>OACT</em> <b>SQL Table</b><br><br><a href=/OOCR class=related>Distribution Rule</a> <em class=comment>OOCR</em> <b>SQL Table</b><br><br><a href=/OPRJ class=related>Project Codes</a> <em class=comment>OPRJ</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br><a href=/OVTG class=related>Tax Definition</a> <em class=comment>OVTG</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/AdditionalExpenses/'>AdditionalExpenses</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Ae Dist Mthd' href=/AdditionalExpenses/BoAeDistMthd/ class=eli>BoAeDistMthd</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Drawing Method Enum' href=/AdditionalExpenses/DrawingMethodEnum/ class=eli>DrawingMethodEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Freight Type Enum' href=/AdditionalExpenses/FreightTypeEnum/ class=eli>FreightTypeEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/AdditionalExpenses/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Close' href=/AdditionalExpenses/Close/ class=eli>Close</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/AdditionalExpenses/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/AdditionalExpenses/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/AdditionalExpenses/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/AdditionalExpenses/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/AdditionalExpenses/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/AdditionalExpenses/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Browser' href=/AdditionalExpenses/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Method' href=/AdditionalExpenses/DistributionMethod/ class=eli>DistributionMethod</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule' href=/AdditionalExpenses/DistributionRule/ class=eli>DistributionRule</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 2' href=/AdditionalExpenses/DistributionRule2/ class=eli>DistributionRule2</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 3' href=/AdditionalExpenses/DistributionRule3/ class=eli>DistributionRule3</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 4' href=/AdditionalExpenses/DistributionRule4/ class=eli>DistributionRule4</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 5' href=/AdditionalExpenses/DistributionRule5/ class=eli>DistributionRule5</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Drawing Method' href=/AdditionalExpenses/DrawingMethod/ class=eli>DrawingMethod</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Expens Code' href=/AdditionalExpenses/ExpensCode/ class=eli>ExpensCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Expense Account' href=/AdditionalExpenses/ExpenseAccount/ class=eli>ExpenseAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Expense Exempted Account' href=/AdditionalExpenses/ExpenseExemptedAccount/ class=eli>ExpenseExemptedAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Fixed Amount Expenses' href=/AdditionalExpenses/FixedAmountExpenses/ class=eli>FixedAmountExpenses</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Fixed Amount Revenues' href=/AdditionalExpenses/FixedAmountRevenues/ class=eli>FixedAmountRevenues</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Freight Offset Account' href=/AdditionalExpenses/FreightOffsetAccount/ class=eli>FreightOffsetAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Freight Type' href=/AdditionalExpenses/FreightType/ class=eli>FreightType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Gross Freight' href=/AdditionalExpenses/GrossFreight/ class=eli>GrossFreight</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Includein 1099' href=/AdditionalExpenses/Includein1099/ class=eli>Includein1099</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Input VAT Group' href=/AdditionalExpenses/InputVATGroup/ class=eli>InputVATGroup</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Last Purchase Price' href=/AdditionalExpenses/LastPurchasePrice/ class=eli>LastPurchasePrice</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Name' href=/AdditionalExpenses/Name/ class=eli>Name</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Output VAT Group' href=/AdditionalExpenses/OutputVATGroup/ class=eli>OutputVATGroup</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Project' href=/AdditionalExpenses/Project/ class=eli>Project</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Revenues Account' href=/AdditionalExpenses/RevenuesAccount/ class=eli>RevenuesAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Revenues Exempted Account' href=/AdditionalExpenses/RevenuesExemptedAccount/ class=eli>RevenuesExemptedAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Stock' href=/AdditionalExpenses/Stock/ class=eli>Stock</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Liable' href=/AdditionalExpenses/TaxLiable/ class=eli>TaxLiable</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/AdditionalExpenses/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WT Liable' href=/AdditionalExpenses/WTLiable/ class=eli>WTLiable</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

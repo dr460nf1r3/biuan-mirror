@@ -1,0 +1,244 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>Sql Banking - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<h2>Banking</h2><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBCG>OBCG</a></span> Bank Charge for Bank Transfers</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBCA>OBCA</a></span> Bank Charges Allocation Codes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODSC>ODSC</a></span> Bank Codes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BNK1>BNK1</a></span> Bank Statement - Documents List</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OMTC>OMTC</a></span> Bank Statement - Matching Criteria</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BNK2>BNK2</a></span> Bank Statement - Recommendation List</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBNH>OBNH</a></span> Bank Statement Header</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/MTH2V>MTH2V</a></span> Bank Statements of External Reconciliation</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBOT>OBOT</a></span> Bill Of Exchang Transaction</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBOE>OBOE</a></span> Bill of Exchange for Payment</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ABOE>ABOE</a></span> Bill of Exchange for Payment - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BOE1>BOE1</a></span> Bill of Exchange for Payment - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BOT1>BOT1</a></span> Bill of Exchange Transactions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODTY>ODTY</a></span> BoE Document Type</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OIST>OIST</a></span> BoE Instruction</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPTF>OPTF</a></span> BoE Portfolio</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBST>OBST</a></span> BoE Stamp Tax</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RTW2>RTW2</a></span> Boleto Retorno Wizard: Import Archive</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RTW1>RTW1</a></span> Boleto Retorno Wizard: Import Table</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ORTW>ORTW</a></span> Boleto Retorno Wizard: Parameter Sets</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OUBR>OUBR</a></span> Branches</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPBU>OPBU</a></span> Budget ID</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCBI>OCBI</a></span> Central Bank Ind.</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/TPW5>TPW5</a></span> Challan Information</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCHH>OCHH</a></span> Check Register</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCHO>OCHO</a></span> Checks for Payment</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ACHO>ACHO</a></span> Checks for Payment - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/CHO2>CHO2</a></span> Checks for Payment - Print Status</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/CHO1>CHO1</a></span> Checks for Payment - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ACH1>ACH1</a></span> Checks for Payment - Rows - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCHD>OCHD</a></span> Checks for Payment Drafts</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/CHD1>CHD1</a></span> Checks for Payment Drafts - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCRH>OCRH</a></span> Credit Card Management</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCRV>OCRV</a></span> Credit Payments</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ARC3>ARC3</a></span> Credit Vouchers History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PYM1>PYM1</a></span> Currency Selection</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OUDP>OUDP</a></span> Departments</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODPS>ODPS</a></span> Deposit</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/DPS1>DPS1</a></span> Deposit - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPBD>OPBD</a></span> Document Type</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ABOC>ABOC</a></span> External Bank Operation Code - Log</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BOC1>BOC1</a></span> External Bank Operation Code - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ABO1>ABO1</a></span> External Bank Operation Code - Rows - Log</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBOC>OBOC</a></span> External Bank Operation Code Category</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBNK>OBNK</a></span> External Bank Statement Received</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/MTH3V>MTH3V</a></span> Filter for Query MTH</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ADS1>ADS1</a></span> House Bank Accounts</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/DSC1>DSC1</a></span> House Bank Accounts</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ORCT>ORCT</a></span> Incoming Payment</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RCT4>RCT4</a></span> Incoming Payment - Account List</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ARC4>ARC4</a></span> Incoming Payment - Account List - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RCT1>RCT1</a></span> Incoming Payment - Checks</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ARC1>ARC1</a></span> Incoming Payment - Checks - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RCC4>RCC4</a></span> Incoming Payment - Credit Vouchers</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ARCT>ARCT</a></span> Incoming Payment - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ARC2>ARC2</a></span> Incoming Payment - Invoices - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PMV8>PMV8</a></span> Incoming Payment - TDS Entries</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RCT8>RCT8</a></span> Incoming Payment - TDS Entries</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/TMP8>TMP8</a></span> Incoming Payment - TDS Entries</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ARC8>ARC8</a></span> Incoming Payment - TDS Entries - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPOI>OPOI</a></span> Incoming Payment Order</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RCT2>RCT2</a></span> Incoming Payments - Invoices</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ARC7>ARC7</a></span> Incoming Payments - Tax Amount per Document - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RCT6>RCT6</a></span> Incoming Payments - WTax Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ARC6>ARC6</a></span> Incoming Payments - WTax Rows - History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RCT3>RCT3</a></span> Incoming Pmt - Credit Vouchers</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RCT7>RCT7</a></span> Incoming Pmt - Tax Amount per Document</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/CTG1>CTG1</a></span> Installment Layout</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OBTC>OBTC</a></span> Internal Bank Operation Codes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ABTC>ABTC</a></span> Internal Bank Operation Codes -  Log</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/BTC1>BTC1</a></span> Internal Bank Operation Codes - Accounts</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ABT1>ABT1</a></span> Internal Bank Operation Codes - Accounts - Log</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OIPO>OIPO</a></span> Internal Payment Order Number</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OITR>OITR</a></span> Internal Reconciliation</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ITR1>ITR1</a></span> Internal Reconciliation - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/MTH1V>MTH1V</a></span> Journal Entries of External Reconciliation</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/TPW6>TPW6</a></span> Journal Entry Information</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VPM8>VPM8</a></span> Outgoing Payment - TDS Entries</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPOO>OPOO</a></span> Outgoing Payment Order</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OVPM>OVPM</a></span> Outgoing Payments</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VPM4>VPM4</a></span> Outgoing Payments - Accounts</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VPM1>VPM1</a></span> Outgoing Payments - Check Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VPM3>VPM3</a></span> Outgoing Payments - Credit Vouchers</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VPM2>VPM2</a></span> Outgoing Payments - Invoices</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VPM7>VPM7</a></span> Outgoing Payments - Tax Amount per Document</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VPM5>VPM5</a></span> Outgoing Payments - Vat Adjustment</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/VPM6>VPM6</a></span> Outgoing Payments - WTax Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/TPW2>TPW2</a></span> Payable Information</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PMN5>PMN5</a></span> Payment - VAT Adjustment</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPYB>OPYB</a></span> Payment Block</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPDF>OPDF</a></span> Payment Draft</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PDF4>PDF4</a></span> Payment Draft - Account List</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PDF1>PDF1</a></span> Payment Draft - Checks</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PDF3>PDF3</a></span> Payment Draft - Credit Vouchers</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PDF2>PDF2</a></span> Payment Draft - Invoices</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PDF7>PDF7</a></span> Payment Draft - Tax Amount per Document</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PDF8>PDF8</a></span> Payment Draft - TDS Entries</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PDF6>PDF6</a></span> Payment Drafts - Withholding Tax - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPYM>OPYM</a></span> Payment Methods for Payment Wizard</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPYR>OPYR</a></span> Payment Reason</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPEX>OPEX</a></span> Payment Results Table</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PEX1>PEX1</a></span> Payment Results Table - Rows</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPYD>OPYD</a></span> Payment Run</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OCTG>OCTG</a></span> Payment Terms</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PYD1>PYD1</a></span> Payment Terms Allowed in Payment Run</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPPT>OPPT</a></span> Payment Type</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPWZ>OPWZ</a></span> Payment Wizard</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PWZ1>PWZ1</a></span> Payment Wizard - Rows 1</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PWZ2>PWZ2</a></span> Payment Wizard - Rows 2</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PWZ3>PWZ3</a></span> Payment Wizard - Rows 3</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PWZ4>PWZ4</a></span> Payment Wizard - Rows 4</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PWZ5>PWZ5</a></span> Payment Wizard - Rows 5</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PWZ6>PWZ6</a></span> Payment Wizard Rows - 6</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/PDF5>PDF5</a></span> PaymentDraft - vat adjustment</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPFT>OPFT</a></span> Portfolio Definitions</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ODPT>ODPT</a></span> Postdated Deposit</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPWB>OPWB</a></span> PWZ - Bank Account</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/ARC5>ARC5</a></span> Reciept log vat adjustment-History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/RCT5>RCT5</a></span> Reciept vat adjustment</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OMTH>OMTH</a></span> Reconciliation History</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OROC>OROC</a></span> Retorno Operation Codes</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OSVR>OSVR</a></span> Saved Reconciliations</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/SVR1>SVR1</a></span> Saved Reconciliations - Transaction List</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/TPW1>TPW1</a></span> Selection Criteria</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OPRS>OPRS</a></span> Tax Payer Status</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/OTPW>OTPW</a></span> Tax Payment Wizard</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/TPW3>TPW3</a></span> Utilization and Payment</div><div style='padding-left:10px;'> <span style='float:left; min-width:50px;'><a href=/TPW4>TPW4</a></span> VAT Refund</div></div></td>
+<td class='menudretawrap np' valign=top ></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

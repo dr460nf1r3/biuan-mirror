@@ -1,0 +1,356 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OCPR - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#ff4422; color:#ffffea;'><div class=eli2><b>SQL</b> <a href='/sql/Business Partners'> Business Partners</a> / <a href='/sql/Business Partner'> Business Partner</a> / <a href='/sql/Contact Persons'>Contact Persons</a></div></div><div class=' tit' style='width:33%; background-color:#ff7654; color:#cd1200;'><div class=eli2><b>DTW</b> Business Partners /  Business Partner Master Data / Contact Persons</div></div><div class=' tit' style='width:33%; background-color:#ffa886; color:#cd1200;'><div class=eli2><b>API</b> Business Partners /  Contact Employees</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #cd1200;'  class='titol sm titoltxt'>  <a style='color:#cd1200;' href='/OCPR/'> OCPR - Contact Persons</a> Table</font><script>
+                    document.title = 'OCPR - Contact Persons - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>CntctCode</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b><u title='Primary'>CardCode</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >BP Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>CARD</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b>Name</b></em></td><td valign=top >Contact Person Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Position</b></em></td><td valign=top >Position</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>90</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Address</b></em></td><td valign=top >Address</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Tel1</b></em></td><td valign=top >Telephone 1</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Tel2</b></em></td><td valign=top >Telephone 2</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Cellolar</b></em></td><td valign=top >Mobile Phone</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Fax</b></em></td><td valign=top >Fax</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>E_MailL</b></em></td><td valign=top >E-Mail</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Pager</b></em></td><td valign=top >Pager</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>30</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Notes1</b></em></td><td valign=top >Remark 1</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Notes2</b></em></td><td valign=top >Remark 2</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DataSource</b></em></td><td valign=top >Data Source</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  Unknown<hr>I)  Interface<hr>U)  Update<hr>M)  Import<hr>O)  DI API<hr>A)  Doc. Generation Wizard<hr>D)  Restore Wizard<hr>P)  Partner Implementation<hr>T)  Year Transfer</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Password</b></em></td><td valign=top >Password</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ObjType</b></em></td><td valign=top >Object Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ADP1 title='Object Settings - History'>ADP1</a><br><small class=s2>Object Settings - History</small></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BirthPlace</b></em></td><td valign=top >Place of Birth</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BirthDate</b></em></td><td valign=top >Date of Birth</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Gender</b></em></td><td valign=top >Gender</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>M)  Male<hr>F)  Female<hr>E) </div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>E</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Profession</b></em></td><td valign=top >Profession</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>updateDate</b></em></td><td valign=top >Date of Update</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>updateTime</b></em></td><td valign=top >Update Time</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Title</b></em></td><td valign=top >Title</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>10</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BirthCity</b></em></td><td valign=top >City of Birth</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Active</b></em></td><td valign=top >Active</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FirstName</b></em></td><td valign=top >First Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MiddleName</b></em></td><td valign=top >Middle Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LastName</b></em></td><td valign=top >Last Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BirthState</b></em></td><td valign=top >State of Birth</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/OCST title='States'>OCST</a><br><small class=s2>States</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResidCity</b></em></td><td valign=top >City of Residence</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResidCntry</b></em></td><td valign=top >Country of Residence</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ResidState</b></em></td><td valign=top >State of Residence</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/OCST title='States'>OCST</a><br><small class=s2>States</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NFeRcpn</b></em></td><td valign=top >NF-e Recipient</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EmlGrpCode</b></em></td><td valign=top >E-Mail Group Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/OEGP title='E-Mail Group'>OEGP</a><br><small class=s2>E-Mail Group</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BlockComm</b></em></td><td valign=top >Block Sending Marketing</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FiscalCode</b></em></td><td valign=top >Fiscal Code for Resident</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CtyPrvsYr</b></em></td><td valign=top >City for Previous Year</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SttPrvsYr</b></em></td><td valign=top >State for Previous Year</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/OCST title='States'>OCST</a><br><small class=s2>States</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CtyCdPrvsY</b></em></td><td valign=top >City Code for Previous Year</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>4</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CtyCurYr</b></em></td><td valign=top >City for Current Year</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SttCurYr</b></em></td><td valign=top >State for Current Year</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/OCST title='States'>OCST</a><br><small class=s2>States</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CtyCdCurYr</b></em></td><td valign=top >City Code for Current Year</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>4</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OCPR', font: { multi: true }, label: 'OCPR', title: ''},{id: 'ADOC', font: { multi: true }, label: '<b>ADOC</b>', title:'Invoice - History'},{id: 'AINS', font: { multi: true }, label: '<b>AINS</b>', title:'Customer Equipment Card - History'},{id: 'AOAT', font: { multi: true }, label: '<b>AOAT</b>', title:'Blanket Agreement'},{id: 'AOPR', font: { multi: true }, label: '<b>AOPR</b>', title:'Opportunity'},{id: 'ARCT', font: { multi: true }, label: '<b>ARCT</b>', title:'Incoming Payment - History'},{id: 'ASCL', font: { multi: true }, label: '<b>ASCL</b>', title:'History'},{id: 'ATXI', font: { multi: true }, label: '<b>ATXI</b>', title:'Tax Invoice - History'},{id: 'CPRC', font: { multi: true }, label: '<b>CPRC</b>', title:'Contact Persons - Communication Mean'},{id: 'OCIN', font: { multi: true }, label: '<b>OCIN</b>', title:'A/R Correction Invoice'},{id: 'OCLG', font: { multi: true }, label: '<b>OCLG</b>', title:'Activities'},{id: 'OCPI', font: { multi: true }, label: '<b>OCPI</b>', title:'A/P Correction Invoice'},{id: 'OCPV', font: { multi: true }, label: '<b>OCPV</b>', title:'A/P Correction Invoice Reversal'},{id: 'OCSI', font: { multi: true }, label: '<b>OCSI</b>', title:'A/R Correction Invoice'},{id: 'OCSV', font: { multi: true }, label: '<b>OCSV</b>', title:'A/R Correction Invoice Reversal'},{id: 'OCTR', font: { multi: true }, label: '<b>OCTR</b>', title:'Service Contracts'},{id: 'ODLN', font: { multi: true }, label: '<b>ODLN</b>', title:'Delivery'},{id: 'ODPI', font: { multi: true }, label: '<b>ODPI</b>', title:'A/R Down Payment'},{id: 'ODPO', font: { multi: true }, label: '<b>ODPO</b>', title:'A/P Down Payment'},{id: 'ODRF', font: { multi: true }, label: '<b>ODRF</b>', title:'Drafts'},{id: 'OIEI', font: { multi: true }, label: '<b>OIEI</b>', title:'Incoming Excise Invoice'},{id: 'OIGE', font: { multi: true }, label: '<b>OIGE</b>', title:'Goods Issue'},{id: 'OIGN', font: { multi: true }, label: '<b>OIGN</b>', title:'Goods Receipt'},{id: 'OINS', font: { multi: true }, label: '<b>OINS</b>', title:'Customer Equipment Card'},{id: 'OINV', font: { multi: true }, label: '<b>OINV</b>', title:'A/R Invoice'},{id: 'OOAT', font: { multi: true }, label: '<b>OOAT</b>', title:'Blanket Agreement'},{id: 'OOEI', font: { multi: true }, label: '<b>OOEI</b>', title:'Outgoing Excise Invoice'},{id: 'OOPR', font: { multi: true }, label: '<b>OOPR</b>', title:'Opportunity'},{id: 'OPCH', font: { multi: true }, label: '<b>OPCH</b>', title:'A/P Invoice'},{id: 'OPDF', font: { multi: true }, label: '<b>OPDF</b>', title:'Payment Draft'},{id: 'OPDN', font: { multi: true }, label: '<b>OPDN</b>', title:'Goods Receipt PO'},{id: 'OPOR', font: { multi: true }, label: '<b>OPOR</b>', title:'Purchase Order'},{id: 'OPQT', font: { multi: true }, label: '<b>OPQT</b>', title:'Purchase Quotation'},{id: 'OPR1', font: { multi: true }, label: '<b>OPR1</b>', title:'Opportunity - Rows'},{id: 'OPRQ', font: { multi: true }, label: '<b>OPRQ</b>', title:'Purchase Request'},{id: 'OQUT', font: { multi: true }, label: '<b>OQUT</b>', title:'Sales Quotation'},{id: 'ORCT', font: { multi: true }, label: '<b>ORCT</b>', title:'Incoming Payment'},{id: 'ORDN', font: { multi: true }, label: '<b>ORDN</b>', title:'Returns'},{id: 'ORDR', font: { multi: true }, label: '<b>ORDR</b>', title:'Sales Order'},{id: 'ORIN', font: { multi: true }, label: '<b>ORIN</b>', title:'A/R Credit Memo'},{id: 'ORPC', font: { multi: true }, label: '<b>ORPC</b>', title:'A/P Credit Memo'},{id: 'ORPD', font: { multi: true }, label: '<b>ORPD</b>', title:'Goods Return'},{id: 'OSCL', font: { multi: true }, label: '<b>OSCL</b>', title:'Service Calls'},{id: 'OTPI', font: { multi: true }, label: '<b>OTPI</b>', title:'Purchase Tax Invoice'},{id: 'OTSI', font: { multi: true }, label: '<b>OTSI</b>', title:'Sales Tax Invoice'},{id: 'OTXD', font: { multi: true }, label: '<b>OTXD</b>', title:'Tax Invoice Draft'},{id: 'OVPM', font: { multi: true }, label: '<b>OVPM</b>', title:'Outgoing Payments'},{id: 'OWKO', font: { multi: true }, label: '<b>OWKO</b>', title:'Production Instructions'},{id: 'OWTQ', font: { multi: true }, label: '<b>OWTQ</b>', title:'Inventory Transfer Request'},{id: 'OWTR', font: { multi: true }, label: '<b>OWTR</b>', title:'Inventory Transfer'},{id: 'TGG1', font: { multi: true }, label: '<b>TGG1</b>', title:'Target Group Details'},{id: 'UWKO', font: { multi: true }, label: '<b>UWKO</b>', title:'Production Instructions'},{id: 'OCST', font: { multi: true }, label: 'OCST', title: 'States'},{id: 'OCRD', font: { multi: true }, label: 'OCRD', title: 'Business Partner'},{id: 'OEGP', font: { multi: true }, label: 'OEGP', title: 'E-Mail Group'},{id: 'ADP1', font: { multi: true }, label: 'ADP1', title: 'Object Settings - History'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OCPR', to: 'ADOC', arrows:'from'}, {from: 'OCPR', to: 'AINS', arrows:'from'}, {from: 'OCPR', to: 'AOAT', arrows:'from'}, {from: 'OCPR', to: 'AOPR', arrows:'from'}, {from: 'OCPR', to: 'ARCT', arrows:'from'}, {from: 'OCPR', to: 'ASCL', arrows:'from'}, {from: 'OCPR', to: 'ATXI', arrows:'from'}, {from: 'OCPR', to: 'CPRC', arrows:'from'}, {from: 'OCPR', to: 'OCIN', arrows:'from'}, {from: 'OCPR', to: 'OCLG', arrows:'from'}, {from: 'OCPR', to: 'OCPI', arrows:'from'}, {from: 'OCPR', to: 'OCPV', arrows:'from'}, {from: 'OCPR', to: 'OCSI', arrows:'from'}, {from: 'OCPR', to: 'OCSV', arrows:'from'}, {from: 'OCPR', to: 'OCTR', arrows:'from'}, {from: 'OCPR', to: 'ODLN', arrows:'from'}, {from: 'OCPR', to: 'ODPI', arrows:'from'}, {from: 'OCPR', to: 'ODPO', arrows:'from'}, {from: 'OCPR', to: 'ODRF', arrows:'from'}, {from: 'OCPR', to: 'OIEI', arrows:'from'}, {from: 'OCPR', to: 'OIGE', arrows:'from'}, {from: 'OCPR', to: 'OIGN', arrows:'from'}, {from: 'OCPR', to: 'OINS', arrows:'from'}, {from: 'OCPR', to: 'OINV', arrows:'from'}, {from: 'OCPR', to: 'OOAT', arrows:'from'}, {from: 'OCPR', to: 'OOEI', arrows:'from'}, {from: 'OCPR', to: 'OOPR', arrows:'from'}, {from: 'OCPR', to: 'OPCH', arrows:'from'}, {from: 'OCPR', to: 'OPDF', arrows:'from'}, {from: 'OCPR', to: 'OPDN', arrows:'from'}, {from: 'OCPR', to: 'OPOR', arrows:'from'}, {from: 'OCPR', to: 'OPQT', arrows:'from'}, {from: 'OCPR', to: 'OPR1', arrows:'from'}, {from: 'OCPR', to: 'OPRQ', arrows:'from'}, {from: 'OCPR', to: 'OQUT', arrows:'from'}, {from: 'OCPR', to: 'ORCT', arrows:'from'}, {from: 'OCPR', to: 'ORDN', arrows:'from'}, {from: 'OCPR', to: 'ORDR', arrows:'from'}, {from: 'OCPR', to: 'ORIN', arrows:'from'}, {from: 'OCPR', to: 'ORPC', arrows:'from'}, {from: 'OCPR', to: 'ORPD', arrows:'from'}, {from: 'OCPR', to: 'OSCL', arrows:'from'}, {from: 'OCPR', to: 'OTPI', arrows:'from'}, {from: 'OCPR', to: 'OTSI', arrows:'from'}, {from: 'OCPR', to: 'OTXD', arrows:'from'}, {from: 'OCPR', to: 'OVPM', arrows:'from'}, {from: 'OCPR', to: 'OWKO', arrows:'from'}, {from: 'OCPR', to: 'OWTQ', arrows:'from'}, {from: 'OCPR', to: 'OWTR', arrows:'from'}, {from: 'OCPR', to: 'TGG1', arrows:'from'}, {from: 'OCPR', to: 'UWKO', arrows:'from'}, {from: 'OCST', to: 'OCPR', arrows:'from'}, {from: 'OCRD', to: 'OCPR', arrows:'from'}, {from: 'OEGP', to: 'OCPR', arrows:'from'}, {from: 'ADP1', to: 'OCPR', arrows:'from'}, {from: 'OUSR', to: 'OCPR', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OCPR.CntctCode AS 'Internal Number', 
+   OCPR.CardCode AS 'BP Code', 
+   OCPR.Name AS 'Contact Person Name', 
+   OCPR.Position AS 'Position', 
+   OCPR.Address AS 'Address', 
+   OCPR.Tel1 AS 'Telephone 1', 
+   OCPR.Tel2 AS 'Telephone 2', 
+   OCPR.Cellolar AS 'Mobile Phone', 
+   OCPR.Fax AS 'Fax', 
+   OCPR.E_MailL AS 'E-Mail', 
+   OCPR.Pager AS 'Pager', 
+   OCPR.Notes1 AS 'Remark 1', 
+   OCPR.Notes2 AS 'Remark 2', 
+   OCPR.DataSource AS 'Data Source', 
+   OCPR.UserSign AS 'User Signature', 
+   OCPR.Password AS 'Password', 
+   OCPR.LogInstanc AS 'Log Instance', 
+   OCPR.ObjType AS 'Object Type', 
+   OCPR.BirthPlace AS 'Place of Birth', 
+   OCPR.BirthDate AS 'Date of Birth', 
+   OCPR.Gender AS 'Gender', 
+   OCPR.Profession AS 'Profession', 
+   OCPR.updateDate AS 'Date of Update', 
+   OCPR.updateTime AS 'Update Time', 
+   OCPR.Title AS 'Title', 
+   OCPR.BirthCity AS 'City of Birth', 
+   OCPR.Active AS 'Active', 
+   OCPR.FirstName AS 'First Name', 
+   OCPR.MiddleName AS 'Middle Name', 
+   OCPR.LastName AS 'Last Name', 
+   OCPR.BirthState AS 'State of Birth', 
+   OCPR.ResidCity AS 'City of Residence', 
+   OCPR.ResidCntry AS 'Country of Residence', 
+   OCPR.ResidState AS 'State of Residence', 
+   OCPR.NFeRcpn AS 'NF-e Recipient', 
+   OCPR.EmlGrpCode AS 'E-Mail Group Code', 
+   OCPR.BlockComm AS 'Block Sending Marketing', 
+   OCPR.FiscalCode AS 'Fiscal Code for Resident', 
+   OCPR.CtyPrvsYr AS 'City for Previous Year', 
+   OCPR.SttPrvsYr AS 'State for Previous Year', 
+   OCPR.CtyCdPrvsY AS 'City Code for Previous Year', 
+   OCPR.CtyCurYr AS 'City for Current Year', 
+   OCPR.SttCurYr AS 'State for Current Year', 
+   OCPR.CtyCdCurYr AS 'City Code for Current Year'
+FROM OCPR AS OCPR</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+212.64609098434448
+0' class=related href='/BusinessPartners/ContactEmployees'> Contact Employees</a> <em class=comment>ContactEmployees</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OCPR/ >OCPR</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>ContactEmployees is a business object that represents the contact employees in the Business Partners module. This object enables you to add contact information of employees to the Business Partners master record.
+Source table: OCPR.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/BusinessPartners> Business Partners</a> <small>BusinessPartners</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OCRD/ >OCRD</a> </span><br><a href=/OCPR class=related></a> <em class=comment>OCPR</em> <b>SQL Table</b><br><br><a href=/OCST class=related>States</a> <em class=comment>OCST</em> <b>SQL Table</b><br><br><a href=/OCRD class=related>Business Partner</a> <em class=comment>OCRD</em> <b>SQL Table</b><br><br><a href=/OEGP class=related>E-Mail Group</a> <em class=comment>OEGP</em> <b>SQL Table</b><br><br><a href=/ADP1 class=related>Object Settings - History</a> <em class=comment>ADP1</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/BusinessPartners/'>BusinessPartners</a></font><hr><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/BusinessPartners/ContactEmployees/'>ContactEmployees</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/ContactEmployees/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Delete' href=/ContactEmployees/Delete/ class=eli>Delete</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Set Current Line' href=/ContactEmployees/SetCurrentLine/ class=eli>SetCurrentLine</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Active' href=/ContactEmployees/Active/ class=eli>Active</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address' href=/ContactEmployees/Address/ class=eli>Address</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Card Code' href=/ContactEmployees/CardCode/ class=eli>CardCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='City Of Birth' href=/ContactEmployees/CityOfBirth/ class=eli>CityOfBirth</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Count' href=/ContactEmployees/Count/ class=eli>Count</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Date Of Birth' href=/ContactEmployees/DateOfBirth/ class=eli>DateOfBirth</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Email Group Code' href=/ContactEmployees/EmailGroupCode/ class=eli>EmailGroupCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='E  Mail' href=/ContactEmployees/E_Mail/ class=eli>E_Mail</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Fax' href=/ContactEmployees/Fax/ class=eli>Fax</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='First Name' href=/ContactEmployees/FirstName/ class=eli>FirstName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Gender' href=/ContactEmployees/Gender/ class=eli>Gender</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Internal Code' href=/ContactEmployees/InternalCode/ class=eli>InternalCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Last Name' href=/ContactEmployees/LastName/ class=eli>LastName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Middle Name' href=/ContactEmployees/MiddleName/ class=eli>MiddleName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Mobile Phone' href=/ContactEmployees/MobilePhone/ class=eli>MobilePhone</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Name' href=/ContactEmployees/Name/ class=eli>Name</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Pager' href=/ContactEmployees/Pager/ class=eli>Pager</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Password' href=/ContactEmployees/Password/ class=eli>Password</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Phone 1' href=/ContactEmployees/Phone1/ class=eli>Phone1</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Phone 2' href=/ContactEmployees/Phone2/ class=eli>Phone2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Place Of Birth' href=/ContactEmployees/PlaceOfBirth/ class=eli>PlaceOfBirth</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Position' href=/ContactEmployees/Position/ class=eli>Position</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Profession' href=/ContactEmployees/Profession/ class=eli>Profession</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remarks 1' href=/ContactEmployees/Remarks1/ class=eli>Remarks1</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remarks 2' href=/ContactEmployees/Remarks2/ class=eli>Remarks2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Title' href=/ContactEmployees/Title/ class=eli>Title</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/ContactEmployees/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

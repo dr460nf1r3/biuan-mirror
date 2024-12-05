@@ -1,0 +1,470 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>Document_Lines Document_LinesAdditionalExpenses - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:100%; background-color:#cacaca; color:#343434;'><div class=eli2><b>API</b> Document   Lines /  Document   Lines Additional Expenses</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #343434;' > <a style='text-decoration:none; color:#343434;' title='92
+1132.086856842041
+7.725132942199707' href='/Document_Lines/Document_LinesAdditionalExpenses/'> Document   Lines Additional Expenses</a> Object</div><script>
+                        document.title = 'Document_LinesAdditionalExpenses -   - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P><STRONG>Document_LinesAdditionalExpenses</STRONG> is a child object of <A href="/Document_Lines/">Document_Lines</A> and represents the line entries of the additional expenses document in the <EM>Marketing Documents </EM>module. </P>
+<P>The source table for each document is according to the document type as follows: <A href="/INV2/">INV2</A>, <A href="/RIN2/">RIN2</A>, <A href="/DLN2/">DLN2</A>, <A href="/RDN2/">RDN2</A>, <A href="/RDR2/">RDR2</A>, <A href="/QUT2/">QUT2</A>, <A href="/PCH2/">PCH2</A>, <A href="/RPC2/">RPC2</A>, <A href="/PDN2/">PDN2</A>, <A href="/RPD2/">RPD2</A>, <A href="/POR2/">POR2</A>, and <A href="/DRF2/">DRF2</A>.</P></div>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Object Model</span></h2><div class="oms" class="section" ><TABLE CELLSPACING=0 CELLPADDING=0 BORDER=0><TR><TD >
+<a href="/Document_LinesAdditionalExpenses/">Document_LinesAdditionalExpenses</a><br><img src="/images/parmult.gif" border=0><a href="/UserFields/">UserFields</a><br><img src="/images/parlower.gif" border=0><img src="/images/parchild.gif" border=0><a href="/Fields/">Fields</a><br><img src="/images/parlower.gif" border=0><img src="/images/space.gif" border=0><img src="/images/parchild.gif" border=0><a href="/Field/">Field</a><br><img src="/images/parlower.gif" border=0><img src="/images/space.gif" border=0><img src="/images/space.gif" border=0><img src="/images/parchild.gif" border=0><a href="/ValidValues/">ValidValues</a><img src="/images/paracros.gif" border=0><a href="/ValidValue/">ValidValue</a><br><img src="/images/parchild.gif" border=0><a href="/TaxJurisdictions/">TaxJurisdictions</a><br><img src="/images/space.gif" border=0><img src="/images/parchild.gif" border=0><a href="/UserFields/">UserFields</a><br><img src="/images/space.gif" border=0><img src="/images/space.gif" border=0><img src="/images/parchild.gif" border=0><a href="/Fields/">Fields</a><img src="/images/paracros.gif" border=0><a href="/Field/">Field</a>
+</TD></TABLE>
+</div>
+            <h2 class="heading"><span  tabindex="0"><img id="remarksToggle"  src="/images/1x1.png"></img>Remarks</span></h2><div class="remarksSection" class="section" ><P>Mandatory field in SAP Business One: <A href="/Document_LinesAdditionalExpenses/ExpenseCode/">ExpenseCode</A> and of <A href="/AdditionalExpenses/Name/">Name</A> of <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/Add/>Add</a>itionalExpenses object.</P>
+<P>You can add up to three (3) additional expenses in a row of a document and SAP Business One assigns a number (<A href="/Document_LinesAdditionalExpenses/GroupCode/">GroupCode</A>) for each of the additional expenses.</P>
+<P>If no additional expense is defined in SAP Business One, the <A href="/Documents/GetByKey/">GetByKey</A> method will retrieve null.</P></div>
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/Document_LinesAdditionalExpenses/">Document_LinesAdditionalExpenses Members</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div><div><h2>SAP® B1 DI-API C# definition</h2><div class='cs hljs'>public class <a style='color:inherit;' href=/Document_Lines/Document_LinesAdditionalExpenses/>Document_LinesAdditionalExpenses</a>Class : IDocument_LinesAdditionalExpenses, <a style='color:inherit;' href=/Document_Lines/Document_LinesAdditionalExpenses/>Document_LinesAdditionalExpenses</a>
+  { 
+    public virtual BoYesNoEnum <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/AquisitionTax/>AquisitionTax</a>
+    { 
+      get;
+    } 
+    public virtual int <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/BaseGroup/>BaseGroup</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/Count/>Count</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/DeductibleTaxSum/>DeductibleTaxSum</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/DeductibleTaxSumFC/>DeductibleTaxSumFC</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/DeductibleTaxSumSys/>DeductibleTaxSumSys</a>
+    { 
+      get;
+    } 
+    public virtual string <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/DistributionRule/>DistributionRule</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/DistributionRule2/>DistributionRule2</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/DistributionRule3/>DistributionRule3</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/DistributionRule4/>DistributionRule4</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/DistributionRule5/>DistributionRule5</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/EqualizationTaxFC/>EqualizationTaxFC</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/EqualizationTaxPercent/>EqualizationTaxPercent</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/EqualizationTaxSum/>EqualizationTaxSum</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/EqualizationTaxSys/>EqualizationTaxSys</a>
+    { 
+      get;
+    } 
+    public virtual int <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/ExpenseCode/>ExpenseCode</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/GroupCode/>GroupCode</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/LineNumber/>LineNumber</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/LineTotal/>LineTotal</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/LineTotalFC/>LineTotalFC</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/LineTotalSys/>LineTotalSys</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/PaidToDate/>PaidToDate</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/PaidToDateFC/>PaidToDateFC</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/PaidToDateSys/>PaidToDateSys</a>
+    { 
+      get;
+    } 
+    public virtual string <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/Project/>Project</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxCode/>TaxCode</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual SAPbobsCOM.<a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxJurisdictions/>TaxJurisdictions</a> <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxJurisdictions/>TaxJurisdictions</a>
+    { 
+      get;
+    } 
+    public virtual BoYesNoEnum <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxLiable/>TaxLiable</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxPaid/>TaxPaid</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxPaidFC/>TaxPaidFC</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxPaidSys/>TaxPaidSys</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxPercent/>TaxPercent</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxSum/>TaxSum</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxSumFC/>TaxSumFC</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxSumSys/>TaxSumSys</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxTotalSum/>TaxTotalSum</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxTotalSumFC/>TaxTotalSumFC</a>
+    { 
+      get;
+    } 
+    public virtual double <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxTotalSumSys/>TaxTotalSumSys</a>
+    { 
+      get;
+    } 
+    public virtual BoAdEpnsTaxTypes <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/TaxType/>TaxType</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual SAPbobsCOM.<a style='color:inherit;' href=/Document_LinesAdditionalExpenses/UserFields/>UserFields</a> <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/UserFields/>UserFields</a>
+    { 
+      get;
+    } 
+    public virtual string <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/VatGroup/>VatGroup</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual BoYesNoEnum <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/WTLiable/>WTLiable</a>
+    { 
+      get; 
+      set;
+    }
+    public extern <a style='color:inherit;' href=/Document_Lines/Document_LinesAdditionalExpenses/>Document_LinesAdditionalExpenses</a>Class(); 
+    public virtual extern void <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/Add/>Add</a>(); 
+    public virtual extern void <a style='color:inherit;' href=/Document_LinesAdditionalExpenses/SetCurrentLine/>SetCurrentLine</a>(int <a style='color:inherit;' href=/Document_Lines/LineNum/>LineNum</a>);
+  }</div></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+7.725132942199707' class=related href='/Document_Lines/BatchNumbers'> Batch Numbers</a> <em class=comment>BatchNumbers</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBTN/ >OBTN</a> <a href=/BTNT/ >BTNT</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>BatchNumbers is a business object that represents the batch numbers of an item in the Inventory and Production module.
+This object enables you to add batch numbers for a selected item row (one record per item).
+Source table: OBTN, OBTW, OITL,...</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Document_Lines> Document   Lines</a> <small>Document_Lines</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/IGE1/ >IGE1</a> <a href=/IGN1/ >IGN1</a> </span><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/Document_Lines/'>Document_Lines</a></font><hr><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/Document_Lines/Document_LinesAdditionalExpenses/'>Document_LinesAdditionalExpenses</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/Document_LinesAdditionalExpenses/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Set Current Line' href=/Document_LinesAdditionalExpenses/SetCurrentLine/ class=eli>SetCurrentLine</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Aquisition Tax' href=/Document_LinesAdditionalExpenses/AquisitionTax/ class=eli>AquisitionTax</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Base Group' href=/Document_LinesAdditionalExpenses/BaseGroup/ class=eli>BaseGroup</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Count' href=/Document_LinesAdditionalExpenses/Count/ class=eli>Count</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Deductible Tax Sum' href=/Document_LinesAdditionalExpenses/DeductibleTaxSum/ class=eli>DeductibleTaxSum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Deductible Tax Sum FC' href=/Document_LinesAdditionalExpenses/DeductibleTaxSumFC/ class=eli>DeductibleTaxSumFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Deductible Tax Sum Sys' href=/Document_LinesAdditionalExpenses/DeductibleTaxSumSys/ class=eli>DeductibleTaxSumSys</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule' href=/Document_LinesAdditionalExpenses/DistributionRule/ class=eli>DistributionRule</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 2' href=/Document_LinesAdditionalExpenses/DistributionRule2/ class=eli>DistributionRule2</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 3' href=/Document_LinesAdditionalExpenses/DistributionRule3/ class=eli>DistributionRule3</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 4' href=/Document_LinesAdditionalExpenses/DistributionRule4/ class=eli>DistributionRule4</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 5' href=/Document_LinesAdditionalExpenses/DistributionRule5/ class=eli>DistributionRule5</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Equalization Tax FC' href=/Document_LinesAdditionalExpenses/EqualizationTaxFC/ class=eli>EqualizationTaxFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Equalization Tax Percent' href=/Document_LinesAdditionalExpenses/EqualizationTaxPercent/ class=eli>EqualizationTaxPercent</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Equalization Tax Sum' href=/Document_LinesAdditionalExpenses/EqualizationTaxSum/ class=eli>EqualizationTaxSum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Equalization Tax Sys' href=/Document_LinesAdditionalExpenses/EqualizationTaxSys/ class=eli>EqualizationTaxSys</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Expense Code' href=/Document_LinesAdditionalExpenses/ExpenseCode/ class=eli>ExpenseCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Group Code' href=/Document_LinesAdditionalExpenses/GroupCode/ class=eli>GroupCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Line Number' href=/Document_LinesAdditionalExpenses/LineNumber/ class=eli>LineNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Line Total' href=/Document_LinesAdditionalExpenses/LineTotal/ class=eli>LineTotal</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Line Total FC' href=/Document_LinesAdditionalExpenses/LineTotalFC/ class=eli>LineTotalFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Line Total Sys' href=/Document_LinesAdditionalExpenses/LineTotalSys/ class=eli>LineTotalSys</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Paid To Date' href=/Document_LinesAdditionalExpenses/PaidToDate/ class=eli>PaidToDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Paid To Date FC' href=/Document_LinesAdditionalExpenses/PaidToDateFC/ class=eli>PaidToDateFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Paid To Date Sys' href=/Document_LinesAdditionalExpenses/PaidToDateSys/ class=eli>PaidToDateSys</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Project' href=/Document_LinesAdditionalExpenses/Project/ class=eli>Project</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Code' href=/Document_LinesAdditionalExpenses/TaxCode/ class=eli>TaxCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Jurisdictions' href=/Document_LinesAdditionalExpenses/TaxJurisdictions/ class=eli>TaxJurisdictions</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Liable' href=/Document_LinesAdditionalExpenses/TaxLiable/ class=eli>TaxLiable</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Paid' href=/Document_LinesAdditionalExpenses/TaxPaid/ class=eli>TaxPaid</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Paid FC' href=/Document_LinesAdditionalExpenses/TaxPaidFC/ class=eli>TaxPaidFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Paid Sys' href=/Document_LinesAdditionalExpenses/TaxPaidSys/ class=eli>TaxPaidSys</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Percent' href=/Document_LinesAdditionalExpenses/TaxPercent/ class=eli>TaxPercent</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Sum' href=/Document_LinesAdditionalExpenses/TaxSum/ class=eli>TaxSum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Sum FC' href=/Document_LinesAdditionalExpenses/TaxSumFC/ class=eli>TaxSumFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Sum Sys' href=/Document_LinesAdditionalExpenses/TaxSumSys/ class=eli>TaxSumSys</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Total Sum' href=/Document_LinesAdditionalExpenses/TaxTotalSum/ class=eli>TaxTotalSum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Total Sum FC' href=/Document_LinesAdditionalExpenses/TaxTotalSumFC/ class=eli>TaxTotalSumFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Total Sum Sys' href=/Document_LinesAdditionalExpenses/TaxTotalSumSys/ class=eli>TaxTotalSumSys</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Type' href=/Document_LinesAdditionalExpenses/TaxType/ class=eli>TaxType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/Document_LinesAdditionalExpenses/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vat Group' href=/Document_LinesAdditionalExpenses/VatGroup/ class=eli>VatGroup</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WT Liable' href=/Document_LinesAdditionalExpenses/WTLiable/ class=eli>WTLiable</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

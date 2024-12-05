@@ -1,0 +1,376 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OBIN - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Inventory and Production'> Inventory and Production</a> / <a href='/sql/Bin Location'> Bin Location</a> / <a href='/sql/Bin Location'>Bin Location</a></div></div><div class=' tit' style='width:33%; background-color:#44efeb; color:#008b87;'><div class=eli2><b>DTW</b> Inventory /  Bin Locations / Bin Location</div></div><div class=' tit' style='width:33%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> Bin Locations Service /  Bin Location</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #008b87;'  class='titol sm titoltxt'>  <a style='color:#008b87;' href='/OBIN/'> OBIN - Bin Location</a> Table</font><script>
+                    document.title = 'OBIN - Bin Location - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>AbsEntry</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b><u title='Primary'>BinCode</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Bin Location Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>BIN_CODE</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b><u title='Primary'>WhsCode</u> <sup title='KEY'>KEY</sup></b></em></td><td valign=top >Warehouse Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OWHS title='Warehouses'>OWHS</a><br><small class=s2>Warehouses</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>BUSINESS_K</td><td valign=top class=nomobile><em style='color:#bc0000;'>No</em></td></tr><tr><td valign=top ><em><b>SysBin</b></em></td><td valign=top >System Bin</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SL1Abs</b></em></td><td valign=top >Sublevel-1 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBSL title='Warehouse Sublevel'>OBSL</a><br><small class=s2>Warehouse Sublevel</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SL1Code</b></em></td><td valign=top >Sublevel-1 Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SL2Abs</b></em></td><td valign=top >Sublevel-2 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBSL title='Warehouse Sublevel'>OBSL</a><br><small class=s2>Warehouse Sublevel</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SL2Code</b></em></td><td valign=top >Sublevel-2 Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SL3Abs</b></em></td><td valign=top >Sublevel-3 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBSL title='Warehouse Sublevel'>OBSL</a><br><small class=s2>Warehouse Sublevel</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SL3Code</b></em></td><td valign=top >Sublevel-3 Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SL4Abs</b></em></td><td valign=top >Sublevel-4 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBSL title='Warehouse Sublevel'>OBSL</a><br><small class=s2>Warehouse Sublevel</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SL4Code</b></em></td><td valign=top >Sublevel-4 Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr1Abs</b></em></td><td valign=top >Attribute-1 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBAT title='Bin Location Attribute'>OBAT</a><br><small class=s2>Bin Location Attribute</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr1Val</b></em></td><td valign=top >Attribute-1 Value</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr2Abs</b></em></td><td valign=top >Attribute-2 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBAT title='Bin Location Attribute'>OBAT</a><br><small class=s2>Bin Location Attribute</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr2Val</b></em></td><td valign=top >Attribute-2 Value</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr3Abs</b></em></td><td valign=top >Attribute-3 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBAT title='Bin Location Attribute'>OBAT</a><br><small class=s2>Bin Location Attribute</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr3Val</b></em></td><td valign=top >Attribute-3 Value</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr4Abs</b></em></td><td valign=top >Attribute-4 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBAT title='Bin Location Attribute'>OBAT</a><br><small class=s2>Bin Location Attribute</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr4Val</b></em></td><td valign=top >Attribute-4 Value</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr5Abs</b></em></td><td valign=top >Attribute-5 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBAT title='Bin Location Attribute'>OBAT</a><br><small class=s2>Bin Location Attribute</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr5Val</b></em></td><td valign=top >Attribute-5 Value</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr6Abs</b></em></td><td valign=top >Attribute-6 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBAT title='Bin Location Attribute'>OBAT</a><br><small class=s2>Bin Location Attribute</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr6Val</b></em></td><td valign=top >Attribute-6 Value</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr7Abs</b></em></td><td valign=top >Attribute-7 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBAT title='Bin Location Attribute'>OBAT</a><br><small class=s2>Bin Location Attribute</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr7Val</b></em></td><td valign=top >Attribute-7 Value</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr8Abs</b></em></td><td valign=top >Attribute-8 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBAT title='Bin Location Attribute'>OBAT</a><br><small class=s2>Bin Location Attribute</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr8Val</b></em></td><td valign=top >Attribute-8 Value</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr9Abs</b></em></td><td valign=top >Attribute-9 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBAT title='Bin Location Attribute'>OBAT</a><br><small class=s2>Bin Location Attribute</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr9Val</b></em></td><td valign=top >Attribute-9 Value</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr10Abs</b></em></td><td valign=top >Attribute-10 Internal Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBAT title='Bin Location Attribute'>OBAT</a><br><small class=s2>Bin Location Attribute</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Attr10Val</b></em></td><td valign=top >Attribute-10 Value</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Disabled</b></em></td><td valign=top >Inactive</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Descr</b></em></td><td valign=top >Description</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BarCode</b></em></td><td valign=top >Bar Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AltSortCod</b></em></td><td valign=top >Alternative Sort Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ItmRtrictT</b></em></td><td valign=top >Item Restriction Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  Specific Item<hr>2)  Single Item Only<hr>3)  Specific Item Group<hr>4)  Single Item Group Only</div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SpcItmCode</b></em></td><td valign=top >Specific Item Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/OITM title='Items'>OITM</a><br><small class=s2>Items</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SpcItmGrpC</b></em></td><td valign=top >Specific Item Group Code</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OITB title='Item Groups'>OITB</a><br><small class=s2>Item Groups</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SngBatch</b></em></td><td valign=top >Batch Restriction</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  None<hr>Y)  Single Batch</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RtrictType</b></em></td><td valign=top >Restricted Transactions Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr>0<hr>1)  All Transactions<hr>2)  Inbound Transactions<hr>3)  Outbound Transactions<hr>4)  All Except Inventory Transfer and Counting Transactions</div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RtrictResn</b></em></td><td valign=top >Reason for Restriction</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RtrictDate</b></em></td><td valign=top >Last Updated On</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DataSource</b></em></td><td valign=top >Data Source</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Transfered</b></em></td><td valign=top >Year Transfer [Y/N]</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Instance</b></em></td><td valign=top >Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CreateDate</b></em></td><td valign=top >Create Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign2</b></em></td><td valign=top >Updating User</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UpdateDate</b></em></td><td valign=top >Date of Update</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Deleted</b></em></td><td valign=top >Deleted</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MinLevel</b></em></td><td valign=top >Minimum Qty</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MaxLevel</b></em></td><td valign=top >Maximum Qty</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ReceiveBin</b></em></td><td valign=top >Receiving Bin Location</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NoAutoAllc</b></em></td><td valign=top >Excl. fr. Auto Alloc. on Issue</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MaxWeight1</b></em></td><td valign=top >Maximum Weight 1</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Wght1Unit</b></em></td><td valign=top >Unit of Maximum Weight 1</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OWGT title='Weight Units'>OWGT</a><br><small class=s2>Weight Units</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MaxWeight2</b></em></td><td valign=top >Maximum Weight 2</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Wght2Unit</b></em></td><td valign=top >Unit of Maximum Weight 2</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OWGT title='Weight Units'>OWGT</a><br><small class=s2>Weight Units</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OBIN', font: { multi: true }, label: 'OBIN', title: ''},{id: 'ADO19', font: { multi: true }, label: '<b>ADO19</b>', title:'Bin Allocation Data - History'},{id: 'AIGW', font: { multi: true }, label: '<b>AIGW</b>', title:'Item Group - Warehouse - History'},{id: 'AIN1', font: { multi: true }, label: '<b>AIN1</b>', title:'Inventory Counting - Rows'},{id: 'AITW', font: { multi: true }, label: '<b>AITW</b>', title:'Items - Warehouse - History'},{id: 'AKL2', font: { multi: true }, label: '<b>AKL2</b>', title:'Pick List for SnB and Bin Details'},{id: 'AQI1', font: { multi: true }, label: '<b>AQI1</b>', title:'Inventory Opening Balance - Rows'},{id: 'AQR1', font: { multi: true }, label: '<b>AQR1</b>', title:'Inventory Posting - Rows'},{id: 'AWHS', font: { multi: true }, label: '<b>AWHS</b>', title:'Warehouses - History'},{id: 'CIN19', font: { multi: true }, label: '<b>CIN19</b>', title:'Correction Invoice - Bin Allocation Data'},{id: 'CPI19', font: { multi: true }, label: '<b>CPI19</b>', title:'A/P Correction Invoice - Bin Allocation Data'},{id: 'CPV19', font: { multi: true }, label: '<b>CPV19</b>', title:'A/P Correction Invoice Reversal - Bin Allocation Data'},{id: 'CSI19', font: { multi: true }, label: '<b>CSI19</b>', title:'A/R Correction Invoice - Bin Allocation Data'},{id: 'CSV19', font: { multi: true }, label: '<b>CSV19</b>', title:'A/R Correction Invoice Reversal - Bin Allocation Data'},{id: 'DLN19', font: { multi: true }, label: '<b>DLN19</b>', title:'Delivery - Bin Allocation Data'},{id: 'DPI19', font: { multi: true }, label: '<b>DPI19</b>', title:'A/R Down Payment - Bin Allocation Data'},{id: 'DPO19', font: { multi: true }, label: '<b>DPO19</b>', title:'A/P Down Payment - Bin Allocation Data'},{id: 'DRF19', font: { multi: true }, label: '<b>DRF19</b>', title:'Draft - Bin Allocation Data'},{id: 'ICD1', font: { multi: true }, label: '<b>ICD1</b>', title:'Inventory Counting Draft - Rows'},{id: 'IEI19', font: { multi: true }, label: '<b>IEI19</b>', title:'Incoming Excise Invoice - Bin Allocation Data'},{id: 'IGE19', font: { multi: true }, label: '<b>IGE19</b>', title:'Goods Issue - Bin Allocation Data'},{id: 'IGN19', font: { multi: true }, label: '<b>IGN19</b>', title:'Goods Receipt - Bin Allocation Data'},{id: 'INC1', font: { multi: true }, label: '<b>INC1</b>', title:'Inventory Counting - Rows'},{id: 'INV19', font: { multi: true }, label: '<b>INV19</b>', title:'A/R Invoice - Bin Allocation Data'},{id: 'IOD1', font: { multi: true }, label: '<b>IOD1</b>', title:'Inventory Opening Balance Draft - Rows'},{id: 'IPD1', font: { multi: true }, label: '<b>IPD1</b>', title:'Inventory Posting Draft - Rows'},{id: 'IQI1', font: { multi: true }, label: '<b>IQI1</b>', title:'Inventory Opening Balance - Rows'},{id: 'IQR1', font: { multi: true }, label: '<b>IQR1</b>', title:'Inventory Posting - Rows'},{id: 'ITW1', font: { multi: true }, label: '<b>ITW1</b>', title:'Item Count Alert'},{id: 'OBBQ', font: { multi: true }, label: '<b>OBBQ</b>', title:'Item - Serial/Batch - Bin Accumulator'},{id: 'OBTL', font: { multi: true }, label: '<b>OBTL</b>', title:'Bin Transaction Log'},{id: 'OEI19', font: { multi: true }, label: '<b>OEI19</b>', title:'Outgoing Excise Invoice - Bin Allocation Data'},{id: 'OIBQ', font: { multi: true }, label: '<b>OIBQ</b>', title:'Item - Bin Accumulator'},{id: 'OIGW', font: { multi: true }, label: '<b>OIGW</b>', title:'Item Group - Warehouse'},{id: 'OITW', font: { multi: true }, label: '<b>OITW</b>', title:'Items - Warehouse'},{id: 'OSBQ', font: { multi: true }, label: '<b>OSBQ</b>', title:'Item - Serial/Batch - Bin Accumulator'},{id: 'OWHS', font: { multi: true }, label: '<b>OWHS</b>', title:'Warehouses'},{id: 'PCH19', font: { multi: true }, label: '<b>PCH19</b>', title:'A/P Invoice - Bin Allocation Data'},{id: 'PDN19', font: { multi: true }, label: '<b>PDN19</b>', title:'Goods Receipt PO - Bin Allocation Data'},{id: 'PKL2', font: { multi: true }, label: '<b>PKL2</b>', title:'Pick List for SnB and Bin Details'},{id: 'POR19', font: { multi: true }, label: '<b>POR19</b>', title:'Purchase Order - Bin Allocation Data'},{id: 'PQT19', font: { multi: true }, label: '<b>PQT19</b>', title:'Purchase Quotation - Bin Allocation Data'},{id: 'PRQ19', font: { multi: true }, label: '<b>PRQ19</b>', title:'Purchase Request - Bin Allocation Data'},{id: 'QUT19', font: { multi: true }, label: '<b>QUT19</b>', title:'Sales Quotation - Bin Allocation Data'},{id: 'RDN19', font: { multi: true }, label: '<b>RDN19</b>', title:'Returns - Bin Allocation Data'},{id: 'RDR19', font: { multi: true }, label: '<b>RDR19</b>', title:'Sales Order - Bin Allocation Data'},{id: 'RIN19', font: { multi: true }, label: '<b>RIN19</b>', title:'A/R Credit Memo - Bin Allocation Data'},{id: 'RPC19', font: { multi: true }, label: '<b>RPC19</b>', title:'A/P Credit Memo - Bin Allocation Data'},{id: 'RPD19', font: { multi: true }, label: '<b>RPD19</b>', title:'Goods Return - Bin Allocation Data'},{id: 'SITW', font: { multi: true }, label: '<b>SITW</b>', title:'Items - Warehouse'},{id: 'UITW', font: { multi: true }, label: '<b>UITW</b>', title:'Items - Warehouse'},{id: 'WTQ19', font: { multi: true }, label: '<b>WTQ19</b>', title:'Inventory Transfer Request - Bin Allocation Data'},{id: 'WTR19', font: { multi: true }, label: '<b>WTR19</b>', title:'Inventory Transfer - Bin Allocation Data'},{id: 'OBAT', font: { multi: true }, label: 'OBAT', title: 'Bin Location Attribute'},{id: 'OBSL', font: { multi: true }, label: 'OBSL', title: 'Warehouse Sublevel'},{id: 'OITM', font: { multi: true }, label: 'OITM', title: 'Items'},{id: 'OITB', font: { multi: true }, label: 'OITB', title: 'Item Groups'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},{id: 'OWGT', font: { multi: true }, label: 'OWGT', title: 'Weight Units'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OBIN', to: 'ADO19', arrows:'from'}, {from: 'OBIN', to: 'AIGW', arrows:'from'}, {from: 'OBIN', to: 'AIN1', arrows:'from'}, {from: 'OBIN', to: 'AITW', arrows:'from'}, {from: 'OBIN', to: 'AKL2', arrows:'from'}, {from: 'OBIN', to: 'AQI1', arrows:'from'}, {from: 'OBIN', to: 'AQR1', arrows:'from'}, {from: 'OBIN', to: 'AWHS', arrows:'from'}, {from: 'OBIN', to: 'CIN19', arrows:'from'}, {from: 'OBIN', to: 'CPI19', arrows:'from'}, {from: 'OBIN', to: 'CPV19', arrows:'from'}, {from: 'OBIN', to: 'CSI19', arrows:'from'}, {from: 'OBIN', to: 'CSV19', arrows:'from'}, {from: 'OBIN', to: 'DLN19', arrows:'from'}, {from: 'OBIN', to: 'DPI19', arrows:'from'}, {from: 'OBIN', to: 'DPO19', arrows:'from'}, {from: 'OBIN', to: 'DRF19', arrows:'from'}, {from: 'OBIN', to: 'ICD1', arrows:'from'}, {from: 'OBIN', to: 'IEI19', arrows:'from'}, {from: 'OBIN', to: 'IGE19', arrows:'from'}, {from: 'OBIN', to: 'IGN19', arrows:'from'}, {from: 'OBIN', to: 'INC1', arrows:'from'}, {from: 'OBIN', to: 'INV19', arrows:'from'}, {from: 'OBIN', to: 'IOD1', arrows:'from'}, {from: 'OBIN', to: 'IPD1', arrows:'from'}, {from: 'OBIN', to: 'IQI1', arrows:'from'}, {from: 'OBIN', to: 'IQR1', arrows:'from'}, {from: 'OBIN', to: 'ITW1', arrows:'from'}, {from: 'OBIN', to: 'OBBQ', arrows:'from'}, {from: 'OBIN', to: 'OBTL', arrows:'from'}, {from: 'OBIN', to: 'OEI19', arrows:'from'}, {from: 'OBIN', to: 'OIBQ', arrows:'from'}, {from: 'OBIN', to: 'OIGW', arrows:'from'}, {from: 'OBIN', to: 'OITW', arrows:'from'}, {from: 'OBIN', to: 'OSBQ', arrows:'from'}, {from: 'OBIN', to: 'OWHS', arrows:'from'}, {from: 'OBIN', to: 'PCH19', arrows:'from'}, {from: 'OBIN', to: 'PDN19', arrows:'from'}, {from: 'OBIN', to: 'PKL2', arrows:'from'}, {from: 'OBIN', to: 'POR19', arrows:'from'}, {from: 'OBIN', to: 'PQT19', arrows:'from'}, {from: 'OBIN', to: 'PRQ19', arrows:'from'}, {from: 'OBIN', to: 'QUT19', arrows:'from'}, {from: 'OBIN', to: 'RDN19', arrows:'from'}, {from: 'OBIN', to: 'RDR19', arrows:'from'}, {from: 'OBIN', to: 'RIN19', arrows:'from'}, {from: 'OBIN', to: 'RPC19', arrows:'from'}, {from: 'OBIN', to: 'RPD19', arrows:'from'}, {from: 'OBIN', to: 'SITW', arrows:'from'}, {from: 'OBIN', to: 'UITW', arrows:'from'}, {from: 'OBIN', to: 'WTQ19', arrows:'from'}, {from: 'OBIN', to: 'WTR19', arrows:'from'}, {from: 'OBAT', to: 'OBIN', arrows:'from'}, {from: 'OBSL', to: 'OBIN', arrows:'from'}, {from: 'OITM', to: 'OBIN', arrows:'from'}, {from: 'OITB', to: 'OBIN', arrows:'from'}, {from: 'OUSR', to: 'OBIN', arrows:'from'}, {from: 'OWGT', to: 'OBIN', arrows:'from'}, {from: 'OWHS', to: 'OBIN', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OBIN.AbsEntry AS 'Internal Number', 
+   OBIN.BinCode AS 'Bin Location Code', 
+   OBIN.WhsCode AS 'Warehouse Code', 
+   OBIN.SysBin AS 'System Bin', 
+   OBIN.SL1Abs AS 'Sublevel-1 Internal Number', 
+   OBIN.SL1Code AS 'Sublevel-1 Code', 
+   OBIN.SL2Abs AS 'Sublevel-2 Internal Number', 
+   OBIN.SL2Code AS 'Sublevel-2 Code', 
+   OBIN.SL3Abs AS 'Sublevel-3 Internal Number', 
+   OBIN.SL3Code AS 'Sublevel-3 Code', 
+   OBIN.SL4Abs AS 'Sublevel-4 Internal Number', 
+   OBIN.SL4Code AS 'Sublevel-4 Code', 
+   OBIN.Attr1Abs AS 'Attribute-1 Internal Number', 
+   OBIN.Attr1Val AS 'Attribute-1 Value', 
+   OBIN.Attr2Abs AS 'Attribute-2 Internal Number', 
+   OBIN.Attr2Val AS 'Attribute-2 Value', 
+   OBIN.Attr3Abs AS 'Attribute-3 Internal Number', 
+   OBIN.Attr3Val AS 'Attribute-3 Value', 
+   OBIN.Attr4Abs AS 'Attribute-4 Internal Number', 
+   OBIN.Attr4Val AS 'Attribute-4 Value', 
+   OBIN.Attr5Abs AS 'Attribute-5 Internal Number', 
+   OBIN.Attr5Val AS 'Attribute-5 Value', 
+   OBIN.Attr6Abs AS 'Attribute-6 Internal Number', 
+   OBIN.Attr6Val AS 'Attribute-6 Value', 
+   OBIN.Attr7Abs AS 'Attribute-7 Internal Number', 
+   OBIN.Attr7Val AS 'Attribute-7 Value', 
+   OBIN.Attr8Abs AS 'Attribute-8 Internal Number', 
+   OBIN.Attr8Val AS 'Attribute-8 Value', 
+   OBIN.Attr9Abs AS 'Attribute-9 Internal Number', 
+   OBIN.Attr9Val AS 'Attribute-9 Value', 
+   OBIN.Attr10Abs AS 'Attribute-10 Internal Number', 
+   OBIN.Attr10Val AS 'Attribute-10 Value', 
+   OBIN.Disabled AS 'Inactive', 
+   OBIN.Descr AS 'Description', 
+   OBIN.BarCode AS 'Bar Code', 
+   OBIN.AltSortCod AS 'Alternative Sort Code', 
+   OBIN.ItmRtrictT AS 'Item Restriction Type', 
+   OBIN.SpcItmCode AS 'Specific Item Code', 
+   OBIN.SpcItmGrpC AS 'Specific Item Group Code', 
+   OBIN.SngBatch AS 'Batch Restriction', 
+   OBIN.RtrictType AS 'Restricted Transactions Type', 
+   OBIN.RtrictResn AS 'Reason for Restriction', 
+   OBIN.RtrictDate AS 'Last Updated On', 
+   OBIN.DataSource AS 'Data Source', 
+   OBIN.UserSign AS 'User Signature', 
+   OBIN.Transfered AS 'Year Transfer [Y/N]', 
+   OBIN.Instance AS 'Instance', 
+   OBIN.LogInstanc AS 'Log Instance', 
+   OBIN.CreateDate AS 'Create Date', 
+   OBIN.UserSign2 AS 'Updating User', 
+   OBIN.UpdateDate AS 'Date of Update', 
+   OBIN.Deleted AS 'Deleted', 
+   OBIN.MinLevel AS 'Minimum Qty', 
+   OBIN.MaxLevel AS 'Maximum Qty', 
+   OBIN.ReceiveBin AS 'Receiving Bin Location', 
+   OBIN.NoAutoAllc AS 'Excl. fr. Auto Alloc. on Issue', 
+   OBIN.MaxWeight1 AS 'Maximum Weight 1', 
+   OBIN.Wght1Unit AS 'Unit of Maximum Weight 1', 
+   OBIN.MaxWeight2 AS 'Maximum Weight 2', 
+   OBIN.Wght2Unit AS 'Unit of Maximum Weight 2'
+FROM OBIN AS OBIN</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+215.49982357025146
+10.499823570251465' class=related href='/BinLocationsService/BinLocation'> Bin Location</a> <em class=comment>BinLocation</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBIN/ >OBIN</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>A bin location is the smallest addressable unit of space in a warehouse where your goods are stored.
+To facilitate bin location management, SAP Business One lets you maintain a master data record for each bin location. 
+Source table: OBIN.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/BinLocationsService> Bin Locations Service</a> <small>BinLocationsService</small> <b>Service</b>&middot; <font class=grey>Table:</font> <span><a href=/OBIN/ >OBIN</a> </span><br><br><a title='92
+215.49982357025146
+0' class=related href='/BinLocationsService'> Bin Locations Service</a> <em class=comment>BinLocationsService</em> <b>Service</b>&middot; <font class=grey>Table:</font> <span><a href=/OBIN/ >OBIN</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The <a style='color:inherit;' href=/BinLocationsService/BinLocation/>BinLocation</a>sService service enables you to add, look up, update, and remove bin locations.
+Source table: OBIN.</div><br><a href=/OBIN class=related></a> <em class=comment>OBIN</em> <b>SQL Table</b><br><br><a href=/OBAT class=related>Bin Location Attribute</a> <em class=comment>OBAT</em> <b>SQL Table</b><br><br><a href=/OBSL class=related>Warehouse Sublevel</a> <em class=comment>OBSL</em> <b>SQL Table</b><br><br><a href=/OITM class=related>Items</a> <em class=comment>OITM</em> <b>SQL Table</b><br><br><a href=/OITB class=related>Item Groups</a> <em class=comment>OITB</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br><a href=/OWGT class=related>Weight Units</a> <em class=comment>OWGT</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Service<br><a style='max-width:99%;' class=eli href='/BinLocationsService/'>BinLocationsService</a></font><hr><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/BinLocationsService/BinLocation/'>BinLocation</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bin Restriction Batch Enum' href=/BinLocation/BinRestrictionBatchEnum/ class=eli>BinRestrictionBatchEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bin Restrict Item Enum' href=/BinLocation/BinRestrictItemEnum/ class=eli>BinRestrictItemEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bin Restrict Transaction Enum' href=/BinLocation/BinRestrictTransactionEnum/ class=eli>BinRestrictTransactionEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bin Restrict Uo M Enum' href=/BinLocation/BinRestrictUoMEnum/ class=eli>BinRestrictUoMEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='From XML File' href=/BinLocation/FromXMLFile/ class=eli>FromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From XML String' href=/BinLocation/FromXMLString/ class=eli>FromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XML Schema' href=/BinLocation/GetXMLSchema/ class=eli>GetXMLSchema</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML File' href=/BinLocation/ToXMLFile/ class=eli>ToXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML String' href=/BinLocation/ToXMLString/ class=eli>ToXMLString</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Abs Entry' href=/BinLocation/AbsEntry/ class=eli>AbsEntry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Alternative Sort Code' href=/BinLocation/AlternativeSortCode/ class=eli>AlternativeSortCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 1' href=/BinLocation/Attribute1/ class=eli>Attribute1</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 10' href=/BinLocation/Attribute10/ class=eli>Attribute10</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 2' href=/BinLocation/Attribute2/ class=eli>Attribute2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 3' href=/BinLocation/Attribute3/ class=eli>Attribute3</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 4' href=/BinLocation/Attribute4/ class=eli>Attribute4</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 5' href=/BinLocation/Attribute5/ class=eli>Attribute5</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 6' href=/BinLocation/Attribute6/ class=eli>Attribute6</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 7' href=/BinLocation/Attribute7/ class=eli>Attribute7</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 8' href=/BinLocation/Attribute8/ class=eli>Attribute8</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attribute 9' href=/BinLocation/Attribute9/ class=eli>Attribute9</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bar Code' href=/BinLocation/BarCode/ class=eli>BarCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Batch Restrictions' href=/BinLocation/BatchRestrictions/ class=eli>BatchRestrictions</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bin Code' href=/BinLocation/BinCode/ class=eli>BinCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Date Restriction Changed' href=/BinLocation/DateRestrictionChanged/ class=eli>DateRestrictionChanged</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Description' href=/BinLocation/Description/ class=eli>Description</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Exclude Auto Alloc On Issue' href=/BinLocation/ExcludeAutoAllocOnIssue/ class=eli>ExcludeAutoAllocOnIssue</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Inactive' href=/BinLocation/Inactive/ class=eli>Inactive</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Is System Bin' href=/BinLocation/IsSystemBin/ class=eli>IsSystemBin</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Maximum Qty' href=/BinLocation/MaximumQty/ class=eli>MaximumQty</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Maximum Weight' href=/BinLocation/MaximumWeight/ class=eli>MaximumWeight</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Maximum Weight 1' href=/BinLocation/MaximumWeight1/ class=eli>MaximumWeight1</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Maximum Weight Unit' href=/BinLocation/MaximumWeightUnit/ class=eli>MaximumWeightUnit</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Maximum Weight Unit 1' href=/BinLocation/MaximumWeightUnit1/ class=eli>MaximumWeightUnit1</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Minimum Qty' href=/BinLocation/MinimumQty/ class=eli>MinimumQty</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Receiving Bin Location' href=/BinLocation/ReceivingBinLocation/ class=eli>ReceivingBinLocation</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Restricted Item Type' href=/BinLocation/RestrictedItemType/ class=eli>RestrictedItemType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Restricted Trans Type' href=/BinLocation/RestrictedTransType/ class=eli>RestrictedTransType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Restricted Uo M Type' href=/BinLocation/RestrictedUoMType/ class=eli>RestrictedUoMType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Restriction Reason' href=/BinLocation/RestrictionReason/ class=eli>RestrictionReason</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Specific Item' href=/BinLocation/SpecificItem/ class=eli>SpecificItem</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Specific Item Group' href=/BinLocation/SpecificItemGroup/ class=eli>SpecificItemGroup</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Specific Uo M' href=/BinLocation/SpecificUoM/ class=eli>SpecificUoM</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Specific Uo M Group' href=/BinLocation/SpecificUoMGroup/ class=eli>SpecificUoMGroup</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sublevel 1' href=/BinLocation/Sublevel1/ class=eli>Sublevel1</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sublevel 2' href=/BinLocation/Sublevel2/ class=eli>Sublevel2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sublevel 3' href=/BinLocation/Sublevel3/ class=eli>Sublevel3</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sublevel 4' href=/BinLocation/Sublevel4/ class=eli>Sublevel4</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/BinLocation/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Warehouse' href=/BinLocation/Warehouse/ class=eli>Warehouse</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

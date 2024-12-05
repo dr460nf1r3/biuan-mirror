@@ -1,0 +1,440 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>BillOfExchange - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#ee1100; color:#ffd9c8;'><div class=eli2><b>SQL</b> <a href='/sql/Bill of Exchange for Payment'>Bill of Exchange for Payment</a></div></div><div class=' tit' style='width:33%; background-color:#ff4332; color:#bc0000;'><div class=eli2><b>DTW</b> Bill of Exchange for Payment</div></div><div class=' tit' style='width:33%; background-color:#ff7564; color:#bc0000;'><div class=eli2><b>API</b> Bill Of Exchange</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #bc0000;' > <a style='text-decoration:none; color:#bc0000;' title='92
+619.7825698852539
+16.284570693969727' href='/Payments/BillOfExchange/'> Bill Of Exchange</a> Object</div><script>
+                        document.title = 'BillOfExchange -  Outgoing Payments - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P><STRONG>BillOfExchange</STRONG> is a business object that represents the Bill Of Exchange table in the <EM>Banking </EM>module. Bill Of Exchange is a commercial document used as a payment method in Spain, Portugal, Italy, France, Belgium, and Chile.</P>
+<P>Source table: <A href="/OBOE/">OBOE</A>.</P></div>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Object Model</span></h2><div class="oms" class="section" ><TABLE CELLSPACING=0 CELLPADDING=0 BORDER=0><TR><TD >
+<a href="/BillOfExchange/">BillOfExchange</a><br><img src="/images/parchild.gif" border=0><a href="/UserFields/">UserFields</a><br><img src="/images/space.gif" border=0><img src="/images/parchild.gif" border=0><a href="/Fields/">Fields</a><br><img src="/images/space.gif" border=0><img src="/images/space.gif" border=0><img src="/images/parchild.gif" border=0><a href="/Field/">Field</a><br><img src="/images/space.gif" border=0><img src="/images/space.gif" border=0><img src="/images/space.gif" border=0><img src="/images/parchild.gif" border=0><a href="/ValidValues/">ValidValues</a><img src="/images/paracros.gif" border=0><a href="/ValidValue/">ValidValue</a>
+</TD></TABLE>
+</div>
+            <h2 class="heading"><span  tabindex="0"><img id="remarksToggle"  src="/images/1x1.png"></img>Remarks</span></h2><div class="remarksSection" class="section" ><P>Mandatory fields in SAP Business One: <A href="/BillOfExchange/BillOfExchangeDueDate/">BillOfExchangeDueDate</A> and <A href="/BillOfExchange/PaymentMethodCode/">PaymentMethodCode</A>.</P>
+<P>To display the form in the application:</P>
+<OL dir=ltr style="MARGIN-RIGHT: 0px">
+<OL>
+<LI>Select <EM>Banking</EM> --&gt; <EM>Bill of Exchange</EM>. </LI>
+<LI>Select one of the <EM>Bill of Exchange</EM> sub-menus.<BR>The OBOE table relates to Management, Transactions lines, Receivables, Payables, and Fund. For <EM>Management</EM> or <EM>Fund</EM>, set your criteria and then click <EM>OK</EM>. </LI></OL></OL>
+<P><STRONG>Definition:</STRONG> A Bill of Exchange is a signed, written order prepared by one party (drawer) who instructs another party (drawee) to pay a certain sum to a third party (payee) at a due date.</P>
+<P>The Bill of Exchange is used as a method of incoming or outgoing payment with a due date, as credit for the customer or as a flexible financing tool.</P>
+<P><STRONG>Process of incoming payments</STRONG>:</P>
+<OL>
+<OL>
+<LI>The company prepares a payment requirement to send to the vendor (status: <EM>Sent</EM>). If the vendor approves, proceed to step 2, else the payment requirement is canceled (status: <EM>Canceled</EM>). 
+<LI>SAP Business One generates a Bill Of Exchange (status: <EM>Generated</EM>). 
+<LI>The company deposits the Bill Of Exchange in the bank (status: <EM>Deposit</EM>). (Reconciliation between the Bill Of Exchange and the bank can be done.) 
+<LI>The bank pays the vendor (status: <EM>Paid</EM>). (Reconciliation between the Bill Of Exchange and the bank can be done.) If the payment succeeds the bank sends a payment confirmation to the company (in France only, the Bill Of Exchange status is changed to <EM>Closed</EM>). If the payment fails, the Bill Of Exchange status is changed to <EM>Failed</EM>. </LI></OL></OL>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+<P><STRONG>Note:</STRONG> Perform steps 1 and 2 using the <a style='color:inherit;' href=/Payments/BillOfExchange/>BillOfExchange</a> object. Perform steps 3 and 4 using the <A href="/BillOfExchangeTransaction/">BillOfExchangeTransaction</A> object.</P></BLOCKQUOTE>
+<P><STRONG>Process of outgoing payments</STRONG>:</P>
+<OL>
+<OL>
+<LI>The company approves the payment requirement issued by the vendor and generates a Bill Of Exchange (status: <EM>Generated</EM>). 
+<LI>The bank pays the vendor (status: <EM>Paid</EM>). (Reconciliation between the Bill Of Exchange and the bank can be done.) If the payment succeeds the bank sends a payment confirmation to the company (in France only, the Bill Of Exchange status is changed to <EM>Closed</EM>). If the payment fails, the Bill Of Exchange status is changed to <EM>Canceled</EM>. </LI></OL></OL>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+<P><STRONG>Note:</STRONG> Perform step 1 using the <a style='color:inherit;' href=/Payments/BillOfExchange/>BillOfExchange</a> object. Perform step 2 using the <A href="/BillOfExchangeTransaction/">BillOfExchangeTransaction</A> object.</P></BLOCKQUOTE></div>
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/BillOfExchange/">BillOfExchange Members</a>
+ | <a href="/BillOfExchangeTransaction/">BillOfExchangeTransaction Object</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div><div><h2>SAP® B1 DI-API C# definition</h2><div class='cs hljs'>public class <a style='color:inherit;' href=/Payments/BillOfExchange/>BillOfExchange</a>Class : IBillOfExchange, <a style='color:inherit;' href=/Payments/BillOfExchange/>BillOfExchange</a>
+  { 
+    public virtual DateTime <a style='color:inherit;' href=/BillOfExchange/BillOfExchangeDueDate/>BillOfExchangeDueDate</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/BillOfExchangeNo/>BillOfExchangeNo</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/BPBankAct/>BPBankAct</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/BPBankCode/>BPBankCode</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/BPBankCountry/>BPBankCountry</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/ControlKey/>ControlKey</a>
+    { 
+      get;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/Details/>Details</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/BillOfExchange/DiscountAmount/>DiscountAmount</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual DateTime <a style='color:inherit;' href=/BillOfExchange/DiscountDate/>DiscountDate</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/BillOfExchange/FineAmount/>FineAmount</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual DateTime <a style='color:inherit;' href=/BillOfExchange/FineDate/>FineDate</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual int <a style='color:inherit;' href=/BillOfExchange/FolioNumber/>FolioNumber</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/FolioPrefixString/>FolioPrefixString</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/BillOfExchange/InterestAmount/>InterestAmount</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual DateTime <a style='color:inherit;' href=/BillOfExchange/InterestDate/>InterestDate</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/BillOfExchange/IOFAmount/>IOFAmount</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/BillOfExchange/OtherExpensesAmount/>OtherExpensesAmount</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/BillOfExchange/OtherIncomesAmount/>OtherIncomesAmount</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/PaymentEngineStatus1/>PaymentEngineStatus1</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/PaymentEngineStatus2/>PaymentEngineStatus2</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/PaymentEngineStatus3/>PaymentEngineStatus3</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/PaymentMethodCode/>PaymentMethodCode</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/ReferenceNo/>ReferenceNo</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/Remarks/>Remarks</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/BillOfExchange/ServiceFeeAmount/>ServiceFeeAmount</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/BillOfExchange/StampTaxAmount/>StampTaxAmount</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual string <a style='color:inherit;' href=/BillOfExchange/StampTaxCode/>StampTaxCode</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual SAPbobsCOM.<a style='color:inherit;' href=/BillOfExchange/UserFields/>UserFields</a> <a style='color:inherit;' href=/BillOfExchange/UserFields/>UserFields</a>
+    { 
+      get;
+    }
+    public extern <a style='color:inherit;' href=/Payments/BillOfExchange/>BillOfExchange</a>Class();
+  }</div></div></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/Payments/'>Payments</a></font><hr><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/Payments/BillOfExchange/'>BillOfExchange</a></font><hr><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Bill Of Exchange Due Date' href=/BillOfExchange/BillOfExchangeDueDate/ class=eli>BillOfExchangeDueDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill Of Exchange No' href=/BillOfExchange/BillOfExchangeNo/ class=eli>BillOfExchangeNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BP Bank Act' href=/BillOfExchange/BPBankAct/ class=eli>BPBankAct</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BP Bank Code' href=/BillOfExchange/BPBankCode/ class=eli>BPBankCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BP Bank Country' href=/BillOfExchange/BPBankCountry/ class=eli>BPBankCountry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Control Key' href=/BillOfExchange/ControlKey/ class=eli>ControlKey</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Details' href=/BillOfExchange/Details/ class=eli>Details</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Discount Amount' href=/BillOfExchange/DiscountAmount/ class=eli>DiscountAmount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Discount Date' href=/BillOfExchange/DiscountDate/ class=eli>DiscountDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Fine Amount' href=/BillOfExchange/FineAmount/ class=eli>FineAmount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Fine Date' href=/BillOfExchange/FineDate/ class=eli>FineDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Folio Number' href=/BillOfExchange/FolioNumber/ class=eli>FolioNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Folio Prefix String' href=/BillOfExchange/FolioPrefixString/ class=eli>FolioPrefixString</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Interest Amount' href=/BillOfExchange/InterestAmount/ class=eli>InterestAmount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Interest Date' href=/BillOfExchange/InterestDate/ class=eli>InterestDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='IOF Amount' href=/BillOfExchange/IOFAmount/ class=eli>IOFAmount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Other Expenses Amount' href=/BillOfExchange/OtherExpensesAmount/ class=eli>OtherExpensesAmount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Other Incomes Amount' href=/BillOfExchange/OtherIncomesAmount/ class=eli>OtherIncomesAmount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Engine Status 1' href=/BillOfExchange/PaymentEngineStatus1/ class=eli>PaymentEngineStatus1</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Engine Status 2' href=/BillOfExchange/PaymentEngineStatus2/ class=eli>PaymentEngineStatus2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Engine Status 3' href=/BillOfExchange/PaymentEngineStatus3/ class=eli>PaymentEngineStatus3</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Method Code' href=/BillOfExchange/PaymentMethodCode/ class=eli>PaymentMethodCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reference No' href=/BillOfExchange/ReferenceNo/ class=eli>ReferenceNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remarks' href=/BillOfExchange/Remarks/ class=eli>Remarks</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Service Fee Amount' href=/BillOfExchange/ServiceFeeAmount/ class=eli>ServiceFeeAmount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Stamp Tax Amount' href=/BillOfExchange/StampTaxAmount/ class=eli>StampTaxAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Stamp Tax Code' href=/BillOfExchange/StampTaxCode/ class=eli>StampTaxCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/BillOfExchange/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

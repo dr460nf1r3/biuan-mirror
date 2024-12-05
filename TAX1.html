@@ -1,0 +1,386 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>TAX1 - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#11aabb; color:#d9ffff;'><div class=eli2><b>SQL</b> <a href='/sql/Inventory and Production'> Inventory and Production</a> / <a href='/sql/Landed Costs'> Landed Costs</a> / <a href='/sql/VAT Transactions - Rows'>VAT Transactions - Rows</a></div></div><div class=' tit' style='width:33%; background-color:#43dced; color:#007889;'><div class=eli2><b>DTW</b> VAT Transactions - Rows</div></div><div class=' tit' style='width:33%; background-color:#75ffff; color:#007889;'><div class=eli2><b>API</b> Landed Cost /  Tax 1</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #007889;'  class='titol sm titoltxt'>  <a style='color:#007889;' href='/TAX1/'> TAX1 - VAT Transactions - Rows</a> Table</font><script>
+                    document.title = 'TAX1 - VAT Transactions - Rows - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>AbsEntry</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Internal ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OTAX title='VAT Transactions'>OTAX</a><br><small class=s2>VAT Transactions</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b>LineSeq</b></em></td><td valign=top >Row Sequence</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SrcArrType</b></em></td><td valign=top >Source Array Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr>-1)  Default<hr>1)  Main<hr>12)  Array1<hr>13)  Array2<hr>14)  Array3<hr>15)  Array4<hr>16)  Array5<hr>17)  Array6<hr>18)  Array7<hr>24)  Array13</div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SrcLineNum</b></em></td><td valign=top >Source Row Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SrcGrpNum</b></em></td><td valign=top >Source Group Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr>-1)  Default<hr>0<hr>1)  Group2<hr>2)  Group3</div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxCode</b></em></td><td valign=top >Tax Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StaCode</b></em></td><td valign=top >Tax Authority Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OSTA title='Sales Tax Authorities'>OSTA</a><br><small class=s2>Sales Tax Authorities</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StaType</b></em></td><td valign=top >Tax Authority Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OSTT title='Sales Tax Authorities Type'>OSTT</a><br><small class=s2>Sales Tax Authorities Type</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StaIndex</b></em></td><td valign=top >Tax Authority seq index</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IsLiable</b></em></td><td valign=top >Is Tax Liable</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxType</b></em></td><td valign=top >Tax Type</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Regular<hr>U)  Use Tax<hr>N)  No Tax<hr>O)  Tax Offset Transaction<hr>R)  Reverse Tax Offset Transaction<hr>P)  DPM Request Tax Offset Transaction<hr>D)  Deferred Tax Offset Transaction</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IsAcq</b></em></td><td valign=top >Acquisition Tax Liable</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Isdeferred</b></em></td><td valign=top >Deferred Tax [Yes/No]</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ValueDate</b></em></td><td valign=top >Due Date for Payment</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatPercent</b></em></td><td valign=top >VAT Percent</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NdPercent</b></em></td><td valign=top >Non Deductible %</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EqPercent</b></em></td><td valign=top >Equalization Percent</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseObjTyp</b></em></td><td valign=top >Base Object Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr>-1) <hr>13)  A/R Invoice<hr>14)  A/R Credit Memo<hr>165)  Correction A/R Invoice<hr>166)  Correction A/R Invoice Reversals<hr>18)  A/P Invoice<hr>19)  A/P Credit Memo<hr>163)  Correction A/P Invoice<hr>164)  Correction A/P Invoice Reversals<hr>46)  Outgoing Payment<hr>24)  Incoming Payment<hr>57)  Check for Payment<hr>30)  Journal Transaction<hr>67)  Warehouse Transfer<hr>25)  Deposit<hr>321)  Internal Reconciliation<hr>76)  Deposit Temporary<hr>140000010)  Incoming Excise Invoice<hr>140000009)  Outgoing Excise Invoice<hr>69)  Import file</div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseAbs</b></em></td><td valign=top >Base Document Internal No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseArrTyp</b></em></td><td valign=top >Base Array Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr>-1)  Default<hr>1)  Main<hr>12)  Array1<hr>13)  Array2<hr>14)  Array3<hr>15)  Array4<hr>16)  Array5<hr>17)  Array6<hr>18)  Array7<hr>24)  Array13</div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseLinNum</b></em></td><td valign=top >Base Row Number</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseGrpNum</b></em></td><td valign=top >Base Group No.</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr>-1)  Default<hr>0<hr>1)  Group2<hr>2)  Group3</div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseSum</b></em></td><td valign=top >Base Sum</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseSumSc</b></em></td><td valign=top >Base Sum (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BaseSumFc</b></em></td><td valign=top >Base Sum (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatSum</b></em></td><td valign=top >VAT Sum</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatSumSc</b></em></td><td valign=top >VAT Sum (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatSumFc</b></em></td><td valign=top >VAT Sum (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DeductSum</b></em></td><td valign=top >Deduct VAT Sum</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DedctSumSC</b></em></td><td valign=top >Deduct VAT Sum (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DedctSumFC</b></em></td><td valign=top >Deduct VAT Sum (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EqSum</b></em></td><td valign=top >Equalization Sum</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EqSumSC</b></em></td><td valign=top >Equalization Sum (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EqSumFC</b></em></td><td valign=top >Equalization Sum (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxAcct</b></em></td><td valign=top >Tax Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DefAcct</b></em></td><td valign=top >Deferred Tax Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NdAcct</b></em></td><td valign=top >Non Deduct. Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AcqAcct</b></em></td><td valign=top >Acquisition Tax Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ExpAcct</b></em></td><td valign=top >Expense Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CrditDebit</b></em></td><td valign=top >Credit Or Debit Transaction</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>C)  Credit<hr>D)  Debit</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PostingTyp</b></em></td><td valign=top >Sales or Purchase</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  None<hr>R)  Sales<hr>P)  Purchase</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BasePaid</b></em></td><td valign=top >Applied Base Sum</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BasePaidSC</b></em></td><td valign=top >Applied Base Sum (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>BasePaidFC</b></em></td><td valign=top >Applied Base Sum (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatPaid</b></em></td><td valign=top >Applied VAT Sum</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatPaidSC</b></em></td><td valign=top >Applied VAT Sum (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VatPaidFC</b></em></td><td valign=top >Applied VAT Sum (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DeductPaid</b></em></td><td valign=top >Applied Deduct Sum</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DdctPaidSC</b></em></td><td valign=top >Applied Deduct Sum (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DdctPaidFC</b></em></td><td valign=top >Applied Deduct Sum (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EqPaid</b></em></td><td valign=top >Applied Equalization Sum</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EqPaidSC</b></em></td><td valign=top >Applied Equalization Sum (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EqPaidFC</b></em></td><td valign=top >Applied Equalization Sum (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TransAcct</b></em></td><td valign=top >Transaction Acccount</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LnDataNum</b></em></td><td valign=top >Row Number in Tax Data</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InPrice</b></em></td><td valign=top >Included in Price</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Exempt</b></em></td><td valign=top >Exempt</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>InGrossRev</b></em></td><td valign=top >Included in Gross Revenue</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PostStatus</b></em></td><td valign=top >Posting Status</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>Y</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IsItmLevel</b></em></td><td valign=top >Is Item Level Tax</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>N)  No<hr>Y)  Yes</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MinTAmt</b></em></td><td valign=top >Min. Taxable Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MinTAmtSC</b></em></td><td valign=top >Min. Taxable Amount (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MinTAmtFC</b></em></td><td valign=top >Min. Taxable Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MaxTAmt</b></em></td><td valign=top >Max. Taxable Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MaxTAmtSC</b></em></td><td valign=top >Max. Taxable Amount (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MaxTAmtFC</b></em></td><td valign=top >Max. Taxable Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FlatTAmt</b></em></td><td valign=top >Flat Tax Amount</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FlatTAmtSC</b></em></td><td valign=top >Flat Tax Amount (SC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>FlatTAmtFC</b></em></td><td valign=top >Flat Tax Amount (FC)</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EqTaxAcct</b></em></td><td valign=top >Equalization Tax Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Reposted</b></em></td><td valign=top >Reposted in Transfer Wizard</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Unencumbrd</b></em></td><td valign=top >Unencumbered</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IsSplitPay</b></em></td><td valign=top >Split Payment</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SplitPayAc</b></em></td><td valign=top >Split Payment Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'TAX1', font: { multi: true }, label: 'TAX1', title: ''},{id: 'BTA2', font: { multi: true }, label: '<b>BTA2</b>', title:'Brazil Tax Adujstment - Taxes Paid in Advance'},{id: 'OTAX', font: { multi: true }, label: 'OTAX', title: 'VAT Transactions'},{id: 'OACT', font: { multi: true }, label: 'OACT', title: 'G/L Accounts'},{id: 'OSTA', font: { multi: true }, label: 'OSTA', title: 'Sales Tax Authorities'},{id: 'OSTT', font: { multi: true }, label: 'OSTT', title: 'Sales Tax Authorities Type'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'TAX1', to: 'BTA2', arrows:'from'}, {from: 'OTAX', to: 'TAX1', arrows:'from'}, {from: 'OACT', to: 'TAX1', arrows:'from'}, {from: 'OSTA', to: 'TAX1', arrows:'from'}, {from: 'OSTT', to: 'TAX1', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   TAX1.AbsEntry AS 'Internal ID', 
+   TAX1.LineSeq AS 'Row Sequence', 
+   TAX1.SrcArrType AS 'Source Array Type', 
+   TAX1.SrcLineNum AS 'Source Row Number', 
+   TAX1.SrcGrpNum AS 'Source Group Number', 
+   TAX1.TaxCode AS 'Tax Code', 
+   TAX1.StaCode AS 'Tax Authority Code', 
+   TAX1.StaType AS 'Tax Authority Type', 
+   TAX1.StaIndex AS 'Tax Authority seq index', 
+   TAX1.IsLiable AS 'Is Tax Liable', 
+   TAX1.TaxType AS 'Tax Type', 
+   TAX1.IsAcq AS 'Acquisition Tax Liable', 
+   TAX1.Isdeferred AS 'Deferred Tax [Yes/No]', 
+   TAX1.ValueDate AS 'Due Date for Payment', 
+   TAX1.VatPercent AS 'VAT Percent', 
+   TAX1.NdPercent AS 'Non Deductible %', 
+   TAX1.EqPercent AS 'Equalization Percent', 
+   TAX1.BaseObjTyp AS 'Base Object Type', 
+   TAX1.BaseAbs AS 'Base Document Internal No.', 
+   TAX1.BaseArrTyp AS 'Base Array Type', 
+   TAX1.BaseLinNum AS 'Base Row Number', 
+   TAX1.BaseGrpNum AS 'Base Group No.', 
+   TAX1.BaseSum AS 'Base Sum', 
+   TAX1.BaseSumSc AS 'Base Sum (SC)', 
+   TAX1.BaseSumFc AS 'Base Sum (FC)', 
+   TAX1.VatSum AS 'VAT Sum', 
+   TAX1.VatSumSc AS 'VAT Sum (SC)', 
+   TAX1.VatSumFc AS 'VAT Sum (FC)', 
+   TAX1.DeductSum AS 'Deduct VAT Sum', 
+   TAX1.DedctSumSC AS 'Deduct VAT Sum (SC)', 
+   TAX1.DedctSumFC AS 'Deduct VAT Sum (FC)', 
+   TAX1.EqSum AS 'Equalization Sum', 
+   TAX1.EqSumSC AS 'Equalization Sum (SC)', 
+   TAX1.EqSumFC AS 'Equalization Sum (FC)', 
+   TAX1.TaxAcct AS 'Tax Account', 
+   TAX1.DefAcct AS 'Deferred Tax Account', 
+   TAX1.NdAcct AS 'Non Deduct. Account', 
+   TAX1.AcqAcct AS 'Acquisition Tax Account', 
+   TAX1.ExpAcct AS 'Expense Account', 
+   TAX1.CrditDebit AS 'Credit Or Debit Transaction', 
+   TAX1.PostingTyp AS 'Sales or Purchase', 
+   TAX1.BasePaid AS 'Applied Base Sum', 
+   TAX1.BasePaidSC AS 'Applied Base Sum (SC)', 
+   TAX1.BasePaidFC AS 'Applied Base Sum (FC)', 
+   TAX1.VatPaid AS 'Applied VAT Sum', 
+   TAX1.VatPaidSC AS 'Applied VAT Sum (SC)', 
+   TAX1.VatPaidFC AS 'Applied VAT Sum (FC)', 
+   TAX1.DeductPaid AS 'Applied Deduct Sum', 
+   TAX1.DdctPaidSC AS 'Applied Deduct Sum (SC)', 
+   TAX1.DdctPaidFC AS 'Applied Deduct Sum (FC)', 
+   TAX1.EqPaid AS 'Applied Equalization Sum', 
+   TAX1.EqPaidSC AS 'Applied Equalization Sum (SC)', 
+   TAX1.EqPaidFC AS 'Applied Equalization Sum (FC)', 
+   TAX1.TransAcct AS 'Transaction Acccount', 
+   TAX1.LnDataNum AS 'Row Number in Tax Data', 
+   TAX1.InPrice AS 'Included in Price', 
+   TAX1.Exempt AS 'Exempt', 
+   TAX1.InGrossRev AS 'Included in Gross Revenue', 
+   TAX1.PostStatus AS 'Posting Status', 
+   TAX1.IsItmLevel AS 'Is Item Level Tax', 
+   TAX1.MinTAmt AS 'Min. Taxable Amount', 
+   TAX1.MinTAmtSC AS 'Min. Taxable Amount (SC)', 
+   TAX1.MinTAmtFC AS 'Min. Taxable Amount (FC)', 
+   TAX1.MaxTAmt AS 'Max. Taxable Amount', 
+   TAX1.MaxTAmtSC AS 'Max. Taxable Amount (SC)', 
+   TAX1.MaxTAmtFC AS 'Max. Taxable Amount (FC)', 
+   TAX1.FlatTAmt AS 'Flat Tax Amount', 
+   TAX1.FlatTAmtSC AS 'Flat Tax Amount (SC)', 
+   TAX1.FlatTAmtFC AS 'Flat Tax Amount (FC)', 
+   TAX1.EqTaxAcct AS 'Equalization Tax Account', 
+   TAX1.Reposted AS 'Reposted in Transfer Wizard', 
+   TAX1.Unencumbrd AS 'Unencumbered', 
+   TAX1.IsSplitPay AS 'Split Payment', 
+   TAX1.SplitPayAc AS 'Split Payment Account'
+FROM TAX1 AS TAX1</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+621.3058204650879
+23.152910232543945' class=related href='/LandedCost/Tax1'> Tax 1</a> <em class=comment>Tax1</em> <b>Property</b>&middot; <font class=grey>Table:</font> <span><a href=/TAX1/ >TAX1</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The tax amount relevant for the imported items. This has no impact on the journal entry.
+Field name: Vat1.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/LandedCost> Landed Cost</a> <small>LandedCost</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OIPF/ >OIPF</a> </span><br><a href=/TAX1 class=related></a> <em class=comment>TAX1</em> <b>SQL Table</b><br><br><a href=/OTAX class=related>VAT Transactions</a> <em class=comment>OTAX</em> <b>SQL Table</b><br><br><a href=/OACT class=related>G/L Accounts</a> <em class=comment>OACT</em> <b>SQL Table</b><br><br><a href=/OSTA class=related>Sales Tax Authorities</a> <em class=comment>OSTA</em> <b>SQL Table</b><br><br><a href=/OSTT class=related>Sales Tax Authorities Type</a> <em class=comment>OSTT</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/LandedCost/'>LandedCost</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/LandedCost/Tax1/'>Tax1</a></font><hr><br><b>Collection</b><br><div class=sm><a style='min-width:50px;' title='Landed Cost   Cost Lines' href=/LandedCost/LandedCost_CostLines/ class=eli>LandedCost_CostLines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Landed Cost   Item Lines' href=/LandedCost/LandedCost_ItemLines/ class=eli>LandedCost_ItemLines</a>    <small class='eli s'> </small></div><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Landed Cost Doc Status Enum' href=/LandedCost/LandedCostDocStatusEnum/ class=eli>LandedCostDocStatusEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='From XML File' href=/LandedCost/FromXMLFile/ class=eli>FromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From XML String' href=/LandedCost/FromXMLString/ class=eli>FromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XML Schema' href=/LandedCost/GetXMLSchema/ class=eli>GetXMLSchema</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML File' href=/LandedCost/ToXMLFile/ class=eli>ToXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML String' href=/LandedCost/ToXMLString/ class=eli>ToXMLString</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Actual Customs' href=/LandedCost/ActualCustoms/ class=eli>ActualCustoms</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Actual Customs FC' href=/LandedCost/ActualCustomsFC/ class=eli>ActualCustomsFC</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Amount To Balance' href=/LandedCost/AmountToBalance/ class=eli>AmountToBalance</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Amount To Balance FC' href=/LandedCost/AmountToBalanceFC/ class=eli>AmountToBalanceFC</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attachment Entry' href=/LandedCost/AttachmentEntry/ class=eli>AttachmentEntry</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Before Tax' href=/LandedCost/BeforeTax/ class=eli>BeforeTax</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Before Tax FC' href=/LandedCost/BeforeTaxFC/ class=eli>BeforeTaxFC</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Billof Lading Number' href=/LandedCost/BillofLadingNumber/ class=eli>BillofLadingNumber</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Broker' href=/LandedCost/Broker/ class=eli>Broker</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Broker Name' href=/LandedCost/BrokerName/ class=eli>BrokerName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Closed Document' href=/LandedCost/ClosedDocument/ class=eli>ClosedDocument</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customs Affects Inventory' href=/LandedCost/CustomsAffectsInventory/ class=eli>CustomsAffectsInventory</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Entry' href=/LandedCost/DocEntry/ class=eli>DocEntry</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Document Currency' href=/LandedCost/DocumentCurrency/ class=eli>DocumentCurrency</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Document Rate' href=/LandedCost/DocumentRate/ class=eli>DocumentRate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Due Date' href=/LandedCost/DueDate/ class=eli>DueDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='File Number' href=/LandedCost/FileNumber/ class=eli>FileNumber</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Journal Remarks' href=/LandedCost/JournalRemarks/ class=eli>JournalRemarks</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Landed Cost Number' href=/LandedCost/LandedCostNumber/ class=eli>LandedCostNumber</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Landed Cost   Cost Lines' href=/LandedCost/LandedCost_CostLines/ class=eli>LandedCost_CostLines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Landed Cost   Item Lines' href=/LandedCost/LandedCost_ItemLines/ class=eli>LandedCost_ItemLines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Posting Date' href=/LandedCost/PostingDate/ class=eli>PostingDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Projected Customs' href=/LandedCost/ProjectedCustoms/ class=eli>ProjectedCustoms</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Projected Customs FC' href=/LandedCost/ProjectedCustomsFC/ class=eli>ProjectedCustomsFC</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reference' href=/LandedCost/Reference/ class=eli>Reference</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remarks' href=/LandedCost/Remarks/ class=eli>Remarks</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Series' href=/LandedCost/Series/ class=eli>Series</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax 1' href=/LandedCost/Tax1/ class=eli>Tax1</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax 1FC' href=/LandedCost/Tax1FC/ class=eli>Tax1FC</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax 2' href=/LandedCost/Tax2/ class=eli>Tax2</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax 2FC' href=/LandedCost/Tax2FC/ class=eli>Tax2FC</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Total' href=/LandedCost/Total/ class=eli>Total</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Total FC' href=/LandedCost/TotalFC/ class=eli>TotalFC</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Total Freight Charges' href=/LandedCost/TotalFreightCharges/ class=eli>TotalFreightCharges</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Total Freight Charges FC' href=/LandedCost/TotalFreightChargesFC/ class=eli>TotalFreightChargesFC</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transaction Number' href=/LandedCost/TransactionNumber/ class=eli>TransactionNumber</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transport Type' href=/LandedCost/TransportType/ class=eli>TransportType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vendor Code' href=/LandedCost/VendorCode/ class=eli>VendorCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vendor Name' href=/LandedCost/VendorName/ class=eli>VendorName</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

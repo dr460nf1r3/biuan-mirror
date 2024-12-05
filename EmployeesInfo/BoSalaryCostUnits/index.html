@@ -1,0 +1,309 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>EmployeesInfo BoSalaryCostUnits - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#aacc22; color:#ffffea;'><div class=eli2><b>SQL</b> <a href='/sql/Human Resources'> Human Resources</a> / <a href='/sql/Employees'> Employees</a></div></div><div class=' tit' style='width:33%; background-color:#dcfe54; color:#789a00;'><div class=eli2><b>DTW</b> Human Resources /  Employee Master Data</div></div><div class=' tit' style='width:33%; background-color:#ffff86; color:#789a00;'><div class=eli2><b>API</b> Employees Info /  Bo Salary Cost Units</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #789a00;' > <a style='text-decoration:none; color:#789a00;' title='92
+1115
+53.502891540527344' href='/EmployeesInfo/BoSalaryCostUnits/'> Bo Salary Cost Units</a> Enumeration</div><script>
+                        document.title = 'BoSalaryCostUnits -  Employee Master Data - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" >Specifies the salary cost units. </div>
+            <h2 class="heading"><span  tabindex="0"><img id="enummembersToggle"  src="/images/1x1.png"></img>Members</span></h2><div id="enummembersSection" class="section" ><TABLE CLASS="FilteredItemListTable"><TR VALIGN="top"><TH width="20%">Member</TH><TH align="right" width="10%">Value</TH><TH width="80%">Description</TH></TR>
+<TR><TD CLASS=mnc WIDTH="20%">scu_Hour</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">0</TD><TD CLASS="DescriptionCell" WIDTH="80%">Salary cost per Hour. </TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">scu_Day</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">1</TD><TD CLASS="DescriptionCell" WIDTH="80%">Salary cost per Day. </TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">scu_Week</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">2</TD><TD CLASS="DescriptionCell" WIDTH="80%">Salary cost per Week. </TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">scu_Month</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">3</TD><TD CLASS="DescriptionCell" WIDTH="80%">Salary cost per Month. </TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">scu_Year</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">4</TD><TD CLASS="DescriptionCell" WIDTH="80%">Salary cost per Year. </TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">scu_Semimonthly</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">5</TD><TD CLASS="DescriptionCell" WIDTH="80%"> </TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">scu_Biweekly</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">6</TD><TD CLASS="DescriptionCell" WIDTH="80%"> </TD></TR>
+</TABLE></div>
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            
+        </div>
+        <div style='clear:both;'></div><div><h2>SAP® B1 DI-API C# definition</h2><div class='cs hljs'>public enum <a style='color:inherit;' href=/EmployeesInfo/BoSalaryCostUnits/>BoSalaryCostUnits</a>
+  {
+    scu_Hour,
+    scu_Day,
+    scu_Week,
+    scu_Month,
+    scu_Year,
+    scu_Semimonthly,
+    scu_Biweekly
+  }</div></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+53.502891540527344' class=related href='/EmployeesInfo/EmployeeAbsenceInfo'> Employee Absence Info</a> <em class=comment>EmployeeAbsenceInfo</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/HEM1/ >HEM1</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>EmployeeAbsenceInfo is a child object of the EmployeesInfo object and represents the employee absence information.
+Source table: HEM1.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/EmployeesInfo> Employees Info</a> <small>EmployeesInfo</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OHEM/ >OHEM</a> </span><br><br><a title='92
+515
+53.502891540527344' class=related href='/EmployeesInfo/EmployeeEducationInfo'> Employee Education Info</a> <em class=comment>EmployeeEducationInfo</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/HEM2/ >HEM2</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>EmployeeEducationInfo is a child object of the EmployeesInfo object and represents the employee education information.
+Source table: HEM2.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/EmployeesInfo> Employees Info</a> <small>EmployeesInfo</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OHEM/ >OHEM</a> </span><br><br><a title='92
+515
+53.502891540527344' class=related href='/EmployeesInfo/EmployeePrevEmpoymentInfo'> Employee Prev Empoyment Info</a> <em class=comment>EmployeePrevEmpoymentInfo</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/HEM4/ >HEM4</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>EmployeePrevEmploymentInfo is a child object of the EmployeesInfo object and represents the employee previous employment information.
+Source table: HEM4.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/EmployeesInfo> Employees Info</a> <small>EmployeesInfo</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OHEM/ >OHEM</a> </span><br><br><a title='92
+515
+53.502891540527344' class=related href='/EmployeesInfo/EmployeeReviewsInfo'> Employee Reviews Info</a> <em class=comment>EmployeeReviewsInfo</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/HEM3/ >HEM3</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>EmployeeReviewsInfo is a child object of the EmployeesInfo object and represents the employee reviews information.
+Source table: HEM3.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/EmployeesInfo> Employees Info</a> <small>EmployeesInfo</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OHEM/ >OHEM</a> </span><br><br><a title='92
+515
+53.502891540527344' class=related href='/EmployeesInfo/EmployeeRolesInfo'> Employee Roles Info</a> <em class=comment>EmployeeRolesInfo</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/HEM6/ >HEM6</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>A child object of the EmployeesInfo object that represents the employee roles, for example, technician, sales employee and purchasing.
+Source table: HEM6.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/EmployeesInfo> Employees Info</a> <small>EmployeesInfo</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OHEM/ >OHEM</a> </span><br><br><a title='92
+515
+53.502891540527344' class=related href='/EmployeesInfo/EmployeeSavingsPaymentInfo'> Employee Savings Payment Info</a> <em class=comment>EmployeeSavingsPaymentInfo</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/HEM7/ >HEM7</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>A child object of the EmployeesInfo object that represents the employee's capital formation savings payments.
+Source table: HEM7.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/EmployeesInfo> Employees Info</a> <small>EmployeesInfo</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OHEM/ >OHEM</a> </span><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/EmployeesInfo/'>EmployeesInfo</a></font><hr><font style=''>Enumeration<br><a class=eli style='max-width:99%;'   href='/EmployeesInfo/BoSalaryCostUnits/'>BoSalaryCostUnits</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Gender Types' href=/EmployeesInfo/BoGenderTypes/ class=eli>BoGenderTypes</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Merital Statuses' href=/EmployeesInfo/BoMeritalStatuses/ class=eli>BoMeritalStatuses</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Salary Cost Units' href=/EmployeesInfo/BoSalaryCostUnits/ class=eli>BoSalaryCostUnits</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Employee Exemption Unit Enum' href=/EmployeesInfo/EmployeeExemptionUnitEnum/ class=eli>EmployeeExemptionUnitEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Employee Payment Method Enum' href=/EmployeesInfo/EmployeePaymentMethodEnum/ class=eli>EmployeePaymentMethodEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='SPED Contabil Qualification Code Enum' href=/EmployeesInfo/SPEDContabilQualificationCodeEnum/ class=eli>SPEDContabilQualificationCodeEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/EmployeesInfo/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Close' href=/EmployeesInfo/Close/ class=eli>Close</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/EmployeesInfo/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/EmployeesInfo/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/EmployeesInfo/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/EmployeesInfo/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/EmployeesInfo/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/EmployeesInfo/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Absence Information
+ Employee Absence Info' href=/EmployeesInfo/EmployeeAbsenceInfo/ class=eli>EmployeeAbsenceInfo</a>    <small class='eli s'> HEM1</small></div><div class=sm><a style='min-width:50px;' title='Education
+ Employee Education Info' href=/EmployeesInfo/EmployeeEducationInfo/ class=eli>EmployeeEducationInfo</a>    <small class='eli s'> HEM2</small></div><div class=sm><a style='min-width:50px;' title='Previous Employment
+ Employee Prev Empoyment Info' href=/EmployeesInfo/EmployeePrevEmpoymentInfo/ class=eli>EmployeePrevEmpoymentInfo</a>    <small class='eli s'> HEM4</small></div><div class=sm><a style='min-width:50px;' title='Employee Reviews
+ Employee Reviews Info' href=/EmployeesInfo/EmployeeReviewsInfo/ class=eli>EmployeeReviewsInfo</a>    <small class='eli s'> HEM3</small></div><div class=sm><a style='min-width:50px;' title='Employee Roles
+ Employee Roles Info' href=/EmployeesInfo/EmployeeRolesInfo/ class=eli>EmployeeRolesInfo</a>    <small class='eli s'> HEM6</small></div><div class=sm><a style='min-width:50px;' title='Savings Payments
+ Employee Savings Payment Info' href=/EmployeesInfo/EmployeeSavingsPaymentInfo/ class=eli>EmployeeSavingsPaymentInfo</a>    <small class='eli s'> HEM7</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Absence Info' href=/EmployeesInfo/AbsenceInfo/ class=eli>AbsenceInfo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Accountant Responsible' href=/EmployeesInfo/AccountantResponsible/ class=eli>AccountantResponsible</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Active' href=/EmployeesInfo/Active/ class=eli>Active</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Additional Amount' href=/EmployeesInfo/AdditionalAmount/ class=eli>AdditionalAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Additional Currency' href=/EmployeesInfo/AdditionalCurrency/ class=eli>AdditionalCurrency</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Additional Unit' href=/EmployeesInfo/AdditionalUnit/ class=eli>AdditionalUnit</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Application User ID' href=/EmployeesInfo/ApplicationUserID/ class=eli>ApplicationUserID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attachment Entry' href=/EmployeesInfo/AttachmentEntry/ class=eli>AttachmentEntry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Attachments' href=/EmployeesInfo/Attachments/ class=eli>Attachments</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Account' href=/EmployeesInfo/BankAccount/ class=eli>BankAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Branch' href=/EmployeesInfo/BankBranch/ class=eli>BankBranch</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Branch Num' href=/EmployeesInfo/BankBranchNum/ class=eli>BankBranchNum</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Code' href=/EmployeesInfo/BankCode/ class=eli>BankCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Code For DATEV' href=/EmployeesInfo/BankCodeForDATEV/ class=eli>BankCodeForDATEV</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Birth Place' href=/EmployeesInfo/BirthPlace/ class=eli>BirthPlace</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPLID' href=/EmployeesInfo/BPLID/ class=eli>BPLID</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Branch' href=/EmployeesInfo/Branch/ class=eli>Branch</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/EmployeesInfo/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Citizenship Country Code' href=/EmployeesInfo/CitizenshipCountryCode/ class=eli>CitizenshipCountryCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Number' href=/EmployeesInfo/CompanyNumber/ class=eli>CompanyNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cost Center Code' href=/EmployeesInfo/CostCenterCode/ class=eli>CostCenterCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Country Of Birth' href=/EmployeesInfo/CountryOfBirth/ class=eli>CountryOfBirth</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CPF' href=/EmployeesInfo/CPF/ class=eli>CPF</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CRC Number' href=/EmployeesInfo/CRCNumber/ class=eli>CRCNumber</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CRC State' href=/EmployeesInfo/CRCState/ class=eli>CRCState</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Date Of Birth' href=/EmployeesInfo/DateOfBirth/ class=eli>DateOfBirth</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Department' href=/EmployeesInfo/Department/ class=eli>Department</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Deviating Bank Account Owner' href=/EmployeesInfo/DeviatingBankAccountOwner/ class=eli>DeviatingBankAccountOwner</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='DIRF Responsible' href=/EmployeesInfo/DIRFResponsible/ class=eli>DIRFResponsible</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Education Info' href=/EmployeesInfo/EducationInfo/ class=eli>EducationInfo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Education Status' href=/EmployeesInfo/EducationStatus/ class=eli>EducationStatus</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='e Mail' href=/EmployeesInfo/eMail/ class=eli>eMail</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Employee Costs' href=/EmployeesInfo/EmployeeCosts/ class=eli>EmployeeCosts</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Employee Costs Currency' href=/EmployeesInfo/EmployeeCostsCurrency/ class=eli>EmployeeCostsCurrency</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Employee Cost Unit' href=/EmployeesInfo/EmployeeCostUnit/ class=eli>EmployeeCostUnit</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Employee ID' href=/EmployeesInfo/EmployeeID/ class=eli>EmployeeID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Employee Roles Info' href=/EmployeesInfo/EmployeeRolesInfo/ class=eli>EmployeeRolesInfo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Employee Type' href=/EmployeesInfo/EmployeeType/ class=eli>EmployeeType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Exemption Amount' href=/EmployeesInfo/ExemptionAmount/ class=eli>ExemptionAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Exemption Currency' href=/EmployeesInfo/ExemptionCurrency/ class=eli>ExemptionCurrency</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Exemption Unit' href=/EmployeesInfo/ExemptionUnit/ class=eli>ExemptionUnit</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='External Employee Number' href=/EmployeesInfo/ExternalEmployeeNumber/ class=eli>ExternalEmployeeNumber</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Fax' href=/EmployeesInfo/Fax/ class=eli>Fax</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='First Name' href=/EmployeesInfo/FirstName/ class=eli>FirstName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Gender' href=/EmployeesInfo/Gender/ class=eli>Gender</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Health Insurance Code' href=/EmployeesInfo/HealthInsuranceCode/ class=eli>HealthInsuranceCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Health Insurance Name' href=/EmployeesInfo/HealthInsuranceName/ class=eli>HealthInsuranceName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Health Insurance Type' href=/EmployeesInfo/HealthInsuranceType/ class=eli>HealthInsuranceType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Home Block' href=/EmployeesInfo/HomeBlock/ class=eli>HomeBlock</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Home Building Floor Room' href=/EmployeesInfo/HomeBuildingFloorRoom/ class=eli>HomeBuildingFloorRoom</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Home City' href=/EmployeesInfo/HomeCity/ class=eli>HomeCity</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Home Country' href=/EmployeesInfo/HomeCountry/ class=eli>HomeCountry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Home County' href=/EmployeesInfo/HomeCounty/ class=eli>HomeCounty</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Home Phone' href=/EmployeesInfo/HomePhone/ class=eli>HomePhone</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Home State' href=/EmployeesInfo/HomeState/ class=eli>HomeState</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Home Street' href=/EmployeesInfo/HomeStreet/ class=eli>HomeStreet</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Home Zip Code' href=/EmployeesInfo/HomeZipCode/ class=eli>HomeZipCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Id Number' href=/EmployeesInfo/IdNumber/ class=eli>IdNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='ID Type' href=/EmployeesInfo/IDType/ class=eli>IDType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Income Tax Liability' href=/EmployeesInfo/IncomeTaxLiability/ class=eli>IncomeTaxLiability</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Job Title' href=/EmployeesInfo/JobTitle/ class=eli>JobTitle</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Job Title Code' href=/EmployeesInfo/JobTitleCode/ class=eli>JobTitleCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Last Name' href=/EmployeesInfo/LastName/ class=eli>LastName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Legal Representative' href=/EmployeesInfo/LegalRepresentative/ class=eli>LegalRepresentative</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Manager' href=/EmployeesInfo/Manager/ class=eli>Manager</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Martial Status' href=/EmployeesInfo/MartialStatus/ class=eli>MartialStatus</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Middle Name' href=/EmployeesInfo/MiddleName/ class=eli>MiddleName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Mobile Phone' href=/EmployeesInfo/MobilePhone/ class=eli>MobilePhone</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Municipality Key' href=/EmployeesInfo/MunicipalityKey/ class=eli>MunicipalityKey</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Num Of Children' href=/EmployeesInfo/NumOfChildren/ class=eli>NumOfChildren</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Office Extension' href=/EmployeesInfo/OfficeExtension/ class=eli>OfficeExtension</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Office Phone' href=/EmployeesInfo/OfficePhone/ class=eli>OfficePhone</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Pager' href=/EmployeesInfo/Pager/ class=eli>Pager</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Partner Religion' href=/EmployeesInfo/PartnerReligion/ class=eli>PartnerReligion</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Passport Expiration Date' href=/EmployeesInfo/PassportExpirationDate/ class=eli>PassportExpirationDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Passport Issue Date' href=/EmployeesInfo/PassportIssueDate/ class=eli>PassportIssueDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Passport Issuer' href=/EmployeesInfo/PassportIssuer/ class=eli>PassportIssuer</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Passport Number' href=/EmployeesInfo/PassportNumber/ class=eli>PassportNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Method' href=/EmployeesInfo/PaymentMethod/ class=eli>PaymentMethod</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Person Group' href=/EmployeesInfo/PersonGroup/ class=eli>PersonGroup</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Picture' href=/EmployeesInfo/Picture/ class=eli>Picture</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Position' href=/EmployeesInfo/Position/ class=eli>Position</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Previous Empoyment Info' href=/EmployeesInfo/PreviousEmpoymentInfo/ class=eli>PreviousEmpoymentInfo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Previous PR Web Access' href=/EmployeesInfo/PreviousPRWebAccess/ class=eli>PreviousPRWebAccess</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Profession Status' href=/EmployeesInfo/ProfessionStatus/ class=eli>ProfessionStatus</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='PR Web Access' href=/EmployeesInfo/PRWebAccess/ class=eli>PRWebAccess</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Qualification Code' href=/EmployeesInfo/QualificationCode/ class=eli>QualificationCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Religion' href=/EmployeesInfo/Religion/ class=eli>Religion</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remarks' href=/EmployeesInfo/Remarks/ class=eli>Remarks</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reviews Info' href=/EmployeesInfo/ReviewsInfo/ class=eli>ReviewsInfo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Salary' href=/EmployeesInfo/Salary/ class=eli>Salary</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Salary Currency' href=/EmployeesInfo/SalaryCurrency/ class=eli>SalaryCurrency</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Salary Unit' href=/EmployeesInfo/SalaryUnit/ class=eli>SalaryUnit</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sales Person Code' href=/EmployeesInfo/SalesPersonCode/ class=eli>SalesPersonCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Savings Payment Info' href=/EmployeesInfo/SavingsPaymentInfo/ class=eli>SavingsPaymentInfo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Social Insurance Number' href=/EmployeesInfo/SocialInsuranceNumber/ class=eli>SocialInsuranceNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Spouse First Name' href=/EmployeesInfo/SpouseFirstName/ class=eli>SpouseFirstName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Spouse Surname' href=/EmployeesInfo/SpouseSurname/ class=eli>SpouseSurname</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Start Date' href=/EmployeesInfo/StartDate/ class=eli>StartDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Status Code' href=/EmployeesInfo/StatusCode/ class=eli>StatusCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='STD Code' href=/EmployeesInfo/STDCode/ class=eli>STDCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Class' href=/EmployeesInfo/TaxClass/ class=eli>TaxClass</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Office Name' href=/EmployeesInfo/TaxOfficeName/ class=eli>TaxOfficeName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Office Number' href=/EmployeesInfo/TaxOfficeNumber/ class=eli>TaxOfficeNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Termination Date' href=/EmployeesInfo/TerminationDate/ class=eli>TerminationDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tremination Reason' href=/EmployeesInfo/TreminationReason/ class=eli>TreminationReason</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/EmployeesInfo/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vacation Current Year' href=/EmployeesInfo/VacationCurrentYear/ class=eli>VacationCurrentYear</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vacation Previous Year' href=/EmployeesInfo/VacationPreviousYear/ class=eli>VacationPreviousYear</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Work Block' href=/EmployeesInfo/WorkBlock/ class=eli>WorkBlock</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Work Building Floor Room' href=/EmployeesInfo/WorkBuildingFloorRoom/ class=eli>WorkBuildingFloorRoom</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Work City' href=/EmployeesInfo/WorkCity/ class=eli>WorkCity</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Work Country Code' href=/EmployeesInfo/WorkCountryCode/ class=eli>WorkCountryCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Work County' href=/EmployeesInfo/WorkCounty/ class=eli>WorkCounty</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Work State Code' href=/EmployeesInfo/WorkStateCode/ class=eli>WorkStateCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Work Street' href=/EmployeesInfo/WorkStreet/ class=eli>WorkStreet</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Work Zip Code' href=/EmployeesInfo/WorkZipCode/ class=eli>WorkZipCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

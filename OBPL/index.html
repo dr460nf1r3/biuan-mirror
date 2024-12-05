@@ -1,0 +1,366 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OBPL - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#ff4422; color:#ffffea;'><div class=eli2><b>SQL</b> <a href='/sql/Business Partners'> Business Partners</a> / <a href='/sql/Business Place'> Business Place</a></div></div><div class=' tit' style='width:33%; background-color:#ff7654; color:#cd1200;'><div class=eli2><b>DTW</b>  Administration /  Setup /  Financials /  Business Places</div></div><div class=' tit' style='width:33%; background-color:#ffa886; color:#cd1200;'><div class=eli2><b>API</b> OBPL /  /  Business Places</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #cd1200;'  class='titol sm titoltxt'>  <a style='color:#cd1200;' href='/OBPL/'> OBPL - Business Place</a> Table</font><script>
+                    document.title = 'OBPL - Business Place - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>BPLId</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Branch ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b><u title='Primary'>BPLName</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Branch Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>NAME</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b>BPLFrName</b></em></td><td valign=top >Branch Name (Foreign)</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>VATRegNum</b></em></td><td valign=top >VAT Reg. Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>12</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RepName</b></em></td><td valign=top >Rep. Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Industry</b></em></td><td valign=top >Industry</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Business</b></em></td><td valign=top >Business</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Address</b></em></td><td valign=top >Address</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AddressFr</b></em></td><td valign=top >Address (Foreign)</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>127</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>MainBPL</b></em></td><td valign=top >Main BPL</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Main Business Place<hr>N)  Not Main Business Place</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TxOffcNo</b></em></td><td valign=top >Tax Office No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Disabled</b></em></td><td valign=top >Disabled</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Disabled<hr>N)  Enabled</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign2</b></em></td><td valign=top >Updating User</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UpdateDate</b></em></td><td valign=top >Update Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DflCust</b></em></td><td valign=top >Default Customer ID</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DflVendor</b></em></td><td valign=top >Default Vendor ID</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OCRD title='Business Partner'>OCRD</a><br><small class=s2>Business Partner</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DflWhs</b></em></td><td valign=top >Default Warehouse ID</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OWHS title='Warehouses'>OWHS</a><br><small class=s2>Warehouses</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DflTaxCode</b></em></td><td valign=top >Default Tax Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OCNA title='CNAE Code'>OCNA</a><br><small class=s2>CNAE Code</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>RevOffice</b></em></td><td valign=top >Tax Office</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxIdNum</b></em></td><td valign=top >Branch Reg. No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxIdNum2</b></em></td><td valign=top >Federal Tax ID 2</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxIdNum3</b></em></td><td valign=top >Federal Tax ID 3</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AddtnlId</b></em></td><td valign=top >Additional ID Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>32</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CompNature</b></em></td><td valign=top >Nature of Company</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBNI title='Brazil Numeric Indexer'>OBNI</a><br><small class=s2>Brazil Numeric Indexer</small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EconActT</b></em></td><td valign=top >Economic Activity Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBNI title='Brazil Numeric Indexer'>OBNI</a><br><small class=s2>Brazil Numeric Indexer</small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CredCOrig</b></em></td><td valign=top >Credit Contribution Origin</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>2</td><td valign=top class=nomobile><a href=/OBSI title='Brazil String Indexer'>OBSI</a><br><small class=s2>Brazil String Indexer</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IPIPeriod</b></em></td><td valign=top >IPI Period</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>2</td><td valign=top class=nomobile><a href=/OBSI title='Brazil String Indexer'>OBSI</a><br><small class=s2>Brazil String Indexer</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CoopAssocT</b></em></td><td valign=top >Cooperative Association Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBNI title='Brazil Numeric Indexer'>OBNI</a><br><small class=s2>Brazil Numeric Indexer</small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PrefState</b></em></td><td valign=top >Default State</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ProfTax</b></em></td><td valign=top >Profit Taxation</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBNI title='Brazil Numeric Indexer'>OBNI</a><br><small class=s2>Brazil Numeric Indexer</small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CompQualif</b></em></td><td valign=top >Company Qualification</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBNI title='Brazil Numeric Indexer'>OBNI</a><br><small class=s2>Brazil Numeric Indexer</small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DeclType</b></em></td><td valign=top >Declarer Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBNI title='Brazil Numeric Indexer'>OBNI</a><br><small class=s2>Brazil Numeric Indexer</small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AddrType</b></em></td><td valign=top >Address Type</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Street</b></em></td><td valign=top >Street</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>StreetNo</b></em></td><td valign=top >Street No.</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Building</b></em></td><td valign=top >Building/Floor/Room</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>ZipCode</b></em></td><td valign=top >Zip Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Block</b></em></td><td valign=top >Block</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>City</b></em></td><td valign=top >City</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>State</b></em></td><td valign=top >State</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>County</b></em></td><td valign=top >County</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/OCNT title='Counties'>OCNT</a><br><small class=s2>Counties</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Country</b></em></td><td valign=top >Country</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>3</td><td valign=top class=nomobile><a href=/OCRY title='Countries'>OCRY</a><br><small class=s2>Countries</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PmtClrAct</b></em></td><td valign=top >Payment Clearing Account</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>15</td><td valign=top class=nomobile><a href=/OACT title='G/L Accounts'>OACT</a><br><small class=s2>G/L Accounts</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CommerReg</b></em></td><td valign=top >Commercial Register</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>60</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DateOfInc</b></em></td><td valign=top >Date of Incorporation</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>SPEDProf</b></em></td><td valign=top >SPED Profile</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>2</td><td valign=top class=nomobile><a href=/OBSI title='Brazil String Indexer'>OBSI</a><br><small class=s2>Brazil String Indexer</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>EnvTypeNFe</b></em></td><td valign=top >Environment Type NFe</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OBNI title='Brazil Numeric Indexer'>OBNI</a><br><small class=s2>Brazil Numeric Indexer</small></td><td valign=top class=nomobile>-1</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Opt4ICMS</b></em></td><td valign=top >Opting for ICMS 115_03</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>AliasName</b></em></td><td valign=top >Alias Name</td><td valign=top ><em style='color:#010089;'>Text</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>GlblLocNum</b></em></td><td valign=top >Global Location Number</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>50</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TaxRptFrm</b></em></td><td valign=top >Tax Wizard Reporting From</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Suframa</b></em></td><td valign=top >SUFRAMA</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>100</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>DfltResWhs</b></em></td><td valign=top >Default Resource Warehouse ID</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/OWHS title='Warehouses'>OWHS</a><br><small class=s2>Warehouses</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OBPL', font: { multi: true }, label: 'OBPL', title: ''},{id: 'AACS', font: { multi: true }, label: '<b>AACS</b>', title:'Asset Classes - History'},{id: 'AACT', font: { multi: true }, label: '<b>AACT</b>', title:'G/L Account - History'},{id: 'ABP2', font: { multi: true }, label: '<b>ABP2</b>', title:'Branch Tributary Info. Log'},{id: 'ACHO', font: { multi: true }, label: '<b>ACHO</b>', title:'Checks for Payment - History'},{id: 'ADOC', font: { multi: true }, label: '<b>ADOC</b>', title:'Invoice - History'},{id: 'AEC1', font: { multi: true }, label: '<b>AEC1</b>', title:'Parameters for Various Types of Electronic Communication'},{id: 'AEC2', font: { multi: true }, label: '<b>AEC2</b>', title:'Electronic Transactions'},{id: 'AFAD', font: { multi: true }, label: '<b>AFAD</b>', title:'Asset Document - History'},{id: 'AHEM', font: { multi: true }, label: '<b>AHEM</b>', title:'Employees'},{id: 'AINC', font: { multi: true }, label: '<b>AINC</b>', title:'Inventory Counting'},{id: 'AIQI', font: { multi: true }, label: '<b>AIQI</b>', title:'Inventory Opening Balance'},{id: 'AIQR', font: { multi: true }, label: '<b>AIQR</b>', title:'Inventory Posting'},{id: 'AJD1', font: { multi: true }, label: '<b>AJD1</b>', title:'Journal Entry - History - Rows'},{id: 'ARCT', font: { multi: true }, label: '<b>ARCT</b>', title:'Incoming Payment - History'},{id: 'ATXI', font: { multi: true }, label: '<b>ATXI</b>', title:'Tax Invoice - History'},{id: 'AWHS', font: { multi: true }, label: '<b>AWHS</b>', title:'Warehouses - History'},{id: 'BNK2', font: { multi: true }, label: '<b>BNK2</b>', title:'Bank Statement - Recommendation List'},{id: 'BPL1', font: { multi: true }, label: '<b>BPL1</b>', title:'Branch I.E. Numbers'},{id: 'BPL2', font: { multi: true }, label: '<b>BPL2</b>', title:'Branch Tributary Info.'},{id: 'BTF1', font: { multi: true }, label: '<b>BTF1</b>', title:'Journal Voucher - Rows'},{id: 'CRD8', font: { multi: true }, label: '<b>CRD8</b>', title:'BP Branch Assignment'},{id: 'DGP4', font: { multi: true }, label: '<b>DGP4</b>', title:'Business Place List'},{id: 'ECM1', font: { multi: true }, label: '<b>ECM1</b>', title:'Parameters for Various Types of Electronic Communication'},{id: 'ECM2', font: { multi: true }, label: '<b>ECM2</b>', title:'Electronic Transactions'},{id: 'GPC1', font: { multi: true }, label: '<b>GPC1</b>', title:'Authority Assignment'},{id: 'JDT1', font: { multi: true }, label: '<b>JDT1</b>', title:'Journal Entry - Rows'},{id: 'NFN1', font: { multi: true }, label: '<b>NFN1</b>', title:'Not a Fiscal Sequence'},{id: 'NNM1', font: { multi: true }, label: '<b>NNM1</b>', title:'Documents Numbering - Series'},{id: 'OACD', font: { multi: true }, label: '<b>OACD</b>', title:'Credit Memo'},{id: 'OACQ', font: { multi: true }, label: '<b>OACQ</b>', title:'Capitalization'},{id: 'OACS', font: { multi: true }, label: '<b>OACS</b>', title:'Asset Classes'},{id: 'OACT', font: { multi: true }, label: '<b>OACT</b>', title:'G/L Accounts'},{id: 'OBNK', font: { multi: true }, label: '<b>OBNK</b>', title:'External Bank Statement Received'},{id: 'OBTA', font: { multi: true }, label: '<b>OBTA</b>', title:'Brazil - Tax Adjustment'},{id: 'OCHD', font: { multi: true }, label: '<b>OCHD</b>', title:'Checks for Payment Drafts'},{id: 'OCHO', font: { multi: true }, label: '<b>OCHO</b>', title:'Checks for Payment'},{id: 'OCIN', font: { multi: true }, label: '<b>OCIN</b>', title:'A/R Correction Invoice'},{id: 'OCPI', font: { multi: true }, label: '<b>OCPI</b>', title:'A/P Correction Invoice'},{id: 'OCPV', font: { multi: true }, label: '<b>OCPV</b>', title:'A/P Correction Invoice Reversal'},{id: 'OCSI', font: { multi: true }, label: '<b>OCSI</b>', title:'A/R Correction Invoice'},{id: 'OCSV', font: { multi: true }, label: '<b>OCSV</b>', title:'A/R Correction Invoice Reversal'},{id: 'ODGP', font: { multi: true }, label: '<b>ODGP</b>', title:'Document Generation Parameter Sets'},{id: 'ODLN', font: { multi: true }, label: '<b>ODLN</b>', title:'Delivery'},{id: 'ODPI', font: { multi: true }, label: '<b>ODPI</b>', title:'A/R Down Payment'},{id: 'ODPO', font: { multi: true }, label: '<b>ODPO</b>', title:'A/P Down Payment'},{id: 'ODPS', font: { multi: true }, label: '<b>ODPS</b>', title:'Deposit'},{id: 'ODRF', font: { multi: true }, label: '<b>ODRF</b>', title:'Drafts'},{id: 'OFAR', font: { multi: true }, label: '<b>OFAR</b>', title:'Fixed Asset Revaluation'},{id: 'OFTR', font: { multi: true }, label: '<b>OFTR</b>', title:'Transfer'},{id: 'OHEM', font: { multi: true }, label: '<b>OHEM</b>', title:'Employees'},{id: 'OICD', font: { multi: true }, label: '<b>OICD</b>', title:'Inventory Counting Draft'},{id: 'OIEI', font: { multi: true }, label: '<b>OIEI</b>', title:'Incoming Excise Invoice'},{id: 'OIGE', font: { multi: true }, label: '<b>OIGE</b>', title:'Goods Issue'},{id: 'OIGN', font: { multi: true }, label: '<b>OIGN</b>', title:'Goods Receipt'},{id: 'OINC', font: { multi: true }, label: '<b>OINC</b>', title:'Inventory Counting'},{id: 'OINV', font: { multi: true }, label: '<b>OINV</b>', title:'A/R Invoice'},{id: 'OIOD', font: { multi: true }, label: '<b>OIOD</b>', title:'Inventory Opening Balance Draft'},{id: 'OIPD', font: { multi: true }, label: '<b>OIPD</b>', title:'Inventory Posting Draft'},{id: 'OIQI', font: { multi: true }, label: '<b>OIQI</b>', title:'Inventory Opening Balance'},{id: 'OIQR', font: { multi: true }, label: '<b>OIQR</b>', title:'Inventory Posting'},{id: 'OITR', font: { multi: true }, label: '<b>OITR</b>', title:'Internal Reconciliation'},{id: 'OMDP', font: { multi: true }, label: '<b>OMDP</b>', title:'Manual Depreciation'},{id: 'OOEI', font: { multi: true }, label: '<b>OOEI</b>', title:'Outgoing Excise Invoice'},{id: 'OPCH', font: { multi: true }, label: '<b>OPCH</b>', title:'A/P Invoice'},{id: 'OPDF', font: { multi: true }, label: '<b>OPDF</b>', title:'Payment Draft'},{id: 'OPDN', font: { multi: true }, label: '<b>OPDN</b>', title:'Goods Receipt PO'},{id: 'OPOR', font: { multi: true }, label: '<b>OPOR</b>', title:'Purchase Order'},{id: 'OPQT', font: { multi: true }, label: '<b>OPQT</b>', title:'Purchase Quotation'},{id: 'OPQW', font: { multi: true }, label: '<b>OPQW</b>', title:'Purchase Quotation Generation: Parameter Sets'},{id: 'OPRQ', font: { multi: true }, label: '<b>OPRQ</b>', title:'Purchase Request'},{id: 'OPTI', font: { multi: true }, label: '<b>OPTI</b>', title:'Point of Issue'},{id: 'OPWZ', font: { multi: true }, label: '<b>OPWZ</b>', title:'Payment Wizard'},{id: 'OQUT', font: { multi: true }, label: '<b>OQUT</b>', title:'Sales Quotation'},{id: 'ORCT', font: { multi: true }, label: '<b>ORCT</b>', title:'Incoming Payment'},{id: 'ORDN', font: { multi: true }, label: '<b>ORDN</b>', title:'Returns'},{id: 'ORDR', font: { multi: true }, label: '<b>ORDR</b>', title:'Sales Order'},{id: 'ORIN', font: { multi: true }, label: '<b>ORIN</b>', title:'A/R Credit Memo'},{id: 'ORPC', font: { multi: true }, label: '<b>ORPC</b>', title:'A/P Credit Memo'},{id: 'ORPD', font: { multi: true }, label: '<b>ORPD</b>', title:'Goods Return'},{id: 'ORTI', font: { multi: true }, label: '<b>ORTI</b>', title:'Retirement'},{id: 'ORTM', font: { multi: true }, label: '<b>ORTM</b>', title:'Rate Differences'},{id: 'OTPI', font: { multi: true }, label: '<b>OTPI</b>', title:'Purchase Tax Invoice'},{id: 'OTRB', font: { multi: true }, label: '<b>OTRB</b>', title:'Tax Report Wizard for Brazil'},{id: 'OTSI', font: { multi: true }, label: '<b>OTSI</b>', title:'Sales Tax Invoice'},{id: 'OTXD', font: { multi: true }, label: '<b>OTXD</b>', title:'Tax Invoice Draft'},{id: 'OUDG', font: { multi: true }, label: '<b>OUDG</b>', title:'User Defaults'},{id: 'OVPM', font: { multi: true }, label: '<b>OVPM</b>', title:'Outgoing Payments'},{id: 'OVRW', font: { multi: true }, label: '<b>OVRW</b>', title:'VAT Reposting Wizard'},{id: 'OWHS', font: { multi: true }, label: '<b>OWHS</b>', title:'Warehouses'},{id: 'OWTQ', font: { multi: true }, label: '<b>OWTQ</b>', title:'Inventory Transfer Request'},{id: 'OWTR', font: { multi: true }, label: '<b>OWTR</b>', title:'Inventory Transfer'},{id: 'PWZ3', font: { multi: true }, label: '<b>PWZ3</b>', title:'Payment Wizard - Rows 3'},{id: 'PWZ5', font: { multi: true }, label: '<b>PWZ5</b>', title:'Payment Wizard - Rows 5'},{id: 'RCR1', font: { multi: true }, label: '<b>RCR1</b>', title:'Recurring Postings - Rows'},{id: 'RTM1', font: { multi: true }, label: '<b>RTM1</b>', title:'Rate Differences - Rows'},{id: 'USR6', font: { multi: true }, label: '<b>USR6</b>', title:'User Branch Assignment'},{id: 'VRW2', font: { multi: true }, label: '<b>VRW2</b>', title:'VAT Reposting Wizard - Rows 2'},{id: 'OBNI', font: { multi: true }, label: 'OBNI', title: 'Brazil Numeric Indexer'},{id: 'OCRY', font: { multi: true }, label: 'OCRY', title: 'Countries'},{id: 'OCNT', font: { multi: true }, label: 'OCNT', title: 'Counties'},{id: 'OBSI', font: { multi: true }, label: 'OBSI', title: 'Brazil String Indexer'},{id: 'OCRD', font: { multi: true }, label: 'OCRD', title: 'Business Partner'},{id: 'OCNA', font: { multi: true }, label: 'OCNA', title: 'CNAE Code'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OBPL', to: 'AACS', arrows:'from'}, {from: 'OBPL', to: 'AACT', arrows:'from'}, {from: 'OBPL', to: 'ABP2', arrows:'from'}, {from: 'OBPL', to: 'ACHO', arrows:'from'}, {from: 'OBPL', to: 'ADOC', arrows:'from'}, {from: 'OBPL', to: 'AEC1', arrows:'from'}, {from: 'OBPL', to: 'AEC2', arrows:'from'}, {from: 'OBPL', to: 'AFAD', arrows:'from'}, {from: 'OBPL', to: 'AHEM', arrows:'from'}, {from: 'OBPL', to: 'AINC', arrows:'from'}, {from: 'OBPL', to: 'AIQI', arrows:'from'}, {from: 'OBPL', to: 'AIQR', arrows:'from'}, {from: 'OBPL', to: 'AJD1', arrows:'from'}, {from: 'OBPL', to: 'ARCT', arrows:'from'}, {from: 'OBPL', to: 'ATXI', arrows:'from'}, {from: 'OBPL', to: 'AWHS', arrows:'from'}, {from: 'OBPL', to: 'BNK2', arrows:'from'}, {from: 'OBPL', to: 'BPL1', arrows:'from'}, {from: 'OBPL', to: 'BPL2', arrows:'from'}, {from: 'OBPL', to: 'BTF1', arrows:'from'}, {from: 'OBPL', to: 'CRD8', arrows:'from'}, {from: 'OBPL', to: 'DGP4', arrows:'from'}, {from: 'OBPL', to: 'ECM1', arrows:'from'}, {from: 'OBPL', to: 'ECM2', arrows:'from'}, {from: 'OBPL', to: 'GPC1', arrows:'from'}, {from: 'OBPL', to: 'JDT1', arrows:'from'}, {from: 'OBPL', to: 'NFN1', arrows:'from'}, {from: 'OBPL', to: 'NNM1', arrows:'from'}, {from: 'OBPL', to: 'OACD', arrows:'from'}, {from: 'OBPL', to: 'OACQ', arrows:'from'}, {from: 'OBPL', to: 'OACS', arrows:'from'}, {from: 'OBPL', to: 'OACT', arrows:'from'}, {from: 'OBPL', to: 'OBNK', arrows:'from'}, {from: 'OBPL', to: 'OBTA', arrows:'from'}, {from: 'OBPL', to: 'OCHD', arrows:'from'}, {from: 'OBPL', to: 'OCHO', arrows:'from'}, {from: 'OBPL', to: 'OCIN', arrows:'from'}, {from: 'OBPL', to: 'OCPI', arrows:'from'}, {from: 'OBPL', to: 'OCPV', arrows:'from'}, {from: 'OBPL', to: 'OCSI', arrows:'from'}, {from: 'OBPL', to: 'OCSV', arrows:'from'}, {from: 'OBPL', to: 'ODGP', arrows:'from'}, {from: 'OBPL', to: 'ODLN', arrows:'from'}, {from: 'OBPL', to: 'ODPI', arrows:'from'}, {from: 'OBPL', to: 'ODPO', arrows:'from'}, {from: 'OBPL', to: 'ODPS', arrows:'from'}, {from: 'OBPL', to: 'ODRF', arrows:'from'}, {from: 'OBPL', to: 'OFAR', arrows:'from'}, {from: 'OBPL', to: 'OFTR', arrows:'from'}, {from: 'OBPL', to: 'OHEM', arrows:'from'}, {from: 'OBPL', to: 'OICD', arrows:'from'}, {from: 'OBPL', to: 'OIEI', arrows:'from'}, {from: 'OBPL', to: 'OIGE', arrows:'from'}, {from: 'OBPL', to: 'OIGN', arrows:'from'}, {from: 'OBPL', to: 'OINC', arrows:'from'}, {from: 'OBPL', to: 'OINV', arrows:'from'}, {from: 'OBPL', to: 'OIOD', arrows:'from'}, {from: 'OBPL', to: 'OIPD', arrows:'from'}, {from: 'OBPL', to: 'OIQI', arrows:'from'}, {from: 'OBPL', to: 'OIQR', arrows:'from'}, {from: 'OBPL', to: 'OITR', arrows:'from'}, {from: 'OBPL', to: 'OMDP', arrows:'from'}, {from: 'OBPL', to: 'OOEI', arrows:'from'}, {from: 'OBPL', to: 'OPCH', arrows:'from'}, {from: 'OBPL', to: 'OPDF', arrows:'from'}, {from: 'OBPL', to: 'OPDN', arrows:'from'}, {from: 'OBPL', to: 'OPOR', arrows:'from'}, {from: 'OBPL', to: 'OPQT', arrows:'from'}, {from: 'OBPL', to: 'OPQW', arrows:'from'}, {from: 'OBPL', to: 'OPRQ', arrows:'from'}, {from: 'OBPL', to: 'OPTI', arrows:'from'}, {from: 'OBPL', to: 'OPWZ', arrows:'from'}, {from: 'OBPL', to: 'OQUT', arrows:'from'}, {from: 'OBPL', to: 'ORCT', arrows:'from'}, {from: 'OBPL', to: 'ORDN', arrows:'from'}, {from: 'OBPL', to: 'ORDR', arrows:'from'}, {from: 'OBPL', to: 'ORIN', arrows:'from'}, {from: 'OBPL', to: 'ORPC', arrows:'from'}, {from: 'OBPL', to: 'ORPD', arrows:'from'}, {from: 'OBPL', to: 'ORTI', arrows:'from'}, {from: 'OBPL', to: 'ORTM', arrows:'from'}, {from: 'OBPL', to: 'OTPI', arrows:'from'}, {from: 'OBPL', to: 'OTRB', arrows:'from'}, {from: 'OBPL', to: 'OTSI', arrows:'from'}, {from: 'OBPL', to: 'OTXD', arrows:'from'}, {from: 'OBPL', to: 'OUDG', arrows:'from'}, {from: 'OBPL', to: 'OVPM', arrows:'from'}, {from: 'OBPL', to: 'OVRW', arrows:'from'}, {from: 'OBPL', to: 'OWHS', arrows:'from'}, {from: 'OBPL', to: 'OWTQ', arrows:'from'}, {from: 'OBPL', to: 'OWTR', arrows:'from'}, {from: 'OBPL', to: 'PWZ3', arrows:'from'}, {from: 'OBPL', to: 'PWZ5', arrows:'from'}, {from: 'OBPL', to: 'RCR1', arrows:'from'}, {from: 'OBPL', to: 'RTM1', arrows:'from'}, {from: 'OBPL', to: 'USR6', arrows:'from'}, {from: 'OBPL', to: 'VRW2', arrows:'from'}, {from: 'OBNI', to: 'OBPL', arrows:'from'}, {from: 'OCRY', to: 'OBPL', arrows:'from'}, {from: 'OCNT', to: 'OBPL', arrows:'from'}, {from: 'OBSI', to: 'OBPL', arrows:'from'}, {from: 'OCRD', to: 'OBPL', arrows:'from'}, {from: 'OCNA', to: 'OBPL', arrows:'from'}, {from: 'OWHS', to: 'OBPL', arrows:'from'}, {from: 'OACT', to: 'OBPL', arrows:'from'}, {from: 'OUSR', to: 'OBPL', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OBPL.BPLId AS 'Branch ID', 
+   OBPL.BPLName AS 'Branch Name', 
+   OBPL.BPLFrName AS 'Branch Name (Foreign)', 
+   OBPL.VATRegNum AS 'VAT Reg. Number', 
+   OBPL.RepName AS 'Rep. Name', 
+   OBPL.Industry AS 'Industry', 
+   OBPL.Business AS 'Business', 
+   OBPL.Address AS 'Address', 
+   OBPL.AddressFr AS 'Address (Foreign)', 
+   OBPL.MainBPL AS 'Main BPL', 
+   OBPL.TxOffcNo AS 'Tax Office No.', 
+   OBPL.Disabled AS 'Disabled', 
+   OBPL.LogInstanc AS 'Log Instance', 
+   OBPL.UserSign2 AS 'Updating User', 
+   OBPL.UpdateDate AS 'Update Date', 
+   OBPL.DflCust AS 'Default Customer ID', 
+   OBPL.DflVendor AS 'Default Vendor ID', 
+   OBPL.DflWhs AS 'Default Warehouse ID', 
+   OBPL.DflTaxCode AS 'Default Tax Code', 
+   OBPL.RevOffice AS 'Tax Office', 
+   OBPL.TaxIdNum AS 'Branch Reg. No.', 
+   OBPL.TaxIdNum2 AS 'Federal Tax ID 2', 
+   OBPL.TaxIdNum3 AS 'Federal Tax ID 3', 
+   OBPL.AddtnlId AS 'Additional ID Number', 
+   OBPL.CompNature AS 'Nature of Company', 
+   OBPL.EconActT AS 'Economic Activity Type', 
+   OBPL.CredCOrig AS 'Credit Contribution Origin', 
+   OBPL.IPIPeriod AS 'IPI Period', 
+   OBPL.CoopAssocT AS 'Cooperative Association Type', 
+   OBPL.PrefState AS 'Default State', 
+   OBPL.ProfTax AS 'Profit Taxation', 
+   OBPL.CompQualif AS 'Company Qualification', 
+   OBPL.DeclType AS 'Declarer Type', 
+   OBPL.AddrType AS 'Address Type', 
+   OBPL.Street AS 'Street', 
+   OBPL.StreetNo AS 'Street No.', 
+   OBPL.Building AS 'Building/Floor/Room', 
+   OBPL.ZipCode AS 'Zip Code', 
+   OBPL.Block AS 'Block', 
+   OBPL.City AS 'City', 
+   OBPL.State AS 'State', 
+   OBPL.County AS 'County', 
+   OBPL.Country AS 'Country', 
+   OBPL.PmtClrAct AS 'Payment Clearing Account', 
+   OBPL.CommerReg AS 'Commercial Register', 
+   OBPL.DateOfInc AS 'Date of Incorporation', 
+   OBPL.SPEDProf AS 'SPED Profile', 
+   OBPL.EnvTypeNFe AS 'Environment Type NFe', 
+   OBPL.Opt4ICMS AS 'Opting for ICMS 115_03', 
+   OBPL.AliasName AS 'Alias Name', 
+   OBPL.GlblLocNum AS 'Global Location Number', 
+   OBPL.TaxRptFrm AS 'Tax Wizard Reporting From', 
+   OBPL.Suframa AS 'SUFRAMA', 
+   OBPL.DfltResWhs AS 'Default Resource Warehouse ID'
+FROM OBPL AS OBPL</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+213.4201602935791
+0' class=related href='/BusinessPlaces'> Business Places</a> <em class=comment>BusinessPlaces</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBPL/ >OBPL</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>BusinessPlaces is a business object that represents a company's business locations. Each Korean company that issues tax invoices and VAT reports must indicate its business place. Each business place is bound with a VAT registry number. 
+This...</div><br><a href=/OBPL class=related></a> <em class=comment>OBPL</em> <b>SQL Table</b><br><br><a href=/OBNI class=related>Brazil Numeric Indexer</a> <em class=comment>OBNI</em> <b>SQL Table</b><br><br><a href=/OCRY class=related>Countries</a> <em class=comment>OCRY</em> <b>SQL Table</b><br><br><a href=/OCNT class=related>Counties</a> <em class=comment>OCNT</em> <b>SQL Table</b><br><br><a href=/OBSI class=related>Brazil String Indexer</a> <em class=comment>OBSI</em> <b>SQL Table</b><br><br><a href=/OCRD class=related>Business Partner</a> <em class=comment>OCRD</em> <b>SQL Table</b><br><br><a href=/OCNA class=related>CNAE Code</a> <em class=comment>OCNA</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/BusinessPlaces/'>BusinessPlaces</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/BusinessPlaces/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/BusinessPlaces/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/BusinessPlaces/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/BusinessPlaces/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/BusinessPlaces/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/BusinessPlaces/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/BusinessPlaces/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Business Place IE Numbers' href=/BusinessPlaces/BusinessPlaceIENumbers/ class=eli>BusinessPlaceIENumbers</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Business Place Tributary Infos' href=/BusinessPlaces/BusinessPlaceTributaryInfos/ class=eli>BusinessPlaceTributaryInfos</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Additional Id Number' href=/BusinessPlaces/AdditionalIdNumber/ class=eli>AdditionalIdNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address' href=/BusinessPlaces/Address/ class=eli>Address</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Addressforeign' href=/BusinessPlaces/Addressforeign/ class=eli>Addressforeign</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address Type' href=/BusinessPlaces/AddressType/ class=eli>AddressType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Alias Name' href=/BusinessPlaces/AliasName/ class=eli>AliasName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Block' href=/BusinessPlaces/Block/ class=eli>Block</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPLID' href=/BusinessPlaces/BPLID/ class=eli>BPLID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPL Name' href=/BusinessPlaces/BPLName/ class=eli>BPLName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPL Name Foreign' href=/BusinessPlaces/BPLNameForeign/ class=eli>BPLNameForeign</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/BusinessPlaces/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Building' href=/BusinessPlaces/Building/ class=eli>Building</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Business' href=/BusinessPlaces/Business/ class=eli>Business</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='City' href=/BusinessPlaces/City/ class=eli>City</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Commercial Register' href=/BusinessPlaces/CommercialRegister/ class=eli>CommercialRegister</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Qualification Code' href=/BusinessPlaces/CompanyQualificationCode/ class=eli>CompanyQualificationCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cooperative Association Type Code' href=/BusinessPlaces/CooperativeAssociationTypeCode/ class=eli>CooperativeAssociationTypeCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Country' href=/BusinessPlaces/Country/ class=eli>Country</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='County' href=/BusinessPlaces/County/ class=eli>County</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Credit Contribution Origin Code' href=/BusinessPlaces/CreditContributionOriginCode/ class=eli>CreditContributionOriginCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Date Of Incorporation' href=/BusinessPlaces/DateOfIncorporation/ class=eli>DateOfIncorporation</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Declarer Type Code' href=/BusinessPlaces/DeclarerTypeCode/ class=eli>DeclarerTypeCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Customer ID' href=/BusinessPlaces/DefaultCustomerID/ class=eli>DefaultCustomerID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Resource Warehouse ID' href=/BusinessPlaces/DefaultResourceWarehouseID/ class=eli>DefaultResourceWarehouseID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Tax Code' href=/BusinessPlaces/DefaultTaxCode/ class=eli>DefaultTaxCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Vendor ID' href=/BusinessPlaces/DefaultVendorID/ class=eli>DefaultVendorID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Warehouse ID' href=/BusinessPlaces/DefaultWarehouseID/ class=eli>DefaultWarehouseID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Disabled' href=/BusinessPlaces/Disabled/ class=eli>Disabled</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Economic Activity Type Code' href=/BusinessPlaces/EconomicActivityTypeCode/ class=eli>EconomicActivityTypeCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Environment Type' href=/BusinessPlaces/EnvironmentType/ class=eli>EnvironmentType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Federal Tax ID' href=/BusinessPlaces/FederalTaxID/ class=eli>FederalTaxID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Federal Tax ID2' href=/BusinessPlaces/FederalTaxID2/ class=eli>FederalTaxID2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Federal Tax ID3' href=/BusinessPlaces/FederalTaxID3/ class=eli>FederalTaxID3</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Global Location Number' href=/BusinessPlaces/GlobalLocationNumber/ class=eli>GlobalLocationNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='IE Numbers' href=/BusinessPlaces/IENumbers/ class=eli>IENumbers</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Industry' href=/BusinessPlaces/Industry/ class=eli>Industry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='IPI Period Code' href=/BusinessPlaces/IPIPeriodCode/ class=eli>IPIPeriodCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Main BPL' href=/BusinessPlaces/MainBPL/ class=eli>MainBPL</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Nature Of Company Code' href=/BusinessPlaces/NatureOfCompanyCode/ class=eli>NatureOfCompanyCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Opting 4ICMS' href=/BusinessPlaces/Opting4ICMS/ class=eli>Opting4ICMS</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Clearing Account' href=/BusinessPlaces/PaymentClearingAccount/ class=eli>PaymentClearingAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Preferred State Code' href=/BusinessPlaces/PreferredStateCode/ class=eli>PreferredStateCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Profit Taxation Code' href=/BusinessPlaces/ProfitTaxationCode/ class=eli>ProfitTaxationCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Rep Name' href=/BusinessPlaces/RepName/ class=eli>RepName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='SPED Profile' href=/BusinessPlaces/SPEDProfile/ class=eli>SPEDProfile</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='State' href=/BusinessPlaces/State/ class=eli>State</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Street' href=/BusinessPlaces/Street/ class=eli>Street</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Street No' href=/BusinessPlaces/StreetNo/ class=eli>StreetNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Office' href=/BusinessPlaces/TaxOffice/ class=eli>TaxOffice</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Office No' href=/BusinessPlaces/TaxOfficeNo/ class=eli>TaxOfficeNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tributary Infos' href=/BusinessPlaces/TributaryInfos/ class=eli>TributaryInfos</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/BusinessPlaces/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='VAT Reg Num' href=/BusinessPlaces/VATRegNum/ class=eli>VATRegNum</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Zip Code' href=/BusinessPlaces/ZipCode/ class=eli>ZipCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

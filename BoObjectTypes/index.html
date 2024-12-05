@@ -1,0 +1,535 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>BoObjectTypes - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:50%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Administration'> Administration</a> / <a href='/sql/User Fields - Description'> User Fields - Description</a></div></div><div class=' tit' style='width:50%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> Bo Object Types</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #008b87;' > <a style='text-decoration:none; color:#008b87;' title='92
+587.6987113952637
+3.174677848815918' href='/UserFieldsMD/BoObjectTypes/'> Bo Object Types</a> Enumeration</div><script>
+                        document.title = 'BoObjectTypes -  User Fields - Description - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P>Specifies the object types.</P>
+<P>Note: The right column indicates the object ID to use as a string for the <A href="/Documents/DocObjectCodeEx/">DocObjectCodeEx</A> property. </P></div>
+            <h2 class="heading"><span  tabindex="0"><img id="enummembersToggle"  src="/images/1x1.png"></img>Members</span></h2><div id="enummembersSection" class="section" ><TABLE CLASS="FilteredItemListTable"><TR VALIGN="top"><TH width="20%">Member</TH><TH align="right" width="10%">Value</TH><TH width="80%">Description</TH></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oChartOfAccounts</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">1</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ChartOfAccounts/">ChartOfAccounts</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBusinessPartners</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">2</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/BusinessPartners/">BusinessPartners</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBanks</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">3</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Banks/">Banks</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oItems</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">4</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Items/">Items</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oVatGroups</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">5</TD><TD CLASS="DescriptionCell" WIDTH="80%"><SPAN style="FONT-FAMILY: Verdana; COLOR: black; FONT-SIZE: 8.5pt; mso-fareast-language: EN-US; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-bidi-language: AR-SA"><A href="/VatGroups/">VatGroups</A></A></SPAN> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPriceLists</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">6</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/PriceLists/">PriceLists</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oSpecialPrices</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">7</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/SpecialPrices/">SpecialPrices</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oItemProperties</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">8</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ItemProperties/">ItemProperties</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oUsers</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">12</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Users/">Users</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oInvoices</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">13</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a sales invoice document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCreditNotes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">14</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a sales credit note document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oDeliveryNotes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">15</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a sales delivery note document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oReturns</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">16</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a sales return document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oOrders</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">17</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a sales order document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPurchaseInvoices</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">18</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a purchase invoice document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPurchaseCreditNotes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">19</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a purchase credit note document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPurchaseDeliveryNotes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">20</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a purchase delivery note document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPurchaseReturns</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">21</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a a purchase return document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPurchaseOrders</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">22</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a purchase order document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oQuotations</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">23</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a sales quotation document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oIncomingPayments</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">24</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Payments/">Payments</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oJournalVouchers</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">28</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/JournalVouchers/">JournalVouchers</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oJournalEntries</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">30</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/JournalEntries/">JournalEntries</A> object that represents a normal journal entry</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oStockTakings</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">31</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/StockTaking/">StockTaking</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oContacts</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">33</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Contacts/">Contacts</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCreditCards</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">36</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/CreditCards/">CreditCards</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCurrencyCodes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">37</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Currencies/">Currencies</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPaymentTermsTypes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">40</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/PaymentTermsTypes/">PaymentTermsTypes</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBankPages</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">42</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/BankPages/">BankPages</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oManufacturers</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">43</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Manufacturers/">Manufacturers</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oVendorPayments</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">46</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Payments/">Payments</A> object that represents payments to vendors</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oLandedCostsCodes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">48</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/LandedCostsCodes/">LandedCostsCodes</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oShippingTypes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">49</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ShippingTypes/">ShippingTypes</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oLengthMeasures</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">50</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/LengthMeasures/">LengthMeasures</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oWeightMeasures</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">51</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/WeightMeasures/">WeightMeasures</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oItemGroups</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">52</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ItemGroups/">ItemGroups</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oSalesPersons</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">53</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/SalesPersons/">SalesPersons</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCustomsGroups</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">56</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/CustomsGroups/">CustomsGroups</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oChecksforPayment</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">57</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ChecksforPayment/">ChecksforPayment</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oInventoryGenEntry</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">59</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object for entering general items to inventory</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oInventoryGenExit</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">60</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object for removing general items from inventory</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oWarehouses</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">64</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Warehouses/">Warehouses</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCommissionGroups</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">65</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/CommissionGroups/">CommissionGroups</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oProductTrees</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">66</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ProductTrees/">ProductTrees</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oStockTransfer</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">67</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/StockTransfer/">StockTransfer</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oWorkOrders</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">68</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/WorkOrders/">WorkOrders</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCreditPaymentMethods</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">70</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/CreditPaymentMethods/">CreditPaymentMethods</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCreditCardPayments</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">71</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/CreditCardPayments/">CreditCardPayments</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oAlternateCatNum</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">73</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/AlternateCatNum/">AlternateCatNum</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBudget</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">77</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Budget/">Budget</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBudgetDistribution</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">78</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/BudgetDistribution/">BudgetDistribution</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oMessages</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">81</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Messages/">Messages</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBudgetScenarios</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">91</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/BudgetScenarios/">BudgetScenarios</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oSalesOpportunities</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">97</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/SalesOpportunities/">SalesOpportunities</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oUserDefaultGroups</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">93</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/UserDefaultGroups/">UserDefaultGroups</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oSalesStages</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">101</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/SalesStages/">SalesStages</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oActivityTypes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">103</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ActivityTypes/">ActivityTypes</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oActivityLocations</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">104</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ActivityLocations/">ActivityLocations</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oDrafts</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">112</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a draft document (see <A href="/Documents/Creating%20a%20draft%20document%20sample_E/">Creating a draft document sample</A>)</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oDeductionTaxHierarchies</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">116</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/DeductionTaxHierarchies/">DeductionTaxHierarchies</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oDeductionTaxGroups</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">117</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/DeductionTaxGroups/">DeductionTaxGroups</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oAdditionalExpenses</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">125</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/AdditionalExpenses/">AdditionalExpenses</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oSalesTaxAuthorities</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">126</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/SalesTaxAuthorities/">SalesTaxAuthorities</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oSalesTaxAuthoritiesTypes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">127</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/SalesTaxAuthoritiesTypes/">SalesTaxAuthoritiesTypes</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oSalesTaxCodes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">128</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/SalesTaxCodes/">SalesTaxCodes</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oQueryCategories</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">134</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/QueryCategories/">QueryCategories</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oFactoringIndicators</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">138</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/FactoringIndicators/"></A><A href="/FactoringIndicators/">FactoringIndicators</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPaymentsDrafts</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">140</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Payments/">Payments</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oAccountSegmentations</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">142</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/AccountSegmentations/">AccountSegmentations</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oAccountSegmentationCategories</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">143</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/AccountSegmentationCategories/">AccountSegmentationCategories</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oWarehouseLocations</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">144</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/WarehouseLocations /">WarehouseLocations </A>object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oForms1099</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">145</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Forms1099/">Forms1099</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oInventoryCycles</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">146</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/InventoryCycles/">InventoryCycles </A>object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oWizardPaymentMethods</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">147</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/WizardPaymentMethods/">WizardPaymentMethods</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBPPriorities</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">150</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/BPPriorities/">BPPriorities</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oDunningLetters</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">151</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/DunningLetters/">DunningLetters</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oUserFields</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">152</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/UserFieldsMD/">UserFieldsMD</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oUserTables</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">153</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/UserTablesMD/">UserTablesMD</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPickLists</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">156</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/PickLists/">PickLists</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPaymentRunExport</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">158</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/PaymentRunExport/">PaymentRunExport</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oUserQueries</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">160</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/UserQueries/">UserQueries</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oMaterialRevaluation</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">162</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/MaterialRevaluation/">MaterialRevaluation</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCorrectionPurchaseInvoice</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">163</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a purchase invoice correction document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCorrectionPurchaseInvoiceReversal</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">164</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a reverse purchase invoice correction document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCorrectionInvoice</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">165</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a correction invoice document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCorrectionInvoiceReversal</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">166</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a reverse invoice correction document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oContractTemplates</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">170</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ContractTemplates/">ContractTemplates</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oEmployeesInfo</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">171</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/EmployeesInfo/">EmployeesInfo</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oCustomerEquipmentCards</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">176</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/CustomerEquipmentCards/">CustomerEquipmentCards</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oWithholdingTaxCodes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">178</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/WithholdingTaxCodes/">WithholdingTaxCodes</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBillOfExchangeTransactions</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">182</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/BillOfExchangeTransaction/">BillOfExchangeTransaction</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oKnowledgeBaseSolutions</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">189</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/KnowledgeBaseSolutions/">KnowledgeBaseSolutions</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oServiceContracts</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">190</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ServiceContracts/">ServiceContracts</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oServiceCalls</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">191</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ServiceCalls/">ServiceCalls</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oUserKeys</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">193</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/UserKeysMD/">UserKeysMD</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oQueue</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">194</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Queue/">Queue</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oSalesForecast</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">198</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/SalesForecast/">SalesForecast</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oTerritories</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">200</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Territories/">Territories</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oIndustries</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">201</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Industries/">Industries</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oProductionOrders</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">202</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ProductionOrders/">ProductionOrders</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPackagesTypes</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">205</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/PackagesTypes/">PackagesTypes</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oUserObjectsMD</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">206</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/UserObjectsMD/">UserObjectsMD</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oTeams</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">211</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Teams/">Teams</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oRelationships</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">212</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Relationships/">Relationships</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oUserPermissionTree</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">214</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/UserPermissionTree/">UserPermissionTree</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oActivityStatus</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">217</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ActivityStatus/">ActivityStatus</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oChooseFromList</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">218</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ChooseFromList/">ChooseFromList</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oFormattedSearches</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">219</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/FormattedSearches/">FormattedSearches </A>object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oAttachments2</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">221</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Attachments2/">Attachments2</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oUserLanguages</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">223</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/UserLanguages/">UserLanguages</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oMultiLanguageTranslations</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">224</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/MultiLanguageTranslations/">MultiLanguageTranslations</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oDynamicSystemStrings</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">229</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/DynamicSystemStrings/">DynamicSystemStrings</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oHouseBankAccounts</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">231</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/HouseBankAccounts/">HouseBankAccounts </A>object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBusinessPlaces</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">247</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/BusinessPlaces/">BusinessPlaces</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oLocalEra</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">250</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/LocalEra/">LocalEra</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oSalesTaxInvoice</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">280</TD><TD CLASS="DescriptionCell" WIDTH="80%">Sales tax invoice object (see <A href="/TaxInvoices/">TaxInvoices</A> object and <A href="/TaxInvoices/DocType/">DocType</A> property with the valid value <STRONG><EM>botit_Invoice</EM></STRONG>)</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPurchaseTaxInvoice</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">281</TD><TD CLASS="DescriptionCell" WIDTH="80%">Purchase tax invoice object (see <A href="/TaxInvoices/">TaxInvoices</A> object and <A href="/TaxInvoices/DocType/">DocType</A> property with the valid value <STRONG><EM>botit_Payment</EM></STRONG>)</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">BoRecordset</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">300</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Recordset/">Recordset</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">BoBridge</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">305</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/SBObob/">SBObob</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oNotaFiscalUsage</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">260</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/NotaFiscalUsage/">NotaFiscalUsage</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oNotaFiscalCFOP</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">258</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="//">NotaFiscalCFOP</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oNotaFiscalCST</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">259</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/NotaFiscalCST/">NotaFiscalCST</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oClosingDateProcedure</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">261</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/ClosingDateProcedure/">ClosingDateProcedure</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBusinessPartnerGroups</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">10</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/BusinessPartnerGroups/">BusinessPartnerGroups </A>object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oBPFiscalRegistryID</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">278</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/BPFiscalRegistryID/">BPFiscalRegistryID</A> object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oDownPayments</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">203</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a down payments document</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPurchaseDownPayments</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">204</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a purchase down payments document</TD></TR>
+<TR><TD CLASS=Newmnc WIDTH="20%">oStockTransferDraft</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">1179</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/StockTransfer/">StockTransfer</A> draft object</TD></TR>
+<TR><TD CLASS=Newmnc WIDTH="20%">oPurchaseQuotations</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">540000006</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/Documents/">Documents</A> object that represents a purchase quotation document</TD></TR>
+<TR><TD CLASS=Newmnc WIDTH="20%">oInventoryTransferRequest</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">1250000001</TD><TD CLASS="DescriptionCell" WIDTH="80%"><A href="/StockTransfer/">StockTransfer</A> request object</TD></TR>
+<TR><TD CLASS=mnc WIDTH="20%">oPurchaseRequest</TD><TD align="right" Class="EnumValueCell" WIDTH="10%">1470000113</TD><TD CLASS="DescriptionCell" WIDTH="80%"> </TD></TR>
+</TABLE></div>
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            
+        </div>
+        <div style='clear:both;'></div><div><h2>SAP® B1 DI-API C# definition</h2><div class='cs hljs'>public enum <a style='color:inherit;' href=/UserFieldsMD/BoObjectTypes/>BoObjectTypes</a>
+  {
+    oChartOfAccounts = 1,
+    oBusinessPartners = 2,
+    oBanks = 3,
+    oItems = 4,
+    oVatGroups = 5,
+    oPriceLists = 6,
+    oSpecialPrices = 7,
+    oItemProperties = 8,
+    oBusinessPartnerGroups = 10,
+    oUsers = 12,
+    oInvoices = 13,
+    oCreditNotes = 14,
+    oDeliveryNotes = 15,
+    oReturns = 16,
+    oOrders = 17,
+    oPurchaseInvoices = 18,
+    oPurchaseCreditNotes = 19,
+    oPurchaseDeliveryNotes = 20,
+    oPurchaseReturns = 21,
+    oPurchaseOrders = 22,
+    oQuotations = 23,
+    oIncomingPayments = 24,
+    oJournalVouchers = 28,
+    oJournalEntries = 30,
+    oStockTakings = 31,
+    oContacts = 33,
+    oCreditCards = 36,
+    oCurrencyCodes = 37,
+    oPaymentTermsTypes = 40,
+    oBankPages = 42,
+    oManufacturers = 43,
+    oVendorPayments = 46,
+    oLandedCostsCodes = 48,
+    oShippingTypes = 49,
+    oLengthMeasures = 50,
+    oWeightMeasures = 51,
+    oItemGroups = 52,
+    oSalesPersons = 53,
+    oCustomsGroups = 56,
+    oChecksforPayment = 57,
+    oInventoryGenEntry = 59,
+    oInventoryGenExit = 60,
+    oWarehouses = 64,
+    oCommissionGroups = 65,
+    oProductTrees = 66,
+    oStockTransfer = 67,
+    oWorkOrders = 68,
+    oCreditPaymentMethods = 70,
+    oCreditCardPayments = 71,
+    oAlternateCatNum = 73,
+    oBudget = 77,
+    oBudgetDistribution = 78,
+    oMessages = 81,
+    oBudgetScenarios = 91,
+    oUserDefaultGroups = 93,
+    oSalesOpportunities = 97,
+    oSalesStages = 101,
+    oActivityTypes = 103,
+    oActivityLocations = 104,
+    oDrafts = 112,
+    oDeductionTaxHierarchies = 116,
+    oDeductionTaxGroups = 117,
+    oAdditionalExpenses = 125,
+    oSalesTaxAuthorities = 126,
+    oSalesTaxAuthoritiesTypes = 127,
+    oSalesTaxCodes = 128,
+    oQueryCategories = 134,
+    oFactoringIndicators = 138,
+    oPaymentsDrafts = 140,
+    oAccountSegmentations = 142,
+    oAccountSegmentationCategories = 143,
+    oWarehouseLocations = 144,
+    oForms1099 = 145,
+    oInventoryCycles = 146,
+    oWizardPaymentMethods = 147,
+    oBPPriorities = 150,
+    oDunningLetters = 151,
+    oUserFields = 152,
+    oUserTables = 153,
+    oPickLists = 156,
+    oPaymentRunExport = 158,
+    oUserQueries = 160,
+    oMaterialRevaluation = 162,
+    oCorrectionPurchaseInvoice = 163,
+    oCorrectionPurchaseInvoiceReversal = 164,
+    oCorrectionInvoice = 165,
+    oCorrectionInvoiceReversal = 166,
+    oContractTemplates = 170,
+    oEmployeesInfo = 171,
+    oCustomerEquipmentCards = 176,
+    oWithholdingTaxCodes = 178,
+    oBillOfExchangeTransactions = 182,
+    oKnowledgeBaseSolutions = 189,
+    oServiceContracts = 190,
+    oServiceCalls = 191,
+    oUserKeys = 193,
+    oQueue = 194,
+    oSalesForecast = 198,
+    oTerritories = 200,
+    oIndustries = 201,
+    oProductionOrders = 202,
+    oDownPayments = 203,
+    oPurchaseDownPayments = 204,
+    oPackagesTypes = 205,
+    oUserObjectsMD = 206,
+    oTeams = 211,
+    oRelationships = 212,
+    oUserPermissionTree = 214,
+    oActivityStatus = 217,
+    oChooseFromList = 218,
+    oFormattedSearches = 219,
+    oAttachments2 = 221,
+    oUserLanguages = 223,
+    oMultiLanguageTranslations = 224,
+    oDynamicSystemStrings = 229,
+    oHouseBankAccounts = 231,
+    oBusinessPlaces = 247,
+    oLocalEra = 250,
+    oNotaFiscalCFOP = 258,
+    oNotaFiscalCST = 259,
+    oNotaFiscalUsage = 260,
+    oClosingDateProcedure = 261,
+    oBPFiscalRegistryID = 278,
+    oSalesTaxInvoice = 280,
+    oPurchaseTaxInvoice = 281,
+    BoRecordset = 300,
+    BoBridge = 305,
+    oStockTransferDraft = 1179,
+    oPurchaseQuotations = 540000006,
+    oInventoryTransferRequest = 1250000001,
+    oPurchaseRequest = 1470000113
+  }</div></div></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/UserFieldsMD/'>UserFieldsMD</a></font><hr><font style=''>Enumeration<br><a class=eli style='max-width:99%;'   href='/UserFieldsMD/BoObjectTypes/'>BoObjectTypes</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Field Types' href=/UserFieldsMD/BoFieldTypes/ class=eli>BoFieldTypes</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Fld Sub Types' href=/UserFieldsMD/BoFldSubTypes/ class=eli>BoFldSubTypes</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Object Types' href=/UserFieldsMD/BoObjectTypes/ class=eli>BoObjectTypes</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/UserFieldsMD/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/UserFieldsMD/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/UserFieldsMD/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/UserFieldsMD/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/UserFieldsMD/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/UserFieldsMD/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/UserFieldsMD/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='User Fields - Values Definitions
+ Valid Values MD' href=/UserFieldsMD/ValidValuesMD/ class=eli>ValidValuesMD</a>    <small class='eli s'> UFD1</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Browser' href=/UserFieldsMD/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Value' href=/UserFieldsMD/DefaultValue/ class=eli>DefaultValue</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Description' href=/UserFieldsMD/Description/ class=eli>Description</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Edit Size' href=/UserFieldsMD/EditSize/ class=eli>EditSize</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Field ID' href=/UserFieldsMD/FieldID/ class=eli>FieldID</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Linked System Object' href=/UserFieldsMD/LinkedSystemObject/ class=eli>LinkedSystemObject</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Linked Table' href=/UserFieldsMD/LinkedTable/ class=eli>LinkedTable</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Linked UDO' href=/UserFieldsMD/LinkedUDO/ class=eli>LinkedUDO</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Mandatory' href=/UserFieldsMD/Mandatory/ class=eli>Mandatory</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Name' href=/UserFieldsMD/Name/ class=eli>Name</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Size' href=/UserFieldsMD/Size/ class=eli>Size</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sub Type' href=/UserFieldsMD/SubType/ class=eli>SubType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Table Name' href=/UserFieldsMD/TableName/ class=eli>TableName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Type' href=/UserFieldsMD/Type/ class=eli>Type</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Valid Values' href=/UserFieldsMD/ValidValues/ class=eli>ValidValues</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

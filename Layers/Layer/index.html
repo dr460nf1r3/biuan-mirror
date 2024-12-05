@@ -1,0 +1,323 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>Layers Layer - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:100%; background-color:#cacaca; color:#343434;'><div class=eli2><b>API</b> Layers /  Layer</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #343434;' > <a style='text-decoration:none; color:#343434;' title='92
+1288.2891235351562
+93.2260971069336' href='/Layers/Layer/'> Layer</a> Object</div><script>
+                        document.title = 'Layer -   - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><P>Represents a FIFO layer for a specific item and location.</P>
+<P>After retrieving a FIFO layer, you may want to revaluate it. To specify a FIFO layer to be revaluated, pass its layer ID and sequence number to the corresponding properties of the <A href="/FIFOLayers/">FIFOLayers</A> object in the <A href="/MaterialRevaluation/">MaterialRevaluation</A> object.</P></div>
+            
+            <h2 class="heading"><span  tabindex="0"><img id="remarksToggle"  src="/images/1x1.png"></img>Remarks</span></h2><div class="remarksSection" class="section" ><P>Each FIFO layer contains the following properties:</P>
+<UL>
+<LI><A href="/Layer/TransactionSequenceNum/">TransactionSequenceNum</A>: A sequence number that identifies each transaction that affects the stock of a FIFO item.</LI>
+<LI><A href="/Layer/LayerID/">LayerID Property</A><STRONG>:</STRONG> A sequence number (within each transaction) that identifies the FIFO layers within a single transaction. A transaction may involve more than one FIFO layer, for example, when a customer buys 2 of an item but the cost of one item is $100 and the cost of the other is $200.  </LI></UL>
+<P class="">These two properties, together, uniquely identify a FIFO layer.</P></div>
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/Layer/">Layer Members</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div><div><h2>SAP® B1 DI-API C# definition</h2><div class='cs hljs'>public class <a style='color:inherit;' href=/Layers/Layer/>Layer</a>Class : ILayer, <a style='color:inherit;' href=/Layers/Layer/>Layer</a>
+  { 
+    public virtual double <a style='color:inherit;' href=/Layer/CurrentCost/>CurrentCost</a>
+    { 
+      get;
+    } 
+    public virtual string <a style='color:inherit;' href=/Layer/DocNumber/>DocNumber</a>
+    { 
+      get;
+    } 
+    public virtual <a style='color:inherit;' href=/Layer/TransTypesEnum/>TransTypesEnum</a> <a style='color:inherit;' href=/Layer/DocType/>DocType</a>
+    { 
+      get;
+    } 
+    public virtual DateTime <a style='color:inherit;' href=/Layer/EntryDate/>EntryDate</a>
+    { 
+      get;
+    } 
+    public virtual int <a style='color:inherit;' href=/Layer/LayerID/>LayerID</a>
+    { 
+      get; 
+      set;
+    } 
+    public virtual double <a style='color:inherit;' href=/Layer/OpenQty/>OpenQty</a>
+    { 
+      get;
+    } 
+    public virtual int <a style='color:inherit;' href=/Layer/TransactionSequenceNum/>TransactionSequenceNum</a>
+    { 
+      get; 
+      set;
+    }
+    public extern <a style='color:inherit;' href=/Layers/Layer/>Layer</a>Class(); 
+    public virtual extern void <a style='color:inherit;' href=/Layer/FromXMLFile/>FromXMLFile</a>(  string bstrFileName); 
+    public virtual extern void <a style='color:inherit;' href=/Layer/FromXMLString/>FromXMLString</a>(  string bstrXML); 
+    public virtual extern string <a style='color:inherit;' href=/Layer/GetXMLSchema/>GetXMLSchema</a>(); 
+    public virtual extern void <a style='color:inherit;' href=/Layer/ToXMLFile/>ToXMLFile</a>(  string bstrFileName); 
+    public virtual extern string <a style='color:inherit;' href=/Layer/ToXMLString/>ToXMLString</a>();
+  }</div></div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+515
+173.28912353515625' class=related href='/Layer/TransTypesEnum'> Trans Types Enum</a> <em class=comment>TransTypesEnum</em> <b>Enumeration</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Document types.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/Layer> Layer</a> <small>Layer</small> <b>Object</b><br><br><a title='92
+131.708984375
+0' class=related href='/MaterialRevaluationFIFOService'> Material Revaluation FIFO Service</a> <em class=comment>MaterialRevaluationFIFOService</em> <b>Service</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The MaterialRevaluationFIFOService service enables you to retrieve the FIFO layers for a specific item and location. You can then use information about the FIFO layers to specify specific layers to revalue (FIFOLayers) and provide these to...</div><br><br><a title='92
+98.2260971069336
+0' class=related href='/MaterialRevaluationFIFO/Layers'> Layers</a> <em class=comment>Layers</em> <b>Collection</b><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>A collection of Layer objects that represent the FIFO layers for a specific item.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/MaterialRevaluationFIFO> Material Revaluation FIFO</a> <small>MaterialRevaluationFIFO</small> <b>Object</b><br><br><a title='92
+93.38401794433594
+0' class=related href='/MaterialRevaluation_lines/FIFOLayers'> FIFO Layers</a> <em class=comment>FIFOLayers</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/MRV2/ >MRV2</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>Specifies the FIFO layers to be updated, and the new values for the quantity and price.
+Source table: MRV2</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/MaterialRevaluation_lines> Material Revaluation  lines</a> <small>MaterialRevaluation_lines</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/MRV1/ >MRV1</a> </span><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Collection<br><a style='max-width:99%;' class=eli href='/Layers/'>Layers</a></font><hr><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/Layers/Layer/'>Layer</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Trans Types Enum' href=/Layer/TransTypesEnum/ class=eli>TransTypesEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='From XML File' href=/Layer/FromXMLFile/ class=eli>FromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From XML String' href=/Layer/FromXMLString/ class=eli>FromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XML Schema' href=/Layer/GetXMLSchema/ class=eli>GetXMLSchema</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML File' href=/Layer/ToXMLFile/ class=eli>ToXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML String' href=/Layer/ToXMLString/ class=eli>ToXMLString</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Current Cost' href=/Layer/CurrentCost/ class=eli>CurrentCost</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Number' href=/Layer/DocNumber/ class=eli>DocNumber</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Type' href=/Layer/DocType/ class=eli>DocType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Entry Date' href=/Layer/EntryDate/ class=eli>EntryDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Layer ID' href=/Layer/LayerID/ class=eli>LayerID</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Open Qty' href=/Layer/OpenQty/ class=eli>OpenQty</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transaction Sequence Num' href=/Layer/TransactionSequenceNum/ class=eli>TransactionSequenceNum</a>    <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

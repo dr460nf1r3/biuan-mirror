@@ -1,0 +1,322 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OBSI - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Business Partners'> Business Partners</a> / <a href='/sql/Business Place'> Business Place</a> / <a href='/sql/Brazil String Indexer'>Brazil String Indexer</a></div></div><div class=' tit' style='width:33%; background-color:#44efeb; color:#008b87;'><div class=eli2><b>DTW</b> Administration /  Setup /  Financials /  Business Places / Brazil String Indexer</div></div><div class=' tit' style='width:33%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> Business Places /  Credit Contribution Origin Code</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #008b87;'  class='titol sm titoltxt'>  <a style='color:#008b87;' href='/OBSI/'> OBSI - Brazil String Indexer</a> Table</font><script>
+                    document.title = 'OBSI - Brazil String Indexer - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>IndexType</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Indexer Type</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>IND_CODE_K</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b>Code</b></em></td><td valign=top >Code</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>30</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Descr</b></em></td><td valign=top >Beverage Table</td><td valign=top ><em style='color:#010089;'>Text</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>16</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b><u title='Primary'>ID</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Unique ID</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OBSI', font: { multi: true }, label: 'OBSI', title: ''},{id: 'ABPL', font: { multi: true }, label: '<b>ABPL</b>', title:'Business Place'},{id: 'ADO1', font: { multi: true }, label: '<b>ADO1</b>', title:'A/R Invoice (Rows) - History'},{id: 'ADO17', font: { multi: true }, label: '<b>ADO17</b>', title:'A/R Invoice - Import Process - History'},{id: 'AITM', font: { multi: true }, label: '<b>AITM</b>', title:'Items - History'},{id: 'ATX2', font: { multi: true }, label: '<b>ATX2</b>', title:'Tax Invoice Operation Codes'},{id: 'AWHT', font: { multi: true }, label: '<b>AWHT</b>', title:'Withholding Tax'},{id: 'CIN1', font: { multi: true }, label: '<b>CIN1</b>', title:'Correction Invoice - Rows'},{id: 'CIN17', font: { multi: true }, label: '<b>CIN17</b>', title:'Correction Invoice - Bin Allocation Data'},{id: 'CPI1', font: { multi: true }, label: '<b>CPI1</b>', title:'A/P Correction Invoice - Rows'},{id: 'CPI17', font: { multi: true }, label: '<b>CPI17</b>', title:'A/P Correction Invoice - Import Process'},{id: 'CPV1', font: { multi: true }, label: '<b>CPV1</b>', title:'A/P Correction Invoice Reversal - Rows'},{id: 'CPV17', font: { multi: true }, label: '<b>CPV17</b>', title:'A/P Correction Invoice Reversal - Import Process'},{id: 'CSI1', font: { multi: true }, label: '<b>CSI1</b>', title:'A/R Correction Invoice - Rows'},{id: 'CSI17', font: { multi: true }, label: '<b>CSI17</b>', title:'A/R Correction Invoice - Import Process'},{id: 'CSV1', font: { multi: true }, label: '<b>CSV1</b>', title:'A/R Correction Invoice Reversal - Rows'},{id: 'CSV17', font: { multi: true }, label: '<b>CSV17</b>', title:'A/R Correction Invoice Reversal - Bin Allocation Data'},{id: 'DLN1', font: { multi: true }, label: '<b>DLN1</b>', title:'Delivery - Rows'},{id: 'DLN17', font: { multi: true }, label: '<b>DLN17</b>', title:'Delivery - Import Process'},{id: 'DPI1', font: { multi: true }, label: '<b>DPI1</b>', title:'A/R Down Payment - Rows'},{id: 'DPI17', font: { multi: true }, label: '<b>DPI17</b>', title:'A/R Down Payment - Import Process'},{id: 'DPO1', font: { multi: true }, label: '<b>DPO1</b>', title:'A/P Down Payment - Rows'},{id: 'DPO17', font: { multi: true }, label: '<b>DPO17</b>', title:'A/P Down Payment - Import Process'},{id: 'DRF1', font: { multi: true }, label: '<b>DRF1</b>', title:'Draft - Rows'},{id: 'DRF17', font: { multi: true }, label: '<b>DRF17</b>', title:'Draft - Import Process'},{id: 'IEI1', font: { multi: true }, label: '<b>IEI1</b>', title:'Incoming Excise Invoice - Rows'},{id: 'IEI17', font: { multi: true }, label: '<b>IEI17</b>', title:'Incoming Excise Invoice - Import Process'},{id: 'IGE1', font: { multi: true }, label: '<b>IGE1</b>', title:'Goods Issue - Rows'},{id: 'IGE17', font: { multi: true }, label: '<b>IGE17</b>', title:'Goods Issue - Import Process'},{id: 'IGN1', font: { multi: true }, label: '<b>IGN1</b>', title:'Goods Receipt - Rows'},{id: 'IGN17', font: { multi: true }, label: '<b>IGN17</b>', title:'Goods Receipt - Import Process'},{id: 'INV1', font: { multi: true }, label: '<b>INV1</b>', title:'A/R Invoice - Rows'},{id: 'INV17', font: { multi: true }, label: '<b>INV17</b>', title:'A/R Invoice - Import Process'},{id: 'OBBI', font: { multi: true }, label: '<b>OBBI</b>', title:'Brazil Beverage Indexer'},{id: 'OBPL', font: { multi: true }, label: '<b>OBPL</b>', title:'Business Place'},{id: 'OEI1', font: { multi: true }, label: '<b>OEI1</b>', title:'Outgoing Excise Invoice - Rows'},{id: 'OEI17', font: { multi: true }, label: '<b>OEI17</b>', title:'Outgoing Excise Invoice - Import Process'},{id: 'OITM', font: { multi: true }, label: '<b>OITM</b>', title:'Items'},{id: 'OWHT', font: { multi: true }, label: '<b>OWHT</b>', title:'Withholding Tax'},{id: 'PCH1', font: { multi: true }, label: '<b>PCH1</b>', title:'A/P Invoice - Rows'},{id: 'PCH17', font: { multi: true }, label: '<b>PCH17</b>', title:'A/P Invoice - Import Process'},{id: 'PDN1', font: { multi: true }, label: '<b>PDN1</b>', title:'Goods Receipt PO - Rows'},{id: 'PDN17', font: { multi: true }, label: '<b>PDN17</b>', title:'Goods Receipt PO - Import Process'},{id: 'POR1', font: { multi: true }, label: '<b>POR1</b>', title:'Purchase Order - Rows'},{id: 'POR17', font: { multi: true }, label: '<b>POR17</b>', title:'Purchase Order - Import Process'},{id: 'PQT1', font: { multi: true }, label: '<b>PQT1</b>', title:'Purchase Quotation - Rows'},{id: 'PQT17', font: { multi: true }, label: '<b>PQT17</b>', title:'Purchase Quotation - Import Process'},{id: 'PRQ1', font: { multi: true }, label: '<b>PRQ1</b>', title:'Purchase Request - Rows'},{id: 'PRQ17', font: { multi: true }, label: '<b>PRQ17</b>', title:'Purchase Request - Bin Allocation Data'},{id: 'QUT1', font: { multi: true }, label: '<b>QUT1</b>', title:'Sales Quotation - Rows'},{id: 'QUT17', font: { multi: true }, label: '<b>QUT17</b>', title:'Sales Quotation - Import Process'},{id: 'RDN1', font: { multi: true }, label: '<b>RDN1</b>', title:'Returns - Rows'},{id: 'RDN17', font: { multi: true }, label: '<b>RDN17</b>', title:'Returns - Import Process'},{id: 'RDR1', font: { multi: true }, label: '<b>RDR1</b>', title:'Sales Order - Rows'},{id: 'RDR17', font: { multi: true }, label: '<b>RDR17</b>', title:'Sales Order - Import Process'},{id: 'RIN1', font: { multi: true }, label: '<b>RIN1</b>', title:'A/R Credit Memo - Rows'},{id: 'RIN17', font: { multi: true }, label: '<b>RIN17</b>', title:'A/R Credit Memo - Import Process'},{id: 'RPC1', font: { multi: true }, label: '<b>RPC1</b>', title:'A/P Credit Memo - Rows'},{id: 'RPC17', font: { multi: true }, label: '<b>RPC17</b>', title:'A/P Credit Memo - Import Process'},{id: 'RPD1', font: { multi: true }, label: '<b>RPD1</b>', title:'Goods Return - Rows'},{id: 'RPD17', font: { multi: true }, label: '<b>RPD17</b>', title:'Goods Return - Import Process'},{id: 'SITM', font: { multi: true }, label: '<b>SITM</b>', title:'Items'},{id: 'TPI2', font: { multi: true }, label: '<b>TPI2</b>', title:'Tax Invoice Operation Codes'},{id: 'TSI2', font: { multi: true }, label: '<b>TSI2</b>', title:'Tax Invoice Operation Codes'},{id: 'UITM', font: { multi: true }, label: '<b>UITM</b>', title:'Items'},{id: 'WTQ1', font: { multi: true }, label: '<b>WTQ1</b>', title:'Inventory Transfer Request - Rows'},{id: 'WTQ17', font: { multi: true }, label: '<b>WTQ17</b>', title:'Inventory Transfer Request - Import Process'},{id: 'WTR1', font: { multi: true }, label: '<b>WTR1</b>', title:'Inventory Transfer - Rows'},{id: 'WTR17', font: { multi: true }, label: '<b>WTR17</b>', title:'Inventory Transfer - Import Process'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OBSI', to: 'ABPL', arrows:'from'}, {from: 'OBSI', to: 'ADO1', arrows:'from'}, {from: 'OBSI', to: 'ADO17', arrows:'from'}, {from: 'OBSI', to: 'AITM', arrows:'from'}, {from: 'OBSI', to: 'ATX2', arrows:'from'}, {from: 'OBSI', to: 'AWHT', arrows:'from'}, {from: 'OBSI', to: 'CIN1', arrows:'from'}, {from: 'OBSI', to: 'CIN17', arrows:'from'}, {from: 'OBSI', to: 'CPI1', arrows:'from'}, {from: 'OBSI', to: 'CPI17', arrows:'from'}, {from: 'OBSI', to: 'CPV1', arrows:'from'}, {from: 'OBSI', to: 'CPV17', arrows:'from'}, {from: 'OBSI', to: 'CSI1', arrows:'from'}, {from: 'OBSI', to: 'CSI17', arrows:'from'}, {from: 'OBSI', to: 'CSV1', arrows:'from'}, {from: 'OBSI', to: 'CSV17', arrows:'from'}, {from: 'OBSI', to: 'DLN1', arrows:'from'}, {from: 'OBSI', to: 'DLN17', arrows:'from'}, {from: 'OBSI', to: 'DPI1', arrows:'from'}, {from: 'OBSI', to: 'DPI17', arrows:'from'}, {from: 'OBSI', to: 'DPO1', arrows:'from'}, {from: 'OBSI', to: 'DPO17', arrows:'from'}, {from: 'OBSI', to: 'DRF1', arrows:'from'}, {from: 'OBSI', to: 'DRF17', arrows:'from'}, {from: 'OBSI', to: 'IEI1', arrows:'from'}, {from: 'OBSI', to: 'IEI17', arrows:'from'}, {from: 'OBSI', to: 'IGE1', arrows:'from'}, {from: 'OBSI', to: 'IGE17', arrows:'from'}, {from: 'OBSI', to: 'IGN1', arrows:'from'}, {from: 'OBSI', to: 'IGN17', arrows:'from'}, {from: 'OBSI', to: 'INV1', arrows:'from'}, {from: 'OBSI', to: 'INV17', arrows:'from'}, {from: 'OBSI', to: 'OBBI', arrows:'from'}, {from: 'OBSI', to: 'OBPL', arrows:'from'}, {from: 'OBSI', to: 'OEI1', arrows:'from'}, {from: 'OBSI', to: 'OEI17', arrows:'from'}, {from: 'OBSI', to: 'OITM', arrows:'from'}, {from: 'OBSI', to: 'OWHT', arrows:'from'}, {from: 'OBSI', to: 'PCH1', arrows:'from'}, {from: 'OBSI', to: 'PCH17', arrows:'from'}, {from: 'OBSI', to: 'PDN1', arrows:'from'}, {from: 'OBSI', to: 'PDN17', arrows:'from'}, {from: 'OBSI', to: 'POR1', arrows:'from'}, {from: 'OBSI', to: 'POR17', arrows:'from'}, {from: 'OBSI', to: 'PQT1', arrows:'from'}, {from: 'OBSI', to: 'PQT17', arrows:'from'}, {from: 'OBSI', to: 'PRQ1', arrows:'from'}, {from: 'OBSI', to: 'PRQ17', arrows:'from'}, {from: 'OBSI', to: 'QUT1', arrows:'from'}, {from: 'OBSI', to: 'QUT17', arrows:'from'}, {from: 'OBSI', to: 'RDN1', arrows:'from'}, {from: 'OBSI', to: 'RDN17', arrows:'from'}, {from: 'OBSI', to: 'RDR1', arrows:'from'}, {from: 'OBSI', to: 'RDR17', arrows:'from'}, {from: 'OBSI', to: 'RIN1', arrows:'from'}, {from: 'OBSI', to: 'RIN17', arrows:'from'}, {from: 'OBSI', to: 'RPC1', arrows:'from'}, {from: 'OBSI', to: 'RPC17', arrows:'from'}, {from: 'OBSI', to: 'RPD1', arrows:'from'}, {from: 'OBSI', to: 'RPD17', arrows:'from'}, {from: 'OBSI', to: 'SITM', arrows:'from'}, {from: 'OBSI', to: 'TPI2', arrows:'from'}, {from: 'OBSI', to: 'TSI2', arrows:'from'}, {from: 'OBSI', to: 'UITM', arrows:'from'}, {from: 'OBSI', to: 'WTQ1', arrows:'from'}, {from: 'OBSI', to: 'WTQ17', arrows:'from'}, {from: 'OBSI', to: 'WTR1', arrows:'from'}, {from: 'OBSI', to: 'WTR17', arrows:'from'}, {from: 'OUSR', to: 'OBSI', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OBSI.IndexType AS 'Indexer Type', 
+   OBSI.Code AS 'Code', 
+   OBSI.Descr AS 'Beverage Table', 
+   OBSI.UserSign AS 'User Signature', 
+   OBSI.ID AS 'Unique ID'
+FROM OBSI AS OBSI</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+-18.77583074569702
+0' class=related href='/BusinessPlaces/CreditContributionOriginCode'> Credit Contribution Origin Code</a> <em class=comment>CreditContributionOriginCode</em> <b>Property</b>&middot; <font class=grey>Table:</font> <span><a href=/OBSI/ >OBSI</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>property <a style='color:inherit;' href=/BusinessPlaces/CreditContributionOriginCode/>CreditContributionOriginCode</a>  </div>&middot; <font class=grey>Table:</font> <span><a href=/OBPL/ >OBPL</a> </span>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/BusinessPlaces> Business Places</a> <small>BusinessPlaces</small> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBPL/ >OBPL</a> </span><br><br><b style='background-color:#bc0000;' class=alert>&nbsp;v8.8&nbsp;</b> <a title='81
+217.44833850860596
+18.672508239746094' class=related href='/BrazilStringIndexersService/BrazilStringIndexer'> Brazil String Indexer</a> <em class=comment>BrazilStringIndexer</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OBSI/ >OBSI</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The purpose of this code-book is to map Description (string value) to Code (integer).
+Source table: OBSI.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <font class=grey>Parent:</font> <a href=/BrazilStringIndexersService> Brazil String Indexers Service</a> <small>BrazilStringIndexersService</small> <b>Service</b>&middot; <font class=grey>Table:</font> <span><a href=/OBSI/ >OBSI</a> </span><br><br><b style='background-color:#bc0000;' class=alert>&nbsp;v8.8&nbsp;</b> <a title='81
+223.6725082397461
+0' class=related href='/BrazilStringIndexersService'> Brazil String Indexers Service</a> <em class=comment>BrazilStringIndexersService</em> <b>Service</b>&middot; <font class=grey>Table:</font> <span><a href=/OBSI/ >OBSI</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>The BrazilStringIndexersService service enables you to add, look up, and remove string indexers.
+Source table: OBSI.</div><br><a href=/OBSI class=related></a> <em class=comment>OBSI</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/BusinessPlaces/'>BusinessPlaces</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/BusinessPlaces/CreditContributionOriginCode/'>CreditContributionOriginCode</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/BusinessPlaces/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/BusinessPlaces/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/BusinessPlaces/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/BusinessPlaces/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/BusinessPlaces/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/BusinessPlaces/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/BusinessPlaces/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Business Place IE Numbers' href=/BusinessPlaces/BusinessPlaceIENumbers/ class=eli>BusinessPlaceIENumbers</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Business Place Tributary Infos' href=/BusinessPlaces/BusinessPlaceTributaryInfos/ class=eli>BusinessPlaceTributaryInfos</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Additional Id Number' href=/BusinessPlaces/AdditionalIdNumber/ class=eli>AdditionalIdNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address' href=/BusinessPlaces/Address/ class=eli>Address</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Addressforeign' href=/BusinessPlaces/Addressforeign/ class=eli>Addressforeign</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address Type' href=/BusinessPlaces/AddressType/ class=eli>AddressType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Alias Name' href=/BusinessPlaces/AliasName/ class=eli>AliasName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Block' href=/BusinessPlaces/Block/ class=eli>Block</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPLID' href=/BusinessPlaces/BPLID/ class=eli>BPLID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPL Name' href=/BusinessPlaces/BPLName/ class=eli>BPLName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPL Name Foreign' href=/BusinessPlaces/BPLNameForeign/ class=eli>BPLNameForeign</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/BusinessPlaces/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Building' href=/BusinessPlaces/Building/ class=eli>Building</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Business' href=/BusinessPlaces/Business/ class=eli>Business</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='City' href=/BusinessPlaces/City/ class=eli>City</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Commercial Register' href=/BusinessPlaces/CommercialRegister/ class=eli>CommercialRegister</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Qualification Code' href=/BusinessPlaces/CompanyQualificationCode/ class=eli>CompanyQualificationCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cooperative Association Type Code' href=/BusinessPlaces/CooperativeAssociationTypeCode/ class=eli>CooperativeAssociationTypeCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Country' href=/BusinessPlaces/Country/ class=eli>Country</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='County' href=/BusinessPlaces/County/ class=eli>County</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Credit Contribution Origin Code' href=/BusinessPlaces/CreditContributionOriginCode/ class=eli>CreditContributionOriginCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Date Of Incorporation' href=/BusinessPlaces/DateOfIncorporation/ class=eli>DateOfIncorporation</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Declarer Type Code' href=/BusinessPlaces/DeclarerTypeCode/ class=eli>DeclarerTypeCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Customer ID' href=/BusinessPlaces/DefaultCustomerID/ class=eli>DefaultCustomerID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Resource Warehouse ID' href=/BusinessPlaces/DefaultResourceWarehouseID/ class=eli>DefaultResourceWarehouseID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Tax Code' href=/BusinessPlaces/DefaultTaxCode/ class=eli>DefaultTaxCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Vendor ID' href=/BusinessPlaces/DefaultVendorID/ class=eli>DefaultVendorID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Warehouse ID' href=/BusinessPlaces/DefaultWarehouseID/ class=eli>DefaultWarehouseID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Disabled' href=/BusinessPlaces/Disabled/ class=eli>Disabled</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Economic Activity Type Code' href=/BusinessPlaces/EconomicActivityTypeCode/ class=eli>EconomicActivityTypeCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Environment Type' href=/BusinessPlaces/EnvironmentType/ class=eli>EnvironmentType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Federal Tax ID' href=/BusinessPlaces/FederalTaxID/ class=eli>FederalTaxID</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Federal Tax ID2' href=/BusinessPlaces/FederalTaxID2/ class=eli>FederalTaxID2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Federal Tax ID3' href=/BusinessPlaces/FederalTaxID3/ class=eli>FederalTaxID3</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Global Location Number' href=/BusinessPlaces/GlobalLocationNumber/ class=eli>GlobalLocationNumber</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='IE Numbers' href=/BusinessPlaces/IENumbers/ class=eli>IENumbers</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Industry' href=/BusinessPlaces/Industry/ class=eli>Industry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='IPI Period Code' href=/BusinessPlaces/IPIPeriodCode/ class=eli>IPIPeriodCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Main BPL' href=/BusinessPlaces/MainBPL/ class=eli>MainBPL</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Nature Of Company Code' href=/BusinessPlaces/NatureOfCompanyCode/ class=eli>NatureOfCompanyCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Opting 4ICMS' href=/BusinessPlaces/Opting4ICMS/ class=eli>Opting4ICMS</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Clearing Account' href=/BusinessPlaces/PaymentClearingAccount/ class=eli>PaymentClearingAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Preferred State Code' href=/BusinessPlaces/PreferredStateCode/ class=eli>PreferredStateCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Profit Taxation Code' href=/BusinessPlaces/ProfitTaxationCode/ class=eli>ProfitTaxationCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Rep Name' href=/BusinessPlaces/RepName/ class=eli>RepName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='SPED Profile' href=/BusinessPlaces/SPEDProfile/ class=eli>SPEDProfile</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='State' href=/BusinessPlaces/State/ class=eli>State</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Street' href=/BusinessPlaces/Street/ class=eli>Street</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Street No' href=/BusinessPlaces/StreetNo/ class=eli>StreetNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Office' href=/BusinessPlaces/TaxOffice/ class=eli>TaxOffice</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Office No' href=/BusinessPlaces/TaxOfficeNo/ class=eli>TaxOfficeNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tributary Infos' href=/BusinessPlaces/TributaryInfos/ class=eli>TributaryInfos</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/BusinessPlaces/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='VAT Reg Num' href=/BusinessPlaces/VATRegNum/ class=eli>VATRegNum</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Zip Code' href=/BusinessPlaces/ZipCode/ class=eli>ZipCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

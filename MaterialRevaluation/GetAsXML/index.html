@@ -1,0 +1,275 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>MaterialRevaluation GetAsXML - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Inventory and Production'> Inventory and Production</a> / <a href='/sql/Inventory Revaluation'> Inventory Revaluation</a></div></div><div class=' tit' style='width:33%; background-color:#44efeb; color:#008b87;'><div class=eli2><b>DTW</b> Inventory /  Inventory Transactions /  Inventory Revaluation</div></div><div class=' tit' style='width:33%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> Material Revaluation /  Get As XML</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><div class='titol sm' id=titol style='border-left:5px solid #008b87;' > <a style='text-decoration:none; color:#008b87;' title='92
+1127.161262512207
+39.655120849609375' href='/MaterialRevaluation/GetAsXML/'> Get As XML</a> Method</div><script>
+                        document.title = 'GetAsXML -  Inventory Revaluation - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                        </script>
+        
+        <div id="mainbody">
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>Description</span></h2><div id=ds class="section" ><p>Returns the object from XML data, which is stored as string in a buffer. </p></div>
+            <h2 class="heading"><span  tabindex="0"><img id="syntaxToggle"  src="/images/1x1.png"></img>Syntax</span></h2><div id="syntaxSection" class="section" ><DIV  id=Syntax_VB><table   cellpadding="0" cellspacing="0"><tr><th>Visual Basic</th></tr><tr><td><pre><PRE class=" vbs hljs" class=" vbs hljs">Public Function <a style='color:inherit;' href=/Warehouses/GetAsXML/>GetAsXML</a>() As String</PRE></pre></tr></table></div></div>
+            
+            
+            <h2 class="heading"><span  tabindex="0"><img id="remarksToggle"  src="/images/1x1.png"></img>Remarks</span></h2><div class="remarksSection" class="section" ><P>You can use this method for development technologies that do not support return value as an <EM>Out</EM> parameter, such as ASP.</P>
+<P>You do not have to set the <A href="/Company/XMLAsString/">XMLAsString</A> property of the Company object. </P></div>
+            
+            
+            
+            
+            <a name="seealsobookmark"></a>
+            <h2 class="heading"><span  tabindex="0"><img   src="/images/1x1.png"></img>See Also</span></h2><div id="seealsoSection" class="section" ><p id=dxseealsocontent><a href="/MaterialRevaluation/">MaterialRevaluation Object</a>
+</p>
+</p></div>
+        </div>
+        <div style='clear:both;'></div></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/MaterialRevaluation/'>MaterialRevaluation</a></font><hr><font style=''>Method<br><a class=eli style='max-width:99%;'   href='/MaterialRevaluation/GetAsXML/'>GetAsXML</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Currency Sources' href=/TaxInvoices/BoCurrencySources/ class=eli>BoCurrencySources</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Tax Invoice Types' href=/TaxInvoices/BoTaxInvoiceTypes/ class=eli>BoTaxInvoiceTypes</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/TaxInvoices/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cancel' href=/TaxInvoices/Cancel/ class=eli>Cancel</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/TaxInvoices/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/TaxInvoices/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/TaxInvoices/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/TaxInvoices/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/TaxInvoices/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Tax Invoice   Lines' href=/TaxInvoices/TaxInvoice_Lines/ class=eli>TaxInvoice_Lines</a>    <small class='eli s'> TSI1, TPI1</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Address' href=/TaxInvoices/Address/ class=eli>Address</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address 2' href=/TaxInvoices/Address2/ class=eli>Address2</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/TaxInvoices/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cancel Date' href=/TaxInvoices/CancelDate/ class=eli>CancelDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Card Code' href=/TaxInvoices/CardCode/ class=eli>CardCode</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Comments' href=/TaxInvoices/Comments/ class=eli>Comments</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Contact Person Code' href=/TaxInvoices/ContactPersonCode/ class=eli>ContactPersonCode</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Creation Date' href=/TaxInvoices/CreationDate/ class=eli>CreationDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Currency Source' href=/TaxInvoices/CurrencySource/ class=eli>CurrencySource</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customer Or Vendor Name' href=/TaxInvoices/CustomerOrVendorName/ class=eli>CustomerOrVendorName</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customer Or Vendor Ref No' href=/TaxInvoices/CustomerOrVendorRefNo/ class=eli>CustomerOrVendorRefNo</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Currency' href=/TaxInvoices/DocCurrency/ class=eli>DocCurrency</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Date' href=/TaxInvoices/DocDate/ class=eli>DocDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Due Date' href=/TaxInvoices/DocDueDate/ class=eli>DocDueDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Entry' href=/TaxInvoices/DocEntry/ class=eli>DocEntry</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Num' href=/TaxInvoices/DocNum/ class=eli>DocNum</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Type' href=/TaxInvoices/DocType/ class=eli>DocType</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Document Total' href=/TaxInvoices/DocumentTotal/ class=eli>DocumentTotal</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Lines' href=/TaxInvoices/Lines/ class=eli>Lines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Ref Date' href=/TaxInvoices/PaymentRefDate/ class=eli>PaymentRefDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Ref No' href=/TaxInvoices/PaymentRefNo/ class=eli>PaymentRefNo</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Printed' href=/TaxInvoices/Printed/ class=eli>Printed</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Segment' href=/TaxInvoices/Segment/ class=eli>Segment</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Series' href=/TaxInvoices/Series/ class=eli>Series</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ship To Code' href=/TaxInvoices/ShipToCode/ class=eli>ShipToCode</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Date' href=/TaxInvoices/TaxDate/ class=eli>TaxDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Total' href=/TaxInvoices/TaxTotal/ class=eli>TaxTotal</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update Date' href=/TaxInvoices/UpdateDate/ class=eli>UpdateDate</a>  <div style='float:right; font-size:7px;'><b style='background-color:#cd0100;' class=alert>8.8.2</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/TaxInvoices/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/Warehouses/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/Warehouses/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/Warehouses/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/Warehouses/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/Warehouses/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/Warehouses/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/Warehouses/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Allow Use Tax' href=/Warehouses/AllowUseTax/ class=eli>AllowUseTax</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Block' href=/Warehouses/Block/ class=eli>Block</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/Warehouses/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Building Floor Room' href=/Warehouses/BuildingFloorRoom/ class=eli>BuildingFloorRoom</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Business Place ID' href=/Warehouses/BusinessPlaceID/ class=eli>BusinessPlaceID</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='City' href=/Warehouses/City/ class=eli>City</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cost Inflation Account' href=/Warehouses/CostInflationAccount/ class=eli>CostInflationAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cost Inflation Offset Account' href=/Warehouses/CostInflationOffsetAccount/ class=eli>CostInflationOffsetAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cost Of Goods Sold' href=/Warehouses/CostOfGoodsSold/ class=eli>CostOfGoodsSold</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Country' href=/Warehouses/Country/ class=eli>Country</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='County' href=/Warehouses/County/ class=eli>County</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Decrease GL Account' href=/Warehouses/DecreaseGLAccount/ class=eli>DecreaseGLAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Decreasing Account' href=/Warehouses/DecreasingAccount/ class=eli>DecreasingAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Drop Ship' href=/Warehouses/DropShip/ class=eli>DropShip</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='EU Expenses Account' href=/Warehouses/EUExpensesAccount/ class=eli>EUExpensesAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='EU Purchase Credit Acc' href=/Warehouses/EUPurchaseCreditAcc/ class=eli>EUPurchaseCreditAcc</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='EU Revenues Account' href=/Warehouses/EURevenuesAccount/ class=eli>EURevenuesAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Exchange Rate Differences Account' href=/Warehouses/ExchangeRateDifferencesAccount/ class=eli>ExchangeRateDifferencesAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Excisable' href=/Warehouses/Excisable/ class=eli>Excisable</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Exempted Credits' href=/Warehouses/ExemptedCredits/ class=eli>ExemptedCredits</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Exempt Revenues Account' href=/Warehouses/ExemptRevenuesAccount/ class=eli>ExemptRevenuesAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Expense Account' href=/Warehouses/ExpenseAccount/ class=eli>ExpenseAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Expense Offseting Act' href=/Warehouses/ExpenseOffsetingAct/ class=eli>ExpenseOffsetingAct</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Expenses Clearing Account' href=/Warehouses/ExpensesClearingAccount/ class=eli>ExpensesClearingAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Federal Tax ID' href=/Warehouses/FederalTaxID/ class=eli>FederalTaxID</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Foreign Expenses Account' href=/Warehouses/ForeignExpensesAccount/ class=eli>ForeignExpensesAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Foreign Purchase Credit Acc' href=/Warehouses/ForeignPurchaseCreditAcc/ class=eli>ForeignPurchaseCreditAcc</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Foreign Revenues Acc' href=/Warehouses/ForeignRevenuesAcc/ class=eli>ForeignRevenuesAcc</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Goods Clearing Acc' href=/Warehouses/GoodsClearingAcc/ class=eli>GoodsClearingAcc</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Increase GL Account' href=/Warehouses/IncreaseGLAccount/ class=eli>IncreaseGLAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Increasing Acc' href=/Warehouses/IncreasingAcc/ class=eli>IncreasingAcc</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Internal Key' href=/Warehouses/InternalKey/ class=eli>InternalKey</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Inventory Offset Profit And Loss Account' href=/Warehouses/InventoryOffsetProfitAndLossAccount/ class=eli>InventoryOffsetProfitAndLossAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Location' href=/Warehouses/Location/ class=eli>Location</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Negative Inventory Adjustment Account' href=/Warehouses/NegativeInventoryAdjustmentAccount/ class=eli>NegativeInventoryAdjustmentAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Nettable' href=/Warehouses/Nettable/ class=eli>Nettable</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Price Differences Account' href=/Warehouses/PriceDifferencesAccount/ class=eli>PriceDifferencesAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Purchase Account' href=/Warehouses/PurchaseAccount/ class=eli>PurchaseAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Purchase Credit Acc' href=/Warehouses/PurchaseCreditAcc/ class=eli>PurchaseCreditAcc</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Purchase Offset Account' href=/Warehouses/PurchaseOffsetAccount/ class=eli>PurchaseOffsetAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Purchase Returning Account' href=/Warehouses/PurchaseReturningAccount/ class=eli>PurchaseReturningAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Returning Account' href=/Warehouses/ReturningAccount/ class=eli>ReturningAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Revenues Account' href=/Warehouses/RevenuesAccount/ class=eli>RevenuesAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sales Credit Acc' href=/Warehouses/SalesCreditAcc/ class=eli>SalesCreditAcc</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sales Credit EU Acc' href=/Warehouses/SalesCreditEUAcc/ class=eli>SalesCreditEUAcc</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sales Credit Foreign Acc' href=/Warehouses/SalesCreditForeignAcc/ class=eli>SalesCreditForeignAcc</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Shipped Goods Account' href=/Warehouses/ShippedGoodsAccount/ class=eli>ShippedGoodsAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='State' href=/Warehouses/State/ class=eli>State</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Stock Account' href=/Warehouses/StockAccount/ class=eli>StockAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Stock Inflation Adjust Account' href=/Warehouses/StockInflationAdjustAccount/ class=eli>StockInflationAdjustAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Stock Inflation Offset Account' href=/Warehouses/StockInflationOffsetAccount/ class=eli>StockInflationOffsetAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Stock In Transit Account' href=/Warehouses/StockInTransitAccount/ class=eli>StockInTransitAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Street' href=/Warehouses/Street/ class=eli>Street</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Group' href=/Warehouses/TaxGroup/ class=eli>TaxGroup</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfers Acc' href=/Warehouses/TransfersAcc/ class=eli>TransfersAcc</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/Warehouses/UserFields/ class=eli>UserFields</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Variance Account' href=/Warehouses/VarianceAccount/ class=eli>VarianceAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='VAT In Revenue Account' href=/Warehouses/VATInRevenueAccount/ class=eli>VATInRevenueAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Warehouse Code' href=/Warehouses/WarehouseCode/ class=eli>WarehouseCode</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Warehouse Name' href=/Warehouses/WarehouseName/ class=eli>WarehouseName</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WH Incoming Cenvat Account' href=/Warehouses/WHIncomingCenvatAccount/ class=eli>WHIncomingCenvatAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WH Outgoing Cenvat Account' href=/Warehouses/WHOutgoingCenvatAccount/ class=eli>WHOutgoingCenvatAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WH Ship To Name' href=/Warehouses/WHShipToName/ class=eli>WHShipToName</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WIP Material Account' href=/Warehouses/WIPMaterialAccount/ class=eli>WIPMaterialAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WIP Material Variance Account' href=/Warehouses/WIPMaterialVarianceAccount/ class=eli>WIPMaterialVarianceAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Wip Offset Profit And Loss Account' href=/Warehouses/WipOffsetProfitAndLossAccount/ class=eli>WipOffsetProfitAndLossAccount</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Zip Code' href=/Warehouses/ZipCode/ class=eli>ZipCode</a>  <div style='float:right; font-size:7px;'><b style='background-color:#bc0000;' class=alert>8.8</b>  DTW DB</div>  <small class='eli s'> </small></div><br><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/MaterialRevaluation/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cancel' href=/MaterialRevaluation/Cancel/ class=eli>Cancel</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Close' href=/MaterialRevaluation/Close/ class=eli>Close</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/MaterialRevaluation/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/MaterialRevaluation/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/MaterialRevaluation/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/MaterialRevaluation/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/MaterialRevaluation/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/MaterialRevaluation/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Inventory Revaluation Information Array
+ Material Revaluation  lines' href=/MaterialRevaluation/MaterialRevaluation_lines/ class=eli>MaterialRevaluation_lines</a>    <small class='eli s'> MRV1</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Browser' href=/MaterialRevaluation/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Card Code' href=/MaterialRevaluation/CardCode/ class=eli>CardCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Card Name' href=/MaterialRevaluation/CardName/ class=eli>CardName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Comments' href=/MaterialRevaluation/Comments/ class=eli>Comments</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Creation Date' href=/MaterialRevaluation/CreationDate/ class=eli>CreationDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Data Source' href=/MaterialRevaluation/DataSource/ class=eli>DataSource</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Date' href=/MaterialRevaluation/DocDate/ class=eli>DocDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Entry' href=/MaterialRevaluation/DocEntry/ class=eli>DocEntry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Num' href=/MaterialRevaluation/DocNum/ class=eli>DocNum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Time' href=/MaterialRevaluation/DocTime/ class=eli>DocTime</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Inflation Revaluation' href=/MaterialRevaluation/InflationRevaluation/ class=eli>InflationRevaluation</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Journal Memo' href=/MaterialRevaluation/JournalMemo/ class=eli>JournalMemo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Lines' href=/MaterialRevaluation/Lines/ class=eli>Lines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reference 1' href=/MaterialRevaluation/Reference1/ class=eli>Reference1</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reference 2' href=/MaterialRevaluation/Reference2/ class=eli>Reference2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reval Type' href=/MaterialRevaluation/RevalType/ class=eli>RevalType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Revaluation Expense Account' href=/MaterialRevaluation/RevaluationExpenseAccount/ class=eli>RevaluationExpenseAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Revaluation Income Account' href=/MaterialRevaluation/RevaluationIncomeAccount/ class=eli>RevaluationIncomeAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Series' href=/MaterialRevaluation/Series/ class=eli>Series</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Date' href=/MaterialRevaluation/TaxDate/ class=eli>TaxDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Trans Num' href=/MaterialRevaluation/TransNum/ class=eli>TransNum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update Date' href=/MaterialRevaluation/UpdateDate/ class=eli>UpdateDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/MaterialRevaluation/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Signature' href=/MaterialRevaluation/UserSignature/ class=eli>UserSignature</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>

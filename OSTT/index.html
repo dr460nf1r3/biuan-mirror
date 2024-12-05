@@ -1,0 +1,327 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
+     crossorigin="anonymous"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-360341-2');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <title>OSTT - biuan.com SDK Developer - SAP® Business ONE (SBO)</title>
+
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="/css/arduino-light.css">
+<script src="/js/highlight.pack.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
+
+<script src=/js/jquery.sticky.js></script>
+
+  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
+  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    
+    //$("#menudreta").sticky({  zIndex: 1, topSpacing:50});
+    //$("#titol").sticky({ zIndex: 1 ,topSpacing:50});
+    //$("#topbar").sticky({ zIndex: 1 });
+    
+
+  });
+
+  $(function(){
+    // Bind the swipeHandler callback function to the swipe event on div.box
+   
+    $( ".menuicon" ).on( "click", clickhan );
+    function clickhan( event ){
+        $('#menudreta').toggle('slide');
+
+    }
+  });
+</script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('.hljs').each(function(i, block) {
+    hljs.highlightBlock(block);
+    hljs.lineNumbersBlock(block);
+  });
+ 
+
+  $('.eli').bind('mouseenter', function(){
+    var $this = $(this);
+
+    if(this.offsetWidth < this.scrollWidth && !$this.attr('title')){
+        $this.attr('title', $this.text());
+    }
+	});
+
+});
+
+
+
+</script>
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300,400|Lobster+Two:400,700italic|Open+Sans:400,300|Merriweather' rel='stylesheet' type='text/css'>
+
+<link href='/css/sdk.css' rel='stylesheet' type='text/css'>
+
+</head>
+<body  class="eupopup eupopup-bottom eupopup-color-inverse" style='background-color:white;padding:0px; margin:0px;font-family: "Open Sans", sans-serif;width:100%;height:100%;'>
+
+<table  cellpadding=0 cellspacing=0 align=center style='width:100%;height:100%; max-width:1024px;' border=0>
+<tr ><td colspan=3 class='head'><br><table class=topbar id=topbar  width=100%  align=center><tr><td style='padding-bottom: 6px; white-space: nowrap;'>
+<a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+<font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font><font class='sap nomobile'> BUSINESS ONE SDK</font>
+</a> </td>
+
+<form action=/ method=get><td align=right class=np>
+<span class='menuicon' id=menuicon>
+  <div class='bar1'></div>
+  <div class='bar2'></div>
+  <div class='bar3'></div>
+</span>
+<input  style='width:50%;vertical-align: middle;' type=text name=q value=''>
+<button type=submit class=noclass><span style='width:30px;height: 30px;
+display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'></path></svg></span>
+</button>
+</td></form>
+</tr>
+</table>
+</td></tr>
+<tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
+    id="tickers-line"></div>
+
+<script>
+    let previousPrices = {};
+    let previousColors = {};
+    let previousHits = {};
+
+    // Custom rounding function
+    function customRound(value) {
+        return value;
+        if (Math.floor(value) < 100) {
+            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
+        } else {
+            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
+        }
+
+    }
+
+    function handleWebSocketFeed() {
+        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
+
+        // Handle incoming WebSocket messages
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            updateTickers(data);
+        };
+    }
+
+    function updateTickers(data) {
+        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
+        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
+        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
+        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
+
+        // Take top 10 traded tickers
+        const top10 = filteredTickers.slice(0, 200);
+
+        // Create a string to display tickers in one line
+        let tickersLine = '';
+        let prevRoundedQuoteVolumePerTrade = 0;
+        let shown = 0;
+        for (const ticker of top10) {
+            const tickerName = ticker.s.replace('USDT', '');
+            const price = customRound(parseFloat(ticker.c));
+//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
+            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
+
+            // Determine the color of the price
+            let priceColor = 'black';
+            if (previousPrices[ticker.s] !== undefined) {
+
+                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
+
+                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
+
+                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
+                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+
+                if (previousHits[ticker.s] > 0) {
+                    priceColor = 'darkgreen'; // Price increased
+                } else if (previousHits[ticker.s] < 0) {
+                    priceColor = 'darkred'; // Price decreased
+                } else {
+                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
+                }
+                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
+                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
+            }
+
+            // Update the tickers line with colored price
+            let prevh = (previousHits[ticker.s] / 10)
+            if (prevh < 0) prevh = prevh * -1;
+            prevh = prevh + 0.5;
+
+            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
+                shown++;
+		//price = Math.round(price);
+                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
+                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
+            }
+
+            if (shown >= 96) break;
+            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
+
+
+            // Update previousPrice and color for the next iteration
+            previousPrices[ticker.s] = price;
+            previousColors[ticker.s] = priceColor;
+        }
+
+        // Update the tickers line in the HTML
+        $('#tickers-line').html(tickersLine);
+    }
+    $("#tickers-line").on('click', function () {
+        if ($(this).css("white-space") == "nowrap") {
+            $(this).css("white-space", "");
+        }
+
+        else {
+            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
+            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
+        }
+    });
+    $(document).ready(function () {
+        handleWebSocketFeed();
+    });
+</script>
+<div class=' tit' style='width:33%; background-color:#12bdb9; color:#daffff;'><div class=eli2><b>SQL</b> <a href='/sql/Administration'> Administration</a> / <a href='/sql/Sales Tax Authorities Type'> Sales Tax Authorities Type</a></div></div><div class=' tit' style='width:33%; background-color:#44efeb; color:#008b87;'><div class=eli2><b>DTW</b>  Administration /  Setup /  Financials /  Tax /  Sales Tax Authorities Types</div></div><div class=' tit' style='width:33%; background-color:#76ffff; color:#008b87;'><div class=eli2><b>API</b> OSTT /  /  Sales Tax Authorities Types</div></div></td></tr><tr>
+                    <td class=content align=left valign=top>
+                    
+                    <div align=left style='max-width:700px;padding-right:5px;'><font id=titol style='border-left:5px solid #008b87;'  class='titol sm titoltxt'>  <a style='color:#008b87;' href='/OSTT/'> OSTT - Sales Tax Authorities Type</a> Table</font><script>
+                    document.title = 'OSTT - Sales Tax Authorities Type - biuan.com SDK Developer - SAP® Business ONE (SBO)';
+                    </script><div class=divcontent><h2>SBO SQL database table details</h2><table width=100% class=blistit id=fields><thead><tr><th >Field</th><th >Description</th><th >Type</th><th class=nomobile>Constraints</th><th class=nomobile>Size</th><th class=nomobile>Related</th><th class=nomobile>Default</th><th class=nomobile>Primary_Key</th><th class=nomobile>Unique</th></tr></thead><tbody><td valign=top ><em><b><u title='Primary'>AbsId</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Numerator</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>PRIMARY</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td><tr><td valign=top ><em><b><u title='Primary'>Name</u> <sup title='KEY'>KEY</sup> <sup title='Unique'>UNIQUE</sup></b></em></td><td valign=top >Type Name</td><td valign=top ><em style='color:#9e9100;'>nVarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>40</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile>NAME</td><td valign=top class=nomobile><em style='color:#009a78;'>Yes</em></td></tr><tr><td valign=top ><em><b>UserSign</b></em></td><td valign=top >User Signature</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>IsVat</b></em></td><td valign=top >VAT</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>NfTaxId</b></em></td><td valign=top >ID of Nota Fiscal Tax Category</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ONFT title='Nota Fiscal Tax Category (Brazil)'>ONFT</a><br><small class=s2>Nota Fiscal Tax Category (Brazil)</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>TpsId</b></em></td><td valign=top >ID of Tax Parameter Set</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/OTPS title='Tax Parameter'>OTPS</a><br><small class=s2>Tax Parameter</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>PLABalance</b></em></td><td valign=top >PLA Current Balance</td><td valign=top ><em style='color:#9a8901;'>Num</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>20</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>Locked</b></em></td><td valign=top >Locked</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>LogInstanc</b></em></td><td valign=top >Log Instance</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>11</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>0</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UserSign2</b></em></td><td valign=top >Updating User</td><td valign=top ><em style='color:#cd3412;'>Int</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>6</td><td valign=top class=nomobile><a href=/OUSR title='Users'>OUSR</a><br><small class=s2>Users</small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>UpdateDate</b></em></td><td valign=top >Update Date</td><td valign=top ><em style='color:#007889;'>Date</em></td><td valign=top class=nomobile><div class=constr></div></td><td valign=top class=nomobile>8</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile></td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr><tr><td valign=top ><em><b>CreditCtrl</b></em></td><td valign=top >Tax Credit Control</td><td valign=top ><em style='color:#007889;'>VarChar</em></td><td valign=top class=nomobile><div class=constr>Y)  Yes<hr>N)  No</div></td><td valign=top class=nomobile>1</td><td valign=top class=nomobile><a href=/ title=''></a><br><small class=s2></small></td><td valign=top class=nomobile>N</td><td valign=top class=nomobile></td><td valign=top class=nomobile><em style='color:#379e00;'></em></td></tr></tbody></table></div><div style='clear:both;'></div>
+                <script>
+                $(document).ready(function(){
+                    $('#fields').DataTable({
+                        "bPaginate": true,
+                        
+                        aaSorting: [],
+                });
+                });
+                </script><div class=nomobile><h2>Table relationship map</h2><div style=" height:400px; width: 600px;
+      " id="mynetwork"></div><script type="text/javascript">
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+          {id: 'OSTT', font: { multi: true }, label: 'OSTT', title: ''},{id: 'ADO4', font: { multi: true }, label: '<b>ADO4</b>', title:'Documents - Tax - History'},{id: 'ADPA', font: { multi: true }, label: '<b>ADPA</b>', title:'Fixed Asset Depreciation Areas - History'},{id: 'AFML', font: { multi: true }, label: '<b>AFML</b>', title:'Tax Formula Master Table'},{id: 'AJD1', font: { multi: true }, label: '<b>AJD1</b>', title:'Journal Entry - History - Rows'},{id: 'ARC4', font: { multi: true }, label: '<b>ARC4</b>', title:'Incoming Payment - Account List - History'},{id: 'BTA1', font: { multi: true }, label: '<b>BTA1</b>', title:'Brazil - Tax Adjustment - Tax Types'},{id: 'BTF1', font: { multi: true }, label: '<b>BTF1</b>', title:'Journal Voucher - Rows'},{id: 'CIN4', font: { multi: true }, label: '<b>CIN4</b>', title:'Correction Invoice - Tax Amount per Document'},{id: 'CPI4', font: { multi: true }, label: '<b>CPI4</b>', title:'A/P Correction Invoice - Tax Amount per Document'},{id: 'CPV4', font: { multi: true }, label: '<b>CPV4</b>', title:'A/P Correction Invoice Reversal - Tax Amt per Doc.'},{id: 'CSI4', font: { multi: true }, label: '<b>CSI4</b>', title:'A/R Correction Invoice - Tax Amount Per Document'},{id: 'CSV4', font: { multi: true }, label: '<b>CSV4</b>', title:'A/R Correction Invoice Reversal - Tax Amount Per Document'},{id: 'DATB', font: { multi: true }, label: '<b>DATB</b>', title:'Data Archive Tax Balance'},{id: 'DLN4', font: { multi: true }, label: '<b>DLN4</b>', title:'Delivery - Tax Amount per Document'},{id: 'DPI4', font: { multi: true }, label: '<b>DPI4</b>', title:'A/R Down Payment - Tax Amount per Document'},{id: 'DPO4', font: { multi: true }, label: '<b>DPO4</b>', title:'A/P Down Payment - Tax Amount per Document'},{id: 'DRF4', font: { multi: true }, label: '<b>DRF4</b>', title:'Draft Documents - Tax'},{id: 'IEI4', font: { multi: true }, label: '<b>IEI4</b>', title:'Incoming Excise Invoice - Tax Amount per Document'},{id: 'IGE4', font: { multi: true }, label: '<b>IGE4</b>', title:'Goods Issue - Tax Amount per Document'},{id: 'IGN4', font: { multi: true }, label: '<b>IGN4</b>', title:'Goods Receipt - Tax Amount per Document'},{id: 'INV4', font: { multi: true }, label: '<b>INV4</b>', title:'A/R Invoice - Tax Amount per Document'},{id: 'JDT1', font: { multi: true }, label: '<b>JDT1</b>', title:'Journal Entry - Rows'},{id: 'ODPA', font: { multi: true }, label: '<b>ODPA</b>', title:'Fixed Asset Depreciation Areas'},{id: 'OEI4', font: { multi: true }, label: '<b>OEI4</b>', title:'Outgoing Excise Invoice - Tax Amount per Document'},{id: 'OFML', font: { multi: true }, label: '<b>OFML</b>', title:'Tax Formula Master Table'},{id: 'OLTB', font: { multi: true }, label: '<b>OLTB</b>', title:'Location-based Tax Bal Table'},{id: 'OSTA', font: { multi: true }, label: '<b>OSTA</b>', title:'Sales Tax Authorities'},{id: 'PCH4', font: { multi: true }, label: '<b>PCH4</b>', title:'A/P Invoice - Tax Amount per Document'},{id: 'PDF4', font: { multi: true }, label: '<b>PDF4</b>', title:'Payment Draft - Account List'},{id: 'PDN4', font: { multi: true }, label: '<b>PDN4</b>', title:'Goods Receipt PO - Tax Amount per Document'},{id: 'POR4', font: { multi: true }, label: '<b>POR4</b>', title:'Purchase Order - Tax Amount per Document'},{id: 'PQT4', font: { multi: true }, label: '<b>PQT4</b>', title:'Purchase Quotation - Tax Amount per Document'},{id: 'PRQ4', font: { multi: true }, label: '<b>PRQ4</b>', title:'Purchase Request - Tax Amount per Document'},{id: 'QUT4', font: { multi: true }, label: '<b>QUT4</b>', title:'Sales Quotation - Tax Amount per Document'},{id: 'RCC4', font: { multi: true }, label: '<b>RCC4</b>', title:'Incoming Payment - Credit Vouchers'},{id: 'RCR1', font: { multi: true }, label: '<b>RCR1</b>', title:'Recurring Postings - Rows'},{id: 'RCT4', font: { multi: true }, label: '<b>RCT4</b>', title:'Incoming Payment - Account List'},{id: 'RDN4', font: { multi: true }, label: '<b>RDN4</b>', title:'Returns - Tax Amount per Document'},{id: 'RDR4', font: { multi: true }, label: '<b>RDR4</b>', title:'Sales Order - Tax Amount per Document'},{id: 'RIN4', font: { multi: true }, label: '<b>RIN4</b>', title:'A/R Credit Memo - Tax Amount per Document'},{id: 'RPC4', font: { multi: true }, label: '<b>RPC4</b>', title:'A/P Credit Memo - Tax Amount per Document'},{id: 'RPD4', font: { multi: true }, label: '<b>RPD4</b>', title:'Goods Return - Tax Amount per Document'},{id: 'STA1', font: { multi: true }, label: '<b>STA1</b>', title:'Valid Period'},{id: 'TAX1', font: { multi: true }, label: '<b>TAX1</b>', title:'VAT Transactions - Rows'},{id: 'TFC1', font: { multi: true }, label: '<b>TFC1</b>', title:'Tax Type Combination - Rows'},{id: 'TRB2', font: { multi: true }, label: '<b>TRB2</b>', title:'Tax Report Wizard Selected Tax Types'},{id: 'TRT1', font: { multi: true }, label: '<b>TRT1</b>', title:'Posting Templates - Rows'},{id: 'UTX1', font: { multi: true }, label: '<b>UTX1</b>', title:'Unreported VAT Transactions - Rows'},{id: 'VPM4', font: { multi: true }, label: '<b>VPM4</b>', title:'Outgoing Payments - Accounts'},{id: 'WTQ4', font: { multi: true }, label: '<b>WTQ4</b>', title:'Inventory Transfer Request - Tax Amount per Document'},{id: 'WTR4', font: { multi: true }, label: '<b>WTR4</b>', title:'Inventory Transfer - Tax Amount per Document'},{id: 'ONFT', font: { multi: true }, label: 'ONFT', title: 'Nota Fiscal Tax Category (Brazil)'},{id: 'OTPS', font: { multi: true }, label: 'OTPS', title: 'Tax Parameter'},{id: 'OUSR', font: { multi: true }, label: 'OUSR', title: 'Users'},
+        ]);
+      
+        // create an array with edges
+        var edges = new vis.DataSet([
+          {from: 'OSTT', to: 'ADO4', arrows:'from'}, {from: 'OSTT', to: 'ADPA', arrows:'from'}, {from: 'OSTT', to: 'AFML', arrows:'from'}, {from: 'OSTT', to: 'AJD1', arrows:'from'}, {from: 'OSTT', to: 'ARC4', arrows:'from'}, {from: 'OSTT', to: 'BTA1', arrows:'from'}, {from: 'OSTT', to: 'BTF1', arrows:'from'}, {from: 'OSTT', to: 'CIN4', arrows:'from'}, {from: 'OSTT', to: 'CPI4', arrows:'from'}, {from: 'OSTT', to: 'CPV4', arrows:'from'}, {from: 'OSTT', to: 'CSI4', arrows:'from'}, {from: 'OSTT', to: 'CSV4', arrows:'from'}, {from: 'OSTT', to: 'DATB', arrows:'from'}, {from: 'OSTT', to: 'DLN4', arrows:'from'}, {from: 'OSTT', to: 'DPI4', arrows:'from'}, {from: 'OSTT', to: 'DPO4', arrows:'from'}, {from: 'OSTT', to: 'DRF4', arrows:'from'}, {from: 'OSTT', to: 'IEI4', arrows:'from'}, {from: 'OSTT', to: 'IGE4', arrows:'from'}, {from: 'OSTT', to: 'IGN4', arrows:'from'}, {from: 'OSTT', to: 'INV4', arrows:'from'}, {from: 'OSTT', to: 'JDT1', arrows:'from'}, {from: 'OSTT', to: 'ODPA', arrows:'from'}, {from: 'OSTT', to: 'OEI4', arrows:'from'}, {from: 'OSTT', to: 'OFML', arrows:'from'}, {from: 'OSTT', to: 'OLTB', arrows:'from'}, {from: 'OSTT', to: 'OSTA', arrows:'from'}, {from: 'OSTT', to: 'PCH4', arrows:'from'}, {from: 'OSTT', to: 'PDF4', arrows:'from'}, {from: 'OSTT', to: 'PDN4', arrows:'from'}, {from: 'OSTT', to: 'POR4', arrows:'from'}, {from: 'OSTT', to: 'PQT4', arrows:'from'}, {from: 'OSTT', to: 'PRQ4', arrows:'from'}, {from: 'OSTT', to: 'QUT4', arrows:'from'}, {from: 'OSTT', to: 'RCC4', arrows:'from'}, {from: 'OSTT', to: 'RCR1', arrows:'from'}, {from: 'OSTT', to: 'RCT4', arrows:'from'}, {from: 'OSTT', to: 'RDN4', arrows:'from'}, {from: 'OSTT', to: 'RDR4', arrows:'from'}, {from: 'OSTT', to: 'RIN4', arrows:'from'}, {from: 'OSTT', to: 'RPC4', arrows:'from'}, {from: 'OSTT', to: 'RPD4', arrows:'from'}, {from: 'OSTT', to: 'STA1', arrows:'from'}, {from: 'OSTT', to: 'TAX1', arrows:'from'}, {from: 'OSTT', to: 'TFC1', arrows:'from'}, {from: 'OSTT', to: 'TRB2', arrows:'from'}, {from: 'OSTT', to: 'TRT1', arrows:'from'}, {from: 'OSTT', to: 'UTX1', arrows:'from'}, {from: 'OSTT', to: 'VPM4', arrows:'from'}, {from: 'OSTT', to: 'WTQ4', arrows:'from'}, {from: 'OSTT', to: 'WTR4', arrows:'from'}, {from: 'ONFT', to: 'OSTT', arrows:'from'}, {from: 'OTPS', to: 'OSTT', arrows:'from'}, {from: 'OUSR', to: 'OSTT', arrows:'from'},
+        ]);
+      
+        // create a network
+        var container = document.getElementById('mynetwork');
+        var data = {
+          nodes: nodes,
+          edges: edges
+        };
+        var options = { 
+            layout: {
+                randomSeed: 191006,
+                improvedLayout: false
+             },
+             physics: {
+                stabilization: {
+                  iterations: 100
+                }
+               },
+            edges: {
+                font: {
+                  size: 12
+                }
+              },
+              nodes: {
+                shape: 'box',
+                font: {
+                  bold: {
+                    color: '#0077aa'
+                  }
+                }
+              },
+       
+        };
+        var network = new vis.Network(container, data, options);
+        network.on('click', function (params) {
+            document.location='/'+this.getNodeAt(params.pointer.DOM);
+        });
+      </script></div><h2>SELECT statement</h2><div class='hljs sql'>SELECT
+   OSTT.AbsId AS 'Numerator', 
+   OSTT.Name AS 'Type Name', 
+   OSTT.UserSign AS 'User Signature', 
+   OSTT.IsVat AS 'VAT', 
+   OSTT.NfTaxId AS 'ID of Nota Fiscal Tax Category', 
+   OSTT.TpsId AS 'ID of Tax Parameter Set', 
+   OSTT.PLABalance AS 'PLA Current Balance', 
+   OSTT.Locked AS 'Locked', 
+   OSTT.LogInstanc AS 'Log Instance', 
+   OSTT.UserSign2 AS 'Updating User', 
+   OSTT.UpdateDate AS 'Update Date', 
+   OSTT.CreditCtrl AS 'Tax Credit Control'
+FROM OSTT AS OSTT</div><h2 class=np>Related information</h2><dir class=np><br><a title='92
+218.4691867828369
+0' class=related href='/SalesTaxAuthoritiesTypes'> Sales Tax Authorities Types</a> <em class=comment>SalesTaxAuthoritiesTypes</em> <b>Object</b>&middot; <font class=grey>Table:</font> <span><a href=/OSTT/ >OSTT</a> </span><div style='color:#545454;padding-left:0px;margin:0px;text-align:justify;'>SalesTaxAuthoritiesTypes is a business object that represents the type of sales tax authorities. It specifies whether or not the sales tax authority includes also <a style='color:inherit;' href=/SalesTaxAuthoritiesTypes/VAT/>VAT</a>. 
+This object enables you to:
+
+Add a sales tax authority type. 
+Retrieve a...</div><br><a href=/OSTT class=related></a> <em class=comment>OSTT</em> <b>SQL Table</b><br><br><a href=/ONFT class=related>Nota Fiscal Tax Category (Brazil)</a> <em class=comment>ONFT</em> <b>SQL Table</b><br><br><a href=/OTPS class=related>Tax Parameter</a> <em class=comment>OTPS</em> <b>SQL Table</b><br><br><a href=/OUSR class=related>Users</a> <em class=comment>OUSR</em> <b>SQL Table</b><br><br></dir></div><br><br></div></td>
+<td class='menudretawrap np' valign=top ><div id=menudreta class='menudreta sc' ><div class=menuicon style='font-size:14px; font-weight:bold; position:fixed; float:right; top: 5px; right:10px;'>&nbsp;x&nbsp;</div><div class=mobile style='white-space: nowrap;'>
+                        <a href=/ style='text-decoration:none;'><img src=/favicon.ico class=favicon width=25 height=25> <font style="font-family: 'Lobster Two', cursive;font-size:35px;color:#666666;"><i>biuan</i></font>
+                        <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
+                        </div><div style='clear:both;'></div><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/SalesTaxAuthoritiesTypes/'>SalesTaxAuthoritiesTypes</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/SalesTaxAuthoritiesTypes/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/SalesTaxAuthoritiesTypes/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/SalesTaxAuthoritiesTypes/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/SalesTaxAuthoritiesTypes/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/SalesTaxAuthoritiesTypes/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/SalesTaxAuthoritiesTypes/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Browser' href=/SalesTaxAuthoritiesTypes/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Name' href=/SalesTaxAuthoritiesTypes/Name/ class=eli>Name</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Nf Tax Id' href=/SalesTaxAuthoritiesTypes/NfTaxId/ class=eli>NfTaxId</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Numerator' href=/SalesTaxAuthoritiesTypes/Numerator/ class=eli>Numerator</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Credit Control' href=/SalesTaxAuthoritiesTypes/TaxCreditControl/ class=eli>TaxCreditControl</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Param Set Id' href=/SalesTaxAuthoritiesTypes/TaxParamSetId/ class=eli>TaxParamSetId</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/SalesTaxAuthoritiesTypes/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Signature' href=/SalesTaxAuthoritiesTypes/UserSignature/ class=eli>UserSignature</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='VAT' href=/SalesTaxAuthoritiesTypes/VAT/ class=eli>VAT</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
+</tr>
+<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
+<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
+</td></tr></table>
+
+
+</body>
+</html>
