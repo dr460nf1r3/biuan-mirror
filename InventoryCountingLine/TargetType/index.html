@@ -2,18 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
-     crossorigin="anonymous"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-360341-2');
-</script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
@@ -34,11 +22,6 @@
 <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
 
 <script src=/js/jquery.sticky.js></script>
-
-  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
-  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
-
-
 
 <script>
 
@@ -119,119 +102,6 @@ display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg
 </td></tr>
 <tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
-    id="tickers-line"></div>
-
-<script>
-    let previousPrices = {};
-    let previousColors = {};
-    let previousHits = {};
-
-    // Custom rounding function
-    function customRound(value) {
-        return value;
-        if (Math.floor(value) < 100) {
-            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
-        } else {
-            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
-        }
-
-    }
-
-    function handleWebSocketFeed() {
-        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
-
-        // Handle incoming WebSocket messages
-        socket.onmessage = function (event) {
-            const data = JSON.parse(event.data);
-            updateTickers(data);
-        };
-    }
-
-    function updateTickers(data) {
-        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
-        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
-        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
-        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
-
-        // Take top 10 traded tickers
-        const top10 = filteredTickers.slice(0, 200);
-
-        // Create a string to display tickers in one line
-        let tickersLine = '';
-        let prevRoundedQuoteVolumePerTrade = 0;
-        let shown = 0;
-        for (const ticker of top10) {
-            const tickerName = ticker.s.replace('USDT', '');
-            const price = customRound(parseFloat(ticker.c));
-//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
-            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-
-            // Determine the color of the price
-            let priceColor = 'black';
-            if (previousPrices[ticker.s] !== undefined) {
-
-                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
-
-                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
-
-                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-
-                if (previousHits[ticker.s] > 0) {
-                    priceColor = 'darkgreen'; // Price increased
-                } else if (previousHits[ticker.s] < 0) {
-                    priceColor = 'darkred'; // Price decreased
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
-                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
-            }
-
-            // Update the tickers line with colored price
-            let prevh = (previousHits[ticker.s] / 10)
-            if (prevh < 0) prevh = prevh * -1;
-            prevh = prevh + 0.5;
-
-            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
-                shown++;
-		//price = Math.round(price);
-                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
-                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
-            }
-
-            if (shown >= 96) break;
-            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
-
-
-            // Update previousPrice and color for the next iteration
-            previousPrices[ticker.s] = price;
-            previousColors[ticker.s] = priceColor;
-        }
-
-        // Update the tickers line in the HTML
-        $('#tickers-line').html(tickersLine);
-    }
-    $("#tickers-line").on('click', function () {
-        if ($(this).css("white-space") == "nowrap") {
-            $(this).css("white-space", "");
-        }
-
-        else {
-            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
-            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
-        }
-    });
-    $(document).ready(function () {
-        handleWebSocketFeed();
-    });
-</script>
 <div class=' tit' style='width:100%; background-color:#cacaca; color:#343434;'><div class=eli2><b>API</b> Inventory Counting Line /  Target Type</div></div></td></tr><tr>
                     <td class=content align=left valign=top>
                     
@@ -278,8 +148,6 @@ INC1V table is a virtual table to store the line data for inventory...</div>&nbs
                         <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
                         </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/InventoryCountingLine/'>InventoryCountingLine</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/InventoryCountingLine/TargetType/'>TargetType</a></font><hr><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Get As XML' href=/ItemProperties/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/ItemProperties/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/ItemProperties/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/ItemProperties/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/ItemProperties/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Browser' href=/ItemProperties/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Number' href=/ItemProperties/Number/ class=eli>Number</a>  <div style='float:right; font-size:7px;'><b style='background-color:#379e00;' class=alert>9.0</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Property Name' href=/ItemProperties/PropertyName/ class=eli>PropertyName</a>  <div style='float:right; font-size:7px;'><b style='background-color:#379e00;' class=alert>9.0</b>  DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/ItemProperties/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><br><br><b>Collection</b><br><div class=sm><a style='min-width:50px;' title='Inventory Counting Batch Numbers' href=/InventoryCountingLine/InventoryCountingBatchNumbers/ class=eli>InventoryCountingBatchNumbers</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Inventory Counting Line Uo Ms' href=/InventoryCountingLine/InventoryCountingLineUoMs/ class=eli>InventoryCountingLineUoMs</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Inventory Counting Serial Numbers' href=/InventoryCountingLine/InventoryCountingSerialNumbers/ class=eli>InventoryCountingSerialNumbers</a>    <small class='eli s'> </small></div><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Counting Line Status Enum' href=/InventoryCountingLine/CountingLineStatusEnum/ class=eli>CountingLineStatusEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='From XML File' href=/InventoryCountingLine/FromXMLFile/ class=eli>FromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From XML String' href=/InventoryCountingLine/FromXMLString/ class=eli>FromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XML Schema' href=/InventoryCountingLine/GetXMLSchema/ class=eli>GetXMLSchema</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML File' href=/InventoryCountingLine/ToXMLFile/ class=eli>ToXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML String' href=/InventoryCountingLine/ToXMLString/ class=eli>ToXMLString</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Bar Code' href=/InventoryCountingLine/BarCode/ class=eli>BarCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bin Entry' href=/InventoryCountingLine/BinEntry/ class=eli>BinEntry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Costing Code' href=/InventoryCountingLine/CostingCode/ class=eli>CostingCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Costing Code 2' href=/InventoryCountingLine/CostingCode2/ class=eli>CostingCode2</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Costing Code 3' href=/InventoryCountingLine/CostingCode3/ class=eli>CostingCode3</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Costing Code 4' href=/InventoryCountingLine/CostingCode4/ class=eli>CostingCode4</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Costing Code 5' href=/InventoryCountingLine/CostingCode5/ class=eli>CostingCode5</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Counted' href=/InventoryCountingLine/Counted/ class=eli>Counted</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Counted Quantity' href=/InventoryCountingLine/CountedQuantity/ class=eli>CountedQuantity</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Counter ID' href=/InventoryCountingLine/CounterID/ class=eli>CounterID</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Counter Type' href=/InventoryCountingLine/CounterType/ class=eli>CounterType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Document Entry' href=/InventoryCountingLine/DocumentEntry/ class=eli>DocumentEntry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Freeze' href=/InventoryCountingLine/Freeze/ class=eli>Freeze</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Inventory Counting Batch Numbers' href=/InventoryCountingLine/InventoryCountingBatchNumbers/ class=eli>InventoryCountingBatchNumbers</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Inventory Counting Line Uo Ms' href=/InventoryCountingLine/InventoryCountingLineUoMs/ class=eli>InventoryCountingLineUoMs</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Inventory Counting Serial Numbers' href=/InventoryCountingLine/InventoryCountingSerialNumbers/ class=eli>InventoryCountingSerialNumbers</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='In Warehouse Quantity' href=/InventoryCountingLine/InWarehouseQuantity/ class=eli>InWarehouseQuantity</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Item Code' href=/InventoryCountingLine/ItemCode/ class=eli>ItemCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Item Description' href=/InventoryCountingLine/ItemDescription/ class=eli>ItemDescription</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Items Per Unit' href=/InventoryCountingLine/ItemsPerUnit/ class=eli>ItemsPerUnit</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Line Number' href=/InventoryCountingLine/LineNumber/ class=eli>LineNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Line Status' href=/InventoryCountingLine/LineStatus/ class=eli>LineStatus</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Manufacturer' href=/InventoryCountingLine/Manufacturer/ class=eli>Manufacturer</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Multiple Counter Role' href=/InventoryCountingLine/MultipleCounterRole/ class=eli>MultipleCounterRole</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Preferred Vendor' href=/InventoryCountingLine/PreferredVendor/ class=eli>PreferredVendor</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Project Code' href=/InventoryCountingLine/ProjectCode/ class=eli>ProjectCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remarks' href=/InventoryCountingLine/Remarks/ class=eli>Remarks</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Supplier Catalog No' href=/InventoryCountingLine/SupplierCatalogNo/ class=eli>SupplierCatalogNo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Target Entry' href=/InventoryCountingLine/TargetEntry/ class=eli>TargetEntry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Target Line' href=/InventoryCountingLine/TargetLine/ class=eli>TargetLine</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Target Reference' href=/InventoryCountingLine/TargetReference/ class=eli>TargetReference</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Target Type' href=/InventoryCountingLine/TargetType/ class=eli>TargetType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Uo M Code' href=/InventoryCountingLine/UoMCode/ class=eli>UoMCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Uo M Counted Quantity' href=/InventoryCountingLine/UoMCountedQuantity/ class=eli>UoMCountedQuantity</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/InventoryCountingLine/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Variance' href=/InventoryCountingLine/Variance/ class=eli>Variance</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Variance Percentage' href=/InventoryCountingLine/VariancePercentage/ class=eli>VariancePercentage</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Visual Order' href=/InventoryCountingLine/VisualOrder/ class=eli>VisualOrder</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Warehouse Code' href=/InventoryCountingLine/WarehouseCode/ class=eli>WarehouseCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
 </tr>
-<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
-<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
 </td></tr></table>
 
 

@@ -2,18 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
-     crossorigin="anonymous"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-360341-2');
-</script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
@@ -34,11 +22,6 @@
 <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
 
 <script src=/js/jquery.sticky.js></script>
-
-  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
-  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
-
-
 
 <script>
 
@@ -119,119 +102,6 @@ display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg
 </td></tr>
 <tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
-    id="tickers-line"></div>
-
-<script>
-    let previousPrices = {};
-    let previousColors = {};
-    let previousHits = {};
-
-    // Custom rounding function
-    function customRound(value) {
-        return value;
-        if (Math.floor(value) < 100) {
-            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
-        } else {
-            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
-        }
-
-    }
-
-    function handleWebSocketFeed() {
-        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
-
-        // Handle incoming WebSocket messages
-        socket.onmessage = function (event) {
-            const data = JSON.parse(event.data);
-            updateTickers(data);
-        };
-    }
-
-    function updateTickers(data) {
-        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
-        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
-        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
-        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
-
-        // Take top 10 traded tickers
-        const top10 = filteredTickers.slice(0, 200);
-
-        // Create a string to display tickers in one line
-        let tickersLine = '';
-        let prevRoundedQuoteVolumePerTrade = 0;
-        let shown = 0;
-        for (const ticker of top10) {
-            const tickerName = ticker.s.replace('USDT', '');
-            const price = customRound(parseFloat(ticker.c));
-//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
-            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-
-            // Determine the color of the price
-            let priceColor = 'black';
-            if (previousPrices[ticker.s] !== undefined) {
-
-                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
-
-                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
-
-                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-
-                if (previousHits[ticker.s] > 0) {
-                    priceColor = 'darkgreen'; // Price increased
-                } else if (previousHits[ticker.s] < 0) {
-                    priceColor = 'darkred'; // Price decreased
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
-                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
-            }
-
-            // Update the tickers line with colored price
-            let prevh = (previousHits[ticker.s] / 10)
-            if (prevh < 0) prevh = prevh * -1;
-            prevh = prevh + 0.5;
-
-            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
-                shown++;
-		//price = Math.round(price);
-                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
-                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
-            }
-
-            if (shown >= 96) break;
-            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
-
-
-            // Update previousPrice and color for the next iteration
-            previousPrices[ticker.s] = price;
-            previousColors[ticker.s] = priceColor;
-        }
-
-        // Update the tickers line in the HTML
-        $('#tickers-line').html(tickersLine);
-    }
-    $("#tickers-line").on('click', function () {
-        if ($(this).css("white-space") == "nowrap") {
-            $(this).css("white-space", "");
-        }
-
-        else {
-            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
-            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
-        }
-    });
-    $(document).ready(function () {
-        handleWebSocketFeed();
-    });
-</script>
 <div class=' tit' style='width:50%; background-color:#ee1100; color:#ffd9c8;'><div class=eli2><b>SQL</b> <a href='/sql/Banking'> Banking</a> / <a href='/sql/Payment Results Table'> Payment Results Table</a></div></div><div class=' tit' style='width:50%; background-color:#ff7564; color:#bc0000;'><div class=eli2><b>API</b> Payment Run Export</div></div></td></tr><tr>
                     <td class=content align=left valign=top>
                     
@@ -664,8 +534,6 @@ display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg
                         </div><div style='clear:both;'></div><font style=''>Object<br><a class=eli style='max-width:99%;'   href='/PaymentRunExport/'>PaymentRunExport</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Opex Status' href=/PaymentRunExport/BoOpexStatus/ class=eli>BoOpexStatus</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Run Export Row Type Enum' href=/PaymentRunExport/PaymentRunExportRowTypeEnum/ class=eli>PaymentRunExportRowTypeEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Get As XML' href=/PaymentRunExport/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/PaymentRunExport/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/PaymentRunExport/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/PaymentRunExport/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Payment Results Table - Rows
  Payment Run Export   Lines' href=/PaymentRunExport/PaymentRunExport_Lines/ class=eli>PaymentRunExport_Lines</a>    <small class='eli s'> PEX1</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Additional Id Number' href=/PaymentRunExport/AdditionalIdNumber/ class=eli>AdditionalIdNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Account' href=/PaymentRunExport/BankAccount/ class=eli>BankAccount</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Code' href=/PaymentRunExport/BankCode/ class=eli>BankCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Country' href=/PaymentRunExport/BankCountry/ class=eli>BankCountry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank IBAN' href=/PaymentRunExport/BankIBAN/ class=eli>BankIBAN</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/PaymentRunExport/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Collection Authorization' href=/PaymentRunExport/CollectionAuthorization/ class=eli>CollectionAuthorization</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Address' href=/PaymentRunExport/CompanyAddress/ class=eli>CompanyAddress</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Block' href=/PaymentRunExport/CompanyBlock/ class=eli>CompanyBlock</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company City' href=/PaymentRunExport/CompanyCity/ class=eli>CompanyCity</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company County' href=/PaymentRunExport/CompanyCounty/ class=eli>CompanyCounty</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Name' href=/PaymentRunExport/CompanyName/ class=eli>CompanyName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company State' href=/PaymentRunExport/CompanyState/ class=eli>CompanyState</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Street' href=/PaymentRunExport/CompanyStreet/ class=eli>CompanyStreet</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Tax Num' href=/PaymentRunExport/CompanyTaxNum/ class=eli>CompanyTaxNum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Company Zip Code' href=/PaymentRunExport/CompanyZipCode/ class=eli>CompanyZipCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Comp Isr Biller ID' href=/PaymentRunExport/CompIsrBillerID/ class=eli>CompIsrBillerID</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Countery' href=/PaymentRunExport/Countery/ class=eli>Countery</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Currency' href=/PaymentRunExport/Currency/ class=eli>Currency</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Customer Num' href=/PaymentRunExport/CustomerNum/ class=eli>CustomerNum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Debit Memo' href=/PaymentRunExport/DebitMemo/ class=eli>DebitMemo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Amount Forign' href=/PaymentRunExport/DocAmountForign/ class=eli>DocAmountForign</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Amount Local' href=/PaymentRunExport/DocAmountLocal/ class=eli>DocAmountLocal</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Cash Discount' href=/PaymentRunExport/DocCashDiscount/ class=eli>DocCashDiscount</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Cash Discount Forign' href=/PaymentRunExport/DocCashDiscountForign/ class=eli>DocCashDiscountForign</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Currnecy' href=/PaymentRunExport/DocCurrnecy/ class=eli>DocCurrnecy</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Num' href=/PaymentRunExport/DocNum/ class=eli>DocNum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Num Offield Paid' href=/PaymentRunExport/DocNumOffieldPaid/ class=eli>DocNumOffieldPaid</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Rate' href=/PaymentRunExport/DocRate/ class=eli>DocRate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='EU Internal Transfer' href=/PaymentRunExport/EUInternalTransfer/ class=eli>EUInternalTransfer</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='File Path' href=/PaymentRunExport/FilePath/ class=eli>FilePath</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Fiscal Year' href=/PaymentRunExport/FiscalYear/ class=eli>FiscalYear</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Format Name' href=/PaymentRunExport/FormatName/ class=eli>FormatName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Free Text 1' href=/PaymentRunExport/FreeText1/ class=eli>FreeText1</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Free Text 2' href=/PaymentRunExport/FreeText2/ class=eli>FreeText2</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Free Text 3' href=/PaymentRunExport/FreeText3/ class=eli>FreeText3</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='GL Account' href=/PaymentRunExport/GLAccount/ class=eli>GLAccount</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Instruction Key' href=/PaymentRunExport/InstructionKey/ class=eli>InstructionKey</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Lines' href=/PaymentRunExport/Lines/ class=eli>Lines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Ordering Party' href=/PaymentRunExport/OrderingParty/ class=eli>OrderingParty</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Organization Number' href=/PaymentRunExport/OrganizationNumber/ class=eli>OrganizationNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Account' href=/PaymentRunExport/PayeeBankAccount/ class=eli>PayeeBankAccount</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank BISR' href=/PaymentRunExport/PayeeBankBISR/ class=eli>PayeeBankBISR</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Block' href=/PaymentRunExport/PayeeBankBlock/ class=eli>PayeeBankBlock</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Branch' href=/PaymentRunExport/PayeeBankBranch/ class=eli>PayeeBankBranch</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank City' href=/PaymentRunExport/PayeeBankCity/ class=eli>PayeeBankCity</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Code' href=/PaymentRunExport/PayeeBankCode/ class=eli>PayeeBankCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Country' href=/PaymentRunExport/PayeeBankCountry/ class=eli>PayeeBankCountry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank County' href=/PaymentRunExport/PayeeBankCounty/ class=eli>PayeeBankCounty</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Ctrl Key' href=/PaymentRunExport/PayeeBankCtrlKey/ class=eli>PayeeBankCtrlKey</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank House Bank' href=/PaymentRunExport/PayeeBankHouseBank/ class=eli>PayeeBankHouseBank</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank IBAN' href=/PaymentRunExport/PayeeBankIBAN/ class=eli>PayeeBankIBAN</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Name' href=/PaymentRunExport/PayeeBankName/ class=eli>PayeeBankName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Next Check Number' href=/PaymentRunExport/PayeeBankNextCheckNumber/ class=eli>PayeeBankNextCheckNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Post Office' href=/PaymentRunExport/PayeeBankPostOffice/ class=eli>PayeeBankPostOffice</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank State' href=/PaymentRunExport/PayeeBankState/ class=eli>PayeeBankState</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Street' href=/PaymentRunExport/PayeeBankStreet/ class=eli>PayeeBankStreet</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Swift Num' href=/PaymentRunExport/PayeeBankSwiftNum/ class=eli>PayeeBankSwiftNum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank User Num 1' href=/PaymentRunExport/PayeeBankUserNum1/ class=eli>PayeeBankUserNum1</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank User Num 2' href=/PaymentRunExport/PayeeBankUserNum2/ class=eli>PayeeBankUserNum2</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank User Num 3' href=/PaymentRunExport/PayeeBankUserNum3/ class=eli>PayeeBankUserNum3</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank User Num 4' href=/PaymentRunExport/PayeeBankUserNum4/ class=eli>PayeeBankUserNum4</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Bank Zip' href=/PaymentRunExport/PayeeBankZip/ class=eli>PayeeBankZip</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee City' href=/PaymentRunExport/PayeeCity/ class=eli>PayeeCity</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Country' href=/PaymentRunExport/PayeeCountry/ class=eli>PayeeCountry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Name' href=/PaymentRunExport/PayeeName/ class=eli>PayeeName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Postal Code' href=/PaymentRunExport/PayeePostalCode/ class=eli>PayeePostalCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Reference Details' href=/PaymentRunExport/PayeeReferenceDetails/ class=eli>PayeeReferenceDetails</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee State' href=/PaymentRunExport/PayeeState/ class=eli>PayeeState</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Street' href=/PaymentRunExport/PayeeStreet/ class=eli>PayeeStreet</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payee Tax Number' href=/PaymentRunExport/PayeeTaxNumber/ class=eli>PayeeTaxNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Bank Branch' href=/PaymentRunExport/PaymentBankBranch/ class=eli>PaymentBankBranch</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Bank Charges' href=/PaymentRunExport/PaymentBankCharges/ class=eli>PaymentBankCharges</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Bank Charges Allocation Code' href=/PaymentRunExport/PaymentBankChargesAllocationCode/ class=eli>PaymentBankChargesAllocationCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Bank Control Key' href=/PaymentRunExport/PaymentBankControlKey/ class=eli>PaymentBankControlKey</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Bank User No 1' href=/PaymentRunExport/PaymentBankUserNo1/ class=eli>PaymentBankUserNo1</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Bank User No 2' href=/PaymentRunExport/PaymentBankUserNo2/ class=eli>PaymentBankUserNo2</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Bank User No 3' href=/PaymentRunExport/PaymentBankUserNo3/ class=eli>PaymentBankUserNo3</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Bank User No 4' href=/PaymentRunExport/PaymentBankUserNo4/ class=eli>PaymentBankUserNo4</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Donewith Check' href=/PaymentRunExport/PaymentDonewithCheck/ class=eli>PaymentDonewithCheck</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Format' href=/PaymentRunExport/PaymentFormat/ class=eli>PaymentFormat</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Key Code' href=/PaymentRunExport/PaymentKeyCode/ class=eli>PaymentKeyCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Method' href=/PaymentRunExport/PaymentMethod/ class=eli>PaymentMethod</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Order Num' href=/PaymentRunExport/PaymentOrderNum/ class=eli>PaymentOrderNum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Posting Date' href=/PaymentRunExport/PostingDate/ class=eli>PostingDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Row Type' href=/PaymentRunExport/RowType/ class=eli>RowType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Run Date' href=/PaymentRunExport/RunDate/ class=eli>RunDate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Status' href=/PaymentRunExport/Status/ class=eli>Status</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Department' href=/PaymentRunExport/UserDepartment/ class=eli>UserDepartment</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User E Mail' href=/PaymentRunExport/UserEMail/ class=eli>UserEMail</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fax Number' href=/PaymentRunExport/UserFaxNumber/ class=eli>UserFaxNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Mobile Phone Number' href=/PaymentRunExport/UserMobilePhoneNumber/ class=eli>UserMobilePhoneNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Name' href=/PaymentRunExport/UserName/ class=eli>UserName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vendor Isr Biller ID' href=/PaymentRunExport/VendorIsrBillerID/ class=eli>VendorIsrBillerID</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vendor Num' href=/PaymentRunExport/VendorNum/ class=eli>VendorNum</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Wiz Code' href=/PaymentRunExport/WizCode/ class=eli>WizCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
 </tr>
-<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
-<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
 </td></tr></table>
 
 

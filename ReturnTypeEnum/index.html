@@ -2,18 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
-     crossorigin="anonymous"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-360341-2');
-</script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
@@ -34,11 +22,6 @@
 <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
 
 <script src=/js/jquery.sticky.js></script>
-
-  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
-  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
-
-
 
 <script>
 
@@ -119,119 +102,6 @@ display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg
 </td></tr>
 <tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
-    id="tickers-line"></div>
-
-<script>
-    let previousPrices = {};
-    let previousColors = {};
-    let previousHits = {};
-
-    // Custom rounding function
-    function customRound(value) {
-        return value;
-        if (Math.floor(value) < 100) {
-            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
-        } else {
-            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
-        }
-
-    }
-
-    function handleWebSocketFeed() {
-        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
-
-        // Handle incoming WebSocket messages
-        socket.onmessage = function (event) {
-            const data = JSON.parse(event.data);
-            updateTickers(data);
-        };
-    }
-
-    function updateTickers(data) {
-        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
-        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
-        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
-        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
-
-        // Take top 10 traded tickers
-        const top10 = filteredTickers.slice(0, 200);
-
-        // Create a string to display tickers in one line
-        let tickersLine = '';
-        let prevRoundedQuoteVolumePerTrade = 0;
-        let shown = 0;
-        for (const ticker of top10) {
-            const tickerName = ticker.s.replace('USDT', '');
-            const price = customRound(parseFloat(ticker.c));
-//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
-            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-
-            // Determine the color of the price
-            let priceColor = 'black';
-            if (previousPrices[ticker.s] !== undefined) {
-
-                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
-
-                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
-
-                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-
-                if (previousHits[ticker.s] > 0) {
-                    priceColor = 'darkgreen'; // Price increased
-                } else if (previousHits[ticker.s] < 0) {
-                    priceColor = 'darkred'; // Price decreased
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
-                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
-            }
-
-            // Update the tickers line with colored price
-            let prevh = (previousHits[ticker.s] / 10)
-            if (prevh < 0) prevh = prevh * -1;
-            prevh = prevh + 0.5;
-
-            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
-                shown++;
-		//price = Math.round(price);
-                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
-                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
-            }
-
-            if (shown >= 96) break;
-            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
-
-
-            // Update previousPrice and color for the next iteration
-            previousPrices[ticker.s] = price;
-            previousColors[ticker.s] = priceColor;
-        }
-
-        // Update the tickers line in the HTML
-        $('#tickers-line').html(tickersLine);
-    }
-    $("#tickers-line").on('click', function () {
-        if ($(this).css("white-space") == "nowrap") {
-            $(this).css("white-space", "");
-        }
-
-        else {
-            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
-            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
-        }
-    });
-    $(document).ready(function () {
-        handleWebSocketFeed();
-    });
-</script>
 <div class=' tit' style='width:33%; background-color:#11aabb; color:#d9ffff;'><div class=eli2><b>SQL</b> <a href='/sql/Finance'> Finance</a> / <a href='/sql/Withholding Tax'> Withholding Tax</a></div></div><div class=' tit' style='width:33%; background-color:#43dced; color:#007889;'><div class=eli2><b>DTW</b> Administration /  Setup /  Financials /  Tax /  Withholding Tax</div></div><div class=' tit' style='width:33%; background-color:#75ffff; color:#007889;'><div class=eli2><b>API</b> Return Type Enum</div></div></td></tr><tr>
                     <td class=content align=left valign=top>
                     
@@ -267,8 +137,6 @@ display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg
                         </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/WithholdingTaxCodes/'>WithholdingTaxCodes</a></font><hr><font style=''>Enumeration<br><a class=eli style='max-width:99%;'   href='/WithholdingTaxCodes/ReturnTypeEnum/'>ReturnTypeEnum</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Return Type Enum' href=/WithholdingTaxCodes/ReturnTypeEnum/ class=eli>ReturnTypeEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Rounding Type Enum' href=/WithholdingTaxCodes/RoundingTypeEnum/ class=eli>RoundingTypeEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Withholding Type Enum' href=/WithholdingTaxCodes/WithholdingTypeEnum/ class=eli>WithholdingTypeEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/WithholdingTaxCodes/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/WithholdingTaxCodes/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/WithholdingTaxCodes/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/WithholdingTaxCodes/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/WithholdingTaxCodes/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/WithholdingTaxCodes/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/WithholdingTaxCodes/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Withholding Tax Definition
  Withholding Tax Codes   Lines' href=/WithholdingTaxCodes/WithholdingTaxCodes_Lines/ class=eli>WithholdingTaxCodes_Lines</a>    <small class='eli s'> WHT1</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Account' href=/WithholdingTaxCodes/Account/ class=eli>Account</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='AP Cess Account' href=/WithholdingTaxCodes/APCessAccount/ class=eli>APCessAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='APHSC Account' href=/WithholdingTaxCodes/APHSCAccount/ class=eli>APHSCAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='AP Surcharge Account' href=/WithholdingTaxCodes/APSurchargeAccount/ class=eli>APSurchargeAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='APTDS Account' href=/WithholdingTaxCodes/APTDSAccount/ class=eli>APTDSAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='AR Cess Account' href=/WithholdingTaxCodes/ARCessAccount/ class=eli>ARCessAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='ARHSC Account' href=/WithholdingTaxCodes/ARHSCAccount/ class=eli>ARHSCAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='AR Surcharge Account' href=/WithholdingTaxCodes/ARSurchargeAccount/ class=eli>ARSurchargeAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='ARTDS Account' href=/WithholdingTaxCodes/ARTDSAccount/ class=eli>ARTDSAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Assessee' href=/WithholdingTaxCodes/Assessee/ class=eli>Assessee</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Base Amount' href=/WithholdingTaxCodes/BaseAmount/ class=eli>BaseAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Base Type' href=/WithholdingTaxCodes/BaseType/ class=eli>BaseType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/WithholdingTaxCodes/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Category' href=/WithholdingTaxCodes/Category/ class=eli>Category</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Concessional' href=/WithholdingTaxCodes/Concessional/ class=eli>Concessional</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CST Code Incoming ID' href=/WithholdingTaxCodes/CSTCodeIncomingID/ class=eli>CSTCodeIncomingID</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='CST Code Outgoing ID' href=/WithholdingTaxCodes/CSTCodeOutgoingID/ class=eli>CSTCodeOutgoingID</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Currency' href=/WithholdingTaxCodes/Currency/ class=eli>Currency</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Effectivefrom' href=/WithholdingTaxCodes/Effectivefrom/ class=eli>Effectivefrom</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Inactive' href=/WithholdingTaxCodes/Inactive/ class=eli>Inactive</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Is Progressive Tax' href=/WithholdingTaxCodes/IsProgressiveTax/ class=eli>IsProgressiveTax</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Lines' href=/WithholdingTaxCodes/Lines/ class=eli>Lines</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Location' href=/WithholdingTaxCodes/Location/ class=eli>Location</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Minimum Taxable Amount' href=/WithholdingTaxCodes/MinimumTaxableAmount/ class=eli>MinimumTaxableAmount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Nature Of Calculation Base Code' href=/WithholdingTaxCodes/NatureOfCalculationBaseCode/ class=eli>NatureOfCalculationBaseCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Official Code' href=/WithholdingTaxCodes/OfficialCode/ class=eli>OfficialCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Rate' href=/WithholdingTaxCodes/Rate/ class=eli>Rate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Return Type' href=/WithholdingTaxCodes/ReturnType/ class=eli>ReturnType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Rounding Type' href=/WithholdingTaxCodes/RoundingType/ class=eli>RoundingType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Section' href=/WithholdingTaxCodes/Section/ class=eli>Section</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Surcharge' href=/WithholdingTaxCodes/Surcharge/ class=eli>Surcharge</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Threshold' href=/WithholdingTaxCodes/Threshold/ class=eli>Threshold</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Type ID' href=/WithholdingTaxCodes/TypeID/ class=eli>TypeID</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/WithholdingTaxCodes/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Withholding Type' href=/WithholdingTaxCodes/WithholdingType/ class=eli>WithholdingType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WT Code' href=/WithholdingTaxCodes/WTCode/ class=eli>WTCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WT Name' href=/WithholdingTaxCodes/WTName/ class=eli>WTName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><br></div></td>
 </tr>
-<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
-<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
 </td></tr></table>
 
 

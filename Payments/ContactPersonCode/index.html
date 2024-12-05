@@ -2,18 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
-     crossorigin="anonymous"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-360341-2');
-</script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
@@ -34,11 +22,6 @@
 <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
 
 <script src=/js/jquery.sticky.js></script>
-
-  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
-  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
-
-
 
 <script>
 
@@ -119,119 +102,6 @@ display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg
 </td></tr>
 <tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
-    id="tickers-line"></div>
-
-<script>
-    let previousPrices = {};
-    let previousColors = {};
-    let previousHits = {};
-
-    // Custom rounding function
-    function customRound(value) {
-        return value;
-        if (Math.floor(value) < 100) {
-            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
-        } else {
-            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
-        }
-
-    }
-
-    function handleWebSocketFeed() {
-        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
-
-        // Handle incoming WebSocket messages
-        socket.onmessage = function (event) {
-            const data = JSON.parse(event.data);
-            updateTickers(data);
-        };
-    }
-
-    function updateTickers(data) {
-        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
-        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
-        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
-        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
-
-        // Take top 10 traded tickers
-        const top10 = filteredTickers.slice(0, 200);
-
-        // Create a string to display tickers in one line
-        let tickersLine = '';
-        let prevRoundedQuoteVolumePerTrade = 0;
-        let shown = 0;
-        for (const ticker of top10) {
-            const tickerName = ticker.s.replace('USDT', '');
-            const price = customRound(parseFloat(ticker.c));
-//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
-            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-
-            // Determine the color of the price
-            let priceColor = 'black';
-            if (previousPrices[ticker.s] !== undefined) {
-
-                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
-
-                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
-
-                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-
-                if (previousHits[ticker.s] > 0) {
-                    priceColor = 'darkgreen'; // Price increased
-                } else if (previousHits[ticker.s] < 0) {
-                    priceColor = 'darkred'; // Price decreased
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
-                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
-            }
-
-            // Update the tickers line with colored price
-            let prevh = (previousHits[ticker.s] / 10)
-            if (prevh < 0) prevh = prevh * -1;
-            prevh = prevh + 0.5;
-
-            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
-                shown++;
-		//price = Math.round(price);
-                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
-                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
-            }
-
-            if (shown >= 96) break;
-            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
-
-
-            // Update previousPrice and color for the next iteration
-            previousPrices[ticker.s] = price;
-            previousColors[ticker.s] = priceColor;
-        }
-
-        // Update the tickers line in the HTML
-        $('#tickers-line').html(tickersLine);
-    }
-    $("#tickers-line").on('click', function () {
-        if ($(this).css("white-space") == "nowrap") {
-            $(this).css("white-space", "");
-        }
-
-        else {
-            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
-            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
-        }
-    });
-    $(document).ready(function () {
-        handleWebSocketFeed();
-    });
-</script>
 <div class=' tit' style='width:100%; background-color:#cacaca; color:#343434;'><div class=eli2><b>API</b> Payments /  Contact Person Code</div></div></td></tr><tr>
                     <td class=content align=left valign=top>
                     
@@ -271,8 +141,6 @@ Source table: OBOE.</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <fo
                         </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/Payments/'>Payments</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/Payments/ContactPersonCode/'>ContactPersonCode</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo ORCT Payment Type Enum' href=/Payments/BoORCTPaymentTypeEnum/ class=eli>BoORCTPaymentTypeEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Payment Priorities' href=/Payments/BoPaymentPriorities/ class=eli>BoPaymentPriorities</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Payments Object Type' href=/Payments/BoPaymentsObjectType/ class=eli>BoPaymentsObjectType</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Rcpt Types' href=/Payments/BoRcptTypes/ class=eli>BoRcptTypes</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payments Authorization Status Enum' href=/Payments/PaymentsAuthorizationStatusEnum/ class=eli>PaymentsAuthorizationStatusEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/Payments/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cancel' href=/Payments/Cancel/ class=eli>Cancel</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cancelby Current System Date' href=/Payments/CancelbyCurrentSystemDate/ class=eli>CancelbyCurrentSystemDate</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Close' href=/Payments/Close/ class=eli>Close</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get Approval Templates' href=/Payments/GetApprovalTemplates/ class=eli>GetApprovalTemplates</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/Payments/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/Payments/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/Payments/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save Draft To Document' href=/Payments/SaveDraftToDocument/ class=eli>SaveDraftToDocument</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/Payments/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/Payments/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/Payments/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Object</b><br><div class=sm><a style='min-width:50px;' title='Bill of Exchange for Payment
  Bill Of Exchange' href=/Payments/BillOfExchange/ class=eli>BillOfExchange</a>    <small class='eli s'> OBOE</small></div><div class=sm><a style='min-width:50px;' title='Payments   Accounts' href=/Payments/Payments_Accounts/ class=eli>Payments_Accounts</a>    <small class='eli s'> RCT4, PDF4, VPM4</small></div><div class=sm><a style='min-width:50px;' title='Payments   Approval Requests' href=/Payments/Payments_ApprovalRequests/ class=eli>Payments_ApprovalRequests</a>    <small class='eli s'> OWDDV</small></div><div class=sm><a style='min-width:50px;' title='Payments   Checks' href=/Payments/Payments_Checks/ class=eli>Payments_Checks</a>    <small class='eli s'> RCT1, PDF1, VPM1</small></div><div class=sm><a style='min-width:50px;' title='Payments   Credit Cards' href=/Payments/Payments_CreditCards/ class=eli>Payments_CreditCards</a>    <small class='eli s'> RCT3, PDF3, VPM3</small></div><div class=sm><a style='min-width:50px;' title='Payments   Invoices' href=/Payments/Payments_Invoices/ class=eli>Payments_Invoices</a>    <small class='eli s'> RCT2, PDF2, VPM2</small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Account Payments' href=/Payments/AccountPayments/ class=eli>AccountPayments</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Address' href=/Payments/Address/ class=eli>Address</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Apply VAT' href=/Payments/ApplyVAT/ class=eli>ApplyVAT</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Authorization Status' href=/Payments/AuthorizationStatus/ class=eli>AuthorizationStatus</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Account' href=/Payments/BankAccount/ class=eli>BankAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Charge Amount' href=/Payments/BankChargeAmount/ class=eli>BankChargeAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Charge Amount In FC' href=/Payments/BankChargeAmountInFC/ class=eli>BankChargeAmountInFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Charge Amount In SC' href=/Payments/BankChargeAmountInSC/ class=eli>BankChargeAmountInSC</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bank Code' href=/Payments/BankCode/ class=eli>BankCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill Of Exchange' href=/Payments/BillOfExchange/ class=eli>BillOfExchange</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill Of Exchange Agent' href=/Payments/BillOfExchangeAgent/ class=eli>BillOfExchangeAgent</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill Of Exchange Amount' href=/Payments/BillOfExchangeAmount/ class=eli>BillOfExchangeAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill Of Exchange Amount FC' href=/Payments/BillOfExchangeAmountFC/ class=eli>BillOfExchangeAmountFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bill Of Exchange Amount SC' href=/Payments/BillOfExchangeAmountSC/ class=eli>BillOfExchangeAmountSC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Billof Exchange Status' href=/Payments/BillofExchangeStatus/ class=eli>BillofExchangeStatus</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Boe Account' href=/Payments/BoeAccount/ class=eli>BoeAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPLID' href=/Payments/BPLID/ class=eli>BPLID</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPL Name' href=/Payments/BPLName/ class=eli>BPLName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/Payments/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cancelled' href=/Payments/Cancelled/ class=eli>Cancelled</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Card Code' href=/Payments/CardCode/ class=eli>CardCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Card Name' href=/Payments/CardName/ class=eli>CardName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cash Account' href=/Payments/CashAccount/ class=eli>CashAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cash Sum' href=/Payments/CashSum/ class=eli>CashSum</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cash Sum FC' href=/Payments/CashSumFC/ class=eli>CashSumFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cash Sum Sys' href=/Payments/CashSumSys/ class=eli>CashSumSys</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Check Account' href=/Payments/CheckAccount/ class=eli>CheckAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Checks' href=/Payments/Checks/ class=eli>Checks</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Contact Person Code' href=/Payments/ContactPersonCode/ class=eli>ContactPersonCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Control Account' href=/Payments/ControlAccount/ class=eli>ControlAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Counter Reference' href=/Payments/CounterReference/ class=eli>CounterReference</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Credit Cards' href=/Payments/CreditCards/ class=eli>CreditCards</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Deduction Percent' href=/Payments/DeductionPercent/ class=eli>DeductionPercent</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Deduction Sum' href=/Payments/DeductionSum/ class=eli>DeductionSum</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Currency' href=/Payments/DocCurrency/ class=eli>DocCurrency</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Date' href=/Payments/DocDate/ class=eli>DocDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Entry' href=/Payments/DocEntry/ class=eli>DocEntry</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Num' href=/Payments/DocNum/ class=eli>DocNum</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Object Code' href=/Payments/DocObjectCode/ class=eli>DocObjectCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Rate' href=/Payments/DocRate/ class=eli>DocRate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Type' href=/Payments/DocType/ class=eli>DocType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Doc Typte' href=/Payments/DocTypte/ class=eli>DocTypte</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Due Date' href=/Payments/DueDate/ class=eli>DueDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Hand Written' href=/Payments/HandWritten/ class=eli>HandWritten</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Invoices' href=/Payments/Invoices/ class=eli>Invoices</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Is Pay To Bank' href=/Payments/IsPayToBank/ class=eli>IsPayToBank</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Journal Remarks' href=/Payments/JournalRemarks/ class=eli>JournalRemarks</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Local Currency' href=/Payments/LocalCurrency/ class=eli>LocalCurrency</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Location Code' href=/Payments/LocationCode/ class=eli>LocationCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Priority' href=/Payments/PaymentPriority/ class=eli>PaymentPriority</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payments   Approval Requests' href=/Payments/Payments_ApprovalRequests/ class=eli>Payments_ApprovalRequests</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Payment Type' href=/Payments/PaymentType/ class=eli>PaymentType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Pay To Bank Account No' href=/Payments/PayToBankAccountNo/ class=eli>PayToBankAccountNo</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Pay To Bank Branch' href=/Payments/PayToBankBranch/ class=eli>PayToBankBranch</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Pay To Bank Code' href=/Payments/PayToBankCode/ class=eli>PayToBankCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Pay To Bank Country' href=/Payments/PayToBankCountry/ class=eli>PayToBankCountry</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Pay To Code' href=/Payments/PayToCode/ class=eli>PayToCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Primary Form Items' href=/Payments/PrimaryFormItems/ class=eli>PrimaryFormItems</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Printed' href=/Payments/Printed/ class=eli>Printed</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Proforma' href=/Payments/Proforma/ class=eli>Proforma</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Project Code' href=/Payments/ProjectCode/ class=eli>ProjectCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reference 1' href=/Payments/Reference1/ class=eli>Reference1</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reference 2' href=/Payments/Reference2/ class=eli>Reference2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remarks' href=/Payments/Remarks/ class=eli>Remarks</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Series' href=/Payments/Series/ class=eli>Series</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Date' href=/Payments/TaxDate/ class=eli>TaxDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Group' href=/Payments/TaxGroup/ class=eli>TaxGroup</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transaction Code' href=/Payments/TransactionCode/ class=eli>TransactionCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Account' href=/Payments/TransferAccount/ class=eli>TransferAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Date' href=/Payments/TransferDate/ class=eli>TransferDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Real Amount' href=/Payments/TransferRealAmount/ class=eli>TransferRealAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Reference' href=/Payments/TransferReference/ class=eli>TransferReference</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transfer Sum' href=/Payments/TransferSum/ class=eli>TransferSum</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Under Overpaymentdifference' href=/Payments/UnderOverpaymentdifference/ class=eli>UnderOverpaymentdifference</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Under Overpaymentdiff FC' href=/Payments/UnderOverpaymentdiffFC/ class=eli>UnderOverpaymentdiffFC</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Under Overpaymentdiff SC' href=/Payments/UnderOverpaymentdiffSC/ class=eli>UnderOverpaymentdiffSC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/Payments/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vat Date' href=/Payments/VatDate/ class=eli>VatDate</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='VAT Reg Num' href=/Payments/VATRegNum/ class=eli>VATRegNum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WT Account' href=/Payments/WTAccount/ class=eli>WTAccount</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WT Amount' href=/Payments/WTAmount/ class=eli>WTAmount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WT Amount FC' href=/Payments/WTAmountFC/ class=eli>WTAmountFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WT Amount SC' href=/Payments/WTAmountSC/ class=eli>WTAmountSC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Wt Base Sum' href=/Payments/WtBaseSum/ class=eli>WtBaseSum</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Wt Base Sum FC' href=/Payments/WtBaseSumFC/ class=eli>WtBaseSumFC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Wt Base Sum SC' href=/Payments/WtBaseSumSC/ class=eli>WtBaseSumSC</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WT Code' href=/Payments/WTCode/ class=eli>WTCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='WT Taxable Amount' href=/Payments/WTTaxableAmount/ class=eli>WTTaxableAmount</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
 </tr>
-<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
-<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
 </td></tr></table>
 
 

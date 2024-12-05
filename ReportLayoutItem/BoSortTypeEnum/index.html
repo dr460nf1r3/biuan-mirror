@@ -2,18 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
-     crossorigin="anonymous"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-360341-2');
-</script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
@@ -34,11 +22,6 @@
 <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
 
 <script src=/js/jquery.sticky.js></script>
-
-  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
-  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
-
-
 
 <script>
 
@@ -119,119 +102,6 @@ display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg
 </td></tr>
 <tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
-    id="tickers-line"></div>
-
-<script>
-    let previousPrices = {};
-    let previousColors = {};
-    let previousHits = {};
-
-    // Custom rounding function
-    function customRound(value) {
-        return value;
-        if (Math.floor(value) < 100) {
-            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
-        } else {
-            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
-        }
-
-    }
-
-    function handleWebSocketFeed() {
-        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
-
-        // Handle incoming WebSocket messages
-        socket.onmessage = function (event) {
-            const data = JSON.parse(event.data);
-            updateTickers(data);
-        };
-    }
-
-    function updateTickers(data) {
-        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
-        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
-        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
-        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
-
-        // Take top 10 traded tickers
-        const top10 = filteredTickers.slice(0, 200);
-
-        // Create a string to display tickers in one line
-        let tickersLine = '';
-        let prevRoundedQuoteVolumePerTrade = 0;
-        let shown = 0;
-        for (const ticker of top10) {
-            const tickerName = ticker.s.replace('USDT', '');
-            const price = customRound(parseFloat(ticker.c));
-//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
-            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-
-            // Determine the color of the price
-            let priceColor = 'black';
-            if (previousPrices[ticker.s] !== undefined) {
-
-                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
-
-                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
-
-                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-
-                if (previousHits[ticker.s] > 0) {
-                    priceColor = 'darkgreen'; // Price increased
-                } else if (previousHits[ticker.s] < 0) {
-                    priceColor = 'darkred'; // Price decreased
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
-                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
-            }
-
-            // Update the tickers line with colored price
-            let prevh = (previousHits[ticker.s] / 10)
-            if (prevh < 0) prevh = prevh * -1;
-            prevh = prevh + 0.5;
-
-            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
-                shown++;
-		//price = Math.round(price);
-                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
-                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
-            }
-
-            if (shown >= 96) break;
-            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
-
-
-            // Update previousPrice and color for the next iteration
-            previousPrices[ticker.s] = price;
-            previousColors[ticker.s] = priceColor;
-        }
-
-        // Update the tickers line in the HTML
-        $('#tickers-line').html(tickersLine);
-    }
-    $("#tickers-line").on('click', function () {
-        if ($(this).css("white-space") == "nowrap") {
-            $(this).css("white-space", "");
-        }
-
-        else {
-            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
-            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
-        }
-    });
-    $(document).ready(function () {
-        handleWebSocketFeed();
-    });
-</script>
 <div class=' tit' style='width:50%; background-color:#ff4422; color:#ffffea;'><div class=eli2><b>SQL</b> <a href='/sql/Reports'> Reports</a> / <a href='/sql/Reporting Element'> Reporting Element</a></div></div><div class=' tit' style='width:50%; background-color:#ffa886; color:#cd1200;'><div class=eli2><b>API</b> Report Layout Item /  Bo Sort Type Enum</div></div></td></tr><tr>
                     <td class=content align=left valign=top>
                     
@@ -287,8 +157,6 @@ Source table: RITM</div>&nbsp;&nbsp;<img src=/images/parchild.gif border=0> <fon
                         <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
                         </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/ReportLayoutItem/'>ReportLayoutItem</a></font><hr><font style=''>Enumeration<br><a class=eli style='max-width:99%;'   href='/ReportLayoutItem/BoSortTypeEnum/'>BoSortTypeEnum</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Bar Code Standard Enum' href=/ReportLayoutItem/BoBarCodeStandardEnum/ class=eli>BoBarCodeStandardEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Data Source Enum' href=/ReportLayoutItem/BoDataSourceEnum/ class=eli>BoDataSourceEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Horizontal Alignment Enum' href=/ReportLayoutItem/BoHorizontalAlignmentEnum/ class=eli>BoHorizontalAlignmentEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Line Break Enum' href=/ReportLayoutItem/BoLineBreakEnum/ class=eli>BoLineBreakEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Picture Size Enum' href=/ReportLayoutItem/BoPictureSizeEnum/ class=eli>BoPictureSizeEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Report Layout Item Type Enum' href=/ReportLayoutItem/BoReportLayoutItemTypeEnum/ class=eli>BoReportLayoutItemTypeEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Sort Type Enum' href=/ReportLayoutItem/BoSortTypeEnum/ class=eli>BoSortTypeEnum</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bo Vertical Alignment Enum' href=/ReportLayoutItem/BoVerticalAlignmentEnum/ class=eli>BoVerticalAlignmentEnum</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='From XML File' href=/ReportLayoutItem/FromXMLFile/ class=eli>FromXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='From XML String' href=/ReportLayoutItem/FromXMLString/ class=eli>FromXMLString</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get XML Schema' href=/ReportLayoutItem/GetXMLSchema/ class=eli>GetXMLSchema</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML File' href=/ReportLayoutItem/ToXMLFile/ class=eli>ToXMLFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='To XML String' href=/ReportLayoutItem/ToXMLString/ class=eli>ToXMLString</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Background Blue' href=/ReportLayoutItem/BackgroundBlue/ class=eli>BackgroundBlue</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Background Green' href=/ReportLayoutItem/BackgroundGreen/ class=eli>BackgroundGreen</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Background Red' href=/ReportLayoutItem/BackgroundRed/ class=eli>BackgroundRed</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bar Code Standard' href=/ReportLayoutItem/BarCodeStandard/ class=eli>BarCodeStandard</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Block Font Change' href=/ReportLayoutItem/BlockFontChange/ class=eli>BlockFontChange</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Border Blue' href=/ReportLayoutItem/BorderBlue/ class=eli>BorderBlue</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Border Green' href=/ReportLayoutItem/BorderGreen/ class=eli>BorderGreen</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Border Red' href=/ReportLayoutItem/BorderRed/ class=eli>BorderRed</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bottom Border Line Thickness' href=/ReportLayoutItem/BottomBorderLineThickness/ class=eli>BottomBorderLineThickness</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Bottom Margin' href=/ReportLayoutItem/BottomMargin/ class=eli>BottomMargin</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Data Source' href=/ReportLayoutItem/DataSource/ class=eli>DataSource</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Display Description' href=/ReportLayoutItem/DisplayDescription/ class=eli>DisplayDescription</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Display Repetitive Area Footer On All Pages' href=/ReportLayoutItem/DisplayRepetitiveAreaFooterOnAllPages/ class=eli>DisplayRepetitiveAreaFooterOnAllPages</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Display Total As A Word' href=/ReportLayoutItem/DisplayTotalAsAWord/ class=eli>DisplayTotalAsAWord</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distance To Repetitive Duplicate' href=/ReportLayoutItem/DistanceToRepetitiveDuplicate/ class=eli>DistanceToRepetitiveDuplicate</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Duplicate Repetitive Area' href=/ReportLayoutItem/DuplicateRepetitiveArea/ class=eli>DuplicateRepetitiveArea</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Editable' href=/ReportLayoutItem/Editable/ class=eli>Editable</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Field Identifier' href=/ReportLayoutItem/FieldIdentifier/ class=eli>FieldIdentifier</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Field Name' href=/ReportLayoutItem/FieldName/ class=eli>FieldName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Font Name' href=/ReportLayoutItem/FontName/ class=eli>FontName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Font Size' href=/ReportLayoutItem/FontSize/ class=eli>FontSize</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Group Number' href=/ReportLayoutItem/GroupNumber/ class=eli>GroupNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Height' href=/ReportLayoutItem/Height/ class=eli>Height</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Height Adjustments' href=/ReportLayoutItem/HeightAdjustments/ class=eli>HeightAdjustments</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Hide Repetitive Area If Empty' href=/ReportLayoutItem/HideRepetitiveAreaIfEmpty/ class=eli>HideRepetitiveAreaIfEmpty</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Highlight Blue' href=/ReportLayoutItem/HighlightBlue/ class=eli>HighlightBlue</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Highlight Green' href=/ReportLayoutItem/HighlightGreen/ class=eli>HighlightGreen</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Highlight Red' href=/ReportLayoutItem/HighlightRed/ class=eli>HighlightRed</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Horizontal Alignment' href=/ReportLayoutItem/HorizontalAlignment/ class=eli>HorizontalAlignment</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Item Index' href=/ReportLayoutItem/ItemIndex/ class=eli>ItemIndex</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Item Number' href=/ReportLayoutItem/ItemNumber/ class=eli>ItemNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Left' href=/ReportLayoutItem/Left/ class=eli>Left</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Left Border Line Thickness' href=/ReportLayoutItem/LeftBorderLineThickness/ class=eli>LeftBorderLineThickness</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Left Margin' href=/ReportLayoutItem/LeftMargin/ class=eli>LeftMargin</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Line Break' href=/ReportLayoutItem/LineBreak/ class=eli>LineBreak</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Link To Field' href=/ReportLayoutItem/LinkToField/ class=eli>LinkToField</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='New Page' href=/ReportLayoutItem/NewPage/ class=eli>NewPage</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Next Segment Item Number' href=/ReportLayoutItem/NextSegmentItemNumber/ class=eli>NextSegmentItemNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Number Of Lines In Repetitive Area' href=/ReportLayoutItem/NumberOfLinesInRepetitiveArea/ class=eli>NumberOfLinesInRepetitiveArea</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Parent Index' href=/ReportLayoutItem/ParentIndex/ class=eli>ParentIndex</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Parent Type' href=/ReportLayoutItem/ParentType/ class=eli>ParentType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Picture Size' href=/ReportLayoutItem/PictureSize/ class=eli>PictureSize</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Print As Bar Code' href=/ReportLayoutItem/PrintAsBarCode/ class=eli>PrintAsBarCode</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Relate To Field' href=/ReportLayoutItem/RelateToField/ class=eli>RelateToField</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reverse Sort' href=/ReportLayoutItem/ReverseSort/ class=eli>ReverseSort</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Right Border Line Thickness' href=/ReportLayoutItem/RightBorderLineThickness/ class=eli>RightBorderLineThickness</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Right Margin' href=/ReportLayoutItem/RightMargin/ class=eli>RightMargin</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Set As Group' href=/ReportLayoutItem/SetAsGroup/ class=eli>SetAsGroup</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Shadow Thickness' href=/ReportLayoutItem/ShadowThickness/ class=eli>ShadowThickness</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sort Level' href=/ReportLayoutItem/SortLevel/ class=eli>SortLevel</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Sort Type' href=/ReportLayoutItem/SortType/ class=eli>SortType</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='String' href=/ReportLayoutItem/String/ class=eli>String</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='String Filler' href=/ReportLayoutItem/StringFiller/ class=eli>StringFiller</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='String Length' href=/ReportLayoutItem/StringLength/ class=eli>StringLength</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Suppress Zeros' href=/ReportLayoutItem/SuppressZeros/ class=eli>SuppressZeros</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Table Name' href=/ReportLayoutItem/TableName/ class=eli>TableName</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Text Blue' href=/ReportLayoutItem/TextBlue/ class=eli>TextBlue</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Text Green' href=/ReportLayoutItem/TextGreen/ class=eli>TextGreen</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Text Red' href=/ReportLayoutItem/TextRed/ class=eli>TextRed</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Text Style' href=/ReportLayoutItem/TextStyle/ class=eli>TextStyle</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Top' href=/ReportLayoutItem/Top/ class=eli>Top</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Top Border Line Thickness' href=/ReportLayoutItem/TopBorderLineThickness/ class=eli>TopBorderLineThickness</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Top Margin' href=/ReportLayoutItem/TopMargin/ class=eli>TopMargin</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Type' href=/ReportLayoutItem/Type/ class=eli>Type</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Unique' href=/ReportLayoutItem/Unique/ class=eli>Unique</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Variable Number' href=/ReportLayoutItem/VariableNumber/ class=eli>VariableNumber</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Vertical Alignment' href=/ReportLayoutItem/VerticalAlignment/ class=eli>VerticalAlignment</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Visible' href=/ReportLayoutItem/Visible/ class=eli>Visible</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Width' href=/ReportLayoutItem/Width/ class=eli>Width</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><br></div></td>
 </tr>
-<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
-<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
 </td></tr></table>
 
 

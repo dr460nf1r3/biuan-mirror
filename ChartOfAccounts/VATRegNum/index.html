@@ -2,18 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" style='width:100%;height:100%;'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4431530350764591"
-     crossorigin="anonymous"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-360341-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-360341-2');
-</script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
@@ -34,11 +22,6 @@
 <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.3.0/dist/highlightjs-line-numbers.min.js"></script>
 
 <script src=/js/jquery.sticky.js></script>
-
-  <link rel="stylesheet" type="text/css" href="/js/cookie/css/jquery-eu-cookie-law-popup.css"/>
-  <script src="/js/cookie/js/jquery-eu-cookie-law-popup.js"></script>
-
-
 
 <script>
 
@@ -119,119 +102,6 @@ display: inline-block;'><svg focusable='false' xmlns='http://www.w3.org/2000/svg
 </td></tr>
 <tr> <td colspan=3 height=1% style=' max-width: 100% !important;' valign=top><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<div style='z-index:9999999; width:100%; max-width:1024px;background-color:white; cursor:pointer; color:white;top:0px;position:fixed; overflow:hidden !important; white-space: nowrap;'
-    id="tickers-line"></div>
-
-<script>
-    let previousPrices = {};
-    let previousColors = {};
-    let previousHits = {};
-
-    // Custom rounding function
-    function customRound(value) {
-        return value;
-        if (Math.floor(value) < 100) {
-            return parseFloat(value).toFixed(4); // Round to 4 decimal places if integer part is 0
-        } else {
-            return parseFloat(value).toFixed(2); // Round to 2 decimal places otherwise
-        }
-
-    }
-
-    function handleWebSocketFeed() {
-        const socket = new WebSocket('wss://stream.binance.com:9443/ws/!ticker@arr');
-
-        // Handle incoming WebSocket messages
-        socket.onmessage = function (event) {
-            const data = JSON.parse(event.data);
-            updateTickers(data);
-        };
-    }
-
-    function updateTickers(data) {
-        // Filter tickers ending with "USDT" and sort by quote volume divided by number of trades
-        const filteredTickers = data.filter(ticker => ticker.s.endsWith('USDT') && !ticker.s.includes("USDC") && !ticker.s.includes("DUSD"));
-        //filteredTickers.sort((a, b) => (parseFloat(b.q) / parseFloat(b.n)) - (parseFloat(a.q) / parseFloat(a.n)));
-        filteredTickers.sort((a, b) => (parseFloat(b.q)) - (parseFloat(a.q)));
-
-        // Take top 10 traded tickers
-        const top10 = filteredTickers.slice(0, 200);
-
-        // Create a string to display tickers in one line
-        let tickersLine = '';
-        let prevRoundedQuoteVolumePerTrade = 0;
-        let shown = 0;
-        for (const ticker of top10) {
-            const tickerName = ticker.s.replace('USDT', '');
-            const price = customRound(parseFloat(ticker.c));
-//            const roundedQuoteVolumePerTrade = customRound(parseFloat(ticker.c));
-            const roundedQuoteVolumePerTrade = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-//            const price = Math.round(parseFloat(ticker.q) / parseFloat(ticker.n));
-
-            // Determine the color of the price
-            let priceColor = 'black';
-            if (previousPrices[ticker.s] !== undefined) {
-
-                if (previousHits[ticker.s] === undefined) previousHits[ticker.s] = 0;
-
-                if (parseFloat(price) > parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] + 0.5;
-
-                } else if (parseFloat(price) < parseFloat(previousPrices[ticker.s])) {
-                    previousHits[ticker.s] = previousHits[ticker.s] - 0.5;
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-
-                if (previousHits[ticker.s] > 0) {
-                    priceColor = 'darkgreen'; // Price increased
-                } else if (previousHits[ticker.s] < 0) {
-                    priceColor = 'darkred'; // Price decreased
-                } else {
-                    priceColor = previousColors[ticker.s]; // Keep previous color if price remains the same
-                }
-                if (previousHits[ticker.s] > 10 && previousHits[ticker.s] > 0) previousHits[ticker.s] = 10;
-                else if(previousHits[ticker.s] < -10 && previousHits[ticker.s] < 0) previousHits[ticker.s] = -10;
-            }
-
-            // Update the tickers line with colored price
-            let prevh = (previousHits[ticker.s] / 10)
-            if (prevh < 0) prevh = prevh * -1;
-            prevh = prevh + 0.5;
-
-            if (roundedQuoteVolumePerTrade > prevRoundedQuoteVolumePerTrade) {
-                shown++;
-		//price = Math.round(price);
-                tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${price} <small>${roundedQuoteVolumePerTrade}</small>&nbsp;&nbsp;</span>`;
-                //tickersLine += `<span style="overflow:hidden; white-space: nowrap; display: inline-block;width:120px; opacity:${prevh}; background-color: ${priceColor};"><b>&nbsp;${tickerName}</b> ${roundedQuoteVolumePerTrade} <small>${price}</small>&nbsp;&nbsp;</span>`;
-            }
-
-            if (shown >= 96) break;
-            prevRoundedQuoteVolumePerTrade = roundedQuoteVolumePerTrade;
-
-
-            // Update previousPrice and color for the next iteration
-            previousPrices[ticker.s] = price;
-            previousColors[ticker.s] = priceColor;
-        }
-
-        // Update the tickers line in the HTML
-        $('#tickers-line').html(tickersLine);
-    }
-    $("#tickers-line").on('click', function () {
-        if ($(this).css("white-space") == "nowrap") {
-            $(this).css("white-space", "");
-        }
-
-        else {
-            //window.open('https://www.binance.com/en/activity/referral-entry/CPA/together-v3?ref=CPA_000YBYAFHD', '_blank');
-            window.open('https://accounts.binance.com/register?ref=75676846', '_blank');
-        }
-    });
-    $(document).ready(function () {
-        handleWebSocketFeed();
-    });
-</script>
 <div class=' tit' style='width:33%; background-color:#11aabb; color:#d9ffff;'><div class=eli2><b>SQL</b> <a href='/sql/Finance'> Finance</a> / <a href='/sql/G/L Accounts'> G/L Accounts</a></div></div><div class=' tit' style='width:33%; background-color:#43dced; color:#007889;'><div class=eli2><b>DTW</b> Financials /  Chart of Accounts</div></div><div class=' tit' style='width:33%; background-color:#75ffff; color:#007889;'><div class=eli2><b>API</b> Chart Of Accounts /  VAT Reg Num</div></div></td></tr><tr>
                     <td class=content align=left valign=top>
                     
@@ -277,8 +147,6 @@ Remove a G/L account....</div><br></dir></div><br><br></div></td>
                         <font class=sap><b>SAP<small style='font-size:12px;'>®</small></b></font></a><font class='sap'> BUSINESS ONE</font>
                         </div><div style='clear:both;'></div><font style='font-size:15px;'>Object<br><a style='max-width:99%;' class=eli href='/ChartOfAccounts/'>ChartOfAccounts</a></font><hr><font style=''>Property<br><a class=eli style='max-width:99%;'   href='/ChartOfAccounts/VATRegNum/'>VATRegNum</a></font><hr><br><b>Enumeration</b><br><div class=sm><a style='min-width:50px;' title='Bo Account Types' href=/ChartOfAccounts/BoAccountTypes/ class=eli>BoAccountTypes</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='SPED Contabil Account Purpose Code' href=/ChartOfAccounts/SPEDContabilAccountPurposeCode/ class=eli>SPEDContabilAccountPurposeCode</a>    <small class='eli s'> </small></div><br><b>Method</b><br><div class=sm><a style='min-width:50px;' title='Add' href=/ChartOfAccounts/Add/ class=eli>Add</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get As XML' href=/ChartOfAccounts/GetAsXML/ class=eli>GetAsXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Get By Key' href=/ChartOfAccounts/GetByKey/ class=eli>GetByKey</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Remove' href=/ChartOfAccounts/Remove/ class=eli>Remove</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save To File' href=/ChartOfAccounts/SaveToFile/ class=eli>SaveToFile</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Save XML' href=/ChartOfAccounts/SaveXML/ class=eli>SaveXML</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Update' href=/ChartOfAccounts/Update/ class=eli>Update</a>    <small class='eli s'> </small></div><br><b>Property</b><br><div class=sm><a style='min-width:50px;' title='Account Level' href=/ChartOfAccounts/AccountLevel/ class=eli>AccountLevel</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Account Purpose Code' href=/ChartOfAccounts/AccountPurposeCode/ class=eli>AccountPurposeCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Account Type' href=/ChartOfAccounts/AccountType/ class=eli>AccountType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Acct Currency' href=/ChartOfAccounts/AcctCurrency/ class=eli>AcctCurrency</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Active Account' href=/ChartOfAccounts/ActiveAccount/ class=eli>ActiveAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Allow Change Vat Group' href=/ChartOfAccounts/AllowChangeVatGroup/ class=eli>AllowChangeVatGroup</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Allow Multiple Linking' href=/ChartOfAccounts/AllowMultipleLinking/ class=eli>AllowMultipleLinking</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Balance' href=/ChartOfAccounts/Balance/ class=eli>Balance</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Balance   Frgn Curr' href=/ChartOfAccounts/Balance_FrgnCurr/ class=eli>Balance_FrgnCurr</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Balance  syscurr' href=/ChartOfAccounts/Balance_syscurr/ class=eli>Balance_syscurr</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPLID' href=/ChartOfAccounts/BPLID/ class=eli>BPLID</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='BPL Name' href=/ChartOfAccounts/BPLName/ class=eli>BPLName</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Browser' href=/ChartOfAccounts/Browser/ class=eli>Browser</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Budget Account' href=/ChartOfAccounts/BudgetAccount/ class=eli>BudgetAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Cash Account' href=/ChartOfAccounts/CashAccount/ class=eli>CashAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Category' href=/ChartOfAccounts/Category/ class=eli>Category</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Code' href=/ChartOfAccounts/Code/ class=eli>Code</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Data Export Code' href=/ChartOfAccounts/DataExportCode/ class=eli>DataExportCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Datev Account' href=/ChartOfAccounts/DatevAccount/ class=eli>DatevAccount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Datev Auto Account' href=/ChartOfAccounts/DatevAutoAccount/ class=eli>DatevAutoAccount</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Datev First Data Entry' href=/ChartOfAccounts/DatevFirstDataEntry/ class=eli>DatevFirstDataEntry</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Default Vat Group' href=/ChartOfAccounts/DefaultVatGroup/ class=eli>DefaultVatGroup</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Details' href=/ChartOfAccounts/Details/ class=eli>Details</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 2 Relevant' href=/ChartOfAccounts/DistributionRule2Relevant/ class=eli>DistributionRule2Relevant</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 3 Relevant' href=/ChartOfAccounts/DistributionRule3Relevant/ class=eli>DistributionRule3Relevant</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 4 Relevant' href=/ChartOfAccounts/DistributionRule4Relevant/ class=eli>DistributionRule4Relevant</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule 5 Relevant' href=/ChartOfAccounts/DistributionRule5Relevant/ class=eli>DistributionRule5Relevant</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Distribution Rule Relevant' href=/ChartOfAccounts/DistributionRuleRelevant/ class=eli>DistributionRuleRelevant</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='External Code' href=/ChartOfAccounts/ExternalCode/ class=eli>ExternalCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='External Recon No' href=/ChartOfAccounts/ExternalReconNo/ class=eli>ExternalReconNo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Father Account Key' href=/ChartOfAccounts/FatherAccountKey/ class=eli>FatherAccountKey</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Foreign Name' href=/ChartOfAccounts/ForeignName/ class=eli>ForeignName</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Format Code' href=/ChartOfAccounts/FormatCode/ class=eli>FormatCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Frozen For' href=/ChartOfAccounts/FrozenFor/ class=eli>FrozenFor</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Frozen From' href=/ChartOfAccounts/FrozenFrom/ class=eli>FrozenFrom</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Frozen Remarks' href=/ChartOfAccounts/FrozenRemarks/ class=eli>FrozenRemarks</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Frozen To' href=/ChartOfAccounts/FrozenTo/ class=eli>FrozenTo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Internal Recon No' href=/ChartOfAccounts/InternalReconNo/ class=eli>InternalReconNo</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Liable For Advances' href=/ChartOfAccounts/LiableForAdvances/ class=eli>LiableForAdvances</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Loading Factor Code' href=/ChartOfAccounts/LoadingFactorCode/ class=eli>LoadingFactorCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Loading Factor Code 2' href=/ChartOfAccounts/LoadingFactorCode2/ class=eli>LoadingFactorCode2</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Loading Factor Code 3' href=/ChartOfAccounts/LoadingFactorCode3/ class=eli>LoadingFactorCode3</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Loading Factor Code 4' href=/ChartOfAccounts/LoadingFactorCode4/ class=eli>LoadingFactorCode4</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Loading Factor Code 5' href=/ChartOfAccounts/LoadingFactorCode5/ class=eli>LoadingFactorCode5</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Loading Type' href=/ChartOfAccounts/LoadingType/ class=eli>LoadingType</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Lock Manual Transaction' href=/ChartOfAccounts/LockManualTransaction/ class=eli>LockManualTransaction</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Name' href=/ChartOfAccounts/Name/ class=eli>Name</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Planning Level' href=/ChartOfAccounts/PlanningLevel/ class=eli>PlanningLevel</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Primary Account' href=/ChartOfAccounts/PrimaryAccount/ class=eli>PrimaryAccount</a>  <div style='float:right; font-size:7px;'> DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Project Code' href=/ChartOfAccounts/ProjectCode/ class=eli>ProjectCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Project Relevant' href=/ChartOfAccounts/ProjectRelevant/ class=eli>ProjectRelevant</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Protected' href=/ChartOfAccounts/Protected/ class=eli>Protected</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Rate Conversion' href=/ChartOfAccounts/RateConversion/ class=eli>RateConversion</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Reconciled Account' href=/ChartOfAccounts/ReconciledAccount/ class=eli>ReconciledAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Referential Account Code' href=/ChartOfAccounts/ReferentialAccountCode/ class=eli>ReferentialAccountCode</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Revaluation Coordinated' href=/ChartOfAccounts/RevaluationCoordinated/ class=eli>RevaluationCoordinated</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Exempt Account' href=/ChartOfAccounts/TaxExemptAccount/ class=eli>TaxExemptAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Tax Liable Account' href=/ChartOfAccounts/TaxLiableAccount/ class=eli>TaxLiableAccount</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Transaction Code' href=/ChartOfAccounts/TransactionCode/ class=eli>TransactionCode</a>  <div style='float:right; font-size:7px;'> DTW DB</div>  <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='User Fields' href=/ChartOfAccounts/UserFields/ class=eli>UserFields</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Valid For' href=/ChartOfAccounts/ValidFor/ class=eli>ValidFor</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Valid From' href=/ChartOfAccounts/ValidFrom/ class=eli>ValidFrom</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Valid Remarks' href=/ChartOfAccounts/ValidRemarks/ class=eli>ValidRemarks</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='Valid To' href=/ChartOfAccounts/ValidTo/ class=eli>ValidTo</a>    <small class='eli s'> </small></div><div class=sm><a style='min-width:50px;' title='VAT Reg Num' href=/ChartOfAccounts/VATRegNum/ class=eli>VATRegNum</a>    <small class='eli s'> </small></div><br></div></td>
 </tr>
-<tr style='z-index:9999;'><td colspan=3 class=foot>SAP® Business One is the trademark(s) or registered trademark(s) of SAP AG in Germany and in several other countries.  <a href=mailto:sap@biuan.com>Contact</a><br><small>This website is not affiliated with, maintained, authorized, endorsed or sponsored by SAP AG or any of its affiliates</small>
-<br><a title=union.cat target=_blank href=https://union.cat><img src=https://union.cat/web/image/website/1/logo/union.cat height=20></a>
 </td></tr></table>
 
 
